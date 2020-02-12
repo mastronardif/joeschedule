@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#div1 {
+  width: 350px;
+  height: 70px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
+
+#div2 {
+  height: 90px;
+  width: 350px;
+  line-height: 90px;
+  text-align: center;
+  border: 2px dashed #f69c55;
+  background-color:pink;
+}
+</style>
+<script>
+
+function allowDrop(ev) {
+  ev.preventDefault();
+  
+  //alert('allowDrop(ev)');
+//var imageUrl = ev.dataTransfer.getData('text/html');
+//alert(ev.dataTransfer.types);
+
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) { 
+  ev.preventDefault();
+  
+  //alert(ev.dataTransfer.types);
+console.log(ev); 
+
+  var data = ev.dataTransfer.getData("text");
+  console.log(data);
+  //ev.target.appendChild(document.getElementById(data));
+   document.getElementById('drag3').src=data;
+  
+   // Print each item's "kind" and "type"
+ if (ev.dataTransfer.items != null) {
+   for (var i=0; i < ev.dataTransfer.items.length; i++) {
+     console.log("... items[" + i + "].kind = " + ev.dataTransfer.items[i].kind + " ; type = " + ev.dataTransfer.items[i].type);
+   }
+ }
+ 
+   //var nodeCopy = document.getElementById(data).cloneNode(true);
+  //nodeCopy.id = "newId"; /* We cannot use the same ID */
+  //ev.target.appendChild(nodeCopy);
+  
+  //alert(nodeCopy.src);
+}
+
+function drop22(ev) { 
+  ev.preventDefault();
+  
+  //alert(ev.dataTransfer.types);
+console.log(ev); 
+
+  var data = ev.dataTransfer.getData("text");
+  console.log(data);
+  //ev.target.appendChild(document.getElementById(data));
+   document.getElementById('drag3').src=data;
+  
+   // Print each item's "kind" and "type"
+ if (ev.dataTransfer.items != null) {
+   for (var i=0; i < ev.dataTransfer.items.length; i++) {
+     console.log("... items[" + i + "].kind = " + ev.dataTransfer.items[i].kind + " ; type = " + ev.dataTransfer.items[i].type);
+   }
+ }
+ 
+   //var nodeCopy = document.getElementById(data).cloneNode(true);
+  //nodeCopy.id = "newId"; /* We cannot use the same ID */
+  //ev.target.appendChild(nodeCopy);
+  
+  //alert(nodeCopy.src);
+}
+</script>
+
+</head>
+<body>
+
+<div id="div2" ondrop="drop22(event)" ondragover="allowDrop(event)">
+drop shit on me
+</div>
+<br>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<hr/>
+
+<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
+
+<br>
+<img id="drag2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoKvcsI3tFlg7aJR-9leQJQBG0qoymIiebHkfDyuJ_jaNHLPXhBA" draggable="true" ondragstart="drag(event)" height="69">
+
+<br>
+<img id="drag3" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
+
+
+</body>
+</html>

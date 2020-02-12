@@ -1,0 +1,552 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<title>Joe Biinder</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch1.css"/>
+</head>
+
+<script type="text/javascript">
+<!-- Begin
+
+function SetHeadValue(left, right)
+{
+//	alert("SetHeadValue("+left+", "+right+")");
+
+//	document.myform.d0.value = str;
+	document.myform.d0.value = right;
+
+//	document.myform(left).value = right;
+
+}
+
+
+function perl(pl)
+{
+	// FM 11/28/03var xmlfilename = document.myform.leftfname.value;
+	var xmlfilename = getLeftFN();
+
+	var str = "/cgi-bin/cgi/ngfop/"+pl+"?name="+xmlfilename;
+	window.open(str);
+}
+
+gDate = new Date();
+function setLeftValue(src, value)
+{
+
+   //	document.myform.leftsrc.value = src;
+	myform.leftsrc.value = src;
+    myform.leftvalue.value = value;
+
+	gDate = value;
+
+//	myform.leftvalue.value = value;
+//	alert("setLeftValue("+src+", "+value+")" );
+//	alert("setLeftValue("+myform.leftsrc.value+", "+myform.leftvalue.value+")" );
+//	myform.leftfname.value = value;
+}
+
+
+
+function showSR()
+{
+	var xmlfilename = getLeftFN();
+
+	var str = "/cgi-bin/cgi/ngfop/schnrew2.pl?name="+xmlfilename;
+	window.open(str);
+}
+
+function editSchedule2()
+{
+	var xmlfilename = getLeftFN();
+
+//alert(xmlfilename);
+ document.myform.d0.value = xmlfilename;
+
+	//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name="+xmlfilename;
+
+	var str =  "/cgi-bin/cgi/ngfop/editsch.pl?action=edit&htmlname=editsch.htm&name="+xmlfilename;
+//	src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=1blank.xml&htmlname=editsch.htm">
+
+
+
+	//top.frames[3].location=str;
+	parent.right.location=str;
+
+}
+
+
+
+function ShowExtra(szExtra)
+{
+	var str;
+
+	if (szExtra == "List")
+	{
+		//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=catagoryframe.htm&name=blank.xml";
+		var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml"
+//	onClick="top.frames[1].location='/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml'">
+
+		//top.frames[1].location=str;
+		parent.left.location=str;
+
+		return;
+	}
+
+
+	if (szExtra == "Categorys")
+	{
+		//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=catagoryframe.htm&name=blank.xml";
+		var str = "/cgi-bin/cgi/ngfop/catagory.pl?htmlname=catagory.htm";
+		//top.frames[1].location=str;
+		parent.left.location=str;
+
+		return;
+	}
+
+	if (szExtra == "Rewards")
+	{
+		//top.frames[2].location='/cgi-bin/cgi/ngfop/sch3.pl?name=rewards.xml&htmlname=cb3a.htm';
+		parent.middle.location='/cgi-bin/cgi/ngfop/sch3.pl?name=rewards.xml&htmlname=cb3a.htm';
+		return;
+	}
+	if (szExtra == "Pictures1")
+	{
+		//str = "/cgi-bin/cgi/ngfop/pictures01.pl?action=dir(./pics/pic_01)";
+		str = "/cgi-bin/cgi/ngfop/sch4.pl?action=dir(pic_01)&htmlname=catagory1.htm";
+		//top.frames[2].location=str;
+		parent.middle.location=str;
+		return;
+	}
+
+	if (szExtra == "Pictures2")
+	{
+		//str = "/cgi-bin/cgi/ngfop/pictures01.pl?action=dir(./pics/pic_02)";
+
+		str = "/cgi-bin/cgi/ngfop/sch4.pl?action=dir(pic_02)&htmlname=catagory1.htm";
+
+		//str = "/cgi-bin/cgi/ngfop/sch4.pl?action=dir(./pics/pic_02)&htmlname=catagory1.htm";
+		//str = "/cgi-bin/cgi/ngfop/sch4.pl?name=./pics/cbcooking.xml&htmlname=catagory1.htm";
+		//top.frames[2].location=str;
+		parent.middle.location=str;
+		return;
+	}
+
+
+
+	if (szExtra == "Local Pictures")
+	{
+		str = "/cgi-bin/cgi/ngfop/sch3.pl?name=picslocal.xml";
+		//top.frames[3].window.open(str);
+		//top.frames[2].location=str;
+		parent.middle.location=str;
+		return;
+	}
+	if (szExtra == "Make Form")
+	{
+		perl('form01.pl');
+		return;
+	}
+
+	if (szExtra == "S&R")
+	{
+  		showSR();
+		return;
+	}
+
+
+
+	alert(szExtra +" not implemented yet\n FM.");
+}
+
+
+
+function getLeftFN()
+{
+	var objLeft    = parent.left;
+	var objLeftFrm = parent.left.myform;
+
+	var leftsrc   = document.myform.leftsrc.value;
+	var leftvalue = document.myform.leftvalue.value;
+
+	var xmlfilename = document.myform.leftfname.value;
+
+	if (leftsrc == "")
+	{
+		xmlfilename = leftvalue;
+		return xmlfilename;
+	}
+
+	//if (objLeftFrm != null)
+	if (/calander/i.test(leftsrc))
+	{
+	//alert("hay fucker your a calander woe is me.");
+
+		// FM 1/4/04var name = objLeftFrm.name.value;
+		// FM 1/4/04if (/calander.htm/i.test(name))
+		{
+
+			var obj = myform.elements.People;
+			var kid = obj.options[obj.selectedIndex].text;
+
+			var dDate = new Date();
+			//alert(dDate);
+			
+			
+			//dDate = objLeft.getData();
+			//alert("leftvalue= "+leftvalue);
+
+			//dDate = leftvalue;
+
+		//dDate = new Date(leftvalue);
+			dDate = gDate;
+			//alert("leftvalue= "+dDate);
+
+
+			var nDay = dDate.getDay();
+
+
+
+
+
+			if (!(nDay >= 0))
+			{
+				dDate = new Date();
+			}
+
+
+			var aWeekdays = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+	
+			var month = dDate.getMonth()+1;
+
+			var date =  dDate.getMonth()+1+"_"+dDate.getDate() + "_"+dDate.getYear();
+
+			var day = aWeekdays[dDate.getDay()];
+
+			var total = day+".xml";
+
+			// Fm 11/25/03 var total2 = "./"+kid+"/"+date+"."+day+".xml";
+			//var total2 = "/"+kid+"/"+date+"."+day+".xml";
+			var total2 = kid+"/"+date+"."+day+".xml";
+
+			xmlfilename = total2;
+	
+		}
+	}
+
+	return xmlfilename;
+
+
+}
+
+
+
+function myPicture()
+{
+//	alert("user supplied picture.\n Go somewhere get a picture and paste it here.\n You can have local pictures this way and or picture from anywhere on the net.");
+
+	src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=mypicture.htm";
+	//top.frames[2].location=src;
+	parent.middle.location=src;
+}
+
+function cp2sch22()
+{
+	var str = "";
+
+	str = parent.middle.getListItem();
+
+	if (str)
+	{
+		// Cheesy solution for the frames for iframe
+		if (parent.right.frames.length == 0)
+		{
+			parent.right.test(str);
+		}
+		else
+		{
+			parent.right.frames[1].test(str);
+		}
+	}
+}
+
+
+/****************************************************************************/
+/* Right side tool bar                                           Begin      */
+/****************************************************************************/
+function cutRow()
+{
+	//parent.frames[1].cutRow();
+	parent.right.cutRow();
+}
+
+function pasteRow()
+{
+    //parent.frames[1].pasteRow();
+    parent.right.pasteRow();
+}
+
+function insertRow()
+{
+	//parent.frames[1].insertRow();
+	parent.right.insertRow();
+}
+
+function decorateRow(strdec)
+{
+	//parent.frames[1].decorateRow(strdec);
+	parent.right.decorateRow(strdec);
+}
+
+function save2(type)
+{
+	//parent.frames[1].save2(type, document.myform.d0.value);
+	parent.right.save2(type, document.myform.d0.value);
+}
+
+
+
+
+
+
+
+/****************************************************************************/
+/* Right side tool bar                                           End        */
+/****************************************************************************/
+
+
+
+
+// End -->
+</script>
+
+<body>
+<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/____.pl">
+
+
+	<div class ="binder"
+		style="
+		position: absolute; left:10px; top:10px; width:800px; height:600px;
+		border-style:solid solid solid solid;
+		border-color: black;
+		border-width: thin thin thin thin;
+		">
+
+<div
+		style="
+		position: absolute; left:140px; top:0px;">
+
+<select name="Extra" 
+    style="text-transform: uppercase; color: navy; background: #C9E8FB; font-family: Verdana; font-size:12;">
+	<option value="-1">List</option>
+	<option value="1">Categorys</option>
+	<option value="1">S&amp;R</option>
+	<option value="5">Pictures1</option>
+	<option value="5">Pictures2</option>
+	<option value="5">Local Pics</option>
+	<option value="4">Make Form</option>
+	<option value="1">Rewards</option>
+	<option value="2">R. Rules</option>
+	<option value="3">Soc.Story</option>
+	<option value="4">ABC Gath.</option>
+	<option value="4">O. Styles</option>
+	<option value="4">UDL</option>
+</select>
+
+	<a class="menuitem" onclick ="ShowExtra(document.myform.Extra.options[document.myform.Extra.selectedIndex].text);"
+		title="Select a command">Go!</a> 
+
+	<a class="menuitem" onclick ="alert('FM, not here yet!');"
+		title="Calander" href="#dummy">Calander</a>
+
+
+	<img src="/cgi/ngfop/wayfind.gif" alt="My Picture" width="23" height="15" border="1" onclick = "myPicture();">
+  
+	
+	<a class="menuitem" title="Create a new Schedule/Choice Board" 
+		href="/cgi-bin/cgi/ngfop/editsch.pl?htmlname=editsch.htm&action=edit&name=blank.xml" TARGET="right">New</a>
+<!--
+   src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=1blank.xml&htmlname=editsch.htm">
+-->
+
+	<img src="/cgi/ngfop/rarrow1.gif" ALT="copy left to right" align="middle" width="23" height="15" border="1" 
+		onclick = "cp2sch22();">
+
+    <a class="menuitem" onclick = "cp2ebcb();"       title="Embed" >eb</a> 
+    <a class="menuitem" onclick = "editSchedule2();" title="Edit"  >Edit</a>
+
+	<a class="menuitem" onclick = "alert('del me');"title="Delete a row"<a href="#dummy">Delete</a>
+
+
+	<a class="menuitem" title="Sign Out" href="/cgi-bin/cgi/ngfop/signin.pl?action=signout">Sign Out</a>
+		
+</div>
+
+	</div>
+
+
+	<!-- Left Page -->
+	<div 
+		style="
+		position: absolute; left:40px; top:40px;	width:360px; height:540px;
+		background-color: #45B3DD;
+		border-style:solid solid solid solid;
+		border-color: black;
+		border-width: thin thin thin thin;
+		">
+    </div>
+
+	<!-- Right Page -->
+	<div 
+		style="
+		position: absolute; left:420px; top:40px;	width:360px; height:540px;
+		background-color: #45B3DD;
+		border-style:solid solid solid solid;
+		border-color: black;
+		border-width: thin thin thin thin;
+		">
+
+		<a class="menuitem" onclick = "save2('cb');"
+		title="Save as a Choice board" href="#dummy">Save-cb</a>
+
+        <a class="menuitem" onclick = "cutRow();"
+		title="Cut buttoned row"   href="#dummy">Cut</a>
+
+
+		<img src="/cgi/ngfop/darrow1.gif" alt="insert a row bellow buttoned" width="23" height="20" border="0" 
+		    onclick = "insertRow();"
+			style="vertical-align: top">
+
+		<img src="/cgi/ngfop/pin8.gif" alt="Reward" align="top" width="23" height="20" border="0" 
+		    onclick = "decorateRow('reward');">
+
+		<a class="menuitem" onclick = "pasteRow();"
+		title="Paste a row" href="#dummy">Paste</a>
+
+		<a class="menuitem" onclick = "save2('sch');"
+		title="Save as a Schedule board" href="#dummy">Save-sch</a>
+
+
+   <div id="menu"
+		style="
+		text-align:center;
+		position: absolute; left:0px; top:20px; width:355px; height:22px; 
+		background-color: #4500DD;
+		">
+
+		<description>
+			<input type="text" name="d0" size="48" value="<DESCRIPTION>">
+		</description>
+   </div>
+
+
+    </div>
+
+
+  
+  <iframe  name= "middle"
+	style="position: absolute; left:130px; top:70px; width:250px; height:500px"
+	src="/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=sch3b.htm&name=blank.xml">
+  </iframe> 
+
+  <iframe name="right"
+	style="position: absolute; left:450px; top:90px; width:310px; height:480px"
+	src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=editsch.htm">
+  </iframe> 
+
+<!--
+	src="/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=sch3b.htm&name=1blank.xml">
+    
+	src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframeb.htm&name=blank.xml">
+
+	src="/cgi-bin/cgi/ngfop/editsch.pl?htmlname=editsch.htm&action=edit&name=blank.xml"
+<fr 
+src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=editsch.htm"
+ target="main">
+
+
+	src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframeb.htm&name=blank.xml">
+	src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=1blank.xml&htmlname=editsch.htm">
+
+  style="position: absolute; left:50px; top:70px; width:340px; height:500px"
+  style="position: absolute; left:430px; top:70px; width:250px; height:500px"
+
+	src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=1blank.xml&htmlname=editsch.htm">
+src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name=1blank.xml">
+src="/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=sch3b.htm&name=1blank.xml">
+-->
+
+<div
+style="
+position: absolute; top: 71px; left:388px;
+width:50px; height:0px;
+padding: 0px; margin: 0px; 
+align:top;
+float: left 
+">
+<img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring.">
+<img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring.">
+<img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring.">
+<img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-3x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring."><img src="/cgi/ngfop/index-2x1.jpg" width="45" height="15" alt="ring.">
+</div>
+
+
+<!-- Rolladex -->
+<div style="background-color: #292929; color: white; 
+			position: absolute; left: 0px; top: 80px; width: 100px; height: 400px; 
+			padding: 5px; padding-right: 20px;
+			">
+			This will be the navigation 'column', which will run down the left of the page.
+
+  <iframe name="left"
+	style="position: absolute; left:0px; top:0px; width: 130px; height: 380px;"
+	src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml">
+  </iframe> 
+</div>
+
+<!-- Rolledex Rings -->
+<div
+style="
+z-index:32;
+position: absolute; top: 66px; left:15px;
+width:150px; height:30px;
+padding: 0px; margin: 0px; 
+align:top;
+float: left 
+">
+<img src="/cgi/ngfop/rindex-2x1.jpg" width="10" height="20" alt="ring."><img src="/cgi/ngfop/rindex-3x1.jpg" width="10" height="20" alt="ring."><img src="/cgi/ngfop/rindex-2x1.jpg" width="10" height="20" alt="ring."><img src="/cgi/ngfop/rindex-3x1.jpg" width="10" height="20" alt="ring."><img src="/cgi/ngfop/rindex-2x1.jpg" width="10" height="20" alt="ring."><img src="/cgi/ngfop/rindex-3x1.jpg" width="10" height="20" alt="ring."><img src="/cgi/ngfop/rindex-2x1.jpg" width="10" height="20" alt="ring."><img src="/cgi/ngfop/rindex-3x1.jpg" width="10" height="20" alt="ring."><img src="/cgi/ngfop/rindex-2x1.jpg" width="10" height="20" alt="ring."></div>
+
+
+	<!--
+			position: absolute; left: 800px; top: 80px; width: 100px; height: 300px; 
+
+  style="position: absolute; left:0px; top:0px; width: 130px; height: 300px;"
+	src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=1blank.xml&htmlname=editsch.htm">
+	-->
+
+
+<!-- Page 2 -->
+	<div class ="binder"
+		style="
+		position: absolute; left:10px; top:615px; width:800px; height:600px;
+		border-style:solid solid solid solid;
+		border-color: black;
+		border-width: thin thin thin thin;
+		">
+<!-- Page 2 -->
+
+
+
+	<!-- the hidden shits Begin -->
+  <input type="hidden" NAME="leftsrc" value="cb"/>
+  <input type="hidden" NAME="leftvalue" value="blank.xml"/>
+  <input type="hidden" NAME="leftfname" value="blank.xml"/>
+  <input type="hidden" NAME="middlefname" value=""/>
+	<!-- the hidden shits End  -->
+
+
+</form>
+</body>
+</html>

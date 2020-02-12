@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<!--
+<BASE href="http://joeschedule.com/cgi/">
+-->
+
+<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>pic exchange mid</TITLE>
+</HEAD>
+
+<script type="text/javascript">
+
+function test(src, name)
+{
+//	alert(src);
+	// 4/30/8 parent.T.cp2sch22(src);
+   parent.T.cp2sch22(src, name);
+}
+
+</script>
+
+
+
+<BODY bgcolor="#E0F0FF">
+<table border="1" cellpadding="3" width="100%">
+    <description>
+  <tr>
+      <td colspan="100%" align="center">
+      <align="left"><font size="5">
+      <DESCRIPTION>
+      </font></td>
+      <!-- 11/24/09 </td> -->
+  </tr>
+  </description>
+        <tr>
+  <row>
+          <td align="left" height="1" 
+		      onClick  ="test('<PICTURE>', '<NAME>');"> 
+<IF_PICTURE>
+		  <IMG NAME="I5" border="0" src="<PICTURE>" width="105" height="96" type="image">
+</IF_PICTURE>
+<br/>
+          <name>
+          </td>
+</row>
+        </tr>
+</table>
+
+</BODY>
+</HTML>

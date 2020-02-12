@@ -1,0 +1,783 @@
+<html>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=180; initial-scale=1.0; minimum-scale=1.0;"/>
+<style>
+   P { font-size : 104pt }
+p.large {font-family: Verdana , sans-serif; color: black; font-size: 200%;}
+
+.thumb {
+  max-width: 150px;
+  max-height: 150px;
+  width: expression(this.width > 150 ? "100px" : true);
+  height: expression(this.height > 150 ? "100px" : true);
+}
+
+</style>
+
+</HEAD>
+
+<script language="javascript" src="/cgi/ngfop/abakit.js"></script>
+
+<script type="text/javascript">
+
+    <!-- language="JavaScript">-->
+self.resizeTo(screen.width,screen.height); //RESIZES THE WINDOW BASED ON CURRENT SCREEN
+self.moveTo(0,0);                          //MOVE WINDOW TO X,Y
+
+var gcolorforgnd = '#FFFFFF'; //'rgb(249, 201, 92)'; //'#F5F3E4'; //'#00FFFF'; // .windowbg; ////
+var gObj= null;
+function mkblack(obj)
+{
+  if (gObj)
+    gObj.bgColor = gcolorforgnd;
+
+  obj.bgColor= "#C0C0C0"; //"black";
+
+  gObj = obj;
+}
+
+function MarkTD(obj, color) //(document.getElementById('ctable').rows[0].cells[iii], "");
+{
+  if (obj)
+  {
+	if (color)
+	{
+		obj.bgColor= color;
+	
+	}
+	else
+		obj.bgColor = gcolorforgnd;
+  }
+
+}
+
+function isMatch(iHand)
+{
+javascript:Deal();
+return;
+/**********
+	//alert(iHand)
+	//isMatch(0)
+	if (iHand > 2 || iHand < 0)
+		return;
+
+
+	// is a match between (dealer, hand)
+	//alert("Dealer has "+ gTheCardGame.Dealer + ",  Player has " + gTheCardGame.aHands[iHand]);
+	if (gTheCardGame.Dealer==gTheCardGame.aHands[iHand])
+	{
+		// Mark dealer's card
+		 MarkTD(document.getElementById('wh_quest').rows[0].cells[0], '#C0C0C0'); //'black');
+	}
+	else
+		 MarkTD(document.getElementById('wh_quest').rows[0].cells[0], gcolorforgnd);
+*********/
+}
+
+var gwh_quest_Touch = 0;
+function FMMarkTD(obj) 
+{
+  if (obj)
+  {
+	if (!gwh_quest_Touch)
+	{
+		obj.bgColor= 'black';
+		gwh_quest_Touch = 1;
+	
+	}
+	else
+	{
+		obj.bgColor = gcolorforgnd;
+		gwh_quest_Touch = 0;
+	}
+  }
+
+}
+
+
+//nextfield = "box1"; // name of first box on page
+netscape = "";
+ver = navigator.appVersion; len = ver.length;
+for(iln = 0; iln < len; iln++) 
+	if (ver.charAt(iln) == "(") break;
+
+netscape = (ver.charAt(iln+1).toUpperCase() != "C");
+
+
+function keyDown(DnEvents) 
+{ // handles keypress
+	// {Larrow, Rarrow}, {, |  .} keys.
+	// {188,       190}, {37, 39}
+	// determines whether Netscape or Internet Explorer
+	k = (netscape) ? DnEvents.which : window.event.keyCode;
+
+	if (k == 37) // left arrow
+	{
+		javascript:Deal('reverse');
+	}
+
+	if (k == 190 || k == 39)  // right arrow
+	{ // enter key pressed
+//alert(event.Type);
+		javascript:Deal();
+		return;
+
+		//alert(k);
+		//'eval('document.yourform.' + nextfield + '.focus()');
+
+		/*
+		//if (nextfield == 'done') 
+			return true; // submit, we finished all fields
+		else 
+		{ // we're not done yet, send focus to next box
+			//'eval('document.yourform.' + nextfield + '.focus()');
+			return false;
+		} */
+	}
+
+	if (k == 48) 
+	{
+		NewDeckNum(10);
+	}
+	if (k > 48 && k < 58)
+	{
+		NewDeckNum(k-49);
+	}
+
+}
+
+	document.onkeydown = keyDown; // work together to analyze keystrokes
+	//Fm 6/27/7if (netscape) 
+	//	document.captureEvents(Event.KEYDOWN|Event.KEYUP);
+
+
+function NewDeck2(deck, idx)
+{
+   var str = "NewDeck2: "
+//alert("ilne 283, NewDeck2()");
+   // Set sutdent W/M set.
+   var list = document.myform.xmlDecks.value
+   var atemp = new Array();
+   atemp = list.split(',');
+    
+   gmycards.iCardno = 0;
+   gmycards.szDeck  = deck;
+   var ilength = document.getElementById(deck).rows.length
+   if (!ilength)
+      return;
+
+   var obj = document.myform;
+
+   gmycards.aCardIds = new Array(ilength);
+   for (var iii = 0; iii < ilength; iii++)
+   {
+	  gmycards.aCardIds[iii] = iii;
+   }
+
+   // Shuffle
+   // 10/1/6 shuffle(gmycards.aCardIds);
+
+   TouchDeck(deck);
+
+   // set title of game.
+   //SetTitleOfGame(gmycards.szDeck)
+
+   gRows[0] = gmycards.aCardIds.slice(); // makes an independent copy of oldArray
+   gRows[1] = gmycards.aCardIds.slice(); // makes an independent copy of oldArray
+   gRows[0].reverse();
+
+   var aRR = gRows[1].pop();
+   gRows[1].unshift(aRR);
+}
+
+
+function SetTitleOfGame(szDeck)
+{
+	var szTitle;
+	szTitle = "";
+return szTitle;
+}
+
+
+
+// Center, then slide to the right.
+function GetCardPlacement(pos)
+{
+      if (gDealNCards==3)
+            return pos;
+
+
+      return pos+1;
+}
+
+function Deal(dir)
+{
+   var obj = document.myform;
+   var prg = '';
+   if (!(obj.elements.prg === undefined))
+   {
+      prg = obj.elements.prg.value;   
+      if (prg=='m')
+      {
+         //alert("what you going to do, sw/ when 'm'?");
+      
+      }
+   }
+// Fm 3/31/9
+	if (dir == 'reverse')
+		gmycards.iCardno--; //= 1; //nCards;
+	// Clip!!!
+	if ((gmycards.iCardno >= gmycards.aCardIds.length) || gmycards.iCardno < 0)
+	{
+	    gmycards.iCardno=0;
+            var  deck = NextDeck(gmycards.szDeck)
+            NewDeck2(deck, 0);
+	    return;
+	}
+
+	var rrr = 3; //GetRadioValue(document.myform.C1)
+	if (!rrr)
+	{
+		rrr = 3; // default
+	}
+	var nCards = rrr;
+	gDealNCards= nCards;
+   
+      // FM 10/17/8
+      iRandom =  Math.floor(Math.random()*nCards+1)-1;
+      // FM 10/17/8
+
+	// clear
+//FM 11/26/9	MarkTD(document.getElementById('wh_quest').rows[0].cells[0], gcolorforgnd);
+
+   // Table Chairs - possible number of players.
+//	var iHands  = document.getElementById('ctable').rows[0].cells.length-1;
+	var iHands  = document.getElementById('ctable').rows.length-1;
+//alert("iHands="+iHands);
+	for (var iii = 0; iii < iHands; iii++)
+	{
+		document.getElementById('ctable').rows[iii].innerHTML =
+'<td><img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" width="105" height="96"><br>---</td>'
+
+		MarkTD(document.getElementById('ctable').rows[iii], gcolorforgnd);
+
+		gTheCardGame.aHands[iii] = -1;
+	}
+
+	var iCards = gmycards.aCardIds.length;
+
+	var sz11;
+	var sz22;
+	var sz33;
+
+	sz11= gmycards.iCardno;
+	sz22= iCards - gmycards.iCardno -1;
+	sz33= gmycards.iCardno -1;
+   
+   // FM 5/31/8 more cheese
+   if (sz22 == sz33)
+   {
+      sz33 = 0;
+   }
+   
+	var szCCC;
+   
+//szCCC = "aa{"+sz11 + "," + sz22 + "," + sz33 + "}";
+//alert ("szCCC 00 = " + szCCC)
+
+
+	gTheCardGame.Dealer = gmycards.iCardno; // FM 7/7/7 gmycards.iCardno -1;
+
+	//clip
+   // Fm make this more robust.  Try using a stack(stack) of cards.  This is cheesey.
+   if (sz33 < 0)
+   {
+      // Get another card.
+      sz33 = gmycards.aCardIds.length - 2;
+      if (sz33 < 0)
+         sz33 = 0;
+   }
+
+//szCCC = "bb{"+sz11 + "," + sz22 + "," + sz33 + "}";
+//alert ("szCCC 00 = " + szCCC)
+
+	aRows = new Array(3);
+	aRows[0]=sz11;
+	aRows[1]=sz22;
+	aRows[2]=sz33;
+   
+   // pop off unused cards
+   for (var ii = nCards; ii < 3; ii++)
+      aRows.pop();
+      
+    aRows = abakit_shuffle(aRows);
+
+	if (gmycards.iCardno == iCards)
+	{
+		alert ("no more cards shuffle " + gmycards.szDeck);
+		NewDeck2(gmycards.szDeck);
+		return;
+	}
+
+   var iCard=0;
+  
+   for (var iii = 0; iii < nCards; iii++)
+   {
+        iCard = gmycards.aCardIds[aRows[iii] ];
+		//sz = document.getElementById(gmycards.szDeck).rows[iCard].innerHTML;
+        sz = document.getElementById(gmycards.szDeck).rows[iCard].innerHTML;
+		var szRow=sz;
+		var szPic = sz.match(/src="(.+?)"/);
+		var iPlayer = GetCardPlacement(iii);
+      
+      // fm 10/20/8
+      // remove prompt.
+      if (1==1)
+      {
+        //alert("sz = "+sz);
+        var reg = /<br>(.+?)<\/td>/i;
+	var sz4422= sz.replace(reg, ""); //##"</td>");
+      }
+      // fm 10/20/8
+      
+    document.getElementById('ctable').rows[iPlayer].innerHTML = sz4422+"</td>"; 
+
+
+      // Fm 10/20/8 
+      //alert(document.myform.I55.length);
+      //if (1==10)
+      //{
+      //   
+//document.getElementById('ctable').rows[0].cells[iPlayer].style.visibility='hidden';
+      //}
+      // Fm 10/20/8 
+
+		gTheCardGame.aHands[iPlayer] = iCard;
+
+		szWH = sz;
+
+		// The Dealer
+		// Fm 10/17/8 if (iii==0)
+      if (iRandom==iii)
+		{
+         //alert("<span id =\"wh_prompt\">" + sz + "</span>");
+		  	// fm 10/14/8 document.getElementById('wh_quest').rows[0].cells[0].innerHTML = sz;
+          var reg = /<span>/i;
+          var sz22= sz.replace(reg, '<span id="wh_prompt">'); 
+          //alert("sz22("+sz22+")");
+         
+   	}
+
+	}	// end for
+
+   if(!dir)
+   {
+		gmycards.iCardno++; //nCards;
+   }
+}
+
+function testImage(URL) {
+
+    var tester=new Image();
+    tester.onLoad=isGood;
+    tester.onError=isBad;
+    tester.src=URL;
+}
+
+function isGood() {
+    alert('That image exists!');
+}
+
+function isBad() {
+    alert('That image does no exist!');
+}
+
+function shuffle(arIn)
+{
+  // Durstenfeld's Permutation Algorithm
+  var J, K, Temp;
+  var arOut;
+  arOut = arIn;
+  for(J = arOut.length-1; J >= 0; J--){
+    K = parseInt( (J + 1) * Math.random() ) // random number 0 - J
+
+    Temp = arOut[J]
+    arOut[J] = arOut[K]
+    arOut[K] = Temp
+  }
+
+  return(arOut);
+}
+
+function GetRadioValue(obj)
+{
+	for (var iii = 0; iii < obj.length; iii++)
+	{
+		if (obj[iii].checked)
+			return obj[iii].value; //return iii;
+	}
+
+	return;
+}
+
+function GetFirstAvailableImage(deck)
+{
+	var szDefault;
+	szDefault = "/cgi/ngfop/blankcard.gif";
+	
+	for (var ii = 0; ii < document.getElementById(deck).rows.length; ii++)
+	{
+      var szImg
+		szImg =  GetImage(deck, ii);
+      image_1 = new Image()
+      image_1.src =szImg
+
+      if (szImg)
+         return szImg;
+      
+      /*** FM 10/21/8
+      if (!image_1.width)
+      {
+	      return szDefault;
+      }
+
+		if (szImg)
+			return szImg;
+         ***********/
+	}
+
+	return szDefault;
+}
+
+function GetImage(deck, rr)
+{
+	if (!document.getElementById(deck))
+		return ""
+
+   var sz = document.getElementById(deck).rows[rr].innerHTML;
+
+   var reg = /src="(.*)"/i;
+
+   var szPic = sz.match(/src="(.+?)"/);
+   if (szPic && szPic[1])
+   {
+	   return szPic[1];
+   }
+   else
+   {
+	   return "";
+   }
+}
+
+var gsw22 = 1;
+function hideDecks22(obj, sw)
+{
+	if (sw === undefined)
+		gsw22 = !gsw22;
+	else
+		gsw22 = (sw == 1) ? 1 : 0;
+
+	document.myform.elements.Switch[0].value = (gsw22) ? 'On2' : 'Off2';
+
+	var szVVV = (gsw22==1) ? 'visible' : 'hidden';
+
+	document.getElementById(obj).style.visibility=szVVV;
+}
+
+function MyCheck(index, obj)
+{
+   var objIndex = document.getElementById(index);
+   var objRight = document.getElementById(obj);
+   if(!objIndex || !objRight)
+      return;
+      
+   var szVVV = (objIndex.checked == 1) ? 'visible' : 'hidden';
+   //alert(index+ "  "+szVVV);
+   objRight.style.visibility=szVVV; 
+   
+   return;
+   
+   if ("wh_quest"==obj)
+   {
+      //var szVVV = (document.myform.ck_wh_quest.checked == 1) ? 'visible' : 'hidden';
+      var szVVV = 'hidden';
+      if (document.getElementById(obj))
+      {
+         document.getElementById(obj).style.visibility=szVVV; 
+      }
+   }
+   if ("wh_prompt"==obj)
+   {
+      var szVVV = (document.myform.ck_dealer.checked == 1) ? 'visible' : 'hidden';
+      if (document.getElementById(obj))
+      {
+         document.getElementById(obj).style.visibility=szVVV; 
+         //alert(szVVV)
+      }
+   }
+   
+   if ("ctable"==obj)
+   {
+      var szVVV = (document.myform.ck_Cards.checked == 1) ? 'visible' : 'hidden';
+      if (document.getElementById(obj))
+      {
+         document.getElementById(obj).style.visibility=szVVV; 
+      }
+   }
+
+}
+
+var gsw = 1;
+function hideDecks(obj, sw)
+{
+	if (sw === undefined)
+		gsw = !gsw;
+	else
+		gsw = (sw == 1) ? 1 : 0;
+
+	document.myform.elements.Switch[1].value = (gsw) ? 'On' : 'Off';
+
+	var szVVV = (gsw==1) ? 'visible' : 'hidden';
+
+	document.getElementById('Decks').style.visibility=szVVV;
+}
+
+function NextDeck(deck)
+{
+   for (ii = 0; ii < gmycards.aDecks.length; ii++)
+   {
+      if (deck == "tDECK01"+gmycards.aDecks[ii])
+      {
+          // next deck or 0
+          if (ii+1 < gmycards.aDecks.length) 
+             return "tDECK01"+gmycards.aDecks[ii+1];
+          else
+             return "tDECK01"+gmycards.aDecks[0]; 
+      }
+   }
+   return "tDECK01"+gmycards.aDecks[0];
+}
+
+function TouchDeck(deck)
+{
+	for (ii = 0; ii < gmycards.aDecks.length; ii++)
+	{
+		if (deck == "tDECK01"+gmycards.aDecks[ii])
+			document.getElementById('Decks').rows[0].cells[ii].style.background="#3DB3DD";
+		else
+			document.getElementById('Decks').rows[0].cells[ii].style.background="rgb(201,232,251)";
+	}
+	Deal();
+}
+
+function showDecks()
+{
+   var ii=0;
+   var szCell;
+   var szGameName = "FRANK";
+	for (ii = 0; ii < gmycards.aDecks.length; ii++)
+	{
+		szImg = GetFirstAvailableImage("tDECK01"+gmycards.aDecks[ii]);
+		szGameName = SetTitleOfGame("tDECK01"+gmycards.aDecks[ii]);
+
+ 		szCell = '<td> '+
+      '<a title="session __" href="javascript:NewDeck2(\'tDECK01'+gmycards.aDecks[ii] +'\''+', ' + ii+');">'+
+      '<IMG SRC="'+szImg + '"' + '" align="middle" width="55" height="55" border="1">'+
+      '</a></td>';
+		document.getElementById('Decks').rows[0].cells[ii].innerHTML = szCell;
+	}
+
+	var iLast = document.getElementById('Decks').rows[0].cells.length;
+	for (var kk = ii; kk < iLast; kk++)
+	{
+		document.getElementById('Decks').rows[0].deleteCell(ii);
+	}
+}
+
+function OnInit()
+{
+//   document.myform.elements.C1[0].checked = 1;
+//   document.myform.elements.C1[1].checked = 0;
+//   document.myform.elements.C1[2].checked = 0;
+}
+
+function radioCheckBox(ckBox)
+{
+   var obj = document.myform;
+   // loop fix exclusive w/m
+   for (var iii = 0; iii < obj.elements.C1.length; iii++)
+   {
+      obj.elements.C1[iii].checked = 0;  
+   }
+   ckBox.checked = 1;
+}
+
+</SCRIPT> 
+
+<!-- <BODY onLoad="OnInit();"> -->
+<BODY>
+<CENTER>
+
+<FORM name="myform">
+
+<!-- card table -->
+
+<!-- 3 hands  -->
+<!-- <table id="ctable" border="1" cellpadding="3"> -->
+<table id="ctable" border="1" cellpadding="2" width="100%">
+<tbody>
+<tr>
+<td width="33%" onClick  ="mkblack(this);isMatch(0)"><img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" 
+width="105" height="97"></td>
+</tr>
+
+<tr>
+<td width="33%" onClick  ="mkblack(this);isMatch(1)"><img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" 
+width="105" height="97"></td>
+</tr>
+
+<tr>
+<td width="33%" onClick  ="mkblack(this);isMatch(2)"><img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" 
+width="105" height="97"></td>
+</tr>
+	
+<!--
+<tr>
+<td width="1">
+<img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" width="5" height="200">
+</td>
+</tr>
+-->
+</tbody>
+</table> <!-- id="ctable"-->
+
+<!--
+<input type="checkbox" name="C1" value="3"  onClick  ="radioCheckBox(this);"> 3
+<input type="checkbox" name="C1" value="2"  onClick  ="radioCheckBox(this);"> 2
+<input type="checkbox" name="C1" value="1"  onClick  ="radioCheckBox(this);"> 1
+<hr>
+-->
+<center>
+<div id="<DIVID>" style="visibility:hidden; color : #a00099;
+                  width: 1%; height: 1px; overflow:auto; z-index : 30;" >
+<table id="Decks" border="0" cellpadding="2" width="1%">
+<tr style="background-color:LIGHTSALMON;">
+<row>
+<td align="middle">
+<IF_PICTURE>
+<a class="menuitem" title="deal" 
+href="javascript:step02('Next');">
+<img NAME="I55" alt="Session" align="middle" border="0" src="<PICTURE>" width="55px" height="56px">
+</a>
+</IF_PICTURE>
+<br><name>
+</td>
+</row>
+</tr>
+</table>
+</DIV>
+</center>
+
+
+<div id="<looseDIVID>" style="visibility:hidden; color : #a00099;
+width: 1%; height: 1px; border: solid 1px black; overflow:auto; z-index : 30;" >
+<table id="tDECK01tloose" border="1" width="1%" cellpadding="3">
+<tbody>
+    <row>
+     <tr>
+<td width="100%">
+<IF_PICTURE>
+<img NAME="I55" vspace=4 border="0"  src="<PICTURE>" />
+</IF_PICTURE>
+<br>
+ <NAME>
+</td>
+     </tr>
+    </row>
+</tbody>
+</table>
+</DIV>
+
+<description>
+<input type="hidden" NAME="Program" value="<DESCRIPTION>">
+ </description>
+
+<IF_EMBEDED_XB>
+<IF_EMBEDED_CBS>
+<description>
+<input type="hidden" NAME="Program" value="<DESCRIPTION>">
+ </description>
+
+<div id="<DIVID>" style="visibility:hidden; color : #a00099;
+width: 1%; height: 1px; border: solid 1px black; overflow:auto; z-index : 30;" >
+
+<table id="tDECK01<DIVID>" border="1" width="1%" cellpadding="3">
+<tbody>
+    <row>
+     <tr>
+<td width="100%">
+<IF_PICTURE>
+<img NAME="I55" vspace=4 border=0  src="<PICTURE>"  />
+</IF_PICTURE>
+<br>
+ <NAME>
+</td>
+     </tr>
+    </row>
+</tbody>
+</table>
+</DIV>
+</IF_EMBEDED_CBS>
+    <row>
+
+<IF_EMBEDED_SCH>
+<description>
+<input type="hidden" NAME="Program" value="<DESCRIPTION>">
+ </description>
+
+<div id="<DIVID>" style="visibility:hidden; color : #00a09a;
+width: 1%; height: 1px; border: solid 1px black; overflow:auto; z-index : 30;" >
+
+<table id="tDECK01<DIVID>" border="1" width="1%" cellpadding="3">
+<tbody>
+     <row>
+<tr>
+  <td onClick  ="mkblack(this);isMatch(0)" align="middle"><IF_PICTURE><span>
+<img class="thumb" NAME="I55" border="0" src="<PICTURE>" 
+/></span></IF_PICTURE><br> <NAME>
+  </td> 
+</tr></row>
+</tbody>
+</table>
+</DIV>
+</IF_EMBEDED_SCH>
+</IF_EMBEDED_XB>
+
+<script>
+// FM change the name to gDealNHands
+gDealNCards = 3;
+gmycards = {iCardno:0, szDeck:"", aCardIds:new Array(1),
+                                 aDecks:(document.myform.Decks.value.split   (/\s*,\s*/)),
+            axmlDecks:(document.myform.xmlDecks.value.split(/\s*,\s*/))
+      }
+
+if (!gmycards.aDecks[0].length)
+                gmycards.aDecks.pop();
+
+if(gmycards.aDecks.length < document.getElementById('Decks').rows[0].cells.length)
+        gmycards.aDecks.push("tloose");
+
+gTheCardGame = {Dealer:0, szDeck:"", aHands:new Array(3)}
+
+var gRows = new Array(2);
+
+javascript:showDecks()
+javascript:NewDeck2('tDECK01'+gmycards.aDecks[0], 0);
+//javascript:Deal()
+</script>
+
+</FORM>
+</CENTER>
+</BODY>
+</HTML> 

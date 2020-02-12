@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<title>Schedule & Reward</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/print.css" media="print" />
+
+<style type="text/css" media="all">
+p.footer1 {font-family: Verdana , sans-serif; color: black; font-size: 50%;} 
+</style>
+
+</head>
+
+<script>
+function sch_check(obj)
+{
+	CallBack_DisplayResults();
+}
+
+function init()
+{
+return;  // FM removed 6/9/4
+	if (myform.elements.C1)
+	{
+		var iCnt=1;
+		if (myform.elements.C1.length)
+		{
+			iCnt = myform.elements.C1.length;
+		}
+		
+		document.all.tb01.innerHTML = iCnt + " * = 3 Tokens";
+	}
+}
+
+function CallBack_DisplayResults()
+{
+   var checks = "";
+   var iChks = 0;
+   var total = 0;
+ 
+   if (!document.myform.C1.length)
+   {
+      total = 1;
+      if (document.myform.C1.checked)
+      {
+         iChks++;
+         checks += "* ";
+      }
+   }
+   else
+   {
+      total = document.myform.C1.length;;
+      for (var iii = 0; iii < total; iii++)
+      {
+         if (document.myform.C1[iii].checked)
+         {
+            iChks++;
+            checks += "* ";
+         }
+      }
+   }
+   
+   if (iChks == total)
+   {
+      checks += " Good job you can do your reward now."
+   }
+ 
+   document.getElementById('tb00').innerHTML = checks;
+}
+</script>
+
+<body onLoad="init();" bgcolor="white"  leftmargin="14" marginwidth="14">
+
+<form name = "myform">
+<filename>
+<input type="hidden" NAME="xmlfilename" value="<FILENAME>">
+</filename>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td class="helpCentreTitle"> <b>&nbsp;<b></b> 
+<!--      ______'s Schedule for _____</b>-->
+      <br>
+  </tr>
+  <tr>
+    <td>
+      <table border=1 width=100% cellpadding=8 cellspacing=0 bgcolor="f3f3f3">
+        <form name="textselector">
+		<tr>
+          <th> 
+		  <description><DESCRIPTION></description>
+          <th> Working for
+		  <tr valign=top>
+            <td> 
+			   <row>
+<input type="checkbox" name="C1" value="ON" onClick    ="sch_check(this);">
+<TIME>
+
+<IF_PICTURE>
+<width="33%" height="19">
+    <IMG NAME="I55" border="0" src="<PICTURE>" width="105" height="96" type="image">
+</IF_PICTURE>
+
+<NAME>
+<hr></hr>
+			   </row>
+            </td>
+
+            <td> 
+<!-- FM 9/23/03 -->
+<DIV CLASS="tb01">
+<div ID="tb01"> 
+</DIV>
+</DIV>	
+<!-- FM 9/23/03 -->
+
+
+<!-- FM 9/23/03 -->
+<DIV CLASS="tb00">
+<div ID="tb00" STYLE="FONT-SIZE: 15pt; color:green; text-align:center;positio;">
+</DIV>
+</DIV>
+<!-- FM 9/23/03 -->
+					<hr></hr>
+			   <reward>
+<IF_PICTURE>
+			       <width="33%" height="19">
+				   <IMG NAME="I55" border="0" src="<PICTURE>" width="105" height="96" type="image">
+
+</IF_PICTURE>
+    				<NAME>
+				   <br>
+			   </reward>
+				   <br>
+            </td>
+
+          </tr>
+        </form>
+      </table>
+    </td>
+  </tr>
+</table>
+</form>
+
+<p class="footer1">
+<!--<a href="http://www.joeschedule.com">visit www.joeschedule.com-->
+visit www.joeschedule.com
+</p>
+
+</body>
+</html>

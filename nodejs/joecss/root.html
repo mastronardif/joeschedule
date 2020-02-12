@@ -1,0 +1,71 @@
+﻿
+<!DOCTYPE html>
+<!-- Template by quackit.com -->
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="jsdebug.js"></script>
+<script src="jsdebugtop.js"></script>
+<script src="jsdebugleft.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>joecss</title>
+<link rel="stylesheet" type="text/css" href="root.css">
+
+<!-- <script type="text/javascript">
+/* =============================
+This script generates sample text for the body content.
+You can remove this script and any reference to it.
+============================= */
+var bodyText=["Remember, you are unique, just like everybody else.", "Too much agreement kills a good chat.", "Get your facts first, then you can distort them as you please.", "I intend to live forever. So far, so good.", "</p><p>A clear conscience is usually a sign of a bad memory.", "What's another word for Thesaurus?", "<h3>Heading</h3><p>Experience is something you don't get until just after you need it."]
+function generateText(sentenceCount){
+for (var i=0; i<sentenceCount; i++)
+document.write(bodyText[Math.floor(Math.random()*7)]+" ")
+}
+</script> -->
+</head>
+<body>
+<header id="header">
+<div class="innertube">
+    <div id="top"></div>
+</div>
+</header>
+<main>
+<div class="innertube">
+<div id="middle"></div>
+</div>
+</main>
+<nav id="left">
+<div class="innertube">
+</div>
+</nav>
+<div id="right">
+<div class="innertube">
+</div>
+</div>
+<footer id="footer">
+<div class="innertube">
+<p>joeschedule.com</p>
+</div>
+</footer>
+</body>
+<script>
+    //var str="/cgi-bin/cgi/ngfop/other2.pl?htmlname=top2cgi.htm"
+    var str="/cgi-bin/cgi/ngfop/left02.pl?htmlname=top2cgi.htm";
+    //str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=topnav2.html";
+    //$( "#top").html(generateTextTop());
+    testAjax33(str, $("#top" ));
+
+    str = "/cgi-bin/cgi/ngfop/catagory.pl?htmlname=leftcgi.htm";    
+    testAjax33(str, $("#left" ));
+
+    str = "/cgi-bin/cgi/ngfop/catagory.pl?htmlname=hellomsg.htm";
+	testAjax33(str, $("#middle" ));
+
+	str = "http://www.joeschedule.com/cgi-bin/cgi/ngfop/editsch.cgi?action=edit&name=blank.xml&htmlname=editschcgi.htm"
+    testAjax33(str, $("#right" ));
+   
+    showMySchedules('cb', $('#cblist'));
+
+</script>
+</html>

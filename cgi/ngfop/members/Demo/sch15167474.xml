@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Color
+</description>
+
+<row><picture>/cgi/ngfop/pics/pic_02/crayons.gif</picture>
+<name>
+Get crayons.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/28461998.jpg</picture>
+<name>
+Get coloring book.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/ad0007.jpg</picture>
+<name>
+Open coloring book.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/ad0010.jpg</picture>
+<name>
+Color a picture.
+</name>
+</row>
+
+</data>

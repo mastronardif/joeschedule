@@ -1,0 +1,49 @@
+<form name = "myformtop" method="post" action="/cgi-bin/cgi/ngfop/top.pl">
+<input type="hidden" NAME="leftsrc" value="cb"/>
+<input type="hidden" NAME="leftvalue" value="blank.xml"/>
+<input type="hidden" NAME="leftfname" value="blank.xml"/>
+<input type="hidden" NAME="leftfdesc" value=""/>
+<!--
+<input type="hidden" NAME="middlefname" value=""/>
+-->
+
+<table height="80%" width="100%" border="0">
+<tr align="center">
+
+<td>
+    
+<a title="Delete" href="javascript:del();"> <i class="fas fa-trash-alt myfaicon"></i></a>
+<a title="Edit" href="javascript:editSchedule2();"> <i class="fas fa-edit myfaicon"></i></a>
+
+<SELECT NAME="Extra"
+style="text-transform: uppercase; color: navy; background: #C9E8FB;
+font-family: Verdana; font-size:12px;">
+<OPTION VALUE="-1">Send to
+<OPTION VALUE="3">
+----------
+<OPTION VALUE="4">printer
+<OPTION VALUE="1">email
+<OPTION VALUE="1">phone app
+<OPTION VALUE="1">*My Pics        
+<OPTION VALUE="1">*upload Images
+<OPTION VALUE="1">*upload croped Images
+</SELECT>
+
+<a class="menuitem" title="Execute a command" href="javascript:ShowExtra(document.myformtop.Extra.options[document.myformtop.Extra.selectedIndex].text);">Go!</a>
+
+<a class="menuitem" title="My Picture" href="javascript:myPicture();"><IMG SRC="./ca1.gif" alt="My Picture" align="middle" width="23" height="25" border="1"></a>
+<a class="menuitem" title="copy left to right" href="javascript:cp2sch22();"><IMG SRC="/cgi/ngfop/rarrow1.gif" ALT="copy left to right" align="middle" width="23" height="15" border="1"></a>
+<!--    
+<a class="menuitem" title="Edit" href="javascript:editSchedule2();" >Edit</a>
+<a class="menuitem" title="Delete" href="javascript:del();">Del</a>
+<a class="menuitem" title="Create a new schedule or choice board" href="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name=blank.xml" target="right">New</a>
+-->
+<a class="menuitem" title="Sign Out" href="javascript:top.location='/cgi-bin/cgi/ngfop/signin.cgi?action=signout'">Sign Out</a>
+<a class="menuitem" title="Help" href="javascript:help();">Help</a>
+
+<i>Welcome <ID/></i><br/>
+</td>
+</tr>
+</table>
+</form>
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Chores
+</description>
+
+<row><picture>/cgi/ngfop/pics/book/ake0001.jpg</picture>
+<name>
+Sweep
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_01/DSCF0030.JPG</picture>
+<name>
+Set the table
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/akm0001.jpg</picture>
+<name>
+Set the table
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/1019.jpg</picture>
+<name>
+Vacuum
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/1053.jpg</picture>
+<name>
+Make your bed
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_01/DSCF0006.JPG</picture>
+<name>
+Vacuum car
+</name>
+</row>
+
+<row><picture>http://images.google.com/images?q=tbn:xT9_8O6RUyUJ:home.swbell.net/tingfish/3fwic5.jpg</picture>
+<name>
+Put away clothes
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/b0017.jpg</picture>
+<name>
+Put dishes in sink.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/b0015.jpg</picture>
+<name>
+Clean off plate.
+</name>
+</row>
+
+<row><name>
+Take out trash
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/t005.jpg</picture>
+<name>
+Put away toys
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/wa017.jpg</picture>
+<name>
+Doing laundry
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/booktemp/DSCF0041.JPG</picture>
+<name>
+Mow the lawn.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/booktemp/aDSCF0043.JPG</picture>
+<name>
+Shampoo the rug.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/booktemp/DSCF0053.JPG</picture>
+<name>
+Shovel the snow.
+</name>
+</row>
+
+<row><picture> /cgi/ngfop/pics/booktemp/DSCF0003.JPG</picture>
+<name>
+Rake the leaves.
+</name>
+</row>
+
+</data>

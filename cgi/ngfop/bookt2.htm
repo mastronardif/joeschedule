@@ -1,0 +1,46 @@
+<html>
+<body>
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<filename>
+<input type="hidden" name="xmlfilename" value="<FILENAME>"/>
+</filename>
+
+
+<div left="7.5cm" width ="4.0cm" height="19cm">
+<table cols="2.5cm 4.5cm" border="1">
+  <description>
+  <tr>
+      <td colspan="2" align="center">
+      <DESCRIPTION></td>
+  </tr>
+  </description>
+
+<row>
+        <tr>
+          <td><TIME></td>
+
+          <td align="left"> 
+<IF_PICTURE> 
+<img border="0" src="<PICTURE>" width="2cm" height="2cm"/>
+		  <br/>
+ </IF_PICTURE>
+		  <name>
+		  </td>
+        </tr>
+</row>
+
+</table>
+</div>
+
+<!-- hidden vars to force arrays -->
+</form>
+<p class="footer1">
+<!--<a href="http://www.joeschedule.com">visit www.joeschedule.com-->
+visit www.joeschedule.com
+</p>
+
+
+</body>
+</html>
+

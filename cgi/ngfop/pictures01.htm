@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Pictures01</title>
+</head>
+
+<script language="JavaScript">
+
+function getListItem(iii)
+{
+	sPic = document.myform.elements.I55[iii].src;							
+
+    return"<picture>"+sPic+"</picture>";
+}
+</script>
+
+<!--<body bgcolor='rgb(249, 201, 92)';>-->
+<body topmargin="0" bgcolor="C8D5D3">
+
+<form name = "myform" method="POST" action="--WEBBOT-SELF--">
+
+<button type="reset" name="r2" value="reset">
+<img SRC="/cgi/ngfop/kdabull3.gif" WIDTH="28" HEIGHT="20"
+ ALT="reset form" /> Reset</button>
+
+<table border="1"  height="4">
+
+  <tr>
+    <row>
+    <td>
+	<input type="checkbox" name="C1" value="ON">AAA 
+	<img name ="I55" input border="0" src="<NAME>" width="105" height="97" type="image" ALT="Image">
+    </td>
+    </row>
+  </tr>
+</table>
+
+<!-- solve the index problem document.myform.elements.I55[iii].src;-->
+	<input type="hidden" name="C1" value="ON">
+	<img name ="I55" border="0" src="<NAME>" width="0" height="0" type="image">
+
+</form>
+</body>
+
+</html>

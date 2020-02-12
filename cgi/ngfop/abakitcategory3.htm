@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<title>joeschedule.com - My ABA Kits</title>
+
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/print.css" media="print" />
+
+<style type="text/css">
+
+html,body{margin:0;padding:0}
+body{font: 76% arial,sans-serif}
+p{margin:0 10px 10px}
+div#header h1{height:30px;line-height:30px;margin:0;
+  padding-left:10px;background: #EEE;color: #79B30B}
+div#content p{line-height:1.4}
+div#navigation{background:#B9CAFF}
+div#extra{background:#FF8539}
+div#footer{background: #333;color: #FFF}
+div#footer p{margin:0;padding:5px 10px}
+div#wrapper{float:left;width:100%}
+div#content{margin-left: 50%}
+div#navigation{float:left;width:25%;margin-left:-100%}
+div#extra{float:left;width:25%;margin-left:-75%}
+div#footer{clear:left;width:100%}
+
+div#footer22{background: #FDFDF0;color: #79B30B}
+div#footer22 p{margin:0;padding:5px 10px}
+div#footer22{clear:left;width:100%}
+
+</style>
+</head>
+
+<script language="javascript" src="/cgi/ngfop/abakit.js"></script>
+
+<script>
+var gBodycolor='rgb(249, 201, 92)';
+var colorbgnd   = 'pink';
+
+function Reset()
+{
+    var x=document.forms.myform;
+    x.reset()
+}
+
+function RunProgram(student)
+{
+   var stu = "";
+   if (student)
+   {
+      stu = "&student="+student;
+   }
+   var url = '/cgi-bin/cgi/ngfop/schABA33.pl?htmlname=schABA55wh.htm'+stu;
+   abakit_runprograms(url, 'usedir(Sussina)', 'mydesc');
+}
+
+function RunMatchingProgram()
+{
+	abakit_runprograms('/cgi-bin/cgi/ngfop/schABA33.pl?htmlname=schABA22ma.htm', '','matching');
+}
+
+
+var colorforgnd = 'rgb(249, 201, 92)'; //'#F5F3E4'; //'#00FFFF'; // .windowbg; ////
+function mover(obj)
+{
+	if (gObj != obj)
+		obj.bgColor=colorbgnd;
+}
+
+function mout(obj)
+{
+	if (gObj == obj)
+		return;
+
+	obj.bgColor= colorbgnd;
+
+	if (gObj != obj)
+		obj.bgColor=gBodycolor;//'gold';
+
+}
+
+var gObj = null;
+var gStr = null;
+function mclick(obj, row)
+{
+	mkblack(obj, row)
+}
+
+
+function mkblack(obj, pic)
+{
+	if (gObj)
+		gObj.bgColor = colorforgnd;
+
+	obj.bgColor= "black";
+
+	gObj = obj;
+	gStr = pic;
+
+return;
+
+}
+
+function url(szName)
+{
+   var student = top.frames[0].getStudent();
+
+   // Get student name.
+   var stu = "&student=" + student;
+//   var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=schstudent22.htm&name=" + szName + stu;
+   var str = "/cgi-bin/cgi/ngfop/schABA33.pl?htmlname=schstudent22.htm&name=" + szName + stu +"&usedir=usedir(Sussina)";;
+//   window.open(str);
+   parent.bottom.location=str;
+}
+
+function url22(szName)
+{
+   var student = top.frames[0].getStudent();
+
+   // Get student name.
+   var stu = "&student=" + student;
+   
+   var action = "&action=fromlist(sch69198123.xml,)"
+   var usedir = "&usedir=usedir(Sussina)"
+   var url = "/cgi-bin/cgi/ngfop/schABA33.pl?htmlname=schABA55wh.htm"
+   url = url + stu + usedir + action;
+   //parent.bottom.location=url;
+   poptastic(url, 'title');
+}
+
+-->
+</script>
+
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif">
+<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/abakitbuild.pl?htmlname=abakitcategory.htm">
+<div id="container">
+<div id="header">
+</div>
+</div>
+
+<filename>
+<input type="hidden" name="xmlfilename" value="<FILENAME>">
+</filename>
+
+<!-- hidden s begin -->
+<filename>
+  <input type="hidden" name=name size = "10" value="<FILENAME>">
+</filename>
+  <input type="hidden" name=type size = "10" value="">
+  <input type="hidden" name=htmlname size = "10" value="abakitcategory.htm">
+  <input type="hidden" name=action   size = "10" value="dir">
+<!-- hidden end -->
+
+<i>Select the programs you want to run from the menu.   Press Run Program.</i>
+     
+<!-- FM begin 6/16/8 -->
+<div id="wrapper">
+<div id="content">
+
+<p><a HREF="javascript:runprograms01('sch94840389.xml')">
+<strong>WH questions</strong> </a> <!--sch94840389.xml-->
+<br>
+<input type="checkbox" name="C1" value="sch16926045.xml">
+<a HREF="javascript:url('sch16926045.xml')">Where questions</a>   <!--sch16926045.xml-->
+<br>
+<input type="checkbox" name="C1" value="sch94149461.xml">
+<a HREF="javascript:url('sch94149461.xml')">When questions</a> <!--sch94149461.xml-->
+<br>
+<input type="checkbox" name="C1" value="sch94140533.xml">
+<a HREF="javascript:url('sch94140533.xml')">Which questions</a> <!--sch94140533.xml-->
+
+<br><input type="checkbox" name="C1" value="sch16990962.xml"> 
+<a HREF="javascript:url('sch16990962.xml')">Who questions</a> <!--sch16990962.xml-->
+
+<br><input type="checkbox" name="C1" value="sch94600139.xml"> 
+<a HREF="javascript:url('sch94600139.xml')">Why/If questions</a> <!--sch94600139.xml-->
+</p>
+
+<p>
+<hr>
+<p>
+<a HREF="javascript:runprograms01('sch94840656.xml')">
+<strong>Function of</strong> </a>
+
+
+<br>Instruction: <i>What do you ______ with?</i>
+<br><i>What do you do with a /your _____?</i>
+<br><input type="checkbox" name="C1" value="sch94773481.xml"> 
+<a HREF="javascript:url('sch94773481.xml')">Function of Body Parts</a> <!--sch94773481.xml-->
+<br><input type="checkbox" name="C1" value="sch83887104.xml"> 
+<a HREF="javascript:url('sch83887104.xml')">Function of Objects</a> <!--sch83887104.xml-->
+<br><input type="checkbox" name="C1" value="sch94149716.xml"> 
+<a HREF="javascript:url('sch94149716.xml')">Function of Rooms</a> <!--sch94149716.xml-->
+<br><input type="checkbox" name="C1" value="sch94592591.xml"> 
+<a HREF="javascript:url('sch94592591.xml')">Function of Occupation</a> <!--sch94592591.xml-->
+</p>
+
+
+<p>
+<hr>
+<p>
+<a HREF="javascript:runprograms01('sch97250998.xml')">
+<strong>Social</strong> </a>
+							
+<br>Instruction: <i>Point to ______.</i>
+<br>Instruction: <i>Show me ______.</i>
+<br><input type="checkbox" name="C1" value="sch17882238.xml"> 
+<a HREF="javascript:url('sch17500078.xml')">Family</a> <!--sch17500078.xml-->
+<br><input type="checkbox" name="C1" value="sch97178354.xml"> 
+<a HREF="javascript:url('sch97178354.xml')">Social Questions</a> <!--sch97178354.xml-->
+<br><input type="checkbox" name="C1" value="sch17882238.xml"> 
+<a HREF="javascript:url('sch17882238.xml')">Emotions</a> <!--sch17882238.xml-->
+<br><input type="checkbox" name="C1" value="sch94592822.xml"> 
+<a HREF="javascript:url('sch94592822.xml')">Pretends</a> <!--sch94592822.xml-->
+</p>
+
+<p>
+<hr>
+<p>
+<a HREF="javascript:runprograms01('sch97251258.xml')">
+<strong>Seasonal</strong> </a> <!--sch97251258.xml-->
+
+<br>Instruction: <i>Point to ______.</i>
+<br>Instruction: <i>What is this a picture of?</i>
+<br><input type="checkbox" name="C1" value="sch84463344.xml"> 
+<a HREF="javascript:url('sch84463344.xml')">Holidays</a> <!--sch84463344.xml-->
+<br><input type="checkbox" name="C1" value="sch90985323.xml"> 
+<a HREF="javascript:url('sch90985323.xml')">Winter</a> <!--sch90985323.xml-->
+<br><input type="checkbox" name="C1" value="sch95030586.xml"> 
+<a HREF="javascript:url('sch95030586.xml')">Spring</a> <!--sch95030586.xml-->
+<br><input type="checkbox" name="C1" value="sch17532755.xml"> 
+<a HREF="javascript:url('sch17532755.xml')">Summer</a> <!--sch17532755.xml-->
+<br><input type="checkbox" name="C1" value="sch18108057.xml"> 
+<a HREF="javascript:url('sch18108057.xml')">Fall</a> <!--sch18108057.xml-->
+</p>
+
+
+
+
+
+
+</p>
+</div>
+</div>
+<div id="navigation">
+<p>
+<a HREF="javascript:runprograms01('sch94827704.xml')">
+<strong>Objects</strong> </a> <!--sch94827704.xml-->
+
+<br>Instruction: <i>What is it? </i>
+<br><i>Point to ______</i>
+<br>
+<br>
+<input type="checkbox" name="C1" value="sch17532564.xml"> 
+<a HREF="javascript:url('sch17532564.xml')"> Accessories</a> <!--sch17532564.xml-->
+<br>
+<input type="checkbox" name="C1" value="sch69198123.xml"> 
+<a HREF="javascript:url('sch69198123.xml')">Animals <!--sch69198123.xml-->
+</a>
+
+<br><input type="checkbox" name="C1" value="sch86208568.xml"> 
+<a HREF="javascript:url('sch86208568.xml')">Body Parts</a> <!--sch86208568.xml-->
+   
+<br><input type="checkbox" name="C1" value="sch37456341.xml"> 
+<a HREF="javascript:url('sch37456341.xml')">Chores</a> <!--sch37456341.xml-->
+
+<br><input type="checkbox" name="C1" value="sch17531860.xml"> 
+<a HREF="javascript:url('sch17531860.xml')">Classroom Objects</a> <!--sch17531860.xml-->
+<br><input type="checkbox" name="C1" value="sch69196891.xml"> 
+<a HREF="javascript:url('sch69196891.xml')">Clothing</a> <!--sch69196891.xml-->
+
+
+<br><input type="checkbox" name="C1" value="sch39398513.xml"> 
+<a HREF="javascript:url('sch39398513.xml')">Drinks</a> <!--sch39398513.xml-->
+<br><input type="checkbox" name="C1" value="sch97174360.xml"> 
+<a HREF="javascript:url('sch97174360.xml')">Excercises</a> <!--sch97174360.xml-->
+<br><input type="checkbox" name="C1" value="sch85769109.xml"> 
+<a HREF="javascript:url('sch85769109.xml')">Food</a> <!--sch85769109.xml-->
+<br><input type="checkbox" name="C1" value="sch18109096.xml"> 
+<a HREF="javascript:url('sch18109096.xml')">Food (breakfast)</a> <!--sch18109096.xml-->
+<br><input type="checkbox" name="C1" value="sch17263444.xml"> 
+<a HREF="javascript:url('sch17263444.xml')">Food (desert)</a> <!--sch17263444.xml-->
+<br><input type="checkbox" name="C1" value="sch17532427.xml"> 
+<a HREF="javascript:url('sch17532427.xml')">Footwear</a> <!--'sch17532427.xml-->
+<br><input type="checkbox" name="C1" value="sch83899845.xml"> 
+<a HREF="javascript:url('sch83899845.xml')">Fruit</a> <!--sch83899845.xml-->
+<br><input type="checkbox" name="C1" value="sch17499717.xml"> 
+<a HREF="javascript:url('sch17499717.xml')">Furniture</a> <!--sch17499717.xml-->
+<br><input type="checkbox" name="C1" value="sch17500439.xml"> 
+<a HREF="javascript:url('sch17500439.xml')">Musical Instruments</a> <!--sch17500439.xml-->
+<br><input type="checkbox" name="C1" value="sch17337302.xml"> 
+<a HREF="javascript:url('sch17337302.xml')">Sports</a> <!--sch17337302.xml-->
+<br><input type="checkbox" name="C1" value="sch17532167.xml"> 
+<a HREF="javascript:url('sch17532167.xml')">Stationary</a> <!--sch17532167.xml-->
+<br><input type="checkbox" name="C1" value="sch17500475.xml"> 
+<a HREF="javascript:url('sch17500475.xml')">Transportation</a> <!--sch17500475.xml-->
+<br><input type="checkbox" name="C1" value="sch17347078.xml">  
+<a HREF="javascript:url('sch17347078.xml')">Toys</a> <!--sch17347078.xml-->
+<br><input type="checkbox" name="C1" value="sch83899905.xml"> 
+<a HREF="javascript:url('sch83899905.xml')">Vegetables</a> <!--sch83899905.xml-->
+
+<hr>
+<p>
+<a HREF="javascript:runprograms01('sch94839247.xml')">
+<strong>Rooms</strong> </a> <!--sch94839247.xml-->
+
+<br>Instruction: <i>Point to ______</i>
+<br><i>What room is this?</i>
+<br><i>What is this?</i>
+<br>
+<br><input type="checkbox" name="C1" value="sch90610727.xml"> 
+<a HREF="javascript:url('sch90610727.xml')">Bathroom</a> <!--sch90610727.xml-->
+<br><input type="checkbox" name="C1" value="sch90610690.xml"> 
+<a HREF="javascript:url('sch90610690.xml')">Bedroom</a> <!--sch90610690.xml-->
+<br><input type="checkbox" name="C1" value="sch90614084.xml"> 
+<a HREF="javascript:url('sch90614084.xml')">Rooms</a> <!--sch90614084.xml-->
+<br><input type="checkbox" name="C1" value="sch90610701.xml"> 
+<a HREF="javascript:url('sch90610701.xml')">Dining room</a> <!--sch90610701.xml-->
+<br><input type="checkbox" name="C1" value="sch90617618.xml"> 
+<a HREF="javascript:url('sch90617618.xml')">Living room</a> <!--sch90617618.xml-->
+<br><input type="checkbox" name="C1" value="sch17498767.xml"> 
+<a HREF="javascript:url('sch17498767.xml')">House</a> <!--sch17498767.xml-->
+<br><input type="checkbox" name="C1" value="sch90610713.xml"> 
+<a HREF="javascript:url('sch90610713.xml')">Kitchen</a> <!--sch90610713.xml-->
+<br><input type="checkbox" name="C1" value="sch91482688.xml"> 
+<a HREF="javascript:url('sch91482688.xml')">Yard</a> <!--sch91482688.xml-->
+</p>
+</div>
+
+
+<div id="extra">
+<p><a HREF="javascript:runprograms01('sch97250488.xml')">
+<strong>Academic</strong> </a> <!--sch97250488.xml-->
+
+<br>Instruction: <i>What is this? </i>
+<br><i>Point to ______</i>
+<br>
+<br><input type="checkbox" name="C1" value="sch69195547.xml"> 
+<a HREF="javascript:url('sch69195547.xml')">Colors</a>  <!--sch69195547.xml-->
+<br><input type="checkbox" name="C1" value="sch85761918.xml">
+<a HREF="javascript:url('sch85761918.xml')">Colors Words</a> <!--sch85761918.xml-->
+<br><input type="checkbox" name="C1" value="sch86300557.xml">
+<a HREF="javascript:url('sch86300557.xml')">Numbers</a> <!--sch86300557.xml-->
+<br><input type="checkbox" name="C1" value="sch85762082.xml"> 
+<a HREF="javascript:url('sch85762082.xml')">Number Words</a> <!--sch85762082.xml-->
+<br><input type="checkbox" name="C1" value="sch84028307.xml"> 
+<a HREF="javascript:url('sch84028307.xml')">Shapes</a> <!--sch84028307.xml-->
+<br><input type="checkbox" name="C1" value="sch86294727.xml"> 
+<a HREF="javascript:url('sch86294727.xml')">Uppercase letters</a> <!--sch86294727.xml-->
+<br><input type="checkbox" name="C1" value="sch69032883.xml"> 
+<a HREF="javascript:url('sch69032883.xml')">Lowercase letters</a> <!--sch69032883.xml-->
+<br><input type="checkbox" name="C1" value="sch94839775.xml"> 
+<a HREF="javascript:url('sch94839775.xml')">General knowledge</a> <!--sch94839775.xml-->
+<hr>
+<br>
+<p><strong><u>Community</u></strong> 
+<br>Instruction: <i>Point to ______</i>
+<br><i>What/Who is this a picture of?</i>
+<br>
+<br><input type="checkbox" name="C1" value="sch91487629.xml"> 
+<a HREF="javascript:url('sch91487629.xml')">Occupations</a> <!--sch91487629.xml-->
+<br><input type="checkbox" name="C1" value="sch31766010.xml"> 
+<a HREF="javascript:url('sch31766010.xml')">Places to go</a> <!--sch31766010.xml-->
+<br><input type="checkbox" name="C1" value="sch94839982.xml"> 
+<a HREF="javascript:url('sch94839982.xml')">Gender</a> <!--sch94839982.xml-->
+
+<hr>
+<br>
+<p>
+<a HREF="javascript:runprograms01('sch94839958.xml')">
+<strong>Verbs</strong> </a> <!--sch94839958.xml-->
+
+<br>Instruction: <i>What is she/he doing?</i>
+<br>
+<br><input type="checkbox" name="C1" value="sch17498395.xml"> 
+<a HREF="javascript:url('sch17498395.xml')">Commands</a> <!--sch17498395.xml-->
+<br><input type="checkbox" name="C1" value="sch17497434.xml"> 
+<a HREF="javascript:url('sch17497434.xml')">Actions</a> <!--sch17497434.xml-->
+</p>
+</div>
+     
+<!-- ************************************************************** -->          
+<!-- my aba's -->     
+<!-- Local ABA schedules -->
+<div id="footer22">
+<table border="1" cellpadding="3" width="100%">
+<tr>
+  <row>
+   <td align="left" height="1" onmouseover  ="mover(this);" onmouseout  ="mout(this);"
+                               onClick  ="mkblack(this, '<PICTURE>');">
+   <input type="hidden" name="R055" value="<TIME>">
+   <input type="hidden" name="R55" value="">
+   <input type="hidden" name="HR55" value="">
+   <input type="hidden" name="T1" value="">
+<input type="checkbox" name="C1" value="<TIME>">
+              <img name="I5" border="0" src="<PICTURE>" width="50" height="46" type="image">
+&nbsp;
+<a class="menuitem" title="pictures" href="javascript:url('<TIME>');"><PDESCRIPTION></a> <!--<TIME>-->
+              </td>
+  </row>
+</tr>
+</table>
+</div>
+<!-- ************************************************************** -->     
+</form>
+   
+<!--
+<div class="CC">
+<div id="CC1"  style="visibility:visible;">
+<address>
+<img src="/cgi/ngfop/bar1.gif" width="582" height="9"><br>
+mastronardif@netcarrier.com<br>
+Copyleft  2008 by [Gracy LLC]. All rights reserved.<br>
+Revised: 08 Apr 2008 11:56:18-0500
+</address>
+</font> 
+</div>
+-->
+</body>
+</html>

@@ -1,0 +1,530 @@
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Windows-1252">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML lang=en><HEAD><TITLE>sch3a</TITLE><BASE 
+href=http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=sch3b.htm&amp;name=sch4475042.xml>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META http-equiv=Content-Language content=en-us><LINK 
+href="/cgi/ngfop/sch01.css" type=text/css rel=stylesheet><LINK media=print 
+href="/cgi/ngfop/print.css" type=text/css rel=stylesheet>
+<STYLE type=text/css media=all>
+
+p.footer1 {font-family: Verdana , sans-serif; color: black; font-size: 50%;} 
+
+</STYLE>
+
+<SCRIPT>
+
+<!--
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+function getLBRows(rowID1, rowID2, src)
+
+{
+
+//alert("getLBRows("+rowID1+ ", "+rowID2+", "+src+")");
+
+	var szResults = "";
+
+	var ar;
+
+
+
+	var ixml = -1;
+
+	for (iii=0; iii < gxmls.length; iii++)
+
+	{
+
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+
+		{
+
+			ixml = iii;
+
+			break;
+
+		}
+
+	}
+
+	if (ixml == -1)
+
+		return szResults;
+
+
+
+	ar = gxmldata[ixml];
+
+
+
+	sz1 = '<tr onClick="setRow(\''+rowID1+'\',\''+rowID2 +'\',\''+src+'\',';
+
+
+
+	for (iii=0; iii < ar.length; iii++)
+
+	{
+
+		szRow= ar[iii];
+
+
+
+		myRe=/(<tr.*>)/i;
+
+		if (myRe.test(ar[iii]))
+
+		{
+
+			newtr = sz1+iii+');">';
+
+
+
+			re = /(<tr(.*?)>)./i;
+
+
+
+			szRow= ar[iii].replace(re, newtr);
+
+		}
+
+
+
+		szResults += szRow;
+
+	}
+
+		
+
+	return szResults;
+
+}
+
+
+
+
+
+function getLBRow(src, iRow)
+
+{
+
+	var szResults = "";
+
+	var ixml = -1;
+
+
+
+	for (iii=0; iii < gxmls.length; iii++)
+
+	{
+
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+
+		{
+
+			ixml = iii;
+
+			break;
+
+		}
+
+	}
+
+
+
+	if (ixml == -1)
+
+		return "";
+
+
+
+
+
+	szResults += gxmldata[ixml][iRow];
+
+	return szResults;
+
+}
+
+
+
+
+
+
+
+function setRow(dest, rowID2, src, iRow)
+
+{
+
+	var szrd = getLBRow(src, iRow);
+
+
+
+str = szrd;
+
+
+
+
+
+newtr = "<tr>";
+
+
+
+//alert(str);
+
+re = /(<\s*tr(.*?)>)./i;
+
+newstr = str.replace(re, newtr);
+
+
+
+	var szVal = '<table border="0" width="100%" cellpadding="3">';
+
+	szVal += newstr;
+
+	szVal += '</table>';
+
+
+
+
+
+
+
+	/////////
+
+	// pop //
+
+	/////////
+
+	document.getElementById(dest).innerHTML = '<div id="'+dest+'">'+
+
+'			<table border="1" width = "100%" cellpadding="3">'+
+
+'			<tr onClick    ="bob4a(\'' + src + '\', \'' + dest + '\', \''+ rowID2+'\');">'+
+
+'				<td width = "90%" >'+
+
+''+
+
+'<div id="'+rowID2+'">'+
+
+'<div>'+
+
+'				</td>'+
+
+'				<td width = "10%" >'+
+
+'				<img src="/darrow3.gif" ALT="choice board" border="0">'+
+
+'				</td>'+
+
+'		    </tr>'+
+
+'			</table>'+
+
+'</div>';
+
+
+
+  	document.getElementById(rowID2).innerHTML = szVal;
+
+}
+
+
+
+
+
+
+
+
+
+function getMyListBox(rowID1, rowID2, src)
+
+{
+
+//	alert("getMyListBox("+rowID1+", "+rowID2+", "+ src+")");
+
+
+
+	return(	getLBRows(rowID1, rowID2, src));
+
+}
+
+
+
+
+
+function bob4a(src, rowID1, rowID2)
+
+{
+
+	szLB = getMyListBox(rowID1, rowID2, src);
+
+
+
+	document.getElementById(rowID1).innerHTML = szLB;
+
+}
+
+
+
+
+
+function hideEmptyPictures()
+
+{
+
+	var iChks = 0;
+
+
+
+//alert(document.myform.I55.length);
+
+
+
+	for (var iii = 0; iii < document.myform.I55.length; iii++)
+
+	{
+
+		var src = _listData[iii];
+
+		var szPic = src.match(/<picture>(.+)<\/picture>/i);
+
+//alert(szPic);
+
+		if (szPic)
+
+		{
+
+			szPic = szPic[1];
+
+		}
+
+		else
+
+		{
+
+			szPic = "";
+
+		}
+
+		if (szPic == "")
+
+		{
+
+			iChks++;
+
+			myform.elements.I55[iii].width = "0";
+
+			myform.elements.I55[iii].height = "0";
+
+
+
+	    }
+
+	}
+
+}
+
+
+
+var _listData = new Array(
+
+
+    "\74name>Hi, My name is George Washington and I&#39;m the first president of the United States.\74/name>\74picture>http://images.google.com/images?q=tbn:hqPOLBO_ZG0J:www.billofrightsinstitute.org/images/founder-of-the-month/george-washington.jpg\74/picture>",
+    
+    "\74name>I was born on a farm in Virginia, in 1732.\74/name>\74picture>http://images.google.com/images?q=tbn:qThGZvXb538J:www.katstudio.com/images/art/images/landscapes/20_large.jpg\74/picture>",
+    
+    "\74name>I went to school until I was 15 years old.\74/name>\74picture>http://images.google.com/images?q=tbn:KAjrWh54fVsJ:www.westfieldnj.com/fs/franklin%2520school.jpg\74/picture>",
+    
+    "\74name>A war began with England called the American Revolutionary War.\74/name>\74picture>http://images.google.com/images?q=tbn:VywG-NCI0iYJ:www.socialstudiesforkids.com/graphics/fifeanddrum.jpg\74/picture>",
+    
+    "\74name>I was asked to lead the army.\74/name>\74picture>http://images.google.com/images?q=tbn:gET_I2LT5oQJ:www.perfecteconomy.com/img-washington-crossing-delaware-x500.jpg\74/picture>",
+    
+    "\74name>We won the war in 1783.\74/name>\74picture>http://images.google.com/images?q=tbn:PIJY4DMWR04J:www.elisabethmorrow.org/classroomnews/m5bsara1.gif\74/picture>",
+    
+    "\74name>I was a hero.\74/name>\74picture>http://images.google.com/images?q=tbn:WJU-vOwb_bcJ:www.loc.gov/exhibits/religion/f0308.jpg\74/picture>",
+    
+    "\74name>In 1789 I was elected America&#39;s first president.\74/name>\74picture>http://images.google.com/images?q=tbn:K27R53HCbw8J:www.cnn.com/2001/fyi/news/01/21/past.inaugurations/story.geo.washington.jpg\74/picture>",
+    
+    "\74name>I served two terms as President.\74/name>\74picture>http://images.google.com/images?q=tbn:xXIbSsCY3E4J:www.grahamowen.com/images3/9-white-house.jpg\74/picture>",
+    
+    "\74name>Today, people think of me as &#39;The Father of Our Country&#39;.\74/name>\74picture>http://images.google.com/images?q=tbn:sdB6318qO9EJ:www.alpinebagels.com/images/washington.jpg\74/picture>",
+    
+    "\74name>Mara, W. (2002). <i>George Washington.</i> New York:Children&#39;s Press.\74/name>\74picture>\74/picture>",
+    "end"
+
+);
+
+
+
+
+
+function getListItem()
+
+{
+
+	var str = "";
+
+	var obj = document.myform;
+
+
+
+	// the case of 0 elements
+
+	if (obj.elements.C1 === undefined)
+
+		return str;
+
+
+
+	if (obj.elements.C1.length === undefined)
+
+	{
+
+		if (obj.C1.checked)
+
+			str = _listData[0];
+
+
+
+		return str;
+
+	}
+
+
+
+	// Yes there is an array of elements.
+
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+
+	{
+
+		if (obj.elements.C1[iii].checked)	
+
+		{
+
+			str = _listData[iii];
+
+			break;
+
+		}
+
+	}
+
+
+
+	return str;
+
+}
+
+
+
+-->
+
+</SCRIPT>
+
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<DIV>&nbsp;</DIV>
+<FORM name=myform action=/cgi-bin/cgi/ngfop/each.cgi method=post><INPUT 
+type=hidden value=sch4475042.xml name=xmlfilename> 
+<TABLE cellPadding=2 width="100%" border=1>
+  <TBODY>
+  <TR>
+    <TD align=middle colSpan=3>George Washington </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:hqPOLBO_ZG0J:www.billofrightsinstitute.org/images/founder-of-the-month/george-washington.jpg" 
+      width=105 border=0> <BR>Hi, My name is George Washington and I'm the first 
+      president of the United States. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:qThGZvXb538J:www.katstudio.com/images/art/images/landscapes/20_large.jpg" 
+      width=105 border=0> <BR>I was born on a farm in Virginia, in 1732. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:KAjrWh54fVsJ:www.westfieldnj.com/fs/franklin%2520school.jpg" 
+      width=105 border=0> <BR>I went to school until I was 15 years old. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:VywG-NCI0iYJ:www.socialstudiesforkids.com/graphics/fifeanddrum.jpg" 
+      width=105 border=0> <BR>A war began with England called the American 
+      Revolutionary War. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:gET_I2LT5oQJ:www.perfecteconomy.com/img-washington-crossing-delaware-x500.jpg" 
+      width=105 border=0> <BR>I was asked to lead the army. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:PIJY4DMWR04J:www.elisabethmorrow.org/classroomnews/m5bsara1.gif" 
+      width=105 border=0> <BR>We won the war in 1783. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:WJU-vOwb_bcJ:www.loc.gov/exhibits/religion/f0308.jpg" 
+      width=105 border=0> <BR>I was a hero. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:K27R53HCbw8J:www.cnn.com/2001/fyi/news/01/21/past.inaugurations/story.geo.washington.jpg" 
+      width=105 border=0> <BR>In 1789 I was elected America's first president. 
+    </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:xXIbSsCY3E4J:www.grahamowen.com/images3/9-white-house.jpg" 
+      width=105 border=0> <BR>I served two terms as President. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:sdB6318qO9EJ:www.alpinebagels.com/images/washington.jpg" 
+      width=105 border=0> <BR>Today, people think of me as 'The Father of Our 
+      Country'. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%">Mara, W. (2002). <I>George Washington.</I> New 
+      York:Children's Press. </TD></TR></TBODY></TABLE></FORM>
+<P class=footer1><!--<a href="http://www.joeschedule.com">visit www.joeschedule.com--></A>visit 
+www.joeschedule.com </P></BODY></HTML>

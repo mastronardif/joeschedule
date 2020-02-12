@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+To Do:
+</description>
+
+<row><name>
+*get more pictures
+</name>
+</row>
+
+<row><name>
+*Kristine's review
+</name>
+</row>
+
+<row><name>
+*Test on Apple
+</name>
+</row>
+
+<row><name>
+*desing the catagorys feature.
+</name>
+</row>
+
+<row><name>
+/*******************************/
+</name>
+</row>
+
+<row><name>
+add delete cleanup cron job.
+</name>
+</row>
+
+<row><name>
+review all pl, htm files add -wT
+</name>
+</row>
+
+<row><name>
+fix bugs if any
+</name>
+</row>
+
+<row><name>
+review navbar/toolbar design.
+</name>
+</row>
+
+<row><name>
+Design the Token economy.
+</name>
+</row>
+
+<row><name>
+********* BUGS *********************
+</name>
+</row>
+
+<row><name>
+review the blank.xml
+</name>
+</row>
+
+<row><name>
+*********** IMPROVE ***********
+</name>
+</row>
+
+<row><name>
+signin security
+</name>
+</row>
+
+<row><name>
+disable caching on html.
+</name>
+</row>
+
+<row><name>
+/******** New Features *****/
+</name>
+</row>
+
+<row><name>
+/*******************************/
+</name>
+</row>
+
+<row><name>
+Add Lazy boy Googling
+</name>
+</row>
+
+</data>

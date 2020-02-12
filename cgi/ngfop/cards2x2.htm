@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/print.css" media="print" />
+
+<style type="text/css" media="screen, print">
+H2 {page-break-before: always}
+</style>
+
+</head>
+
+<script>
+
+var gObj = null;
+var gStr = null;
+function getListItem(iii)
+{
+    return "\74picture>"+gStr+"\74/picture>";
+
+	var obj    = document.myform;
+
+	var str;
+
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+	{
+		if (obj.elements.C1[iii].checked)
+		{
+			str = obj.elements.HR55[iii].value;
+
+			break;
+		}
+	}
+
+//	alert(gStr);
+
+
+    //return "\74picture>"+str+"\74/picture>";
+
+//alert("\74picture>"+str+"\74/picture>");
+//	return _listData[iii];
+}
+
+
+
+
+function CallBack_DisplayResults()
+{
+	
+	document.all.WARNING1.innerHTML = "****";
+	var checks = "";
+	var iChks = 0;
+
+	for (var iii = 0; iii < myform.elements.C1.length; iii++)
+	{
+		if (myform.elements.C1[iii].checked)
+		{
+			iChks++;
+			checks += "*";
+	    }
+	}
+
+	if (iChks > 4)
+	{
+		checks += " Good job you can do your reward now."
+	}
+	document.all.WARNING1.innerHTML = checks;
+}
+
+-->
+</script>
+
+
+<!--<body bgcolor="pink">
+  <body bgcolor=.windowbg>
+-->
+<body bgcolor='rgb(249, 201, 92)';>
+
+<!--
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif"
+text="#000080" link="#800000" vlink="#008080">
+-->
+
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<filename>
+<input type="hidden" NAME="xmlfilename" value="<FILENAME>">
+</filename>
+
+
+<table border="1" cellpadding="3" width="100%" align="top">
+  <description>
+  <tr>
+      <td colspan="100%" align="center">
+      <align="left"><font size="5"><DESCRIPTION></font></td>
+  </tr>
+  </description>
+
+        <tr>
+  <row>
+          <td align="left" height="1"> 
+<IF_PICTURE>
+		  <IMG NAME="I5" border="0" src="<PICTURE>" width="260px" height="230px" type="image">
+
+</IF_PICTURE>
+<NAME>
+		  </td>
+  </row>
+        </tr>
+
+</table>
+
+
+</form>
+
+
+
+<!--
+<DIV CLASS="CC">
+<div ID="CC1"  style="visibility:visible;">
+<address>
+<img src="/cgi/ngfop/bar1.gif" width="582" height="9"><br>
+mastronardif@netcarrier.com<br>
+Copyleft ¬ 2004 by [Gracy LLC]. All rights reserved.<br>
+Revised: 13 Oct 2003 10:27:18-0500
+</address>
+</font> 
+</DIV>
+-->
+</body>
+
+</html>
+

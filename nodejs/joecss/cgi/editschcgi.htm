@@ -1,0 +1,462 @@
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="root.css">
+
+
+<script type="text/javascript">
+var colorbgnd   = 'black';
+var colorforgnd = '#F5F3E4'; //'#00FFFF';
+
+function OnInit() // no applicable
+{
+alert('editschcgi.htm  OnInit()');
+//alert(document.myformeditsch)
+
+   var xmlfile = document.myformeditsch.name.value;
+   if (xmlfile.toLowerCase() == "Students.xml".toLowerCase())
+   {
+      //alert("editsch.htm::OnInit() xmlfile = " + xmlfile);
+      top.frames[0].location.reload()
+   }
+
+   var SWMs  = document.myformeditsch.SWMs.value;
+   //alert(":OnInit() SWMs["+SWMs+"]");
+
+   var szPic = SWMs.match(/(\((.+?)\))/);
+   
+   // Working On
+   var szMatches = SWMs.match(/w\((.+?)\)/);
+   //alert("szMatches["+szMatches+"]");
+   
+   if (szMatches && szMatches[0] && szMatches[1])
+   {
+      //alert("szMatches[1]["+szMatches[1]+"]");
+      atemp  = szMatches[1].split(/\s*,\s*/);
+      var obj = document.myformeditsch.CW1;
+      for (var iii = 0; iii < atemp.length; iii++)
+      {
+         obj[(atemp[iii])].checked = 1;
+      }   
+   }
+   
+   // Mastered
+   szMatches = SWMs.match(/m\((.+?)\)/);
+   //alert("szMatches["+szMatches+"]");
+    
+   if (szMatches && szMatches[0] && szMatches[1])
+   {
+      //alert("szMatches[1]["+szMatches[1]+"]");
+      atemp  = szMatches[1].split(/\s*,\s*/);
+      var obj = document.myformeditsch.CM2;
+      for (var iii = 0; iii < atemp.length; iii++)
+      {
+         obj[(atemp[iii])].checked = 1;
+      }   
+   }
+}
+
+function getList(obj)
+{
+   var str = "";
+      
+   // the case of 0 elements
+   if (obj === undefined)
+      return str;
+
+   if (obj.length === undefined)
+   {
+      return str;
+   }
+
+   str = "(";
+   var strMs = "M(";
+   var objM = document.myformeditsch.elements.CM2;
+   for (var iii = 0; iii < obj.length; iii++)
+   {
+      // Clear
+      document.myformeditsch.elements.HCW1[iii].value="";
+      document.myformeditsch.HCM2[iii].value = "";
+      if (obj[iii].checked)
+      {
+         str += iii;
+         str += ",";
+         document.myformeditsch.HCW1[iii].value = '1';
+      }
+      
+      if (objM[iii].checked)
+      {
+         strMs += iii;
+         strMs += ",";
+         document.myformeditsch.HCM2[iii].value = '1';
+      }
+   }
+
+   str += ")";
+   var str2 = str.replace(/,\)/, ")");
+
+   return str2;
+}
+
+function newSch(type)
+{
+	var question = "Do you want to create a new picture schedule?";
+	if(!window.confirm(question)) {
+		return;
+	}
+	
+	str = "/cgi/ngfop/editsch.cgi?action=edit&name=blank.xml&htmlname=editschcgi.htm"
+  testAjax33(str, $("#right" ));	 
+}
+
+function save2(type)
+{
+   //var obj = top.frames[0].document.myform;
+   //var student = obj.Students.options[obj.Students.selectedIndex].text;
+
+   //parent.frames[1].save2_2(type, document.myform.d0.value, student);
+   var student="Jake";
+   var desc = document.myformeditschtop.d0.value;   
+   alert('top desc= '+ desc);
+   save2_2(type, desc, student);
+}
+
+function save2_2(name, desc, student)
+{
+/**********
+   if (student)
+   {
+      var xmlfile = document.myform.name.value;
+      
+      var obj = document.myform.elements.CW1;
+      var szList = getList(obj);
+      
+      var szData = student + " " + xmlfile;
+      document.myform.student.value = szData;
+   }
+**********/
+   
+	var w_space = String.fromCharCode(32);
+	var bValidName=0;
+
+	for (var iii=0; iii< desc.length; iii++)
+	{
+		if(desc.charAt(iii) != w_space)
+		{
+			bValidName = 1;
+			break;
+		}
+	}
+
+	if (!bValidName)
+	{
+		alert("Please enter a Description.");
+		return;
+	}
+
+	var type;
+   if (/cb/ig.test(name))
+	{
+		type = "cb";
+	}
+	else
+		type = "sch";
+
+	document.myformeditsch.type.value = type;
+	document.myformeditsch.d0.value = desc;
+
+	var data = $("form[name=myformeditsch]").serialize();
+	//alert('Form data = <br/>\n' + data);
+	//document.myformeditsch.submit();
+	
+	//<form name="myformeditsch" method="post" //action="/cgi-bin/cgi/ngfop/editsch.cgi?action=save">	
+	$.ajax({
+    url: "/cgi-bin/cgi/ngfop/editsch.cgi?action=save&htmlname=editschcgi.htm",
+    type: "POST",
+    data: data,
+    success: function(results){
+        //alert(results);
+		$( "#right" ).html( "<strong>" + results + "</strong>" );
+    }
+});
+}
+
+
+function decorateRow(str)
+{
+	for (var iii = 0; iii < myformeditsch.elements.R1.length; iii++)
+	{
+		if (myformeditsch.elements.R1[iii].checked)	
+		{
+			// toggle
+			strTime = myformeditsch.elements.T1[iii].value;
+			if (/Reward/i.test(strTime))
+				myformeditsch.elements.T1[iii].value = "";
+			else
+				myformeditsch.elements.T1[iii].value = "Reward";
+
+			break;
+		}
+	}
+}
+
+
+// the cut vars
+//var	gT1   = "";
+var	gHR55 = "";
+var	gI55src  = "";
+var	gI55w = "";
+var	gI55h = "";
+var	gR55  = "";
+
+function cutRow()
+{
+	for (var iii = 0; iii < myformeditsch.elements.R1.length; iii++)
+	{
+		if (myformeditsch.elements.R1[iii].checked)	
+		{
+			//gT1    =document.myformeditsch.T1  [iii].value;
+			gHR55  = document.myformeditsch.HR55[iii].value;
+			gI55src=document.myformeditsch.I55 [iii].src;
+			gI55w  =document.myformeditsch.I55 [iii].width;
+			gI55h  =document.myformeditsch.I55 [iii].height;
+			gR55   =document.myformeditsch.R55 [iii].value;
+
+			//
+			// clear row
+			//document.myformeditsch.T1  [iii].value ="";
+			document.myformeditsch.HR55[iii].value ="";
+			document.myformeditsch.I55 [iii].src   ="";
+			document.myformeditsch.I55 [iii].width ="";
+			document.myformeditsch.I55 [iii].height="";
+			document.myformeditsch.R55 [iii].value ="";
+
+			//pasteRow();
+			//
+
+			break;
+		}
+	}
+}
+
+function pasteRow()
+{
+	for (var iii = 0; iii < myformeditsch.elements.R1.length; iii++)
+	{
+		if (myformeditsch.elements.R1[iii].checked)	
+		{
+			//document.myformeditsch.T1  [iii].value = gT1;
+			document.myformeditsch.HR55[iii].value = gHR55;
+			document.myformeditsch.I55 [iii].src   = gI55src;
+			document.myformeditsch.I55 [iii].width = gI55w;
+			document.myformeditsch.I55 [iii].height= gI55h;
+			document.myformeditsch.R55 [iii].value = gR55;
+
+			break;
+		}
+	}
+}
+
+function insertRow()
+{
+	var iRow = 0;
+	mylistT1   = new Array();
+	mylistR1   = new Array();
+	mylistHR55 = new Array();
+	mylistI55  = new Array();
+	mylistR55  = new Array();
+
+   for (var iii = 0; iii < myformeditsch.elements.R1.length; iii++)
+   {
+	   //mylistT1.  push(document.myformeditsch.T1  [iii].value);
+	   mylistR1.  push(document.myformeditsch.R1  [iii].value);
+	   mylistHR55.push(document.myformeditsch.HR55[iii].value);
+	   mylistI55. push(document.myformeditsch.I55 [iii].src);
+	   mylistR55. push(document.myformeditsch.R55 [iii].value);
+
+	   if (myformeditsch.elements.R1[iii].checked)	
+	   {
+		   iRow  = iii;
+   	}
+   }
+
+	if ((iRow +1)< myformeditsch.elements.R1.length)
+	{
+		// move radio check
+		//document.myformeditsch.T1  [iRow].value = "";
+		document.myformeditsch.R1  [iRow].value = "";
+		document.myformeditsch.HR55[iRow].value = "";
+		document.myformeditsch.I55 [iRow].src   = "";
+		document.myformeditsch.I55 [iRow].width  = 0;
+		document.myformeditsch.I55 [iRow].height  = 0;
+		document.myformeditsch.R55 [iRow].value = "";
+
+		// shift rows down
+		for (var iii = iRow; iii < myformeditsch.elements.R1.length; iii++)
+		{
+			// pop
+			if ((iii +1)< myformeditsch.elements.R1.length)
+			{
+				//document.myformeditsch.T1  [(iii+1)].value = mylistT1  [iii%myformeditsch.elements.R1.length];
+				document.myformeditsch.R1  [(iii+1)].value = mylistR1  [iii%myformeditsch.elements.R1.length];
+				document.myformeditsch.HR55[(iii+1)].value = mylistHR55[iii%myformeditsch.elements.R1.length];
+				document.myformeditsch.I55 [(iii+1)].src   = mylistI55 [iii%myformeditsch.elements.R1.length];
+				document.myformeditsch.R55 [(iii+1)].value = mylistR55 [iii%myformeditsch.elements.R1.length];
+			}
+		}
+	}
+
+	initializeRows();
+}
+</script>
+
+<form name="myformeditschtop" method="post" action="javascript:nothing('');">
+<a title="New" href="javascript:newSch('cb');"> <i class="fas fa-file myfaicon"></i></a>
+<a title="Save" href="javascript:save2('cb');"> <i class="fas fa-save myfaicon"></i></a>
+<a title="Cut row" href="javascript:cutRow();"> <i class="fas fa-cut myfaicon"></i></a>
+<a title="insert row" href="javascript:insertRow();"> <i class="fas fa-plus-square myfaicon"></i></a>
+<a title="Paste row" href="javascript:pasteRow();"><i class="fas fa-paste myfaicon"></i></a>
+<hr style=" margin-top: 2px; margin-bottom:2px;"></hr>
+<span> Name:  </span>
+    <description>
+		<input type="text" name="d0" size = "20" value="<DESCRIPTION>">
+    </description>
+
+</form>
+
+<form name="myformeditsch">
+
+<!-- hidden shits -->
+<filename>
+  <input type="hidden" name=name size = "10" value="<FILENAME>">
+</filename>
+  <input type="hidden" name=type size = "10" value="">
+  <input type="hidden" name=d0 size = "30" value="">
+  <input type="hidden" name=student size = "30" value="">   
+
+<table border="1" cellpadding="0" width="100%">
+<row>
+          <tr>
+            <td width="5%">
+            <input type="radio" name="R1">
+            </td>
+
+            <td width="64%">
+			<input type="hidden" NAME="HR55" value="<PICTURE>">
+			<img id="I55" NAME="I55" border="0" src="<PICTURE>" width="12px" height="40px">         
+			<input type="text" name="R55" size = "24" value = "<NAME>">
+			</td>
+         </tr>
+</row>
+
+<Appendblanks>
+          <tr>
+            <td width="5%">
+            <input type="radio" name="R1">
+            </td>
+
+           <td width="64%">
+			   <input type="hidden" NAME="HR55" value="">
+			   <img id="I55" NAME="I55" border="0" src="" width="40" height="40">
+            <input type="text" name="R55" size = "24" value = "<NAME>">
+		    </td>
+          </tr>
+</Appendblanks>
+  </table>
+
+<script>
+
+gIwidth  = 10;//document.myformeditsch.I55[0].width;
+gIheight = 10;//document.myformeditsch.I55[0].height;
+
+function test(src)
+{
+	//alert(document.myformeditsch.I55[1].height); return;
+	var szName = src.match(/<Name>(.+)<\/Name>/i);
+	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
+
+	if (szPic)
+	{
+		szPic = szPic[1];
+	}
+	else
+	{
+		szPic = "";
+	}
+
+	if (szName)
+	{
+		szName = szName[1];
+	}
+	else
+	{
+		szName = "";
+	}
+
+	for (var iii = 0; iii < myformeditsch.elements.R1.length; iii++)
+	{
+		if (myformeditsch.elements.R1[iii].checked)	
+		{
+		
+			if (szName != "") {
+				document.myformeditsch.R55[iii].value = szName;
+			}
+
+			if (szPic != "")
+			{
+//alert(iii+ ' \n'+ document.myformeditsch.HR55[iii].value+ ' \n *checked test '+ szPic );
+				document.myformeditsch.HR55[iii].value = szPic;
+//alert("ht = "+document.myformeditsch.I55[iii].height);
+				document.myformeditsch.I55[iii].width  = gIwidth;
+				document.myformeditsch.I55[iii].height = gIheight;
+				document.myformeditsch.I55[iii].src    = szPic;
+				
+			}
+		}
+	}
+}	// end
+
+
+
+function initializeRows()
+{
+	gIwidth  = 40;//document.myformeditsch.I55[0].width;
+	gIheight = 40;//document.myformeditsch.I55[0].height;
+
+	var szhRow;
+   
+   var iLen =document.getElementsByName("R1").length;
+      
+	//for (var iii = 0; iii < myformeditsch.elements.R1.length; iii++)
+   for (var iii = 0; iii < iLen; iii++)
+	{
+		szhRow = document.myformeditsch.HR55[iii].value;
+		if (szhRow == "")
+		{
+			document.myformeditsch.I55[iii].width  = 0;
+			document.myformeditsch.I55[iii].height = 0;
+		}
+		else
+		{
+			document.myformeditsch.I55[iii].width  = gIwidth;
+			document.myformeditsch.I55[iii].height = gIheight;
+		}
+	}
+}
+
+initializeRows();
+//if (parent.SetHeadValue)
+{
+    <description>
+		var desc = "<DESCRIPTION>";
+    </description>
+	
+	//document.myformeditsch.d0.value = desc;
+	
+	//alert(document.myformeditschtop.name);
+	//alert('desc= '+ desc + " name= " + document.myformeditsch.name.value);
+	
+	//parent.SetHeadValue("d0", desc);
+	//document.myformeditschtop.d0.value = desc;
+}
+</script>
+

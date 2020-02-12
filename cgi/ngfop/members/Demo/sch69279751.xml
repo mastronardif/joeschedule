@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Feed the dog
+</description>
+
+<row><picture>/cgi/ngfop/pics/temp/iams2.jpg</picture>
+<name>
+Get dog food.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/dog_food.jpg</picture>
+<name>
+Pour dog food in dog bowl.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/full.jpg</picture>
+<name>
+Pour water in water bowl.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/iams2.jpg</picture>
+<name>
+Put dog food away.
+</name>
+</row>
+
+<row><name>
+jkljkl
+</name>
+</row>
+
+</data>

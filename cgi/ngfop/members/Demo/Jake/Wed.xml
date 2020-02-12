@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Jake's Wednesday
+</description>
+
+<row><name>
+Brush your teeth
+</name>
+</row>
+
+<row><name>
+Get dressed
+</name>
+</row>
+
+<row><name>
+Make your bed
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_02/wendy7.jpg</picture>
+<name>
+Begin my day
+</name>
+</row>
+
+<row>
+<time>8:00am</time>
+<name>
+Put your shoes on
+</name>
+</row>
+
+<row>
+<time>8:15am</time>
+<name>
+Get in car
+</name>
+</row>
+
+<row><name>
+*** Get To School ON TIME! ***
+</name>
+</row>
+
+<row><name>
+Hang up backpack
+</name>
+</row>
+
+<row><name>
+cbHealthySnacks.xml
+</name>
+</row>
+
+<row>
+<time>4:15pm</time>
+<picture>/cgi/ngfop/pics/pic01.1.gif</picture>
+<name>
+Home Ec.
+</name>
+</row>
+
+<row><name>
+set table
+</name>
+</row>
+
+<row>
+<time>5:00pm</time>
+<name>
+dinner
+</name>
+</row>
+
+<row><name>
+homework
+</name>
+</row>
+
+<row><name>
+dessert
+</name>
+</row>
+
+<row><name>
+read a book
+</name>
+</row>
+
+<row><name>
+bath
+</name>
+</row>
+
+<row><name>
+t.v.
+</name>
+</row>
+
+<row>
+<time>8:00pm</time>
+<name>
+bed
+</name>
+</row>
+
+</data>

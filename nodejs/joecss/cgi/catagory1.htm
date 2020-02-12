@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/print.css" media="print" />
+</head>
+
+<script>
+
+//var colorbgnd   = 'black';
+var gBodycolor='rgb(249, 201, 92)';
+
+var colorbgnd   = 'pink';
+//var colorforgnd = 'pink';
+
+function rint()
+{
+    document.bgColor='rgb(256, 256, 256)';
+    document.body.background="";
+
+	document.myform.prin.style.visibility="hidden";
+
+	document.all.CC1.style.style="tiny";
+	document.all.CC1.style.color="silver";
+
+	document.all.CC1.style.visibility="visible";
+
+	document.all.CC1.style.visibility="visible";
+
+//  window.print();
+}
+
+
+var colorforgnd = 'rgb(249, 201, 92)'; //'#F5F3E4'; //'#00FFFF'; // .windowbg; ////
+//F5F3E4
+//FFFFFF
+//D5D1B3
+function mover(obj)
+{
+//	obj.bgColor='gold';
+	if (gObj != obj)
+		obj.bgColor=colorbgnd;
+//	else
+//		obj.bgColor='gold';
+}
+
+function mout(obj)
+{
+	if (gObj == obj)
+		return;
+
+	obj.bgColor= colorbgnd;
+
+	if (gObj != obj)
+		obj.bgColor=gBodycolor;//'gold';
+
+}
+
+var gObj = null;
+var gStr = null;
+function mclick(obj, row)
+{
+	mkblack(obj, row)
+}
+
+
+function mkblack(obj, pic)
+{
+	if (gObj)
+		gObj.bgColor = colorforgnd;
+
+	obj.bgColor= "black";
+//	obj.bgColor= "#FFFFFF";
+
+	gObj = obj;
+	gStr = pic;
+
+return;
+
+	var obj    = document.myform;
+
+	var str;
+
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+	{
+		if (obj.elements.C1[iii].checked)
+		{
+			str = obj.elements.HR55[iii].value;
+
+			break;
+		}
+	}
+}
+
+function getListItem(iii)
+{
+//    alert("\74picture>"+gStr+"\74/picture>");
+    return "\74picture>"+gStr+"\74/picture>";
+
+	var obj    = document.myform;
+
+	var str;
+
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+	{
+		if (obj.elements.C1[iii].checked)
+		{
+			str = obj.elements.HR55[iii].value;
+
+			break;
+		}
+	}
+
+//	alert(gStr);
+
+
+    //return "\74picture>"+str+"\74/picture>";
+
+//alert("\74picture>"+str+"\74/picture>");
+//	return _listData[iii];
+}
+
+
+
+
+function CallBack_DisplayResults()
+{
+	
+	document.all.WARNING1.innerHTML = "****";
+	var checks = "";
+	var iChks = 0;
+
+	for (var iii = 0; iii < myform.elements.C1.length; iii++)
+	{
+		if (myform.elements.C1[iii].checked)
+		{
+			iChks++;
+			checks += "*";
+	    }
+	}
+
+	if (iChks > 4)
+	{
+		checks += " Good job you can do your reward now."
+	}
+	document.all.WARNING1.innerHTML = checks;
+}
+
+-->
+</script>
+
+
+<!--<body bgcolor="pink">
+  <body bgcolor=.windowbg>
+-->
+<body bgcolor='rgb(249, 201, 92)';>
+
+<!--
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif"
+text="#000080" link="#800000" vlink="#008080">
+-->
+
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<filename>
+<input type="hidden" NAME="xmlfilename" value="<FILENAME>">
+</filename>
+
+
+<table border="1" cellpadding="3" width="80%" align="center">
+  <description>
+  <tr>
+<!--     <td valign="top" width="50%" height="29" > -->
+      <td colspan="100%" align="center">
+      <align="left"><font size="5"><DESCRIPTION></font></td>
+  </tr>
+  </description>
+
+        <tr>
+  <row>
+          <td align="left" height="1" onMouseOver  ="mover(this);" onMouseOut  ="mout(this);" 
+		                              onClick  ="mkblack(this, '<PICTURE>');"> 
+		  <IMG NAME="I5" border="0" src="<PICTURE>" width="105" height="96" type="image">
+<!--		  <input type="hidden" NAME="HR55" value="<PICTURE>"> -->
+<!--		  <input type="radio" name="C1" value="OFF" onClick  ="mkblack(this);">-->
+		  </td>
+  </row>
+        </tr>
+
+</table>
+<!--
+		  <input type="radio" name="C1" value="ON" checked>
+		  <input type="radio" name="C1" value="ON" >
+<input type="button" Value="To Print" name="prin" onclick = "rint();">
+-->
+
+<!-- hidden vars to force arrays -->
+
+</form>
+
+
+
+<!--
+<DIV CLASS="CC">
+<div ID="CC1"  style="visibility:visible;">
+<address>
+<img src="/cgi/ngfop/bar1.gif" width="582" height="9"><br>
+mastronardif@netcarrier.com<br>
+Copyleft ? 2004 by [Gracy LLC]. All rights reserved.<br>
+Revised: 13 Oct 2003 10:27:18-0500
+</address>
+</font> 
+</DIV>
+-->
+</body>
+
+</html>
+

@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch1.css"/>
+      <style>
+         html, body {margin: 0px;}
+      </style>
+<title>editschhead</title>
+</head>
+
+<script>
+
+function cutRow()
+{
+	parent.frames[1].cutRow();
+}
+
+function save2(type)
+{
+	parent.frames[1].save2(type, "document.myform.d0.value");
+}
+
+function pasteRow()
+{
+	parent.frames[1].pasteRow();
+}
+
+function insertRow()
+{
+	parent.frames[1].insertRow();
+}
+
+function decorateRow(strdec)
+{
+	parent.frames[1].decorateRow(strdec);
+}
+
+</script>
+
+
+<!--
+<body topmargin="0" bgcolor='silver';>
+-->
+<body topmargin="0" leftmargin="0" bgcolor=#3DB3DD>
+    <table style="height:"100%;" height="100%" width="100%"border="1">
+<form name="myform">
+	<tr>
+	<td colspan="2" align="center">
+	<!--
+		<a class="menuitem"  title="Save Calander Users" href="javascript:save2('sch');"><IMG SRC="/cgi/ngfop/tick12.gif" alt="Save Calander Users" width="23" height="20" border="0"	style="vertical-align: middle"></a>
+	-->
+		<a class="menuitem" title="Update" href="javascript:save2('sch');" >Update
+		
+    <description>
+		Calanders for: <DESCRIPTION>
+    </description>
+		</a>
+<!--
+    <description>
+		Calanders for: <DESCRIPTION>
+    </description>
+-->		
+	</td>
+	</tr>
+
+	<tr>
+	<td align="center">
+	    Name
+		<!--
+			<a class="menuitem" title="Cut row" href="javascript:cutRow();"><IMG SRC="/cgi/ngfop/cut.gif" alt="Remomve row" width="23" height="20" border="0"	style="vertical-align: middle"></a>
+			-->
+	</td>
+
+	<td align="center">
+		Action
+		<!--
+		<a class="menuitem"  title="Save Calander Users" href="javascript:save2('sch');"><IMG SRC="/cgi/ngfop/tick12.gif" alt="Save Calander Users" width="23" height="20" border="0"	style="vertical-align: middle"></a>
+			-->
+	</td>
+	</tr>
+</form>
+   </table>
+
+<!--
+
+  <table border="0" cellpadding="0" height="0">
+    <tr>
+	<td>
+	 <input type="button" value="SaveSCH" ALT="Make a form" name="save"   onclick = "save2('sch');">
+	 <input type="button" value="SaveCB" ALT="Make a form" name="save"   onclick = "save2('cb');">
+	 <input type="button" value="Cut" name="cutrow" onclick = "cutRow();">
+	 <input type="button" value="Paste" name="pasterow" onclick = "pasteRow();">
+	</td>
+
+     <td>
+<IMG SRC="/cgi/ngfop/darrow1.gif" ALT="insert a row" WIDTH="23" HEIGHT="23" BORDER="0" onclick = "insertRow();"></A>
+<IMG SRC="/cgi/ngfop/pin8.gif" ALT="Reward" WIDTH="23" HEIGHT="23" BORDER="0" onclick = "decorateRow('reward');"></A>
+	 </td>
+    </tr>
+
+    <tr>
+    <description>
+      <td colspan="2"><input type text name=d0 size = 30 value="<DESCRIPTION>">
+	  </td>
+    </description>
+    </tr>
+  </table>
+-->
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>pic exchange 01</TITLE>
+</HEAD>
+<script>
+
+var gBodycolor='rgb(249, 201, 92)';
+
+var colorbgnd   = 'pink';
+var colorforgnd = 'rgb(249, 201, 92)'; //'#F5F3E4'; //'#00FFFF'; // .windowbg; ////
+var gObj = null;
+var gStr = null;
+
+function setPec(pic, picLabel, xmlName)
+{
+   parent.T.cp2sch22(pic, picLabel);
+ 
+   var namedir = "";
+   if (xmlName.length)
+   {
+      var sz22 = xmlName.match(/<MK_LISTBOX>(.+)<\/MK_LISTBOX>/i);
+      if (sz22)
+      {
+         xmlName = sz22[1];  
+      }
+      
+      var name   = "&name="+ xmlName;
+      //usedir = "&usedir=usedir(Sussina)";
+      //namedir = name + usedir;
+      
+      namedir = name + "&usedir=usedir(Sussina)";
+   }
+   
+   // Fm 6/4/8
+
+   //var name = "&name="+ xmlName;
+   //var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=mid.xml" + name  + usedir;
+   //var str = "/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=mid.xml" + name  + usedir;
+   ///var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=mid.xml" + name  + usedir;
+   
+   ////var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=mid.xml" + name  + usedir;
+   var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=mid.xml" + namedir;
+   
+    
+   // FM 7/9/8 var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=joepecsbot.htm" + namedir;
+   //alert("GGGGGGGGGGGGG   "+str)
+   parent.M.location=str;
+   //window.open(str);
+}
+
+function mover(obj)
+{
+	if (gObj != obj)
+		obj.bgColor=colorbgnd;
+}
+
+function mout(obj)
+{
+	if (gObj == obj)
+		return;
+
+	obj.bgColor= colorbgnd;
+
+	if (gObj != obj)
+		obj.bgColor= "#A0BFAF"; //gBodycolor;//'gold';
+
+}
+
+
+function mclick(obj, row)
+{
+	mkblack(obj, row)
+}
+
+
+function mkblack(obj, pic)
+{
+	if (gObj)
+		gObj.bgColor = "#A0BFAF"; //colorforgnd;
+
+	obj.bgColor= 'pink'//"black";
+
+	gObj = obj;
+	gStr = pic;
+}
+-->
+</script>
+
+<body bgcolor="#A0BFAF" topmargin="0" leftmargin="0" marginheight="0"> 
+
+<form name = "myform">
+<table border="1" cellpadding="3" width="100%">
+        <tr>
+<row>
+         <td align="center" height="1" onMouseOver  ="mover(this);" onMouseOut  ="mout(this);"
+			onClick  ="mkblack(this, '<PICTURE>'); setPec('<PICTURE>' , '<TIME>', '<NAME>')">
+         
+		  <IMG NAME="I5" border="0" src="<PICTURE>"
+		  width="60" height="50" type="image">
+        <br/><TIME>         
+		  </td>
+</row>
+  </tr>
+</table>
+</form>
+</BODY>
+</HTML>

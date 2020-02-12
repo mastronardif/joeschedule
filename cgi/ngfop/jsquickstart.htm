@@ -1,0 +1,635 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+			"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Joe Schedule on joeschedule.com: A quick start</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<style type="text/css" media="all">
+.sublinks, #sidecap, #sitenav h4 {display: none;}
+#sitenav {background-color: silver; border: 1px solid white;}
+#main {margin-left: 10%; margin-right: 10%;}
+
+div.aged {background: yellow; color: black; padding: 0.5em;
+  border: 3px solid red;}
+.aged {font-weight: bold;}
+
+
+
+
+.aged {display: none;}
+.sublinks, #sidecap, #sitenav h4 {display: block;}
+#sitenav {background-color: transparent; border: 0 none;}
+#main {margin-left: 0; margin-right: 0;}
+
+div.sublinks {display: none;}
+
+body {background: white; color: black;}
+body, h1, h2, h3, h4, h5, h6 {margin: 0; padding: 0;}
+p {margin: 0 0 1.25em; line-height: 1.25;}
+h1, h2, h3, h4, h5, h6 {font-family: Arial, Verdana, sans-serif;}
+
+h1, h2 {color: white;}
+h1 {font: 28px/0.66em Univers, Arial, Verdana, sans-serif;
+   border-bottom: 1px solid #A5B5D6;
+   background: rgb(7%,25%,52%); letter-spacing: 0.25em;
+   padding: 0.5em 0 0 1.66em; margin: 0 21px 0 0;}
+h2 {font: bold 48px/0.9em Univers, Arial, Verdana, sans-serif;
+   padding: 0.05em 2em 0 7.5%; margin: 0;
+   letter-spacing: 0.25em;
+   background: transparent url(/pix/nrlogo.gif) 100% 0% no-repeat;
+   border: solid rgb(69%,75%,85%); border-width: 0 0 2px 1em;}
+div#sitemast {background: rgb(7%,25%,52%); margin: 0; padding: 0;}
+
+div#sitenav {border-left: 2px solid rgb(69%,75%,85%);
+   float: right; width: 21%; font-size: 90%; 
+   margin: -1.33em 0 0; padding: 0;}
+   
+div#sitenav h4 {padding: 0.15em 0 0 0.5em; margin: 0 0 0.25em;
+   font-size: 100%; letter-spacing: 0.15em; margin-left: -2px;
+   background: rgb(69%,75%,85%) url(/pix/navcap.gif) no-repeat;}
+div#sitenav a {display: block; 
+   padding: 0.5em 0.5em 0 0.66em; margin-right: 5%;
+   border-bottom: 1px solid white; text-decoration: none;}
+div#sitenav a:link {color: rgb(7%,25%,52%);}
+div#sitenav a:visited {color: rgb(26%,11%,56%);}
+div#sitenav a:hover {color: rgb(11%,16%,66%);
+   border-bottom-color: rgb(69%,75%,85%);
+   background: transparent url(/pix/hoverbox.gif) bottom right no-repeat;}
+div#sitenav a:active {color: rgb(56%,11%,26%);}
+
+div#sitenav div.sublinks {font-size: 90%;
+   padding-bottom: 0.5em;}
+div#sitenav div.sublinks a {padding: 0.25em 10px 0 2.5em;
+   text-indent: -0.75em; margin-right: 13%;}
+div#sitenav a#homelink {margin-top: 1em; padding-top: 0.1em;
+   border-left: 2px solid rgb(69%,75%,85%);}
+
+div#tip {margin: 2em 5% 0 0; padding: 0.66em; font-size: 85%;
+   border: 2px solid rgb(69%,75%,85%); border-left-width: 0;
+   background: rgb(252,254,255);}
+
+div#main {margin-right: 21.5%; padding: 2em 3em 2em 3.25em;}
+ul {margin-top: 0.2em;}
+ul li {list-style: outside square url(http://www.ericmeyeroncss.com/bonus/pix/diamond.gif);
+  margin-bottom: 0.33em;}
+ul ul {margin-left: 0; padding-left: 1.5em;}
+ul ul li {list-style: none; margin-top: 0;}
+
+dl {margin-top: 0.25em;}
+dl dt {font-weight: bold; margin: 0;}
+dl dd {margin: 0.33em 0 1em 1em; padding: 0;}
+dl pre b {font-weight: normal; color: maroon;}
+
+img#cover {height: 250px; width: 200px;
+   border: 1px solid black; border-width: 1px 2px 2px 1px;
+   border-color: #444 black black #444;}
+
+h3 {font-size: 140%; margin-bottom: 0.2em; margin-left: -0.15em;}
+h4 {font-size: 110%; margin-bottom: 0.1em; margin-left: -0.1em;}
+#main h4 {margin-top: 2em; border-bottom: 1px dotted gray;}
+
+div#footer {font-size: 75%; text-align: center;
+   background: rgb(85%,90%,95%); color: rgb(31%,36%,46%);
+   border-top: 1px solid rgb(69%,75%,85%);
+   padding: 0.5em 1em 0.25em; width: auto;
+   clear: both;}
+
+/* temporary styles */
+
+div#sidecap {font: bold 1em Arial, sans-serif; line-height: 1.5; 
+  float: right; clear: right; width: 21%; padding-top: 1em;}
+div#sidecap div {color: rgb(4%,13%,26%); width: 90%; text-align: center;}
+img#cover {width: 90%; height: auto;}
+
+/* turn on sublinks */
+
+#sitenav #sub-bonus {display: block;}
+
+
+
+/* (slightly modified) Project 13 styles */
+
+body {margin: 0; padding: 0; color: black;
+  background: white url(../bonus/pix/blue.gif) 80% 0 repeat-y;}
+h3, h4, h5, p, pre, table, div {margin-right: 22%;
+  margin-left: 8%; width: auto;}
+div.listing pre {border: 1px solid #006; border-width: 1px 0;
+  padding: 0.5em 1em; margin: 0.125em 0 1.5em;}
+div.listing h5 {margin-left: 0.5em;}
+table {border: 1px solid #006; border-width: 2px 0;
+  font-size: 90%; margin-bottom: 1.5em; width: 70%;}
+th {color: #006; border-bottom: 1px solid #006; text-align: left;}
+th, td {padding: 0.125em 0.66em;}
+ul, ol {margin-right: 25%; margin-left: 13%; padding: 0;}
+h3 {font-variant: small-caps;}
+h3, h4, h5 {margin-top: 1.25em; margin-bottom: 0;}
+h3 {font-size: 200%; margin: 0 22% 0.66em 8%;}
+h4 {font-size: 110%;}
+h5 {font-size: 100%;}
+h5 span {color: #006; margin-right: 0.5em;}
+p {margin-top: 0.5em; margin-bottom: 1em; line-height: 1.2em;}
+code, pre {font-family: "Courier New", Courier, monospace;}
+code {color: #006;}
+pre {margin-left: 10%; font-size: 80%;}
+pre b {color: maroon; font-weight: normal;}
+div#masthead {margin: 0 20% 2.5em 0; padding: 2em 0 1.5em 0;
+  border: 1px solid #006; border-width: 0 1px 1px 0;
+  background: #BDF;}
+div#masthead blockquote {font-size: 90%; font-style: italic;
+  margin: 2em 22% 0.5em 10%;}
+div#attrib {font-size: 90%; font-style: italic;
+  text-align: right; font-variant: small-caps;}
+div#previews {float: right; width: 33%; margin: 0; text-align: center;}
+div#previews img {width: 80%; margin-top: 1em;}
+ul li {margin-bottom: 0.5em;}
+div.note {float: right; clear: right; border-width: 0;
+  width: 18%; margin: 0 1% 0 0; padding: 0;
+  text-align: right; font: 80% Arial, Verdana, Helvetica, sans-serif;
+  background: transparent url(../bonus/pix/blue.gif) 50% 15px repeat-x;
+  voice-family: "\"}\""; voice-family:inherit;
+  width: 19%;}
+div.note h5, div.note p {text-align: left;
+  margin-left: 1em; margin-right: 0;}
+div.note img {height: 30px; width: 30px; margin: 0;}
+div.note h5 {margin: -5px 30px 0 1em; padding: 0;
+  font-variant: normal;}
+div.web p {margin: -10px 30px 0 1em;}
+div.note code, div.caption code {font-size: 100%;}
+div.web, div.web h5 {color: #399;}
+div.tip, div.tip h5 {color: #006;}
+div.warn, div.warn code, div.warn h5 {color: maroon;}
+hr {display: block; clear: both; visibility: hidden;}
+div.figure {float: left; width: 67%; margin: 0; padding: 0;
+  text-align: right;}
+div.caption {float: right; width: 30%; margin: 0 1% 0 0;
+  padding: 0 0 0 40%;
+  border-top: 1px solid #006;
+  voice-family: "\"}\""; voice-family:inherit;
+  width: 19%; padding-left: 10%;}
+div.caption h5 {margin: 0 0.5em 0 0; padding: 0.33em 7px 0 0.5em;
+  color: black; letter-spacing: 1px;
+  background: #9BD url(../bonus/pix/captioncurve.gif) bottom right no-repeat;}
+div.caption p {font: italic 80% Arial, Verdana, Helvetica, sans-serif;
+  color: #555; margin: 0; padding: 0.25em 0.5em;}
+
+/* extra styles */
+
+ol.branching {margin-right: 20%;}
+ol.branching img {float: right; margin: 0 1em;}
+h5.aside {background: #006 url(../bonus/pix/aside-tab.gif) top right no-repeat;
+  color: white;
+  margin-right: 33%; padding: 0.3em 20px 0.2em 0;}
+h5.aside span {background: url(../bonus/pix/aside-dblarr.gif) 5px 40% no-repeat;
+  color: white; padding-left: 30px;
+  font-variant: small-caps;}
+div.aside {background: #BDF; padding-bottom: 0.75em;}
+div.aside p {margin: 0 0.66em 0.66em !important; font-style: italic;}
+div.aside pre {margin: 0.66em 3em !important;}
+div.aside code {color: #33F;}
+
+/* recovery styles */
+
+div#main {margin: 0; padding: 0 0 3em 0; width: 100%;}
+div#footer {margin: 0;}
+
+/* goback styles */
+
+div#goback {font: bold 80% Verdana, Arial, sans-serif;
+   background: rgb(69%,75%,85%);
+   border-bottom: 3px double rgb(7%,25%,52%);
+   margin: 0; padding: 0 1%; text-align: right;}
+div#goback a {color: rgb(7%,15%,52%);}
+</style>
+
+
+
+</head>
+<body>
+<div id="sitemast">
+</div>
+<div id="goback"><a href="http://www.joeschedule.com/">Site Home</a>
+</div>
+
+<div id="main">
+
+<div id="masthead">
+<h3>
+Create picture schedules, boards, Cards ...
+</h3>
+
+</div>
+
+<div class="note web">
+<img src="pix/web-icon.gif" alt="WEB: ">
+<p>
+You can also view or download a <a href="/cgi/ngfop/jsquickstart.pdf">PDF version</a> of this document (216KB).
+</p>
+</div>
+
+<p>
+JoeSchedule.com is a Website for creating picture schedules and other visual aids.  
+It allows you to keep all your pictures and schedules on the internet in one convenient place. 
+You can access your picture schedules from anywhere.
+You have access to over 500 million pictures from google, yahoo, or your own pictures.  
+You can email them to family and friends.
+</p>
+<p>
+There is a calendar in which you can organize your calendar with pictures.
+</p>
+</div>
+
+<h3>The most useful feature explained.</h3>
+<p>
+<i>
+We are going to copy a picture URL from google images and paste it in our new schedule
+named <u>My Schedule</u>.
+</i>
+
+<p>
+0. Main Screen
+		  <iframe name="wleft"
+		  style="position: reletive;  width:100%; height:100%"
+			src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=new_page_3.htm">
+		  </iframe>
+</p>
+
+
+
+<p>
+1. Click
+<span class="prompt" style="background-color: silver;border: 3px coral solid;">New</span> 
+ on the top of the page.
+ <i>The right displays a blank schedule. Type <u>My Schedule</u> over blank schedule in the edit box on the right side.</i>
+</p>
+		  <iframe name="left"
+		  style="position: reletive;  width:100%; height:37px"
+			src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=top2.htm">
+		  </iframe>
+
+</p>
+
+<p>
+2. Click on the camera icon 
+<img src="/cgi/ngfop/ca1.gif" alt="TIP: ">
+"My Picture".
+ on the top of the page.
+ <i>The screen displays as follows in the middle and right panes:</i>
+</p>
+
+
+<p>
+ <table border="1" cellpadding="0" width="100%"  height="100%">
+          <tr>
+		  <td>
+		  <iframe name="eft"
+		  style="position: reletive;  width:100%; height:100%"
+			src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=mypicture.htm">
+		  </iframe>
+		  </td>
+
+          <td>
+		  <iframe name="left"
+		  style="position: reletive;  width:100%; height:100%"
+			src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name=blank.xml">
+		  </iframe>
+		  </td>
+</table>
+</p>
+
+<p>
+3. Type School Bus in the edit box in the middle pane.<br />
+ Press <u>Lazy Boy</u>.
+
+<i>Another Browser window should come up with google images of school buses</i>
+
+ <table border="1" cellpadding="0" width="100%">
+          <tr>
+		  <td colspan="2" align="center">
+			<align="left"><font size="5" color="#FF0000" face="Comic Sans MS">My Pictures</font>
+			<a class="menuitem" title="Let your computer do the work" href="javascript:alert('gets the 1st 4 rows more about this in the help');">Lazy Boy</a>
+		  </td>
+
+          <td colspan="3">
+		  <iframe name="left"
+		  style="position: reletive;  width:100%; height:100px"
+			src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschhead.htm&name=blank.xml">
+		  </iframe>
+
+
+		  </td>
+          </tr>
+
+		  <tr>
+            <td>
+            <input type="radio" name="RL" value="choice1">
+            </td>
+            <td>
+			<input type="text" name="R55" size = "24" value = "School Bus">
+
+		    </td>
+            <td>
+            <input type="text" name="T1" size="4" value="" checked>
+            </td>
+
+            <td>
+            <input type="radio" name="RR">
+            </td>
+
+            <td>
+			<input type="text" name="R55" size = "24" value = "">
+			</td>
+          </tr>
+</table>
+
+</p>
+
+<p>
+Copy Paste the picture URL. as follows: <br />
+
+<b>Copy Picture URL into the copy buffer.</b><br />
+1. Switch to the Google Images Window(Alt Tab in Windows). <br />
+2. Move your mouse cursor on to the picture.  <i>the cursor should turn into a hand</i>.<br />
+3. When over the picture Right mouse click and select properties from the drop down menu.<br  />
+4. Mark a little area over the text for the address (URL) Hold down the Right mouse button and drag 
+over a couple of the letters on htpp://....<br />
+5. Right mouse click and select Select All from the drop down menu.<br />
+5. Right mouse click and select Copy from the drop down menu.<br />
+   <i>Now the Picture URL is in the copy buffer.</i><br />
+</p>
+
+<p>
+<b>Paste Picture URL from the copy buffer.</b>	<br />
+1. Go back to the Joeschedule window.<br />
+2. Move the mouse cursor to the empty edit box in the middle pane.</br>
+3. Right mouse click and select Paste from the drop down menu.<br />
+4. The picture URL should be in the edit box now. <i>the edit box now contains the text htpp://....</i></i><br />
+</p>
+
+
+<p>
+5. Paste picture URL in edit box in the middle
+</p>
+
+<p>
+ <table border="1" cellpadding="0" width="100%">
+          <tr>
+		  <td colspan="2" align="center">
+			<align="left"><font size="5" color="#FF0000" face="Comic Sans MS">My Pictures</font>
+			<a class="menuitem" title="Let your computer do the work" href="javascript:alert('gets the 1st 4 rows more about this in the help');">Lazy Boy</a>
+		  </td>
+
+          <td colspan="3">
+		  <iframe name="left"
+		  style="position: reletive;  width:100%; height:100px"
+			src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschhead.htm&name=blank.xml">
+		  </iframe>
+
+
+		  </td>
+
+		  <tr>
+            <td>
+            <input type="radio" name="RL" value="choice1">
+            </td>
+            <td>
+			<input type="text" name="R55" size = "24" value = "School Bus">
+
+		    </td>
+            <td>
+            <input type="text" name="T1" size="4" value="" checked>
+            </td>
+
+            <td>
+            <input type="radio" name="RR">
+            </td>
+
+            <td>
+			<input type="text" name="R55" size = "24" value = "">
+			</td>
+          </tr>
+
+
+
+
+          </tr>
+
+		  <tr>
+            <td>
+            <input type="radio" name="RL" value="choice1">
+            </td>
+            <td>
+			<input type="text" name="R55" size = "24" value = "http://images.google.com/images?q=tbn:A12jUCa0Rd8J:karlo.org/archives/school%2520bus.gif">
+
+		    </td>
+            <td>
+            <input type="text" name="T1" size="4" value="" checked>
+            </td>
+
+            <td>
+            <input type="radio" name="RR">
+            </td>
+
+            <td>
+			<input type="text" name="R55" size = "24" value = "">
+			</td>
+          </tr>
+</table>
+</p>
+
+
+
+
+<p>
+6. Press Radio button to the left of the edit box.
+<i>The image should appear in the middle if the picture URL is correct.</i>
+<p>
+6a. Press the Radio button on the row you want to copy the image to on your
+schedule on the RIGHT.
+</p>
+
+
+ <table border="1" cellpadding="0" width="100%">
+          <tr>
+		  <td colspan="2" align="center">
+			<align="left"><font size="5" color="#FF0000" face="Comic Sans MS">My Pictures</font>
+			<a class="menuitem" title="Let your computer do the work" href="javascript:alert('gets the 1st 4 rows more about this in the help');">Lazy Boy</a>
+		  </td>
+
+          <td colspan="3">
+		  <iframe name="left"
+		  style="position: reletive;  width:100%; height:100px"
+  src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschhead.htm">
+</iframe>
+		  </td>
+          </tr>
+
+
+
+		  <tr>
+            <td>
+            <input type="radio" name="RL" value="choice1">
+            </td>
+            <td>
+			<input type="text" name="R55" size = "24" value = "School Bus">
+
+		    </td>
+            <td>
+            <input type="text" name="T1" size="4" value="" checked>
+            </td>
+
+            <td>
+            <input type="radio" name="RR">
+            </td>
+
+            <td>
+			<input type="text" name="R55" size = "24" value = "">
+			</td>
+          </tr>
+
+
+
+		  <tr>
+            <td>
+            <input type="radio" name="R0L" value="choice1" checked="checked">
+
+            </td>
+            <td>
+			<img NAME="I55" border="0" 
+			src="http://images.google.com/images?q=tbn:A12jUCa0Rd8J:karlo.org/archives/school%2520bus.gif" width="105px" height="96px">
+			<input type="text" name="R55" size = "24" value = "http://images.google.com/images?q=tbn:A12jUCa0Rd8J:karlo.org/archives/school%2520bus.gif">
+		    </td>
+            <td>
+            <input type="text" name="T1" size="4" value="time" checked>
+            </td>
+
+            <td>
+            <input type="radio" name="RR">
+            </td>
+
+            <td>
+			<input type="text" name="R55" size = "24" value = "your text">
+			</td>
+          </tr>
+</table>
+
+
+</p>
+
+
+
+<p>
+7. Click on the copy to the right icon 
+<img src="/cgi/ngfop/rarrow1.gif" alt="copy to right: ">
+ on the top of the page.
+<i>The picture should move to the right.</i>
+</p>
+ 
+<p>
+
+ <table border="1" cellpadding="0" width="100%">
+          <tr>
+		  <td colspan="2" align="center">
+			<align="left"><font size="5" color="#FF0000" face="Comic Sans MS">My Pictures</font>
+			<a class="menuitem" title="Let your computer do the work" href="javascript:alert('gets the 1st 4 rows more about this in the help');">Lazy Boy</a>
+		  </td>
+
+          <td colspan="3">
+		  <iframe name="left"
+		  style="position: reletive;  width:100%; height:100px"
+  src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschhead.htm">
+</iframe>
+
+
+		  </td>
+          </tr>
+
+
+		  <tr>
+            <td>
+            <input type="radio" name="RL" value="choice1">
+            </td>
+            <td>
+			<input type="text" name="R55" size = "24" value = "School Bus">
+
+		    </td>
+            <td>
+            <input type="text" name="T1" size="4" value="" checked>
+            </td>
+
+            <td>
+            <input type="radio" name="RR">
+            </td>
+
+            <td>
+			<input type="text" name="R55" size = "24" value = "">
+			</td>
+          </tr>
+
+
+
+		  <tr>
+            <td>
+            <input type="radio" name="RL1" value="choice1" checked="checked">
+            </td>
+            <td>
+			<img NAME="I55" border="0" 
+			src="http://images.google.com/images?q=tbn:A12jUCa0Rd8J:karlo.org/archives/school%2520bus.gif" width="105px" height="96px">
+			<input type="text" name="R55" size = "24" value = "http://images.google.com/images?q=tbn:A12jUCa0Rd8J:karlo.org/archives/school%2520bus.gif">
+		    </td>
+            <td>
+            <input type="text" name="T1" size="4" value="time" checked>
+            </td>
+
+            <td>
+            <input type="radio" name="RR0" value="choice1" checked="checked">
+            </td>
+
+            <td>
+			<img NAME="I55" border="0" src="http://images.google.com/images?q=tbn:A12jUCa0Rd8J:karlo.org/archives/school%2520bus.gif " width="105" height="96">
+			<input type="text" name="R55" size = "24" value = "your text">
+			</td>
+          </tr>
+</table>
+
+
+</p>
+
+<p>
+hit the save button.
+<img src="/cgi/ngfop/tick12.gif" alt="TIP: "> in the right pane. <i>Now your schedule is saved with the name <u>My Schedule</u></i>
+
+</p>
+
+<p>
+Refresh the left. Select List from the list box on the Top if its not already selected.  Press Go!
+<i>Your new schedule should appear in the list of schedules in the Left pane.</i>
+</p>
+
+<p>
+Select your <u>My Schedule</u> schedule.
+<i>Your new schedule should appear in the middle pane.</i>
+</p>
+<hr></hr>
+
+
+<h5><span>Table 1</span> JoeSchedule.com Features</h5>
+<table cellspacing="0">
+<tr><th>Feature</th><th>Definition</th></tr>
+<tr><td>Easy Access</td><td><code>Easy Access to all you Visual strategy needs.</code></td></tr>
+<tr><td>Online Storage</td><td><code>Store all schedules on the internet so you can access them from anywhere</code></td></tr>
+<tr><td>Access from Anywhere</td><td><code>Home, Office, School, Library.</code></td></tr>
+<tr><td>Print in different styles</td><td><code>Print vertical schedules, picture forms, box layout, story boards.</code></td></tr>
+<tr><td>Picture Calendars</td><td><code>print pictures in your calendar days.</code></td></tr>
+<tr><td>Access any picture from your browser</td><td><code>Access to over 900 Million pictures.  Local pictures too.</code></td></tr>
+<tr><td>Embed choice boards</td><td><code>Embeded to choices into your schedules.</code></td></tr>
+</table>
+
+</div>
+
+<div id="footer">
+Unless otherwise indicated, all contents of this site. <cite>JoeSchedule.com</cite> are copyright Gracy LLC.  All Rights Reserved.
+</div>
+
+</body>
+</html>

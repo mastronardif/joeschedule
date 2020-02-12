@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<title>joeschedule.com - My ABA Kits for ____</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/print.css" media="print" />
+<style type="text/css">
+html,body{margin:0;padding:0}
+body{font: 76% arial,sans-serif}
+p{margin:0 10px 10px}
+div#header h1{height:30px;line-height:30px;margin:0;
+  padding-left:10px;background: #EEE;color: #79B30B}
+div#content p{line-height:1.4}
+div#navigation{background:#B9CAFF}
+div#extra{background:#FF8539}
+div#footer{background: #333;color: #FFF}
+div#footer p{margin:0;padding:5px 10px}
+div#wrapper{float:left;width:100%}
+div#content{margin-left: 50%}
+div#navigation{float:left;width:25%;margin-left:-100%}
+div#extra{float:left;width:25%;margin-left:-75%}
+div#footer{clear:left;width:100%}
+</style>
+</head>
+
+
+<script>
+<!--
+function ShowExtra(szExtra)
+{
+   var url = "/cgi-bin/cgi/ngfop/abakitbuild32.pl?htmlname=abakitcategory42.htm&prg=W";
+   
+   var student = szExtra;
+   if (student)
+   {
+      student = "&student="+student;
+      url += student;
+   }
+   top.frames[1].location=url;
+}
+
+function  call_Reset()
+{
+   parent.bottom.Reset();
+}
+
+function  call_MatchingProgram()
+{
+   call_RunProgram();
+}
+
+function  call_RunProgram()
+{
+   var student = document.myform.Extra.options[document.myform.Extra.selectedIndex].text;
+   parent.bottom.RunProgram(student);
+}
+
+function  getStudent()
+{
+   var student = document.myform.Extra.options[document.myform.Extra.selectedIndex].text;
+   return student;
+}
+
+function call_save2(type)
+{
+   var url = '/cgi-bin/cgi/ngfop/other2.pl?htmlname=myabaframe32.htm';
+   var str= url;
+   var student = getStudent();
+   student = "&student=" + student;
+   url += student;
+   parent.location=url;
+
+  //  window.history.back() 
+}
+
+function OnInit()
+{
+   //<student>
+   var stu = '<STUDENT>';
+   //</student>
+
+   // Find option
+   var Students=document.myform.Extra;
+   
+   for (var i=0; i < Students.length; i++){
+      if (stu.toUpperCase().match(Students[i].text.toUpperCase()))
+      {
+         document.myform.Extra.selectedIndex = i;
+         break;
+      }       
+   }
+}
+-->
+</script>
+
+<body bgcolor="#FFFFFF"  onLoad="OnInit();">
+<div id="container">
+<div id="header">
+
+<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/abakitbuild32.pl?htmlname=abakitcategory.htm&prg=W">
+<h1>
+
+<filename>
+<input type="hidden" name="xmlfilename" value="<FILENAME>">
+</filename>
+
+
+ABA Programs for: 
+
+<!-- Students -->
+ <SELECT NAME="Extra"
+ onChange="javascript:ShowExtra(document.myform.Extra.options[document.myform.Extra.selectedIndex].text);"> 
+ <!--
+    style="text-transform: uppercase; color: navy; background: #C9E8FB; font-family: Verdana; font-size:12;">
+    -->
+<row>
+    <OPTION VALUE="1"><NAME>
+</row>
+    <OPTION VALUE="1">Student
+</SELECT>
+ 
+&nbsp;
+<button type="button" name="r2" value="reset"  width="28" height="20"
+ onclick = "call_Reset();">
+ Reset</button>
+
+&nbsp;
+<button type="button" name="r2" value="reset" width="28" height="20"        
+ onclick = "call_RunProgram();">
+ Run Program</button>
+
+ &nbsp;
+<button type="button" name="r2" value="reset" width="28" height="20"
+ onclick = "call_MatchingProgram();">
+ Matching</button>
+ 
+   
+   <!-- Go -->
+   <!--
+   <a class="menuitem" title="Execute a command" href="javascript:ShowExtra(document.myform.Extra.options[document.myform.Extra.selectedIndex].text);">Go!</a>
+   -->
+   
+   
+  <!-- Save -->
+  &nbsp;
+  <button type="button" name="r2" value="Back" width="28" height="20"
+   onclick = "call_save2();">
+    Back
+  </button>
+</h1>
+
+</div>
+</div>
+
+<!-- hidden begin -->
+ <filename>
+  <input type="hidden" name="name" size = "10" value="<FILENAME>">
+ </filename>
+  <input type="hidden" name=type size = "10" value="">
+  <input type="hidden" name=htmlname size = "10" value="abakitcategory.htm">
+  <input type="hidden" name=action   size = "10" value="dir">
+<!-- hidden end -->
+     
+</form>
+
+</body>
+</html>

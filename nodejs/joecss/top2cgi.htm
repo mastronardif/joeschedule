@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/regular.css" integrity="sha384-IG162Tfx2WTn//TRUi9ahZHsz47lNKzYOp0b6Vv8qltVlPkub2yj9TVwzNck6GEF" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css" integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+" crossorigin="anonymous">
+<link rel="stylesheet" href="./newtop.css" crossorigin="anonymous">
+
+
+<form name = "myformtop" id = "myformtop" method="post" action="/cgi-bin/cgi/ngfop/top.pl">  
+<input type="hidden" NAME="leftsrc" value="cb"/>
+<input type="hidden" NAME="leftvalue" value="blank.xml"/>
+<input type="hidden" NAME="leftfname" value="blank.xml"/>
+<input type="hidden" NAME="leftfdesc" value=""/>
+<!--
+<input type="hidden" NAME="middlefname" value=""/>
+-->
+
+<div class="trytopnav">
+        <div class="w3-bar" style="overflow:auto">
+        
+        <a href="javascript:void(0);" onclick="openMenu()" id="menuButton" title="Open Menu" class="w3-dropdown-click w3-button w3-bar-item topnav-icons fas fa-bars" style="font-size:28px;margin-top:-2px"></a>
+
+        <a href="javascript:void(0);" onclick="del()" id="deleteButton" title="Delete"  class="w3-dropdown-click w3-button w3-bar-item topnav-icons fas fa-trash-alt myfaicon" style="font-size:28px;margin-top:-2px"></a>        
+        <a href="javascript:void(0);" onclick="editSchedule2()" id="editButton" title="Edit"  class="w3-dropdown-click w3-button w3-bar-item topnav-icons fas fa-edit myfaicon" style="font-size:28px;margin-top:-2px"></a>
+         
+        <span>
+        <SELECT class="w3-button w3-bar-item w3-green w3-hover-white w3-hover-text-green" 
+            NAME="Extra"
+            style="text-transform: uppercase; color: navy; background: #C9E8FB;">
+            <OPTION VALUE="-1">Send to
+            <OPTION VALUE="3">
+            ----------
+            <OPTION VALUE="4">printer
+            <OPTION VALUE="1">email
+            <OPTION VALUE="1">phone app
+            <OPTION VALUE="1">*My Pics        
+            <OPTION VALUE="1">*upload Images
+            <OPTION VALUE="1">*upload cropped Images            
+        </SELECT>
+        </span>
+        
+          <span class="w3-button w3-bar-item w3-green w3-hover-white w3-hover-text-green" style="font-size:16px" onclick="javascript:ShowExtra(document.myformtop.Extra.options[document.myformtop.Extra.selectedIndex].text);">Go!</span>
+          
+          <a href="javascript:void(0);" onclick="javascript:myPicture()" id="menuButton" title="My Pictures" class="w3-dropdown-click w3-button w3-bar-item topnav-icons fas fa-camera" style="font-size:28px;margin-top:-2px"></a>
+          
+          <a href="javascript:void(0);" onclick="javascript:cp2sch22()" id="menuButton" title="Copy Left to Right" class="w3-dropdown-click w3-button w3-bar-item topnav-icons fas fa-arrow-circle-right" style="font-size:28px;margin-top:-2px"></a>
+          
+          
+          <span  class="w3-button w3-bar-item w3-green w3-hover-white w3-hover-text-green" style="font-size:16px" onclick="javascript:editSchedule2();">Edit</span>
+          <span class="w3-button w3-bar-item w3-green w3-hover-white w3-hover-text-green" style="font-size:16px" onclick="javascript:del();">Del</span>
+          
+          <button class="w3-button w3-bar-item w3-green w3-hover-white w3-hover-text-green" style="font-size:16px" onclick="submitTryit(1);">Help</button>
+          
+          <span   class="w3-button w3-bar-item w3-green w3-hover-white w3-hover-text-green"  style="font-style: italic;float:right;"><i>Welcome <ID/></i> </span>          
+
+          <span class="w3-button w3-bar-item w3-green w3-hover-white w3-hover-text-green" style="float:right;" onclick="javascript:window.location='/cgi-bin/cgi/ngfop/signin.cgi?action=signout'">Sign Out</span>
+        </div>  
+  
+   
+        <div id="navbarDropMenu" class="w3-dropdown-content w3-bar-block w3-border" style="z-index:5">
+                <span onclick="openMenu()" class="w3-button w3-display-topright w3-transparent w3-hover-dark-grey" title="Close Menu" style="font-weight:bold;padding-top:10px;padding-bottom:11px;">&times;</span>
+                  <div class="w3-bar-block">
+                    <a class="w3-bar-item w3-button" href='javascript:void(0);' title="Change Orientaton" onclick="openMenu();restack(currentStack)"><i class="fa fa-rotate" style="font-size:26px;margin-left:-4px;margin-right:8px"></i><span style="position:relative;top:-4px;left:2px;">Change Orientation</span></a>
+                    <a class="w3-bar-item w3-button" href="javascript:void(0);" title="Save" onclick="openMenu();click_savebtn()"><i class="fa fa-save" style="font-size:26px;margin-right:10px;"></i><span style="position:relative;top:-4px;left:2px;">Save Code</span></a>
+                    <a class="w3-bar-item w3-button" href='javascript:void(0);' id="saveGDriveBtn" title="Save to Google Drive" onclick="openMenu();click_google_savebtn()"><img src="/images/driveicon_32.png" alt="Save to Google Drive" title="Save to Google Drive" style="margin-right:10px;width:24px;"><span style="position:relative;left:1px;">Save to Google Drive</span></a>
+                    <a class="w3-bar-item w3-button" href='javascript:void(0);' id="loadGDriveBtn" title="Load from Google Drive" onclick="openMenu();click_google_loadbtn()"><img src="/images/driveicon_32.png" alt="Load from Google Drive" title="Load from Google Drive" style="margin-right:10px;width:24px;"><span style="position:relative;left:1px;">Load from Google Drive</span></a>
+                    <a class="w3-bar-item w3-button" href='javascript:void(0);' title="Change Theme" onclick="openMenu();retheme()"><i class="fa fa-adjust" style="font-size:26px;margin-right:8px"></i><span style="position:relative;top:-4px;left:2px;">Change Theme, Dark/Light</span></a>
+                  </div>
+                  <footer class="w3-container w3-small w3-light-gray">
+                  <p><a style="display:inline;padding:0;" href="/about/about_privacy.asp" target="_blank" onclick="openMenu();" class="w3-hover-none w3-hover-text-green">Privacy policy</a> and 
+                  <a style="display:inline;padding:0;" href="/about/about_copyright.asp" target="_blank" onclick="openMenu();" class="w3-hover-none w3-hover-text-green">Copyright 1999-2019</a></p>
+                  </footer>
+         </div>
+         <div id="menuOverlay" class="w3-overlay w3-transparent" style="cursor:pointer;z-index:4"></div>
+
+</form>
+
+<script>
+
+function openMenu() {
+    alert('function openMenu() {');
+    return;
+    var x = document.getElementById("navbarDropMenu");
+    var y = document.getElementById("menuOverlay");
+    var z = document.getElementById("menuButton");
+    if (z.className.indexOf("w3-text-gray") == -1) {
+        z.className += " w3-text-gray";
+    } else { 
+        z.className = z.className.replace(" w3-text-gray", "");
+    }
+    if (z.className.indexOf("w3-gray") == -1) {
+        z.className += " w3-gray";
+    } else { 
+        z.className = z.className.replace(" w3-gray", "");
+    }
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+    if (y.className.indexOf("w3-show") == -1) {
+        y.className += " w3-show";
+    } else { 
+        y.className = y.className.replace(" w3-show", "");
+    }
+
+}
+</script>
+

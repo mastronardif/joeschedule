@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+</html>
+
+<html>
+
+
+<input type="file" id="photo"" class="upload-image" accept="image/*"
+    data-placeholder="/uploads/images/hat.jpg" />
+	
+<script>
+Array.prototype.forEach.call(
+    document.getElementsByClassName("upload-image"),
+    function(fileElement) {
+        var previewElement = document.createElement("img");
+        previewElement.style.display = "block";
+        fileElement.parentNode.insertBefore(previewElement, fileElement);
+        
+        var fileReader = new FileReader();
+        
+        fileReader.onload = function(event) {
+            previewElement.src = event.target.result;
+        };
+        
+        fileElement.addEventListener("change", updateImagePreview, false);
+        updateImagePreview();
+        
+        function updateImagePreview() {
+            var file = fileElement.files[0];
+			if (!file) {return;}
+			
+			var tmppath = URL.createObjectURL(file);
+			//alert('tmppath = \n'+ tmppath);
+			console.log(file, file.name, file.size, file.type);
+			//alert('file: \n'+ file);
+            if (file) {
+                fileReader.readAsDataURL(file);
+            } else {
+                var placeholderSrc = fileElement.getAttribute("data-placeholder");
+                if (placeholderSrc) {
+                    previewElement.src = placeholderSrc;
+                } else {
+                    previewElement.removeAttribute("src");
+                }
+            }
+        }
+    }
+);
+
+</script>

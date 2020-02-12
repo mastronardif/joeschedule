@@ -1,0 +1,206 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=180; initial-scale=1.5; minimum-scale=1.0;" />
+</HEAD>
+<script>
+
+var gBodycolor='rgb(249, 201, 92)';
+
+var colorbgnd   = 'pink';
+var colorforgnd = 'rgb(249, 201, 92)'; //'#F5F3E4'; //'#00FFFF'; // .windowbg; ////
+var gObj = null;
+var gStr = null;
+var gMany = 1;
+
+var gRows = new Array();
+var gRowsLength = 0;
+var gRows = new Array();
+
+var fuckrow;
+function itOnInit()
+{
+   var iRow=0;
+   var mytable=document.getElementById("tableId");
+   var lastCol = mytable.rows[0].cells.length - 1;
+//alert(lastCol);
+//	return;
+fuckrow=mytable.rows[0].innerHTML;
+
+//   for(var ii=0; ii < mytable.rows.length; ii++)
+   for(var ii=0; ii < mytable.rows[0].cells.length; ii++)
+   {
+//      gRows[iRow] = mytable.rows[ii].innerHTML;
+      gRows[iRow] = mytable.rows[0].cells[ii].innerHTML;
+      iRow++;
+   }
+//alert(gRows);
+   gRowsLength=mytable.rows[0].cells.length;
+//   gRowsLength=mytable.rows.length;
+}
+
+function RestoreList()
+{
+   gMany=1;
+//alert('RestoreList');
+//javascript:location.reload(true)
+//return;
+   var iRow=0;
+   var mytable=document.getElementById("tableId");
+//   for(var ii=0; ii < mytable.rows.length; ii++)
+//   for(var ii=0; ii < mytable.rows[0].cells.length; ii++)
+   var iCols=mytable.rows[0].cells.length;
+//   for(var ii=0; mytable.rows[0].cells.length; ii++)
+   for(var ii=0; ii<iCols; ii++)
+   {
+      mytable.rows[0].deleteCell(0);
+//      mytable.deleteRow(-1)
+   }
+
+/***************/
+//alert(gRows);
+ mytable.rows[0].innerHTML = fuckrow;
+return;
+   // restore
+
+   var newCell;
+   for(var ii=gRowsLength-1; ii>-1; ii--)
+   {
+	newCell = mytable.rows[0].insertCell(0);
+        //newrow.innerHTML=gRows[ii];
+        newCell.innerHTML = gRows[ii];
+//alert(gRows[ii]);
+   }
+/*************/
+}
+
+
+
+function setPec(pic, picLabel, xmlName)
+{
+///   parent.T.cp2sch22(pic, picLabel);
+ 
+   var namedir = "";
+   if (xmlName.length)
+   {
+      var sz22 = xmlName.match(/<MK_LISTBOX>(.+)<\/MK_LISTBOX>/i);
+      if (sz22)
+      {
+         xmlName = sz22[1];  
+      }
+      
+      var name   = "&name="+ xmlName;
+      //usedir = "&usedir=usedir(Sussina)";
+      //namedir = name + usedir;
+      
+      namedir = name + "&usedir=usedir(Sussina)";
+   }
+   
+   // Fm 6/4/8
+
+   //var name = "&name="+ xmlName;
+   //var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=mid.xml" + name  + usedir;
+   //var str = "/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=mid.xml" + name  + usedir;
+   ///var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=mid.xml" + name  + usedir;
+   
+   ////var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=mid.xml" + name  + usedir;
+   var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=imid.xml" + namedir;
+   
+    
+   // FM 7/9/8 var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=joepecsbot.htm" + namedir;
+   //alert("GGGGGGGGGGGGG   "+str)
+   parent.M.location=str;
+   //window.open(str);
+}
+
+function mover(obj)
+{
+	if (gObj != obj)
+		obj.bgColor=colorbgnd;
+}
+
+function mout(obj)
+{
+	if (gObj == obj)
+		return;
+
+	obj.bgColor= colorbgnd;
+
+	if (gObj != obj)
+		obj.bgColor= "#A0BFAF"; //gBodycolor;//'gold';
+
+}
+
+
+function mclick(obj, row)
+{
+	mkblack(obj, row)
+}
+
+
+function mkblack(obj, pic)
+{
+/**********
+if (gMany==0)
+{
+   //return RestoreList()
+}
+
+gMany=0;
+************/
+
+if (gObj)
+   gObj.bgColor = colorforgnd;
+
+   obj.bgColor= "black";
+
+   gObj = obj;
+   gStr = pic;
+return;
+/************
+//alert(obj.innerHTML);
+ var rows = document.getElementById('tableId').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+//alert(rows); 
+var mytable=document.getElementById("tableId");
+
+ var sz='<td onclick="mkblack(this, \'/cgi/ngfop/pics/book/gd017.jpg\');" align="left" height="1">'
+ sz+=obj.innerHTML
+ sz+="</td>"
+ mytable.rows[0].innerHTML = sz; //obj.innerHTML; //mytable.rows[1].innerHTML;
+***************/
+}
+
+
+function REMMEmkblack(obj, pic)
+{
+	if (gObj)
+		gObj.bgColor = "#A0BFAF"; //colorforgnd;
+
+	obj.bgColor= 'pink'//"black";
+
+	gObj = obj;
+        gStr = pic;
+}
+-->
+</script>
+
+<!-- <body onLoad="itOnInit();" bgcolor="#A0BFAF" topmargin="0" leftmargin="0" marginheight="0">  -->
+<body bgcolor="#A0BFAF" topmargin="0" leftmargin="0" marginheight="0"> 
+
+<form name = "myform">
+<table id="tableId" border="1" cellpadding="3" width="100%">
+        <tr>
+<row>
+         <td align="center" height="1" onMouseOver  ="mover(this);" onMouseOut  ="mout(this);"
+			onClick  ="mkblack(this, '<PICTURE>'); setPec('<PICTURE>' , '<TIME>', '<NAME>')">
+         
+		  <IMG NAME="I5" border="0" src="<PICTURE>"
+		  width="60" height="50" type="image">
+        <br/><TIME>         
+		  </td>
+</row>
+  </tr>
+</table>
+</form>
+</BODY>
+</HTML>

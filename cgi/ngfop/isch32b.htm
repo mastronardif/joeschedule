@@ -1,0 +1,144 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<meta name="viewport" content="width=180; initial-scale=1.5; minimum-scale=1.0;"/>
+<title>JoePecV</title>
+<link href="/cgi/ngfop/isch.css" rel="stylesheet" type="text/css"/>
+
+<style type="text/css" media="all">
+p.footer1 {font-family: Verdana , sans-serif; color: black; font-size: 50%;} 
+</style>
+</head>
+<script language="javascript" src="/cgi/ngfop/itouch.js"></script>
+<script>
+<!--
+//////////////////////////////////////////////////////////////////////////////
+<IF_EMBEDED_XB>
+<IF_EMBEDED_CBS>
+var <FN> = new Array(
+'<table border="1" width="100%" cellpadding="3">'+
+<row>
+'<tr>'+
+'<td width="100%" onClick="mkblack22(this, this);">'+
+'<IF_PICTURE><img NAME="I55" border="0" src="<PICTURE>" width="105" height="97"/></IF_PICTURE>'+
+'<br/><NAME>'+
+'</td>'+
+'</tr>'+
+</row>
+'</table>'+
+""
+);
+</IF_EMBEDED_CBS>
+
+<IF_EMBEDED_SCH>
+var <FN> = new Array(
+'<table border="1" width="100%" cellpadding="3">'+
+<row>
+'<tr>'+
+'<td width="100%" onClick="mkblack22(this, this);">'+
+'<IF_PICTURE><img NAME="I55" border="0" src="<PICTURE>" width="105" height="97"/></IF_PICTURE>'+
+'<br/><NAME>'+
+'</td>'+
+'</tr>'+
+</row>
+'</table>'+
+""
+);
+</IF_EMBEDED_SCH>
+</IF_EMBEDED_XB>
+
+function listChoices(list, obj)
+{
+   var sz=list;
+
+   if (list.innerHTML===undefined)
+   {	// its an xml
+	sz=list;
+   }
+   else
+   {
+	sz= list.innerHTML;
+   }
+
+
+   var fn = sz.match(/[\w+_]+\.xml/i);
+
+   if (fn == null)
+   {
+//	alert("fn="+fn);
+	return mkblack22(obj, obj);
+   }
+
+
+   fn += "";
+   var ixml = -1;
+   for (iii=0; iii < gxmls.length; iii++)
+   {
+      if (fn.toLowerCase() == gxmls[iii].toLowerCase())
+      {
+         ixml = iii;
+         break;
+      }
+   }
+
+   var ar="";
+   if (ixml != -1)
+   {
+      ar = gxmldata[ixml];
+   }
+
+  // clear 
+  var rows   =document.getElementById('tableId').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+  var mytable=document.getElementById("tableId");
+  for(var ii=mytable.rows.length; ii>1; ii--)
+  {
+     mytable.deleteRow(-1)
+  }
+
+   //set
+   var newrow=mytable.insertRow(-1) //add new row to end of table
+   newrow.innerHTML=ar; //szRow;
+}
+-->
+</script>
+
+
+<body onLoad="itOnInit();">
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<filename>
+<input type="hidden" name="xmlfilename" value="<FILENAME>" />
+</filename>
+
+<table id="tableId" border="1" cellpadding="2" width="100%">
+  <description>
+  <tr>
+      <td  colspan="3" align="center">
+	  <DESCRIPTION>
+	  </td>
+  </tr>
+  </description>
+
+<row>
+        <tr>
+          <td onClick="listChoices('<NAME>', this);"  width="64%" align="left">
+<IF_PICTURE>
+		  <img  border="0" src="<PICTURE>" width="105" height="96"/> 
+</IF_PICTURE>
+		  <br/><TIME>
+<!--<name>-->
+		  </td>
+        </tr>
+</row>
+</table>
+
+</form>
+
+<p class="footer1">
+<!--<a href="http://www.joeschedule.com">visit www.joeschedule.com-->
+visit www.joeschedule.com
+</p>
+</body>
+</html>

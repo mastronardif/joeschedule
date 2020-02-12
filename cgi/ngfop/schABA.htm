@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Joa ITS</TITLE>
+</HEAD>
+
+<script type="text/javascript">
+<!-- language="JavaScript">-->
+
+function NewDeck2(deck)
+{
+	gmycards.iCardno = 0;
+	gmycards.szDeck  = deck;
+
+	var ilength = document.getElementById(deck).rows.length
+
+	if(ilength)
+	{
+		gmycards.aCardIds = new Array(ilength);
+
+		for (var iii = 0; iii < ilength; iii++)
+	    {
+			gmycards.aCardIds[iii] = iii;
+		}
+
+		// Shuffle
+		shuffle(gmycards.aCardIds);
+
+		document.myform.stats.value = "total("+ ilength + ")/draw(" + gmycards.iCardno + "){" + gmycards.aCardIds+"}";
+
+		document.getElementById('Decks').rows[0].cells[0].setAttribute("BGCOLOR", "#FFEBCD");
+		TouchDeck(deck);
+	}
+}
+
+function Deal()
+{
+	var rrr = GetRadioValue(document.myform.C1)
+	if (!rrr)
+	{
+		rrr = 3; // default
+	}
+
+	var nCards = rrr;
+
+	// FM 9/16/6
+	gDealNCards= nCards;
+	// FM 9/16/6
+
+	// clear
+	var iHands  = document.getElementById('ctable').rows[0].cells.length;
+	for (var iii = 0; iii < iHands; iii++)
+	{
+		document.getElementById('ctable').rows[0].cells[iii].innerHTML =		
+		'<td><img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" width="105" height="96"><br>---</td>'
+	}
+	var iCards = gmycards.aCardIds.length;
+	
+	if (gmycards.iCardno == iCards)
+	{
+		//alert ("no more cards shuffle " + gmycards.szDeck);
+		// FM 3/15/6
+		NewDeck2(gmycards.szDeck);
+		// FM 3/15/6
+		
+		return;
+
+	}
+
+	for (var iii = 0; iii < nCards; iii++)
+	{
+		// FM 2/7/7 if (gmycards.iCardno >= gmycards.length)
+		if (gmycards.iCardno >= gmycards.aCardIds.length)
+			break;
+
+		if (gmycards.iCardno >= gmycards.length)
+		 	break;
+
+
+		var iCard = gmycards.aCardIds[gmycards.iCardno];
+
+		sz = document.getElementById(gmycards.szDeck).rows[iCard].innerHTML;
+		document.getElementById('ctable').rows[0].cells[iii].innerHTML = sz; //ar[1];
+
+		gmycards.iCardno++;
+	}
+
+	// show stats
+	 //CardStats2(gmycards);
+}
+
+function CardStats2(Cards)
+{
+	document.all.stats.value = "total("+ Cards.aCardIds.length + ")/draw(" + Cards.iCardno + "){" + Cards.aCardIds+"}";
+}
+
+
+function shuffle(arIn){
+	// alert(arIn);
+  // Durstenfeld's Permutation Algorithm
+  var J, K, Temp;
+  var arOut;
+  arOut = arIn;
+  for(J = arOut.length-1; J >= 0; J--){
+    K = parseInt( (J + 1) * Math.random() ) // random number 0 - J
+
+    Temp = arOut[J]
+    arOut[J] = arOut[K]
+    arOut[K] = Temp
+  }
+
+  return(arOut);
+}
+
+function GetRadioValue(obj)
+{
+	for (var iii = 0; iii < obj.length; iii++)
+	{
+		if (obj[iii].checked)
+			return obj[iii].value; //return iii;
+	}
+
+	return;
+}
+
+function GetFirstAvailableImage(deck)
+{
+	var szImg
+	for (var ii = 0; ii < document.getElementById(deck).rows.length; ii++)
+	{
+		szImg =  GetImage(deck, ii);
+		if (szImg)
+			return szImg;
+	}
+
+	return "";
+}
+
+function GetImage(deck, rr)
+{
+	if (!document.getElementById(deck))
+		return ""
+
+var sz = document.getElementById(deck).rows[rr].innerHTML;
+
+var reg = /src="(.*)"/i;
+var ar = reg.exec(sz);
+//alert(ar);
+//return ar;
+if(ar)
+	return ar[1];
+else
+	return ""
+
+alert("ar[0]="+ar[0]);
+alert("ar[1]="+ar[1]);
+}
+
+
+function test()
+{
+	// setup programs
+	var rr = GetRadioValue(document.myform.C2)
+	alert(rr);
+
+	//document.myform.elements.Switch2.value = (gsw) ? 'On' : 'Off';
+
+
+}
+
+var gsw = 1;
+function hideDecks(obj, sw)
+{
+	if (sw === undefined)
+		gsw = !gsw;
+	else
+		gsw = (sw == 1) ? 1 : 0;
+
+	document.myform.elements.Switch.value = (gsw) ? 'On' : 'Off';
+
+	var szVVV = (gsw==1) ? 'visible' : 'hidden';
+
+	document.getElementById('Decks').style.visibility=szVVV;
+}
+
+function TouchDeck(deck)
+{
+
+	for (ii = 0; ii < gmycards.aDecks.length; ii++)
+	{
+		//alert(gmycards.aDecks[ii]+" = "+ii)
+		if (deck == "tDECK01"+gmycards.aDecks[ii])
+			document.getElementById('Decks').rows[0].cells[ii].style.background="#3DB3DD";
+		else
+			document.getElementById('Decks').rows[0].cells[ii].style.background="rgb(201,232,251)";
+	}
+	Deal();
+}
+
+function showDecks()
+{
+
+var ii=0;
+var szCell;
+
+	for (ii = 0; ii < gmycards.aDecks.length; ii++)
+	{
+  		//szImg = GetImage("tDECK01"+gmycards.aDecks[ii], 0);
+		szImg = GetFirstAvailableImage("tDECK01"+gmycards.aDecks[ii]);
+
+
+		szCell = '<td> <a title="session __" href="javascript:NewDeck2(\'tDECK01'+gmycards.aDecks[ii] +'\');"><IMG SRC="'+szImg + '" ALT="Next Deck" align="middle" width="55" height="55" border="1"></a> </td>';
+
+		document.getElementById('Decks').rows[0].cells[ii].innerHTML = szCell;
+	}
+
+	var iLast = document.getElementById('Decks').rows[0].cells.length;
+
+	for (var kk = ii; kk < iLast; kk++)
+	{
+		document.getElementById('Decks').rows[0].deleteCell(ii);
+	}
+}
+
+</SCRIPT> 
+
+<BODY>
+
+<CENTER>
+
+<FORM name="myform">
+
+<table id="ctable" border="1" cellpadding="3">
+<tbody>
+<tr>
+<td width="200"><img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" width="105" height="97"></td>
+<td width="200"><img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" width="105" height="97"></td>
+<td width="200"><img NAME="I44" border="0" src="/cgi/ngfop/blankcard.gif" width="105" height="97"></td>
+</tr>
+</tbody>
+</table>
+
+
+<hr>
+<table border="1">
+<tr  style="visibility:visible; background-color:#F0F8FF;">
+<!--
+<td>
+<a onclick="Deal()"> <b>Deal n cards</b> </a>
+<a class="menuitem" title="deal" href="javascript:Deal();"><IMG SRC="/cgi/ngfop/rarrow1.gif" ALT="Deal" align="middle" width="23" height="15" border="1"></a>
+</td>
+-->
+</tr>
+</table>
+
+
+<table border="1">
+<tr style="visibility:visible; background-color:#F0F8FF;">
+<!--
+<td>
+ <INPUT TYPE = "BUTTON" VALUE = "New Deck" NAME = "Command2" OnClick="javascript:step02('next');">
+</td>
+<td>
+	<img NAME="Iaaa" alt="up" border="0" src="<PICTURE4>" width="16px" height="16px">
+    <a class="menuitem" title="copy left to right" href="javascript:step02('next');">
+	<IMG SRC="/cgi/ngfop/rarrow1.gif" ALT="Next Deck" align="middle" width="23" height="15" border="1"></a>
+</td>
+<td>
+	<img NAME="Iaaa" alt="down" border="0" src="<PICTURE5>" width="16px" height="16px">
+</td>
+-->
+<td>
+<input type="Radio" name="C1" value="3" CHECKED="TRUE"> 3 
+<input type="Radio" name="C1" value="2" > 2 
+<input type="Radio" name="C1" value="1" > 1 
+</td>
+
+<td>
+<a class="menuitem" title="deal" href="javascript:Deal();"><IMG SRC="/cgi/ngfop/rarrow1.gif" ALT="Deal" align="middle" width="23" height="15" border="1"></a>
+</td>
+
+<td>
+ <INPUT TYPE = "BUTTON" VALUE = "On" NAME = "Switch" OnClick="javascript:hideDecks('obj');">
+</td>
+
+</table>
+</CENTER>
+
+<hr>
+<!--card stats:--> <input type="hidden" size= "30" name="stats" value="1"> 
+<!--
+<input type="Radio" name="C2" value="dt"> dt
+<input type="Radio" name="C2" value="vb"> vb
+<input type="Radio" name="C2" value="n/a" CHECKED="TRUE"> lo
+<INPUT TYPE = "BUTTON" VALUE = "ed" NAME = "Switch2" OnClick="javascript:test();">
+-->
+
+<center>
+<div id="<DIVID>" style="visibility:vissible; color : #a00099;
+width: 100%; height: 130px; overflow:auto; z-index : 30;" >
+<table id="Decks" border="0" cellpadding="2" width="50%">
+<tr style="background-color:LIGHTSALMON;">
+<row>
+<td>
+<IF_PICTURE>
+<a class="menuitem" title="deal" 
+href="javascript:step02('Next');">
+<img NAME="I55" alt="Session" align="middle" border="1" src="<PICTURE>" width="55px" height="56px">
+</a>
+</IF_PICTURE>
+<br><name>
+</td>
+</row>
+</tr>
+</table>
+</DIV>
+</center>
+
+
+<div id="<looseDIVID>" style="visibility:hidden; color : #a00099;
+width: 100%; height: 130px; border: solid 1px black; overflow:auto; z-index : 30;" >
+<table id="tDECK01tloose" border="1" width="100%" cellpadding="3">
+<tbody>
+    <row>
+     <tr>
+<td width="100%">
+<IF_PICTURE>
+<img NAME="I55" vspace=4 border=0  src="<PICTURE>" width="105" height="97" />
+</IF_PICTURE>
+<br>
+ <NAME>
+</td>
+     </tr>
+    </row>
+</tbody>
+</table>
+</DIV>
+
+
+
+
+
+<IF_EMBEDED_XB>
+<IF_EMBEDED_CBS>
+<div id="<DIVID>" style="visibility:hidden; color : #a00099;
+width: 100%; height: 130px; border: solid 1px black; overflow:auto; z-index : 30;" >
+<table id="tDECK01<DIVID>" border="1" width="100%" cellpadding="3">
+<tbody>
+    <row>
+     <tr>
+<td width="100%">
+<IF_PICTURE>
+<img NAME="I55" vspace=4 border=0  src="<PICTURE>" width="105" height="97" />
+</IF_PICTURE>
+<br>
+ <NAME>
+</td>
+     </tr>
+    </row>
+</tbody>
+</table>
+</DIV>
+</IF_EMBEDED_CBS>
+
+<IF_EMBEDED_SCH>
+
+<div id="<DIVID>" style="visibility:hidden; color : #00a09a;
+width: 100%; height: 130px; border: solid 1px black; overflow:auto; z-index : 30;" >
+<table id="tDECK01<DIVID>" border="1" width="100%" cellpadding="3">
+<tbody>
+    <row>
+     <tr>
+     <td width="100%" >
+<IF_PICTURE>
+<img NAME="I55" border="0" src="<PICTURE>" width="105" height="97"/>
+</IF_PICTURE>
+<br>
+ <NAME>
+     </td>
+     </tr>
+    </row>
+</tbody>
+</table>
+</DIV>
+</IF_EMBEDED_SCH>
+</IF_EMBEDED_XB>
+<script>
+
+gmycards = {iCardno:0, szDeck:"", aCardIds:new Array(1), 
+			aDecks:(document.myform.Decks.value.split(/\s*,\s*/))}
+
+			if (!gmycards.aDecks[0].length)
+				gmycards.aDecks.pop();
+
+	if(gmycards.aDecks.length < document.getElementById('Decks').rows[0].cells.length)
+		gmycards.aDecks.push("tloose");
+
+javascript:showDecks()
+javascript:NewDeck2('tDECK01'+gmycards.aDecks[0]);
+javascript:Deal()
+
+
+</script>
+
+</FORM>
+
+</BODY>
+</HTML> 

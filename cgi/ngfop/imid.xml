@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<!--
+<BASE href="http://joeschedule.com/cgi/">
+-->
+
+<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=180; initial-scale=1.5; minimum-scale=1.0;" />
+</HEAD>
+
+<script type="text/javascript">
+var gRow_innerHTML="";
+var gRows = new Array();
+var gRowsLength = 0;
+var gMany = 1;
+
+var ROW1=1;
+
+function itOnInit()
+{
+   var iRow=0;
+   var mytable=document.getElementById("tableId");
+   gRow_innerHTML=mytable.rows[ROW1].innerHTML;
+
+/*********
+   for(var ii=0; ii < mytable.rows[1].cells.length; ii++)
+   {
+      gRows[iRow] = mytable.rows[1].cells[ii].innerHTML;
+      iRow++;
+   }
+
+
+//alert(gRows);
+   gRowsLength=mytable.rows[ROW1].cells.length;
+*************/
+}
+
+function RestoreList()
+{
+   gMany=1;
+   var iRow=0;
+   var mytable=document.getElementById("tableId");
+
+   mytable.rows[1].innerHTML  = gRow_innerHTML;
+return;
+/********
+   var iCols=mytable.rows[1].cells.length;
+   for(var ii=0; ii<iCols; ii++)
+   {
+      mytable.rows[1].deleteCell(0);
+   }
+
+   // restore
+   var newCell;
+   for(var ii=gRowsLength-1; ii>-1; ii--)
+   {
+        newCell = mytable.rows[1].insertCell(0);
+        newCell.innerHTML = gRows[ii];
+   }
+************/
+}
+
+function mkblack(obj, pic)
+{
+   if (gMany==0)
+   {
+      return RestoreList()
+   }
+
+   gMany=0;
+
+   var mytable=document.getElementById("tableId");
+
+   var sz='<td onclick="mkblack(this, \'/cgi/ngfop/pics/book/gd017.jpg\');" colspan="100%" align="center">'
+   sz+=obj.innerHTML
+   sz+="</td>"
+   mytable.rows[ROW1].innerHTML = sz;
+}
+
+</script>
+
+
+
+<BODY onLoad="itOnInit();" bgcolor="#E0F0FF">
+<table id="tableId" border="1" cellpadding="3" width="100%">
+    <description>
+  <tr>
+      <td colspan="100%" align="center">
+      <align="left"><font size="5">
+      <DESCRIPTION>
+      </font></td>
+  </tr>
+  </description>
+        <tr>
+  <row>
+          <td align="left" height="1" 
+		      onClick  ="mkblack(this, '<PICTURE>');"> 
+<IF_PICTURE>
+		  <IMG NAME="I5" border="0" src="<PICTURE>" width="105" height="96" type="image">
+</IF_PICTURE>
+<br/>
+          <name>
+          </td>
+</row>
+        </tr>
+</table>
+
+</BODY>
+</HTML>

@@ -1,0 +1,121 @@
+\
+The below is causing alignment problems on the left side.
+see about removing li ul from the css.  also missing from joecss reporitory.
+http://www.joeschedule.com/cgi/ngfop/sch01.css
+
+li ul { /* second-level lists */
+	display: none;
+	position: absolute;
+	top: 1em;
+	left: 0;
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+.btn {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Style the active class (and buttons on mouse-over) */
+.active, .btn:hover {
+  background-color: #666;
+  color: white;
+}
+
+
+function setLiButtons(containerName)
+{
+alert(containerName);
+// Get the container element
+//var btnContainer = document.getElementById("cblist");
+//var btnContainer = document.getElementById(containerName);
+var btnContainer = document.getElementsByClassName(containerName);
+
+alert(btnContainer.length);
+// Get all ______ with class="btn" inside the container
+
+
+// Loop through the buttons and add the active class to the current/clicked button
+//var btns = btnContainer[2].getElementsByTagName("li");
+
+for (var ki = 0; ki < btnContainer.length; ki++) {
+var btns = btnContainer[ki].getElementsByTagName("li");
+alert(btns.length);
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+
+    // If there's no active class
+    if (current.length > 0) { 
+      current[0].className = current[0].className.replace(" active", "");
+    }
+
+    // Add the active class to the current/clicked button
+    this.className += " active";
+  });
+}
+}
+}
+
+
+
+// FM new stuff for active item BEGIN
+function myreset(theitem) 
+{
+
+	// Get the container element
+	var btnContainer = document.getElementById("cblist");
+
+	// Get all buttons with class="btn" inside the container
+	//var btns = btnContainer.getElementsByClassName("btn");
+	var btns = btnContainer.getElementsByTagName("li");
+
+	// Loop through the buttons and add the active class to the current/clicked button
+	for (var i = 0; i < btns.length; i++) {
+		//btns[i].className += " btn" ;
+		btns[i].className = " btn" ;
+		//this.classList.remove( "btn" );
+	}
+	theitem.className="active"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+$("#333").addClass( "btn" );
+	$("#333").removeClass( "btn" );
+
+.selected { background-color: green; }
+
+
+<li class="hover-item" id="cb479586986"> <input type="radio" name="C1" onclick="notifytop(&quot;cb479586986.xml&quot;, &quot;Images from google drive amd uploads.&quot;);">   <span id="3" onclick="myshowMiddle('cb479586986' , '/cgi-bin/cgi/ngfop/sch3.pl?htmlname=cb3acgi.htm&amp;name=cb479586986.xml')" ;="">Images from google drive amd uploads.</span>  </li>
+
+function myshowMiddle(id, src)
+{
+    //var element = document.getElementById(id);
+    //alert(src);
+    if (!src) {return;}
+
+    var str = "http://www.joeschedule.com"+ src;   
+
+	  testAjax33(str, $("#middle" ));
+
+// set li to .selected
+//$(this).addClass('selected');
+//$( "li" ).addClass( "selected" );
+$(id).addClass( "selected" );
+$(id).text( "ssssselected" );
+ $('#cb477934782').css( "background-color", "" );

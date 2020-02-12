@@ -1,0 +1,84 @@
+<head>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01cgi.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+body, html {
+  margin: 0;
+  height: 100%;
+  text-align: center;
+  font-family: 'Oxygen Mono', monospace;
+  color: #999;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  font-size: 30pt;
+  margin-bottom: 15px;
+}
+
+p.p22 {
+  text-align: left;
+  margin: 0;
+  text-transform: lowercase;
+  font-size: 10pt;
+  font-weight: 900;
+  width: 50%;
+  display: none;
+}
+
+#table {
+	display: table;
+	width: 100%;
+	height: 100%;
+  background-color: #e5e5e5;
+}
+
+#centeralign {
+	display: table-cell;
+	vertical-align: middle;
+}
+</style>
+</head>
+
+<script type="text/javascript">
+function typeEffect(element, speed) {
+	var text = $(element).text();
+	$(element).html('');
+	
+	var i = 0;
+	var timer = setInterval(function() {
+					if (i < text.length) {
+						$(element).append(text.charAt(i));
+						i++;
+					} else {
+						clearInterval(timer);
+					}
+				}, speed);
+}
+
+$( document ).ready(function() {
+	//alert('doc ready');
+  var speed = 15;
+  var delay = $('h1').text().length * speed + speed;
+  typeEffect($('h1'), speed);
+  setTimeout(function(){
+    $('p.p22').css('display', 'inline-block');
+    typeEffect($('p.p22'), speed);
+  }, delay);
+});
+</script>
+
+<div>
+<div id="table">
+  <div id="centeralign">
+    <h1>Using Visual Schedules: A Guide for Parents</h1>
+	
+	<p class="p22">
+	There is clear research evidence regarding the benefits of using visual schedules with individuals with autism spectrum disorders (ASD) (e.g., Mesibov, et al, 2002; Massey & Wheeler, 2000; Bryan & Gast, 2000). Additionally, a wealth of anecdotal evidence exists. For example, a parent was asked to share the most helpful thing that she had tried with her son (a 15 year old with a diagnosis of High Functioning Autism). She replied that a visual schedule has been the key to increasing his independence and managing his anxiety. She reflected that she wished more parents knew about the difference this would make for both their lives and for that of their child. This article will therefore outline both a rationale for using schedules at home with individuals across the autism spectrum (ASD) (both children and adult children) and the steps parents can take to do so.
+	<br/>Contributed By Catherine Davies
+	<br/>https://www.iidc.indiana.edu/pages/using-visual-schedules-a-guide-for-parents
+	</p>
+    
+</div>
+</div>

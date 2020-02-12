@@ -1,0 +1,278 @@
+ html,
+ body {
+   height: 100%;
+   padding: 0;
+   margin: 0;
+   font-family: Arial, Helvetica, sans-serif;
+ }
+ 
+ .flex-master {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;   
+   height: 100%;
+   overflow-x: auto;
+   overflow-y: hidden;
+ }
+ 
+ .page-header {
+   /* fixed size */
+   flex: none;
+   
+   padding: 15px;
+   font-size: 3em;
+   font-weight: bold;
+   background: #535353;
+   color: white;
+ }
+ 
+ .page-content { 
+   /* resize in container */
+   flex: 1; 
+   
+   /* IMPORTANT for FireFox */
+   overflow-y: auto;
+   overflow-x: hidden;
+   
+   /* new flex container for content */
+   display: flex;
+   flex-direction: row;
+ }
+
+ .page-content2 { 
+  /* resize in container */
+  flex: 1; 
+  
+  /* IMPORTANT for FireFox */
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+  /* new flex container for content */
+  display: flex;
+  flex-direction: row;
+}
+ 
+ .sidebar-left {   
+   flex: none;
+   background: #838383;
+   padding: 20px;
+   width: 250px;
+   min-width: 150px;
+   overflow: auto;
+   color: white;
+   white-space: nowrap;   
+ }
+ 
+ .sidebar-left2 {   
+  flex: none;
+  background: #7a6464;
+  padding: 20px;
+  width: 250px;
+  min-width: 150px;
+  overflow: auto;
+  color: white;
+  white-space: nowrap;   
+}
+ 
+ .sideba-right {   
+  flex: none;
+  background: #BCCE98;
+  padding: 20px;
+  width: 250px;
+  min-width: 150px;
+  overflow: auto;
+  color: white;
+  white-space: nowrap;   
+}
+ .splitter {     
+   flex: none;
+   width: 17px;
+   cursor: col-resize;
+   background: #920f0f;
+   background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat #535353;
+ }
+ 
+ .content-container {
+   flex: 1 1 auto;
+   background: #eee;
+   padding: 20px;
+   width: 0%;
+   
+   overflow-y: auto;
+   overflow-x: hidden;
+   display: flex;
+   /* new flex for content/ads*/
+   flex-direction: row;
+ }
+ .content-container2 {
+  flex: 1 1 auto;
+  background: #BCCE98;
+  padding: 20px;
+  width: 0%;
+  
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  /* new flex for content/ads*/
+  flex-direction: row;
+}
+ 
+ .main-content {
+   flex: 1 1 auto;
+   width: 100%;
+   padding: 10px;
+   min-width: 300px;
+ }
+ 
+
+ footer {
+   flex: none;
+   background: #535353;
+   color: white;
+   padding: 10px;
+ }
+ 
+ 
+ 
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Montserrat', sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	min-height: 100vh;
+} 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+h2,
+h3,
+a {
+	color: #34495e;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+
+.logo {
+	margin: 0;
+	font-size: 1.45em;
+}
+
+.main-nav {
+	margin-top: 5px;
+
+}
+.logo a,
+.main-nav a {
+	padding: 10px 15px;
+	text-transform: uppercase;
+	text-align: center;
+	display: block;
+}
+
+.main-nav a {
+	color: #34495e;
+	font-size: .99em;
+}
+
+.main-nav a:hover {
+	color: #718daa;
+}
+ 
+ .header {
+	padding-top: .5em;
+	padding-bottom: .5em;
+	border: 1px solid #a2a2a2;
+	background-color: #f4f4f4;
+	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+
+
+@media (min-width: 769px) {
+	.header,
+	.main-nav {
+		display: flex;
+	}
+	.header {
+		flex-direction: column;
+		align-items: center;
+    	.header{
+		width: 80%;
+		margin: 0 auto;
+		max-width: 1150px;
+	}
+	}
+
+}
+
+/* from root.css begin */
+.hover-item {
+	background-color: #796e79;
+}
+
+.hover-item:hover {
+    background-color: inherit;     
+}
+
+.mystyle {
+   
+    background-color: coral;
+    color: white;
+}
+
+.myfaicon {
+    color:black;
+    font-size:20px;
+    padding: 5px;
+    /**
+    margin-top:5px;
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:5px;
+**/
+}
+
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  /* Style the active class (and buttons on mouse-over) */
+  .active, .btn:hover {
+    background-color: #666;
+    color: white;
+  }
+
+/* from root.css begin */
+
+@media (min-width: 1025px) {
+	.header {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+}
+
+@media(max-width: 900px) {
+  .page-ads { display: none; }
+}

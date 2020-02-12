@@ -1,0 +1,348 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<title>sch3a</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/print.css" media="print" />
+
+<style type="text/css" media="all">
+p.footer1 {font-family: Verdana , sans-serif; color: black; font-size: 50%;} 
+</style>
+
+</head>
+
+<script>
+<!--
+
+//////////////////////////////////////////////////////////////////////////////
+
+<IF_EMBEDED_XB>
+
+<IF_EMBEDED_CBS>
+var <FN> = new Array(
+'<div id="<DIVID>" style="background: #FFFFFF;color : #000099;'+
+'width: 100%; height: 130px; border: solid 1px black; overflow:auto; z-index : 30;" >'+
+'<table border="1" width="100%" cellpadding="3">',
+    <row>
+'          <tr>'+
+'            <td width="100%" >'+
+'<IF_PICTURE>			<img NAME="I55" border="0" src="<PICTURE>" width="105" height="97"/></IF_PICTURE>'+
+'		     <NAME>'+
+'			</td>'+
+'          </tr>',
+    </row>
+'</table>'+
+'</DIV>',
+""
+);
+</IF_EMBEDED_CBS>
+
+
+<IF_EMBEDED_SCHnew>
+var <FN> = new Array(
+'<div id="<DIVID>" style="background: #FFFFFF;color : #000099;'+
+'width: 100%;" >'+
+'<table border="1" width="100%" cellpadding="3">',
+
+    <row>
+'	        <tr>'+
+'          <td width="5%" height="1"><TIME></td>'+
+'          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>'+
+''+
+'          <td width="54%" align="left" height="1">'+
+'          <img NAME="I55" border="0" src="<PICTURE>" width="105" height="96"/>'+
+''+
+'		  <br>'+
+'		  <name>'+
+'		  </td>'+
+'        </tr>'+
+    </row>
+'</table>'+
+'</DIV>',
+""
+);
+</IF_EMBEDED_SCHnew>
+
+<IF_EMBEDED_SCH>
+var <FN> = new Array(
+'<div id="<DIVID>" style="background: #FFFFFF;color : #000099;'+
+'width: 100%;" >'+
+'<table border="1" width="100%" cellpadding="3">',
+    <row>
+'          <tr>'+
+'          <td width="5%" height="1"><TIME></td>'+
+'          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>'+
+'            <td width="100%" >'+
+'<IF_PICTURE>			<img NAME="I55" border="0" src="<PICTURE>" width="105" height="97"/></IF_PICTURE>'+
+'		     <NAME>'+
+'			</td>'+
+'          </tr>',
+    </row>
+'</table>'+
+'</DIV>',
+""
+);
+</IF_EMBEDED_SCH>
+
+
+
+</IF_EMBEDED_XB>
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+function getLBRows(rowID1, rowID2, src)
+{
+//alert("getLBRows("+rowID1+ ", "+rowID2+", "+src+")");
+	var szResults = "";
+	var ar;
+
+	var ixml = -1;
+	for (iii=0; iii < gxmls.length; iii++)
+	{
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+		{
+			ixml = iii;
+			break;
+		}
+	}
+	if (ixml == -1)
+		return szResults;
+
+	ar = gxmldata[ixml];
+
+	sz1 = '<tr onClick="setRow(\''+rowID1+'\',\''+rowID2 +'\',\''+src+'\',';
+
+	for (iii=0; iii < ar.length; iii++)
+	{
+		szRow= ar[iii];
+
+		myRe=/(<tr.*>)/i;
+		if (myRe.test(ar[iii]))
+		{
+			newtr = sz1+iii+');">';
+
+			re = /(<tr(.*?)>)./i;
+
+			szRow= ar[iii].replace(re, newtr);
+		}
+
+		szResults += szRow;
+	}
+		
+	return szResults;
+}
+
+
+function getLBRow(src, iRow)
+{
+	var szResults = "";
+	var ixml = -1;
+
+	for (iii=0; iii < gxmls.length; iii++)
+	{
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+		{
+			ixml = iii;
+			break;
+		}
+	}
+
+	if (ixml == -1)
+		return "";
+
+
+	szResults += gxmldata[ixml][iRow];
+	return szResults;
+}
+
+
+
+function setRow(dest, rowID2, src, iRow)
+{
+	var szrd = getLBRow(src, iRow);
+
+str = szrd;
+
+
+newtr = "<tr>";
+
+//alert(str);
+re = /(<\s*tr(.*?)>)./i;
+newstr = str.replace(re, newtr);
+
+	var szVal = '<table border="0" width="100%" cellpadding="3">';
+	szVal += newstr;
+	szVal += '</table>';
+
+
+
+	/////////
+	// pop //
+	/////////
+	document.getElementById(dest).innerHTML = '<div id="'+dest+'">'+
+'			<table border="1" width = "100%" cellpadding="3">'+
+'			<tr onClick    ="bob4a(\'' + src + '\', \'' + dest + '\', \''+ rowID2+'\');">'+
+'				<td width = "90%" >'+
+''+
+'<div id="'+rowID2+'">'+
+'<div>'+
+'				</td>'+
+'				<td width = "10%" >'+
+'				<img src="/darrow3.gif" ALT="choice board" border="0">'+
+'				</td>'+
+'		    </tr>'+
+'			</table>'+
+'</div>';
+
+  	document.getElementById(rowID2).innerHTML = szVal;
+}
+
+
+
+
+function getMyListBox(rowID1, rowID2, src)
+{
+//	alert("getMyListBox("+rowID1+", "+rowID2+", "+ src+")");
+
+	return(	getLBRows(rowID1, rowID2, src));
+}
+
+
+function bob4a(src, rowID1, rowID2)
+{
+	szLB = getMyListBox(rowID1, rowID2, src);
+
+	document.getElementById(rowID1).innerHTML = szLB;
+}
+
+
+function hideEmptyPictures()
+{
+	var iChks = 0;
+
+//alert(document.myform.I55.length);
+
+	for (var iii = 0; iii < document.myform.I55.length; iii++)
+	{
+		var src = _listData[iii];
+		var szPic = src.match(/<picture>(.+)<\/picture>/i);
+//alert(szPic);
+		if (szPic)
+		{
+			szPic = szPic[1];
+		}
+		else
+		{
+			szPic = "";
+		}
+		if (szPic == "")
+		{
+			iChks++;
+			myform.elements.I55[iii].width = "0";
+			myform.elements.I55[iii].height = "0";
+
+	    }
+	}
+}
+
+var _listData = new Array(
+    <row>
+    "\74name><NAME>\74/name>\74picture><PICTURE>\74/picture>",
+    </row>
+"end"
+);
+
+
+function getListItem()
+{
+	var str = "";
+	var obj = document.myform;
+
+	// the case of 0 elements
+	if (obj.elements.C1 === undefined)
+		return str;
+
+	if (obj.elements.C1.length === undefined)
+	{
+		if (obj.C1.checked)
+			str = _listData[0];
+
+		return str;
+	}
+
+	// Yes there is an array of elements.
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+	{
+		if (obj.elements.C1[iii].checked)	
+		{
+			str = _listData[iii];
+			break;
+		}
+	}
+
+	return str;
+}
+
+-->
+</script>
+
+
+<body>
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<filename>
+<input type="hidden" name="xmlfilename" value="<FILENAME>" />
+</filename>
+
+
+<table border="1" cellpadding="2" width="100%">
+
+  <description>
+  <tr>
+      <td  colspan="3" align="center">
+	  <DESCRIPTION>
+	  </td>
+  </tr>
+  </description>
+
+<row>
+        <tr>
+          <td width="5%"><TIME></td>
+          <td width="5%"><input type="checkbox" name="C1" value="ON"/></td>
+
+          <td width="64%" align="left">
+<IF_PICTURE>
+		  <img  border="0" src="<PICTURE>" width="105" height="96"/> 
+		  <br />
+</IF_PICTURE>
+		  <name>
+		  </td>
+        </tr>
+</row>
+
+</table>
+
+</form>
+
+<p class="footer1">
+<!--<a href="http://www.joeschedule.com">visit www.joeschedule.com-->
+</a>
+visit www.joeschedule.com
+</p>
+
+
+
+</body>
+</html>
+

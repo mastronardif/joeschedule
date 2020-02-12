@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Drinks
+</description>
+
+<row><picture>http://www.joeschedule.com/cgi/ngfop/pics/temp/chocmilk.jpg</picture>
+<name>
+chocolate milk
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/milk.jpg</picture>
+<name>
+milk
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/juice000.jpg</picture>
+<name>
+orange juice
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/glass000.jpg</picture>
+<name>
+water
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/jb.jpg</picture>
+<name>
+apple juice
+</name>
+</row>
+
+</data>

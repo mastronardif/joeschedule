@@ -1,0 +1,577 @@
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=Windows-1252">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML lang=en><HEAD><TITLE>sch3a</TITLE><BASE 
+href=http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=sch3b.htm&amp;name=sch12686642.xml>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META http-equiv=Content-Language content=en-us><LINK 
+href="/cgi/ngfop/sch01.css" type=text/css rel=stylesheet><LINK media=print 
+href="/cgi/ngfop/print.css" type=text/css rel=stylesheet>
+<STYLE type=text/css media=all>
+
+p.footer1 {font-family: Verdana , sans-serif; color: black; font-size: 50%;} 
+
+</STYLE>
+
+<SCRIPT>
+
+<!--
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+function getLBRows(rowID1, rowID2, src)
+
+{
+
+//alert("getLBRows("+rowID1+ ", "+rowID2+", "+src+")");
+
+	var szResults = "";
+
+	var ar;
+
+
+
+	var ixml = -1;
+
+	for (iii=0; iii < gxmls.length; iii++)
+
+	{
+
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+
+		{
+
+			ixml = iii;
+
+			break;
+
+		}
+
+	}
+
+	if (ixml == -1)
+
+		return szResults;
+
+
+
+	ar = gxmldata[ixml];
+
+
+
+	sz1 = '<tr onClick="setRow(\''+rowID1+'\',\''+rowID2 +'\',\''+src+'\',';
+
+
+
+	for (iii=0; iii < ar.length; iii++)
+
+	{
+
+		szRow= ar[iii];
+
+
+
+		myRe=/(<tr.*>)/i;
+
+		if (myRe.test(ar[iii]))
+
+		{
+
+			newtr = sz1+iii+');">';
+
+
+
+			re = /(<tr(.*?)>)./i;
+
+
+
+			szRow= ar[iii].replace(re, newtr);
+
+		}
+
+
+
+		szResults += szRow;
+
+	}
+
+		
+
+	return szResults;
+
+}
+
+
+
+
+
+function getLBRow(src, iRow)
+
+{
+
+	var szResults = "";
+
+	var ixml = -1;
+
+
+
+	for (iii=0; iii < gxmls.length; iii++)
+
+	{
+
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+
+		{
+
+			ixml = iii;
+
+			break;
+
+		}
+
+	}
+
+
+
+	if (ixml == -1)
+
+		return "";
+
+
+
+
+
+	szResults += gxmldata[ixml][iRow];
+
+	return szResults;
+
+}
+
+
+
+
+
+
+
+function setRow(dest, rowID2, src, iRow)
+
+{
+
+	var szrd = getLBRow(src, iRow);
+
+
+
+str = szrd;
+
+
+
+
+
+newtr = "<tr>";
+
+
+
+//alert(str);
+
+re = /(<\s*tr(.*?)>)./i;
+
+newstr = str.replace(re, newtr);
+
+
+
+	var szVal = '<table border="0" width="100%" cellpadding="3">';
+
+	szVal += newstr;
+
+	szVal += '</table>';
+
+
+
+
+
+
+
+	/////////
+
+	// pop //
+
+	/////////
+
+	document.getElementById(dest).innerHTML = '<div id="'+dest+'">'+
+
+'			<table border="1" width = "100%" cellpadding="3">'+
+
+'			<tr onClick    ="bob4a(\'' + src + '\', \'' + dest + '\', \''+ rowID2+'\');">'+
+
+'				<td width = "90%" >'+
+
+''+
+
+'<div id="'+rowID2+'">'+
+
+'<div>'+
+
+'				</td>'+
+
+'				<td width = "10%" >'+
+
+'				<img src="/darrow3.gif" ALT="choice board" border="0">'+
+
+'				</td>'+
+
+'		    </tr>'+
+
+'			</table>'+
+
+'</div>';
+
+
+
+  	document.getElementById(rowID2).innerHTML = szVal;
+
+}
+
+
+
+
+
+
+
+
+
+function getMyListBox(rowID1, rowID2, src)
+
+{
+
+//	alert("getMyListBox("+rowID1+", "+rowID2+", "+ src+")");
+
+
+
+	return(	getLBRows(rowID1, rowID2, src));
+
+}
+
+
+
+
+
+function bob4a(src, rowID1, rowID2)
+
+{
+
+	szLB = getMyListBox(rowID1, rowID2, src);
+
+
+
+	document.getElementById(rowID1).innerHTML = szLB;
+
+}
+
+
+
+
+
+function hideEmptyPictures()
+
+{
+
+	var iChks = 0;
+
+
+
+//alert(document.myform.I55.length);
+
+
+
+	for (var iii = 0; iii < document.myform.I55.length; iii++)
+
+	{
+
+		var src = _listData[iii];
+
+		var szPic = src.match(/<picture>(.+)<\/picture>/i);
+
+//alert(szPic);
+
+		if (szPic)
+
+		{
+
+			szPic = szPic[1];
+
+		}
+
+		else
+
+		{
+
+			szPic = "";
+
+		}
+
+		if (szPic == "")
+
+		{
+
+			iChks++;
+
+			myform.elements.I55[iii].width = "0";
+
+			myform.elements.I55[iii].height = "0";
+
+
+
+	    }
+
+	}
+
+}
+
+
+
+var _listData = new Array(
+
+
+    "\74name>Get bowl.\74/name>\74picture>http://thm-br1r2.search.vip.scd.yahoo.com/image/71740397\74/picture>",
+    
+    "\74name>Get spoon.\74/name>\74picture>http://thm-ar1r2.search.vip.scd.yahoo.com/image/313823306\74/picture>",
+    
+    "\74name>Get one stick of butter.\74/name>\74picture>http://images.google.com/images?q=tbn:PtkHmoEE0yoJ:www.snopes2.com/rumors/images/butter.jpg\74/picture>",
+    
+    "\74name>Get one egg.\74/name>\74picture>http://images.google.com/images?q=tbn:7rVi8-L-FFcJ:home.no.net/reallife/new/cards/mat/egg.jpg\74/picture>",
+    
+    "\74name>Get cookie mix.\74/name>\74picture>http://images.google.com/images?q=tbn:h8Px8BfmmHgJ:www.reasors.com/new_items/07_july/lg_Cookie_Mix_WCC_1.jpg\74/picture>",
+    
+    "\74name>Preheat oven temperature to 350 degrees.\74/name>\74picture>\74/picture>",
+    
+    "\74name>Put butter in bowl.\74/name>\74picture>http://joeschedule.com/cgi/ngfop/pics/book/c15.jpg\74/picture>",
+    
+    "\74name>Put bowl in microwave for 60 seconds.\74/name>\74picture>http://images.google.com/images?q=tbn:mu_H60J_ePoJ:www.thegrillstoreandmore.com/image/products/big-pics/dcs-microwave.jpg\74/picture>",
+    
+    "\74name>Take bowl out of microwave.\74/name>\74picture>\74/picture>",
+    
+    "\74name>Add cookie mix to bowl.\74/name>\74picture>http://joeschedule.com/cgi/ngfop/pics/book/c12.jpg\74/picture>",
+    
+    "\74name>Add egg to bowl.\74/name>\74picture>http://joeschedule.com/cgi/ngfop/pics/book/c11.jpg\74/picture>",
+    
+    "\74name>Stir.\74/name>\74picture>http://joeschedule.com/cgi/ngfop/pics/book/c10.jpg\74/picture>",
+    
+    "\74name>Put rounded tablespoon of batter onto cookie sheet.\74/name>\74picture>http://joeschedule.com/cgi/ngfop/pics/book/c13.jpg\74/picture>",
+    
+    "\74name>Put on oven mitts.\74/name>\74picture>http://joeschedule.com/cgi/ngfop/pics/book/c14.jpg\74/picture>",
+    
+    "\74name>Put cookie sheets in oven.\74/name>\74picture>http://images.google.com/images?q=tbn:mqakZPGWIygJ:www.maxlent.com/Food/cookie5.jpg\74/picture>",
+    
+    "\74name>Set timer for nine minutes.\74/name>\74picture>http://images.google.com/images?q=tbn:WF9YInwiL8gJ:www.baddesigns.com/timer.gif\74/picture>",
+    
+    "\74name>Let cool.\74/name>\74picture>http://images.google.com/images?q=tbn:zNaeSEU3jtEJ:www.cristolinefundraising.com/images/cookies_sheet.jpg\74/picture>",
+    
+    "\74name>Eat them.\74/name>\74picture>\74/picture>",
+    "end"
+
+);
+
+
+
+
+
+function getListItem()
+
+{
+
+	var str = "";
+
+	var obj = document.myform;
+
+
+
+	// the case of 0 elements
+
+	if (obj.elements.C1 === undefined)
+
+		return str;
+
+
+
+	if (obj.elements.C1.length === undefined)
+
+	{
+
+		if (obj.C1.checked)
+
+			str = _listData[0];
+
+
+
+		return str;
+
+	}
+
+
+
+	// Yes there is an array of elements.
+
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+
+	{
+
+		if (obj.elements.C1[iii].checked)	
+
+		{
+
+			str = _listData[iii];
+
+			break;
+
+		}
+
+	}
+
+
+
+	return str;
+
+}
+
+
+
+-->
+
+</SCRIPT>
+
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<DIV>&nbsp;</DIV>
+<FORM name=myform action=/cgi-bin/cgi/ngfop/each.cgi method=post><INPUT 
+type=hidden value=sch12686642.xml name=xmlfilename> 
+<TABLE cellPadding=2 width="100%" border=1>
+  <TBODY>
+  <TR>
+    <TD align=middle colSpan=3>Make Chocolate Chip Cookies </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://thm-br1r2.search.vip.scd.yahoo.com/image/71740397" width=105 
+      border=0> <BR>Get bowl. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://thm-ar1r2.search.vip.scd.yahoo.com/image/313823306" width=105 
+      border=0> <BR>Get spoon. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:PtkHmoEE0yoJ:www.snopes2.com/rumors/images/butter.jpg" 
+      width=105 border=0> <BR>Get one stick of butter. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:7rVi8-L-FFcJ:home.no.net/reallife/new/cards/mat/egg.jpg" 
+      width=105 border=0> <BR>Get one egg. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:h8Px8BfmmHgJ:www.reasors.com/new_items/07_july/lg_Cookie_Mix_WCC_1.jpg" 
+      width=105 border=0> <BR>Get cookie mix. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%">Preheat oven temperature to 350 degrees. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://joeschedule.com/cgi/ngfop/pics/book/c15.jpg" width=105 
+      border=0> <BR>Put butter in bowl. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:mu_H60J_ePoJ:www.thegrillstoreandmore.com/image/products/big-pics/dcs-microwave.jpg" 
+      width=105 border=0> <BR>Put bowl in microwave for 60 seconds. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%">Take bowl out of microwave. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://joeschedule.com/cgi/ngfop/pics/book/c12.jpg" width=105 
+      border=0> <BR>Add cookie mix to bowl. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://joeschedule.com/cgi/ngfop/pics/book/c11.jpg" width=105 
+      border=0> <BR>Add egg to bowl. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://joeschedule.com/cgi/ngfop/pics/book/c10.jpg" width=105 
+      border=0> <BR>Stir. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://joeschedule.com/cgi/ngfop/pics/book/c13.jpg" width=105 
+      border=0> <BR>Put rounded tablespoon of batter onto cookie sheet. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://joeschedule.com/cgi/ngfop/pics/book/c14.jpg" width=105 
+      border=0> <BR>Put on oven mitts. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:mqakZPGWIygJ:www.maxlent.com/Food/cookie5.jpg" 
+      width=105 border=0> <BR>Put cookie sheets in oven. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:WF9YInwiL8gJ:www.baddesigns.com/timer.gif" 
+      width=105 border=0> <BR>Set timer for nine minutes. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%"><IMG height=96 
+      src="http://images.google.com/images?q=tbn:zNaeSEU3jtEJ:www.cristolinefundraising.com/images/cookies_sheet.jpg" 
+      width=105 border=0> <BR>Let cool. </TD></TR>
+  <TR>
+    <TD width="5%"></TD>
+    <TD width="5%"><INPUT type=checkbox value=ON name=C1></TD>
+    <TD align=left width="64%">Eat them. </TD></TR></TBODY></TABLE></FORM>
+<P class=footer1><!--<a href="http://www.joeschedule.com">visit www.joeschedule.com--></A>visit 
+www.joeschedule.com </P></BODY></HTML>

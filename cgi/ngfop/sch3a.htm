@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<title>sch3a</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+</head>
+
+<script>
+<!--
+
+//////////////////////////////////////////////////////////////////////////////
+<IF_EMBEDED_CBS>
+var <FN> = new Array(
+'<div id="<DIVID>" style="background: #FFFFFF;color : #000099;'+
+'width: 100%; height: 130px; border: solid 1px black; overflow:auto; z-index : 30;" >'+
+'<table border="1" width="100%" cellpadding="3">',
+    <row>
+'          <tr>'+
+'            <td width="100%" >'+
+'<IF_PICTURE>			<IMG NAME="I55" border="0" src="<PICTURE>" width="105" height="97" type="image"></IF_PICTURE>'+
+'		     <NAME>'+
+'			</td>'+
+'          </tr>',
+    </row>
+'</table>'+
+'</DIV>',
+""
+);
+</IF_EMBEDED_CBS>
+//////////////////////////////////////////////////////////////////////////////
+
+
+function getLBRows(rowID1, rowID2, src)
+{
+//alert("getLBRows("+rowID1+ ", "+rowID2+", "+src+")");
+	var szResults = "";
+	var ar;
+
+	var ixml = -1;
+	for (iii=0; iii < gxmls.length; iii++)
+	{
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+		{
+			ixml = iii;
+			break;
+		}
+	}
+	if (ixml == -1)
+		return szResults;
+
+	ar = gxmldata[ixml];
+
+	sz1 = '<tr onClick="setRow(\''+rowID1+'\',\''+rowID2 +'\',\''+src+'\',';
+
+	for (iii=0; iii < ar.length; iii++)
+	{
+		szRow= ar[iii];
+
+		myRe=/(<tr.*>)/i;
+		if (myRe.test(ar[iii]))
+		{
+			newtr = sz1+iii+');">';
+
+			re = /(<tr(.*?)>)./i;
+
+			szRow= ar[iii].replace(re, newtr);
+		}
+
+		szResults += szRow;
+	}
+		
+	return szResults;
+}
+
+
+function getLBRow(src, iRow)
+{
+	var szResults = "";
+	var ixml = -1;
+
+	for (iii=0; iii < gxmls.length; iii++)
+	{
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+		{
+			ixml = iii;
+			break;
+		}
+	}
+
+	if (ixml == -1)
+		return "";
+
+
+	szResults += gxmldata[ixml][iRow];
+	return szResults;
+}
+
+
+
+function setRow(dest, rowID2, src, iRow)
+{
+	var szrd = getLBRow(src, iRow);
+
+str = szrd;
+
+
+newtr = "<tr>";
+
+//alert(str);
+re = /(<\s*tr(.*?)>)./i;
+newstr = str.replace(re, newtr);
+
+	var szVal = '<table border="0" width="100%" cellpadding="3">';
+	szVal += newstr;
+	szVal += '</table>';
+
+
+
+	/////////
+	// pop //
+	/////////
+	document.getElementById(dest).innerHTML = '<div id="'+dest+'">'+
+'			<table border="1" width = "100%" cellpadding="3" height="1">'+
+'			<tr onClick    ="bob4a(\'' + src + '\', \'' + dest + '\', \''+ rowID2+'\');">'+
+'				<td>'+
+''+
+'<div id="'+rowID2+'">'+
+'<div>'+
+'				</td>'+
+'				<td>'+
+'				<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" border="0">'+
+'				</td>'+
+'		    </tr>'+
+'			</table>'+
+'</div>';
+
+  	document.getElementById(rowID2).innerHTML = szVal;
+}
+
+
+
+
+function getMyListBox(rowID1, rowID2, src)
+{
+//	alert("getMyListBox("+rowID1+", "+rowID2+", "+ src+")");
+
+	return(	getLBRows(rowID1, rowID2, src));
+}
+
+
+function bob4a(src, rowID1, rowID2)
+{
+	szLB = getMyListBox(rowID1, rowID2, src);
+
+	document.getElementById(rowID1).innerHTML = szLB;
+}
+
+
+function hideEmptyPictures()
+{
+	var iChks = 0;
+
+//alert(document.myform.I55.length);
+
+	for (var iii = 0; iii < document.myform.I55.length; iii++)
+	{
+		var src = _listData[iii];
+		var szPic = src.match(/<picture>(.+)<\/picture>/i);
+//alert(szPic);
+		if (szPic)
+		{
+			szPic = szPic[1];
+		}
+		else
+		{
+			szPic = "";
+		}
+		if (szPic == "")
+		{
+			iChks++;
+			myform.elements.I55[iii].width = "0";
+			myform.elements.I55[iii].height = "0";
+
+	    }
+	}
+}
+
+var _listData = new Array(
+    <row>
+    "\74name><NAME>\74/name>\74picture><PICTURE>\74/picture>",
+    </row>
+"end"
+);
+
+
+function getListItem()
+{
+	//return _listData[iii];
+
+	var str = "";
+	var obj = document.myform;
+
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+	{
+		if (obj.elements.C1[iii].checked)	
+		{
+			str = _listData[iii];
+			break;
+		}
+	}
+
+	return str;
+}
+
+function rint()
+{
+    document.bgColor='rgb(256, 256, 256)';
+    document.body.background="";
+
+	document.myform.prin.style.visibility="hidden";
+
+	document.all.CC1.style.style="tiny";
+	document.all.CC1.style.color="silver";
+
+	document.all.CC1.style.visibility="visible";
+
+	document.all.CC1.style.visibility="visible";
+
+//  window.print();
+}
+
+-->
+</script>
+
+
+<!--<body bgcolor="pink">
+  <body bgcolor=.windowbg>
+<body bgcolor='rgb(249, 201, 92)';>
+-->
+<body>
+
+<!--
+<body bgcolor='rgb(201,232,251)';>
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif"
+text="#000080" link="#800000" vlink="#008080">
+-->
+
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<filename>
+<input type="hidden" NAME="xmlfilename" value="<FILENAME>" />
+</filename>
+
+
+<table border="1" cellpadding="3" height="1">
+
+  <description>
+  <tr>
+<!--     <td valign="top" width="50%" height="29" > -->
+      <td  colspan="3" align="center">
+	  <font size="5"><DESCRIPTION></font>
+	  </td>
+  </tr>
+  </description>
+
+<row>
+        <tr>
+          <td width="5%" height="1"><TIME></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"/></td>
+
+          <td width="54%" align="left" height="1">
+		  <!-- onClick    ="mkblack(this,1);" -->
+<IF_PICTURE>
+		  <IMG  border="0" src="<PICTURE>" width="105" height="96" type="image"> 
+		  <br />
+</IF_PICTURE>
+		  <name>
+		  </td>
+        </tr>
+</row>
+
+</table>
+
+<input type="button" Value="To Print" name="prin" onclick = "rint();"/>
+
+<!-- hidden vars to force arrays -->
+<!-- <IMG NAME="I55" border="0" src="<PICTURE>" width="105" height="96" type="image">-->
+<!--  <IMG NAME="I55" border="0" src="/cgi/ngfop/bar1.gif" width="105" height="96" type="image"> -->
+
+</form>
+
+
+<DIV CLASS="CC">
+<div ID="CC1"  style="visibility:hidden;">
+<!--
+<img src="/cgi/ngfop/bar1.gif" width="582" height="9"><br />
+-->
+
+<h6>
+<address>
+mastronardif@netcarrier.com<br />
+Copyleft © 2003 by [Gracy LLC]. All rights reserved.<br />
+Revised: 27 Nov 2003
+</address>
+</h6>
+</DIV>
+
+</body>
+</html>
+

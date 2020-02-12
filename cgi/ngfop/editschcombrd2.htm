@@ -1,0 +1,655 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<title>Edit Schedule</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+</head>
+
+<script type="text/javascript">
+var colorbgnd   = 'black';
+var colorforgnd = '#F5F3E4'; //'#00FFFF';
+
+function OnInit()
+{
+   var xmlfile = document.myform.name.value;
+   if (xmlfile.toLowerCase() == "Students.xml".toLowerCase())
+   {
+      //alert("editsch.htm::OnInit() xmlfile = " + xmlfile);
+      top.frames[0].location.reload()
+   }
+
+   var SWMs  = document.myform.SWMs.value;
+   //alert(":OnInit() SWMs["+SWMs+"]");
+
+   var szPic = SWMs.match(/(\((.+?)\))/);
+   
+   // Working On
+   var szMatches = SWMs.match(/w\((.+?)\)/);
+   //alert("szMatches["+szMatches+"]");
+   
+   if (szMatches && szMatches[0] && szMatches[1])
+   {
+      //alert("szMatches[1]["+szMatches[1]+"]");
+      atemp  = szMatches[1].split(/\s*,\s*/);
+      var obj = document.myform.CW1;
+      for (var iii = 0; iii < atemp.length; iii++)
+      {
+         obj[(atemp[iii])].checked = 1;
+      }   
+   }
+   
+   // Mastered
+   szMatches = SWMs.match(/m\((.+?)\)/);
+   //alert("szMatches["+szMatches+"]");
+    
+   if (szMatches && szMatches[0] && szMatches[1])
+   {
+      //alert("szMatches[1]["+szMatches[1]+"]");
+      atemp  = szMatches[1].split(/\s*,\s*/);
+      var obj = document.myform.CM2;
+      for (var iii = 0; iii < atemp.length; iii++)
+      {
+         obj[(atemp[iii])].checked = 1;
+      }   
+   }
+}
+
+function getList(obj)
+{
+   var str = "";
+      
+   // the case of 0 elements
+   if (obj === undefined)
+      return str;
+
+   if (obj.length === undefined)
+   {
+      return str;
+   }
+
+   str = "(";
+   var strMs = "M(";
+   var objM = document.myform.elements.CM2;
+   for (var iii = 0; iii < obj.length; iii++)
+   {
+      // Clear
+      document.myform.elements.HCW1[iii].value="";
+      document.myform.HCM2[iii].value = "";
+      if (obj[iii].checked)
+      {
+         str += iii;
+         str += ",";
+         document.myform.HCW1[iii].value = '1';
+      }
+      
+      if (objM[iii].checked)
+      {
+         strMs += iii;
+         strMs += ",";
+         document.myform.HCM2[iii].value = '1';
+      }
+   }
+
+   str += ")";
+   var str2 = str.replace(/,\)/, ")");
+
+   return str2;
+}
+
+function save2(name, desc, student)
+{
+   if (student)
+   {
+      var xmlfile = document.myform.name.value;
+      
+      var obj = document.myform.elements.CW1;
+      var szList = getList(obj);
+      
+      var szData = student + " " + xmlfile;
+      document.myform.student.value = szData;
+      // Fm 6/8/9 var answer = confirm (":save2 "+ desc);
+      //desc
+      //if (!answer) return;
+   }
+   
+	var w_space = String.fromCharCode(32);
+	var bValidName=0;
+
+	for (var iii=0; iii< desc.length; iii++)
+	{
+		if(desc.charAt(iii) != w_space)
+		{
+			bValidName = 1;
+			break;
+		}
+	}
+
+	if (!bValidName)
+	{
+		alert("Please enter a Description.");
+		return;
+	}
+
+	var type;
+   if (/cb/ig.test(name))
+	{
+		type = "cb";
+	}
+	else
+		type = "sch";
+
+	document.myform.type.value = type;
+	document.myform.d0.value = desc;
+	document.myform.submit();
+}
+
+
+// the cut vars
+var	gT1   = "";
+var	gHR55 = "";
+var	gI55src  = "";
+var	gI55w = "";
+var	gI55h = "";
+var	gR55  = "";
+
+function cutRow()
+{
+	for (var iii = 0; iii < document.myform.elements.R1.length; iii++)
+	{
+		if (myform.elements.R1[iii].checked)	
+		{
+			gT1   =document.myform.T1  [iii].value;
+			gHR55 =document.myform.HR55[iii].value;
+			gI55src =document.myform.I55 [iii].src;
+			gI55w   =document.myform.I55 [iii].width;
+			gI55h   =document.myform.I55 [iii].height;
+			gR55  =document.myform.R55 [iii].value;
+
+			//
+			// clear row
+			document.myform.T1  [iii].value ="";
+			document.myform.HR55[iii].value ="";
+			document.myform.I55 [iii].src   ="";
+			document.myform.I55 [iii].width ="";
+			document.myform.I55 [iii].height="";
+			document.myform.R55 [iii].value ="";
+
+			//pasteRow();
+			//
+
+			break;
+		}
+	}
+}
+
+function pasteRow()
+{
+	for (var iii = 0; iii < document.myform.elements.R1.length; iii++)
+	{
+		if (myform.elements.R1[iii].checked)	
+		{
+			document.myform.T1  [iii].value = gT1;
+			document.myform.HR55[iii].value = gHR55;
+			document.myform.I55 [iii].src   = gI55src;
+			document.myform.I55 [iii].width = gI55w;
+			document.myform.I55 [iii].height= gI55h;
+			document.myform.R55 [iii].value = gR55;
+
+			break;
+		}
+	}
+}
+
+function insertRow()
+{
+	var iRow = 0;
+	mylistT1   = new Array();
+	mylistR1   = new Array();
+	mylistHR55 = new Array();
+	mylistI55  = new Array();
+	mylistR55  = new Array();
+
+   for (var iii = 0; iii < document.myform.elements.R1.length; iii++)
+   {
+	   mylistT1.  push(document.myform.T1  [iii].value);
+	   mylistR1.  push(document.myform.R1  [iii].value);
+	   mylistHR55.push(document.myform.HR55[iii].value);
+	   mylistI55. push(document.myform.I55 [iii].src);
+	   mylistR55. push(document.myform.R55 [iii].value);
+
+	   if (myform.elements.R1[iii].checked)	
+	   {
+		   iRow  = iii;
+   	}
+   }
+
+	if ((iRow +1)< myform.elements.R1.length)
+	{
+		// move radio check
+		document.myform.T1  [iRow].value = "";
+		document.myform.R1  [iRow].value = "";
+		document.myform.HR55[iRow].value = "";
+		document.myform.I55 [iRow].src   = "";
+		document.myform.I55 [iRow].width  = 0;
+		document.myform.I55 [iRow].height  = 0;
+		document.myform.R55 [iRow].value = "";
+
+		// shift rows down
+		for (var iii = iRow; iii < myform.elements.R1.length; iii++)
+		{
+			// pop
+			if ((iii +1)< myform.elements.R1.length)
+			{
+				document.myform.T1  [(iii+1)].value = mylistT1  [iii%myform.elements.R1.length];
+				document.myform.R1  [(iii+1)].value = mylistR1  [iii%myform.elements.R1.length];
+				document.myform.HR55[(iii+1)].value = mylistHR55[iii%myform.elements.R1.length];
+				document.myform.I55 [(iii+1)].src   = mylistI55 [iii%myform.elements.R1.length];
+				document.myform.R55 [(iii+1)].value = mylistR55 [iii%myform.elements.R1.length];
+			}
+		}
+	}
+
+	initializeRows();
+}
+</script>
+
+<!--<body Bgcolor="#99CCFF">
+<body topmargin="0" bgcolor='rgb(249, 201, 92)';>
+-->
+
+<body onLoad="OnInit();" topmargin="0">
+<form name="myform" method="post" 
+action="/cgi-bin/cgi/ngfop/editschcombrd.pl">
+
+<!--action="/cgi-bin/cgi/ngfop/editschcombrd.pl?action=ve&htmlname=editschcombrd.htm">-->
+
+<!-- hidden shits -->
+<filename>
+  <input type="hidden" name=name size = "10" value="<FILENAME>">
+</filename>
+  <input type="hidden" name=type size = "10" value="">
+  <input type="hidden" name=d0 size = "30" value="">
+  <input type="hidden" name=student size = "30" value="">   
+<swms>
+  <input type="hidden" name="SWMs" value="<SWMS>"/>
+</swms>     
+
+<!-- FM 1/6/10-->
+<IF_EMBEDED_XB>
+<IF_EMBEDED_SCH>
+<row>
+<IF_PICTURE>        <img NAME="I55" border="0" src="<PICTURE>" width="35" height="35"/></IF_PICTURE>
+    <NAME>
+</row>
+</IF_EMBEDED_SCH>
+</IF_EMBEDED_XB>
+<!-- FM 1/6/10-->
+
+
+
+<table id="tableId" border="1" cellpadding="0" width="100%">
+<row>
+<tr>
+            <td width="5%">
+            <input type="radio" name="R1">
+            </td>
+
+            <td width="64%">
+<SPAN ID="HR55"><input type="hidden" NAME="HR55" value="<PICTURE>"></SPAN>
+<SPAN ID="I55"> <img NAME="I55" border="0" src="<PICTURE>" width="40px" 
+height="40px"></SPAN>
+<SPAN ID="ListDescription" STYLE="font-size:14pt;color:ff0000"><DESCRIPTION/></SPAN>
+                        <br/>
+                        <input type="text" name="T1" size="24" value="<TIME>">
+<SPAN ID="R55"><input type="hidden" name="R55" size="24" value="<NAME>"></SPAN>
+			</td>
+
+<!-- FM 1/6/10-->
+<!-- FM 1/6/10-->
+
+</tr>
+</row>
+
+
+<Appendblanks>
+          <tr>
+            <td width="5%">
+            <input type="radio" name="R1">
+            </td>
+
+            <td width="64%">
+<SPAN ID="HR55"><input type="hidden" NAME="HR55" value=""></SPAN>
+<SPAN ID="I55"<img NAME="I55" border="0" src="" width="40px" height="40px"></SPAN>
+<SPAN ID="ListDescription" STYLE="font-size:14pt;color:ff0000">list Description</SPAN>
+                        <br/>
+                        <input type="text" name="T1" size="24" value="<TIME>">
+<SPAN ID="R55"><input type="hidden" name="R55" size="24" value="<NAME>"></SPAN>
+                        </td>
+         </tr>
+</Appendblanks>
+</table>
+
+<script>
+
+gIwidth  = 10;//document.myform.I55[0].width;
+gIheight = 10;//document.myform.I55[0].height;
+
+/****************
+function SetRadio(obj, kkk)
+{
+  for (var iii = 0; iii <document.myform.R1.length; iii++)
+  {
+//alert("SetRadio "+iii);
+      obj[iii].checked = 0;
+      if (iii==kkk)
+         obj[iii].checked = 1;
+  }
+//if (kkk<document.myform.R1.length)
+//  obj[kkk].checked = 1;
+}
+*************/
+
+//function UpdateCol(iii, name, desc, szPic)
+function UpdateCol(iii, myArray)
+{
+   var mytable=document.getElementById("tableId");
+   var szCol1 = mytable.rows[iii].cells[1].innerHTML;
+   var sz22="";
+   var szSub="";
+   var reg;
+   var sMats;
+
+
+   var iii, name, desc, szPic;
+   var value;
+   for (var i=0; i<myArray.length; i++)
+   {
+      name  = myArray[i];
+      value = myArray[++i];
+//alert(name+"===>"+value);
+     
+      if (name.match(/DESCRIPTION/i))
+      {
+         // Description
+         reg   = /(<span id=.*?ListDescription.*?>)(.+?)(<\/span>)/i;
+         sMats = szCol1.match(reg);
+         if (sMats.length==4)
+         {
+            szSub =value;
+            sz22  = szCol1.replace(reg, sMats[1]+szSub+sMats[3]);
+            szCol1=sz22;
+         }       
+      }
+
+      // Name FM fix this w/ the time tag which is the list prompt
+      if (name.match(/NAME/i))
+      {
+         reg   = /(<span id=\W*?R55.*?>)(.+?)(<\/span>)/i;
+         sMats = szCol1.match(reg);
+         if (sMats.length==4)
+         {
+            szSub ='<input name="R55" size="24" value="'+value +'" type="hidden">'
+            sz22  = szCol1.replace(reg, sMats[1]+szSub+sMats[3]);
+            szCol1=sz22;
+         }
+      }
+
+      // Picture
+      if (name.match(/PICTURE/i))
+      {
+         reg   = /(<span id=.*?I55.*?>)(.+?)(<\/span>)/i;
+         sMats = szCol1.match(reg);
+         if (sMats.length==4)
+         {
+             szSub= '<img NAME="I55" border="0" src="'+value+'" width="40px" height="40px">';
+             sz22= szCol1.replace(reg, sMats[1]+szSub+sMats[3]);
+             szCol1=sz22;
+
+             reg   = /(<span id=.*?HR55.*?>)(.+?)(<\/span>)/i;
+             sMats = szCol1.match(reg);
+             if (sMats.length==4)
+             {
+                szSub = '<input type="hidden" NAME="HR55" value="'+value+'">';
+                sz22  = szCol1.replace(reg, sMats[1]+szSub+sMats[3]);
+                szCol1= sz22;
+             }
+         }
+      }
+
+   }
+
+   return szCol1;
+
+
+
+
+   // Name(fn), Description, Picture
+   if (-1 == name.search(/<MK_LISTBOX>/i) )
+   {
+      desc="";
+   }
+
+// Frank figure out what to do in the skip cases, like picture only....
+
+
+   // Description
+//   var reg   = /(<span id=.*?ListDescription.*?>)(.+?)(<\/span>)/i;
+//   var sMats = szCol1.match(reg);
+//   if (sMats.length==4)
+//   {
+//      szSub =desc;
+//      sz22  = szCol1.replace(reg, sMats[1]+szSub+sMats[3]);
+//      szCol1=sz22;
+//   }
+
+   // Name
+   if (name)
+   {
+      reg   = /(<span id=.*?R55.*?>)(.+?)(<\/span>)/i;
+      sMats = szCol1.match(reg);
+      if (sMats.length==4)
+      {
+         szSub ='<input name="R55" size="24" value="'+name +'" type="hidden">'
+         sz22  = szCol1.replace(reg, sMats[1]+szSub+sMats[3]);
+         szCol1=sz22;
+      }
+   }
+
+   // Picture
+   if (szPic)
+   {
+      reg   = /(<span id=.*?I55.*?>)(.+?)(<\/span>)/i;
+      sMats = szCol1.match(reg);
+      if (sMats.length==4)
+      {
+          szSub= '<img NAME="I55" border="0" src="'+szPic+'" width="40px" height="40px">';
+          sz22= szCol1.replace(reg, sMats[1]+szSub+sMats[3]);
+          szCol1=sz22;
+
+          reg   = /(<span id=.*?HR55.*?>)(.+?)(<\/span>)/i;
+          sMats = szCol1.match(reg);
+          if (sMats.length==4)
+          {
+             szSub = '<input type="hidden" NAME="HR55" value="'+szPic+'">';
+             sz22  = szCol1.replace(reg, sMats[1]+szSub+sMats[3]);
+             szCol1= sz22;
+          }
+      }
+    }
+
+   return szCol1;
+}
+
+function test(src)
+{
+var myArray = [];
+// embed the shit.
+	var szName = src.match(/<Name>(.+)<\/Name>/i);
+	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
+//	if (szPic)
+	if (szPic !=null)
+//	if (!(szPic === undefined))
+	{
+		szPic = (szPic[1]=== undefined) ? "" : szPic[1];
+// FM 1/4/10		szPic = szPic[1];
+           if (szPic)
+              myArray.push("PICTURE"); myArray.push(szPic);
+	}
+	else
+	{
+		szPic = "";
+	}
+var bAnEmbed=0;
+var description ="";
+	if (szName)
+	{
+	   szName = szName[1];
+           if(szName.match(/<\/MK_LISTBOX>/))
+           {
+              bAnEmbed=1;
+              description = top.frames[0].document.myform.leftfdesc.value;
+              myArray.push("NAME"); myArray.push(szName);
+           }
+           else
+           {
+              myArray.push("NAME"); myArray.push(szName);
+           }
+
+           myArray.push("DESCRIPTION"); myArray.push(description);
+	}
+	else
+	{
+		szName = "";
+	}
+
+	for (var iii = 0; iii < document.myform.R1.length; iii++)
+	{
+	   if (document.myform.elements.R1[iii].checked)	
+	   {
+//alert("R1["+iii+"] checked out of "+  document.myform.R1.length );
+var desc = top.frames[0].document.myform.leftfdesc.value;
+var mytable=document.getElementById("tableId");
+
+//
+//var szBOB = UpdateCol(iii, szName, desc, szPic)
+//var myArray = [ 'zero', 'one', 'two', 'three', 'four', 'five' ];
+
+//alert("UpdateCol("+ iii+ ", " +myArray +")");
+var szBOB = UpdateCol(iii, myArray);
+
+//UpdateCol(iii, ['arg1', 'val 1']);
+//var mypairs = [ 'arg1', 'val one'];
+//UpdateCol(iii, mypairs);
+//UpdateCol(iii, [ 'name', 'val one']);
+//mytable.rows[iii].cells[1].innerHTML =szBOB;
+
+//alert("szBOB = "+szBOB);
+//return;
+//
+
+var szCol1 = mytable.rows[iii].cells[1].innerHTML;
+           //var reg   = /(<span id.*>)(.+?)(<\/span>)/i;
+           var reg   = /(<span id=.*?ListDescription.*?>)(.+?)(<\/span>)/i;
+
+           //var sMats = szRow.match(reg);
+           var sMats = szCol1.match(reg);
+
+           if (bAnEmbed && sMats.length==4)
+           {
+              var sz22= szCol1.replace(reg, sMats[1]+desc+sMats[3]);
+szCol1=sz22;
+           reg   = /(<span id=.*?R55.*?>)(.+?)(<\/span>)/i;
+           sMats = szCol1.match(reg);
+           if (sMats.length==4)
+           {
+              desc='<input name="R55" size="24" value="'+szName +'" type="hidden">'
+              sz22= szCol1.replace(reg, sMats[1]+desc+sMats[3]);
+           }
+           mytable.rows[iii].cells[1].innerHTML =sz22;
+
+              // Select radio again
+              //document.myform.R1[iii].checked=1;
+return;
+           }
+
+			if (szName != "")
+				document.myform.R55[iii].value = szName;
+
+			if (szPic != "")
+			{
+				document.myform.HR55[iii].value = szPic;
+//        var reg   = /(<span id.*>)(.+?)(<\/span>)/i;
+        var reg22   = /(<span id=.*?I55.*?>)(.+?)(<\/span>)/i;
+           //var sMats = szRow.match(reg);
+           var sMats22 = szCol1.match(reg22);
+
+	//alert("sMats22["+sMats22.length+"]"+"("+ sMats22 +")");
+           if (sMats22.length==4)
+{
+var szSub= '<img NAME="I55" border="0" src="'+szPic+'" width="40px" height="40px">';
+              var sz33= szCol1.replace(reg22, sMats22[1]+szSub+sMats22[3]);
+var szNewCol=sz33;
+
+           reg22   = /(<span id=.*?HR55.*?>)(.+?)(<\/span>)/i;
+           sMats22 = sz33.match(reg22);
+           if (sMats22.length==4)
+           {
+               szSub= '<input type="hidden" NAME="HR55" value="'+szPic+'">';
+               szNewCol= sz33.replace(reg22, sMats22[1]+szSub+sMats22[3]);
+           }
+
+//alert("now the shit look like\n"+szNewCol);
+
+ mytable.rows[iii].cells[1].innerHTML =szNewCol;
+
+}
+ 
+//
+//				document.myform.I55[iii].width  = gIwidth;
+//				document.myform.I55[iii].height = gIheight;
+//				document.myform.I55[iii].src    = szPic;
+			}
+		}
+	}
+}// end
+
+
+
+function initializeRows()
+{
+	gIwidth  = 40;//document.myform.I55[0].width;
+	gIheight = 40;//document.myform.I55[0].height;
+
+	var szhRow;
+   
+   var iLen =document.getElementsByName("R1").length;
+      
+	//for (var iii = 0; iii < myform.elements.R1.length; iii++)
+   for (var iii = 0; iii < iLen; iii++)
+	{
+		szhRow = document.myform.HR55[iii].value;
+		if (szhRow == "")
+		{
+			document.myform.I55[iii].width  = 0;
+			document.myform.I55[iii].height = 0;
+		}
+		else
+		{
+			document.myform.I55[iii].width  = gIwidth;
+			document.myform.I55[iii].height = gIheight;
+		}
+	}
+}
+
+initializeRows();
+if (parent.SetHeadValue)
+{
+    <description>
+		var desc = "<DESCRIPTION>";
+    </description>
+	parent.SetHeadValue("d0", desc);
+}
+</script>
+</body>
+</html>

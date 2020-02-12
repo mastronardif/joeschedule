@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <data>
+ <description>
+ Kris&#39;s Communication Board
+ </description>
+ 
+ <row>
+ <time>I want to GO</time>
+ <picture>/cgi/ngfop/members/Bucci/2db1562edd2fdfe8</picture>
+ <name>
+ <MK_LISTBOX>sch31766010.xml</MK_LISTBOX>
+ </name>
+ </row>
+ 
+ <row>
+ <time>I want to play</time>
+ <picture>/cgi/ngfop/members/Bucci/fe02b5b17cf675ba</picture>
+ <name>
+ <MK_LISTBOX>sch99607554.xml</MK_LISTBOX>
+ </name>
+ </row>
+ 
+ <row>
+ <time>I want to eat</time>
+ <picture>/cgi/ngfop/members/Bucci/c6774f29ce1dc918</picture>
+ <name>
+ <MK_LISTBOX>cb39385899.xml</MK_LISTBOX>
+ </name>
+ </row>
+ 
+ <row>
+ <time>I want to drink</time>
+ <picture>/cgi/ngfop/members/Bucci/2ed087d30f839b1c</picture>
+ <name>
+ <MK_LISTBOX>sch39398513.xml</MK_LISTBOX>
+ </name>
+ </row>
+ 
+ <row>
+ <time>I want to listen</time>
+ <picture>/cgi/ngfop/members/Bucci/4e30c1f8b903f462</picture>
+ <name>
+ <MK_LISTBOX>sch186592145.xml</MK_LISTBOX>
+ </name>
+ </row>
+ 
+ <row>
+ <time>I feel</time>
+ <picture>/cgi/ngfop/pics/temp/emotions/ji0004.jpg</picture>
+ <name>
+ <MK_LISTBOX>sch17882238.xml</MK_LISTBOX>
+ </name>
+ </row>
+ 
+ <row>
+ <time>I need a break</time>
+ <picture>/cgi/ngfop/members/Bucci/ff10ac3b5204e6c0</picture>
+ <name>
+ <MK_LISTBOX>sch186085225.xml</MK_LISTBOX>
+ </name>
+ </row>
+ 
+ </data>

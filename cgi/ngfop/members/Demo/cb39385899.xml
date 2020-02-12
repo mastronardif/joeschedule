@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Fruit
+</description>
+
+<row><picture>/cgi/ngfop/pics/temp/banana00.jpg</picture>
+<name>
+
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/apple000.jpg</picture>
+<name>
+
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/orange00.jpg</picture>
+<name>
+
+</name>
+</row>
+
+</data>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Fix breakfast
+</description>
+
+<row><picture>/cgi/ngfop/pics/temp/juice000.jpg</picture>
+<name>
+Get drink.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/plate.jpg</picture>
+<name>
+Get plate.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/mn002.jpg</picture>
+<name>
+Put waffles in toaster.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/toaster.jpg</picture>
+<name>
+Turn toaster on.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/c14.jpg</picture>
+<name>
+Put on oven mitts.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/mn003.jpg</picture>
+<name>
+Take out waffles when toaster dings.
+</name>
+</row>
+
+<row><name>
+eat them
+</name>
+</row>
+
+</data>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Jake's Friday
+</description>
+
+<row><name>
+<MK_LISTBOX>sch173788.xml</MK_LISTBOX>
+</name>
+</row>
+
+<row><name>
+playdate
+</name>
+</row>
+
+<row><picture>http://223.147.37.5/cgi/ngfop/pics/Fish.jpg</picture>
+<name>
+<MK_LISTBOX>sch176796.xml</MK_LISTBOX>
+</name>
+</row>
+
+</data>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<script>
+var gBodycolor='rgb(249, 201, 92)';
+var colorbgnd   = 'pink';
+var colorforgnd = 'rgb(249, 201, 92)'; //'#F5F3E4'; //'#00FFFF'; // .windowbg; ////
+
+function mover(obj)
+{
+	if (gObj != obj)
+		obj.bgColor=colorbgnd;
+}
+
+function mout(obj)
+{
+	if (gObj == obj)
+		return;
+
+	obj.bgColor= colorbgnd;
+
+	if (gObj != obj)
+		obj.bgColor=gBodycolor;//'gold';
+}
+
+var gObj = null;
+var gStr = null;
+function mclick(obj, row)
+{
+	mkblack(obj, row)
+}
+
+function mkblack(obj, pic)
+{
+	if (gObj)
+		gObj.bgColor = colorforgnd;
+
+	obj.bgColor= "black";
+
+	gObj = obj;
+	gStr = pic;
+}
+
+function getListItem(iii)
+{
+    return "\74picture>"+gStr+"\74/picture>";
+}
+</script>
+
+
+<body bgcolor='rgb(49, 21, 232)';>
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+
+<table border="1" cellpadding="3" width="100%">
+        <tr>
+		   <td colspan="100%" align="center">
+  <description>
+      <align="left"><font size="5"><DESCRIPTION></font>
+  </description>
+  </td>
+        </tr>
+
+        <tr>
+  <row>
+          <td align="left" height="1" onMouseOver  ="mover(this);" onMouseOut  ="mout(this);" 
+		                              onClick  ="mkblack(this, '<PICTURE>');"> 
+		  <IMG NAME="I5" border="0" src="<PICTURE>" width="105" height="96" type="image">
+     	  <a href="javascript:void(0);" onclick="delMyPic('<PICTURE>');" id="deleteButton" title="Delete"  class="fas fa-trash-alt" style="font-size:20px;"></a>        			  
+		  </td>
+  </row>
+        </tr>
+
+</table>
+</form>
+</body>
+</html>
+

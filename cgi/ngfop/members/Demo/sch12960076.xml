@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Night time routine
+</description>
+
+<row><picture>/cgi/ngfop/pics/booktemp/bsh008.jpg</picture>
+<name>
+Take a shower.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_02/102.jpg</picture>
+<name>
+Put on your pajamas.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_01/DSCF0010.JPG</picture>
+<name>
+Brush your teeth.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/booktemp/aDSCF0012.JPG</picture>
+<name>
+Read a book.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_02/101.jpg</picture>
+<name>
+Go to bed.
+</name>
+</row>
+
+</data>

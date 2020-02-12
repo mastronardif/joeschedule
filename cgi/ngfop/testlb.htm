@@ -1,0 +1,979 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<title>Testlb</title>
+</head>
+
+<style>
+
+#menuPOP{
+  background: #00FFaF;
+  color : #000099;
+  font-family : Arial, Tahoma, Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  padding : 2px;
+  margin: 2px;
+  border-color : #FF0000;
+  border-style : groove;
+  border-width : 2px;/* the border property in longhand*/
+  width: 480px;
+  z-index : 30;
+}
+
+
+#menuCB2{
+  background: #00FFFF;
+  color : #000099;
+  font-family : Arial, Tahoma, Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  padding : 2px;
+  margin: 2px;
+  border-color : #FF0000;
+  border-style : groove;
+  border-width : 2px;/* the border property in longhand*/
+  width: 90%;
+  z-index : 10;
+position: absolute;
+}
+
+#menuCB1{
+border: 11px solid #006622;
+background-color: Red;
+color: blue;
+padding: 13px;
+font-size: 23px;
+font-family: Verdana, Arial;
+position: absolute;
+width: auto;
+height: auto;
+z-index : 11;
+}
+
+</style>
+
+
+<script>
+
+<!--
+
+
+function getStyleObject(objectId) {
+    // cross-browser function to get an object's style object given its
+    if(document.getElementById && document.getElementById(objectId)) {
+		//alert(objectId+" // W3C DOM");
+	return document.getElementById(objectId).style;
+    } else if (document.all && document.all(objectId)) {
+		//alert("// MSIE 4 DOM");
+	return document.all(objectId).style;
+    } else if (document.layers && document.layers[objectId]) {
+		//alert("// NN 4 DOM.. note: this won't find nested layers");
+	return document.layers[objectId];
+    } else {
+		alert("// i Dont know what the fuck you are. getStyleObject("+objectId+")");
+	return false;
+    }
+} // getStyleObject
+
+/*****************************************************************/
+/*****************************************************************/
+
+var gdestname;
+
+function getScrollXY() {
+  var scrOfX = 0, scrOfY = 0;
+  if( typeof( window.pageYOffset ) == 'number' ) {
+    //Netscape compliant
+    scrOfY = window.pageYOffset;
+    scrOfX = window.pageXOffset;
+  } else {
+    if( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
+      //DOM compliant
+      scrOfY = document.body.scrollTop;
+      scrOfX = document.body.scrollLeft;
+    } else {
+      if( document.documentElement &&
+          ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
+      	//IE6 standards compliant mode
+        scrOfY = document.documentElement.scrollTop;
+        scrOfX = document.documentElement.scrollLeft;
+      }
+    }
+  }
+
+  return [ scrOfX, scrOfY ];
+}
+
+
+
+function mkSelectBox(name)
+{
+	var obj = getStyleObject(name);
+
+	if(obj)
+	{
+var bbb = getScrollXY();
+xxScroll = bbb[0];
+yyScroll = bbb[1];
+
+		obj.visibility = "visible"; 
+		obj.left = (xxScroll+0)+"px";
+		obj.top  = (yyScroll+0)+"px";
+
+		//obj.width = "100%";
+		//obj.height = "100%";
+
+// FM 12/17/03
+//		bob4();
+// FM 12/17/03
+
+	}
+}
+
+
+function mkSelectBox00(name, rowname)
+{
+	/****************************************/
+	/*         bring up select box          */
+	/****************************************/
+	gdestname = rowname;
+	mkSelectBox(name);
+}
+
+
+function selrow22(menu, row)
+{
+//alert("selrow22("+menu+"," +row+")");
+
+	//szRadio = menu+"R1";
+	var szDivid = "DIV"+menu+"ROW"+row;
+
+	/////////////////////
+	// set new value   //
+	/////////////////////
+	var szDesc = document.getElementById(szDivid).innerHTML;
+	document.getElementById(gdestname).innerHTML = 	szDesc;
+
+	/////////////////////
+	// hide select box //
+	/////////////////////
+	var obj = getStyleObject(menu);
+	if (obj)
+	{
+		obj.visibility = "hidden";
+	}
+}
+
+
+/*****************************************************************/
+// The Bob's
+
+function bob()
+{
+	obj = getStyleObject("menuPOP");
+	if (obj)
+	{
+		obj.visibility = "visible";
+	}
+//alert("bob");
+
+}
+
+function bob2(menu, obj, row)
+{
+alert("bob2("+menu+"," +row+")");
+
+	var szDivid = "DIV"+menu+"ROW"+row;
+
+	/////////////////////
+	// set new value   //
+	/////////////////////
+	var szDesc = document.getElementById(szDivid).innerHTML;
+alert(szDesc);
+	document.getElementById("POP2").innerHTML = 	szDesc;
+	document.getElementById("POP2").visibility = "hidden";
+
+//	document.getElementById("menuPOP").innerHTML = 	szDesc;
+//	document.getElementById("CBNAME12").innerHTML = 	szDesc;
+//	document.getElementById('gdestname).innerHTML = 	szDesc;
+
+	/////////////////////
+	// hide select box //
+	/////////////////////
+	var obj = getStyleObject(menu);
+	if (obj)
+	{
+alert("bob2a("+menu+"," +row+")");
+		obj.visibility = "hidden";
+		//obj.width = "200%";
+	}
+}
+
+function bob3()
+{
+	alert("bob3");
+//	document.getElementById("POP2").innerHTML = "AAAAA";
+
+//	document.getElementById("CBNAME1").innerHTML = "FUCK";
+	document.getElementById("CBNAME1").innerHTML = '			<table border="1" width = "100%" cellpadding="3" height="1">'+
+'			<tr onClick    ="mkSelectBox00(\'menuCB1\', \'CBNAME11\');">'+
+'				<td>'+
+'				<div id="CBNAME11">'+
+'           <IMG NAME="I550" input border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">'+
+'				  Healthy Snacks '+
+'				</div>'+
+'				</td>'+
+'				<td>'+
+'				<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" name=Warning00 border="0">'+
+'				</td>'+
+'		    </tr>'+
+'			</table>';
+}
+
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+var _AcbList1 = new Array(
+'<div id="fuck01" style="width: 100%; height: 130px; border: solid 1px black; overflow:auto; z-index : 30;" >'+
+'<table border="1" width="100%" cellpadding="3">',
+
+'          <tr>'+
+'            <td width="100%" >'+
+'			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iicecrm.gif" width="105" height="97" type="image">'+
+'		        Row 0 XXXXXX shit pop ups row 0'+
+'			</td>'+
+'          </tr>',
+
+'          <tr>'+
+'            <td width="100%" >'+
+'			 <IMG NAME="I55" border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">'+
+'			 ROW 1'+
+'			</td>'+
+'          </tr>',
+
+'          <tr>'+
+'            <td width="100%" >'+
+'			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iupset.gif" width="105" height="97" type="image">'+
+'		        Row 3'+
+'			</td>'+
+'          </tr>',
+
+
+'</table>'+
+'</DIV>',
+""
+);
+
+
+
+var _AcbList2 = new Array(
+'<div id="fuck02" style="width: 100%; height: 130px; border: solid 1px black; overflow:auto; z-index : 30;" >'+
+'<table border="1" width="100%" cellpadding="3">',
+
+'          <tr>'+
+'            <td width="100%" >'+
+'			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iicecrm.gif" width="105" height="97" type="image">'+
+'		        Row 0 XXXXXX shit pop ups row 0'+
+'			</td>'+
+'          </tr>',
+
+'          <tr>'+
+'            <td width="100%" >'+
+'			 <IMG NAME="I55" border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">'+
+'			 ROW 1'+
+'			</td>'+
+'          </tr>',
+
+'          <tr>'+
+'            <td width="100%" >'+
+'			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iicecrm.gif" width="105" height="97" type="image">'+
+'		        Row 3'+
+'			</td>'+
+'          </tr>',
+
+
+'</table>'+
+'</DIV>',
+""
+);
+
+
+
+gxmldata= new Array(_AcbList1, _AcbList2, _AcbList1);
+gxmls= new Array("cbList1.xml","cbList2","cbList3");
+
+////////////////////////////////////////////////
+
+function getLBRows(rowID1, rowID2, src)
+{
+//alert("getLBRows("+rowID1+ ", "+rowID2+", "+src+")");
+	var szResults = "";
+	var ar;
+
+	var ixml = -1;
+	for (iii=0; iii < gxmls.length; iii++)
+	{
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+		{
+			ixml = iii;
+			break;
+		}
+	}
+	if (ixml == -1)
+		return szResults;
+
+	ar = gxmldata[ixml];
+
+//sz1 = '<tr onClick="setRow(\''+rowID1+'\', \''+src+'\',';
+sz1 = '<tr onClick="setRow(\''+rowID1+'\',\''+rowID2 +'\',\''+src+'\',';
+
+//alert("sz1 => "+sz1);
+
+	for (iii=0; iii < ar.length; iii++)
+	{
+szRow= ar[iii];
+
+ myRe=/(<tr.*>)/i;
+if (myRe.test(ar[iii]))
+{
+		newtr = sz1+iii+');">';
+		//alert(newtr);
+
+//re = /(<\s*tr(.*?)>)./i;
+re = /(<tr(.*?)>)./i;
+//alert(ar[iii]);
+
+//fuck= ar[iii].replace(re, "alert();");
+//fuck= ar[iii].replace(re, newtr);
+
+//ar[iii]= ar[iii].replace(re, newtr);
+szRow= ar[iii].replace(re, newtr);
+
+//alert(szRow);
+
+//alert(ar[iii]);
+//re = /(<\s*tr(.*?)>)./i;
+////newstr = str.replace(re, "** FUCK ** ");
+//newstr = str.replace(re, newtr);
+
+}
+		//szResults += ar[iii];
+		szResults += szRow;
+	}
+		
+	return szResults;
+}
+
+
+function getLBRow(src, iRow)
+{
+	var szResults = "";
+	var ixml = -1;
+
+	for (iii=0; iii < gxmls.length; iii++)
+	{
+		if (src.toLowerCase() == gxmls[iii].toLowerCase())
+		{
+			ixml = iii;
+			break;
+		}
+	}
+
+	if (ixml == -1)
+		return "";
+
+//	alert(gxmldata[ixml][iRow]);
+
+//	szResults =  gxmldata[ixml][0];
+	szResults += gxmldata[ixml][iRow];
+//	szResults += gxmldata[ixml][gxmldata[ixml].length-2];
+	return szResults;
+
+
+//	return gxmldata[ixml][iRow];
+}
+
+function setRow(dest, rowID2, src, iRow)
+{
+	var szrd = getLBRow(src, iRow);
+// alert(szrd);
+
+	//replace <tr>
+//'   //<tr onClick    ="setRow(\'CBNAME1\', \'cbList1.xml\', 2);">'+
+//re = /<(\s*tr\s*.*)>/i;
+
+//str = "<tr> rabit </tr>";
+//str = "< tr   rabit >";
+str = szrd;
+
+//strOnclick = "<tr onClick="+bob4a(\'' + src + '\', \'' + dest + '\');">'+
+
+//newtr = "<tr onClick=\"alert(\'GIRL\');\">";
+newtr = "<tr>";
+
+//alert(str);
+re = /(<\s*tr(.*?)>)./i;
+//newstr = str.replace(re, "** FUCK ** ");
+newstr = str.replace(re, newtr);
+//alert(newstr);
+
+//re = /(\w+)\s(\w+)/;
+//str = "John Smith";
+//newstr = str.replace(re, "fuck, $1");
+
+
+//alert(newstr);
+/*
+*/
+
+	var szVal = '<table border="0" width="100%" cellpadding="3">';
+//	szVal += szrd;
+	szVal += newstr;
+	szVal += '</table>';
+
+//alert(szVal);
+
+//getStyleObject(objectId)
+//'			<tr onClick    ="bob4a(\'cbList1.xml\', \'CBNAME1\');">'+
+
+	/////////
+	// pop //
+	/////////
+	document.getElementById(dest).innerHTML = '<div id="'+dest+'">'+
+'			<table border="1" width = "100%" cellpadding="3" height="1">'+
+'			<tr onClick    ="bob4a(\'' + src + '\', \'' + dest + '\', \''+ rowID2+'\');">'+
+'				<td>'+
+''+
+'<div id="'+rowID2+'">'+
+'<div>'+
+'				</td>'+
+'				<td>'+
+'				<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" name=Warning00 border="0">'+
+'				</td>'+
+'		    </tr>'+
+'			</table>'+
+'</div>';
+
+
+//  	document.getElementById('divRowN').innerHTML = szVal;
+//alert(rowID2);
+  	document.getElementById(rowID2).innerHTML = szVal;
+}
+
+
+
+
+function getMyListBox(rowID1, rowID2, src)
+{
+//	alert("getMyListBox("+rowID1+", "+rowID2+", "+ src+")");
+
+	return(	getLBRows(rowID1, rowID2, src));
+}
+
+function bob4a(src, rowID1, rowID2)
+{
+	szLB = getMyListBox(rowID1, rowID2, src);
+//	alert(szLB);
+
+
+	document.getElementById(rowID1).innerHTML = szLB;
+}
+
+
+
+function bob4()
+{
+alert("bob4()");
+		// FM 12/17/03
+  //	document.getElementById('CBNAME1').innerHTML = obj.innerHTML;
+  	//document.getElementById('CBNAME1').innerHTML = obj.innerHTML;
+//	alert(document.getElementById('CBNAME1').innerHTML);
+	
+document.getElementById('CBNAME1').innerHTML = '<div id="fuck01" style="width: 100%; height: 140px; border: solid 1px black; overflow:auto; z-index : 30;" >'+
+'<table border="1" cellpadding="3" >'+
+'          <tr onClick ="bob4();">'+
+'            <td width="10" height="1">'+
+'            <input type="radio" value="V2" checked name="menuCB1R1">'+
+'            </td>'+
+'            <td width="380" >'+
+'			<div id="DIVmenuCB1ROW1">'+
+'			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iicecrm.gif" width="105" height="97" type="image">'+
+'		        new shit pop ups row 1'+
+'			</div>'+
+'			</td>'+
+'          </tr>'+
+''+
+'          <tr onClick ="bob5();">'+
+'            <td width="10" height="1">'+
+'            <input type="radio" value="V2" checked name="menuCB1R1">'+
+'            </td>'+
+'            <td width="380" >'+
+''+
+'			<div id="DIVmenuCB1ROW2">'+
+'				<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iupset.gif" width="105" height="97" type="image">'+
+'				new shit row 2 CB1 BBBBB More Teeth and feet this is a really long string'+
+'				new shit row 2 CB1 CCCCC More Teeth and feet this is a really long string'+
+'				new shit row 2 CB1 DDDDD More Teeth and feet this is a really long string'+
+'			</div>'+
+'		</td>'+
+'          </tr>'+
+''+
+'          <tr onClick    ="selrow22(\'menuCB1\',this,3, \'CBNAME1\');">'+
+'            <td width="10" height="1">'+
+'            <input type="radio" value="V2" checked name="menuCB1R1">'+
+'            </td>'+
+'            <td width="380" >'+
+'			<div id="DIVmenuCB1ROW3">'+
+'			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">'+
+'			new shit CB2 row 4'+
+'			</div>'+
+'		</td>'+
+'          </tr>'+
+''+
+'</table>'+
+'</DIV>';
+		// FM 12/17/03
+}
+
+function bob5()
+{
+document.getElementById('CBNAME1').innerHTML = '<table border="1" width = "100%" cellpadding="3" height="1">'+
+			'<tr onClick    ="bob4();">'+
+			'	<td>'+
+			'	<div id="CBNAME11">'+
+		    '      <IMG NAME="I550" input border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">'+
+			'	  New Shit Bob five new shit. '+
+			'	</div>'+
+			'	</td>'+
+			'	<td>'+
+			'	<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" name=Warning00 border="0">'+
+			'	</td>'+
+		    '</tr>'+
+			'</table>';
+
+}
+
+/*****************************************************************/
+
+
+/*****************************************************************/
+/*****************************************************************/
+-->
+</script>
+
+
+<body bgcolor='rgb(249, 201, 92)';>
+
+
+<form name = "myform" method="POST" action="/cgi-bin/cgi/ngfop/each.cgi">
+
+
+<input type="hidden" NAME="xmlfilename" value="WedNight.xml">
+
+<table border="1" cellpadding="3" height="1">
+
+  <tr>
+<!--     <td valign="top" width="50%" height="29" > -->
+      <td width="70%" colspan="3" align="center">
+      <align="left"><font size="5">Wed Night</font></td>
+  </tr>
+        <tr onClick    ="/*mkSelectBox00('menuCB2', 'CBNAME1');*/">
+          <td width="5%" height="1"></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+
+<!-- selection box -->
+<div id="CBNAME1">
+			<table border="1" width = "100%" cellpadding="3" height="1">
+<!--			<tr onClick    ="mkSelectBox00('menuCB2', 'CBNAME1');"> -->
+			<tr onClick    ="bob4a('cbList1.xml', 'CBNAME1', 'divRowN');">
+				<td>
+
+<div id="divRowN">
+				<IMG NAME="I550" input border="0" src="/cgi/ngfop/pics/iupset.gif" width="105" height="97" type="image">
+				  select box 1 
+<div>
+				</td>
+				<td>
+				<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" name=Warning00 border="0">
+				</td>
+		    </tr>
+			</table>
+</div>
+<!-- selection box -->
+		  </td>
+        </tr>
+
+
+        <tr onClick    ="/*mkSelectBox00('menuCB2', 'CBNAME1');*/">
+          <td width="5%" height="1"></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+
+<!-- selection box -->
+<div id="CBNAME12">
+			<table border="1" width = "100%" cellpadding="3" height="1">
+			<tr onClick    ="bob4a('cbList1.xml', 'CBNAME12', 'divRowN12');">
+				<td>
+
+<div id="divRowN12">
+				<IMG NAME="I550" input border="0" src="/cgi/ngfop/pics/iupset.gif" width="105" height="97" type="image">
+				  select box 12 
+<div>
+				</td>
+				<td>
+				<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" name=Warning00 border="0">
+				</td>
+		    </tr>
+			</table>
+</div>
+<!-- selection box -->
+		  </td>
+        </tr>
+
+
+
+
+
+
+
+
+
+        <tr>
+          <td width="5%" height="1"></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+		          <width="33%" height="19">
+        <IMG NAME="I55"input border="0" src="/cgi/ngfop/pics/Fish.jpg" width="105" height="97" type="image">
+        Fish
+		</td>
+        </tr>
+
+
+        <tr>
+          <td width="5%" height="1"></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+		          <width="33%" height="19">
+<!-- selection box -->
+			<table border="1" width = "100%" cellpadding="3" height="1">
+			<tr onClick    ="mkSelectBox00('menuCB1', 'CBNAME11');">
+				<td>
+				<div id="CBNAME11">
+		          <IMG NAME="I550" input border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">
+				  Healthy Snacks 
+				</div>
+				</td>
+				<td>
+				<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" name=Warning00 border="0">
+				</td>
+		    </tr>
+			</table>
+<!-- selection box -->
+
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%" height="1"></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+		          <width="33%" height="19">
+        <input border="0" src="/cgi/ngfop/pics/iupset.gif" name="I55" width="105" height="97" type="image">
+        You are doomed!!
+
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%" height="1">4:32am</td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+		          <width="33%" height="19">
+        <input border="0" src="/cgi/ngfop/pics/winning1" name="I55" width="105" height="97" type="image">
+        hay ride w/Lea
+
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%" height="1"></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+		          <width="33%" height="19">
+        <input border="0" src="/cgi/ngfop/pics/k2.jpg" name="I55" width="105" height="97" type="image">
+		<div id="divRow">
+        Angry man at the beach!
+		</div>
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%" height="1"></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+		          <width="33%" height="19">
+        <input border="0" src="/cgi/ngfop/pics/ihouse3.gif" name="I55" width="105" height="97" type="image">
+		<div id="divRow">
+        You bastards' are doomed!!
+		</div>
+
+		  </td>
+        </tr>
+
+
+  </tr>
+
+
+
+        <tr>
+          <td width="5%" height="1"></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1">
+		          <width="33%" height="19">
+<!-- selection box -->
+			<table border="1" width = "100%" cellpadding="3" height="1">
+			<tr onClick    ="mkSelectBox00('menuCB1', 'CBNAME22');">
+				<td>
+				<div id="CBNAME22">
+		          <IMG NAME="I550" input border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">
+				  Healthy Snacks 
+				</div>
+				</td>
+				<td>
+				<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" name=Warning00 border="0">
+				</td>
+		    </tr>
+			</table>
+<!-- selection box -->
+
+		  </td>
+        </tr>
+
+
+
+
+
+
+
+        <tr>
+<!-- selection box -->
+			<table border="1" width = "100%" cellpadding="3" height="1">
+			<tr onClick    ="bob();">
+
+				<td colspan ="0" width="10">
+<!-- ******************************************************************** -->
+<!-- *                           CB1                                    * -->
+<!-- ******************************************************************** -->
+<div id="menuPOP" style="width: 100px; height: 140px; border: solid 4px black; 
+                        overflow:auto; z-index : 21;
+                        visibility:hidden;" >
+
+<table border="1" cellpadding="3" >
+          <tr onClick    ="alert('asdf');/*selrow22('menuPOP', 1);*/">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB1R1">
+            </td>
+            <td width="380" >
+			<div id="DIVmenuPOPROW1">
+			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iicecrm.gif" width="105" height="97" type="image">
+		        FFFF Row 1
+			</div>
+			</td>
+
+          </tr>
+
+          <tr onClick    ="bob2('menuPOP',this,2);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB1R1">
+            </td>
+            <td width="380" >
+
+			<div id="DIVmenuPOPROW2">
+				<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iupset.gif" width="105" height="97" type="image">
+				row 1 Holly fucking shit I'm a popup what are you going to do about it.
+				CB1 BBBBB More Teeth and feet this is a really long string
+				row 2 CB1 DDDDD More Teeth and feet this is a really long string
+			</div>
+		</td>
+          </tr>
+
+          <tr onClick    ="selrow22('menuCB1',3);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB1R1">
+            </td>
+            <td width="380" >
+			<div id="DIVmenuPOPROW3">
+			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">
+			CB2 row 4
+			</div>
+		</td>
+          </tr>
+
+</table>
+				<td>
+				<div id="POP2">
+		          <IMG NAME="I550" input border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">
+				  Popy Snacks 
+				</div>
+				</td>
+				<td>
+				<img src="/cgi/ngfop/darrow3.gif" ALT="choice board" name=Warning00 border="0">
+				</td>
+
+</DIV>
+</td>
+
+<!-- ******************************************************************** -->
+<!-- ******************************************************************** -->
+
+		  </td>
+        </tr>
+
+
+
+</table>
+
+</form>
+
+
+
+
+
+
+
+<!-- ******************************************************************** -->
+<!-- *                           CB1                                    * -->
+<!-- ******************************************************************** -->
+<div id="menuCB1" style="position:absolute;top:0; width: 330px; height: 140px; border: solid 4px black; 
+                        overflow:auto; z-index : 20;
+                        visibility:hidden;" >
+
+<table border="1" cellpadding="3" >
+          <tr onClick    ="selrow22('menuCB1', 1);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB1R1">
+            </td>
+            <td width="380" >
+			<div id="DIVmenuCB1ROW1">
+			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iicecrm.gif" width="105" height="97" type="image">
+		        GGG Row 1
+			</div>
+			</td>
+          </tr>
+
+          <tr onClick    ="selrow22('menuCB1', 2);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB1R1">
+            </td>
+            <td width="380" >
+
+			<div id="DIVmenuCB1ROW2">
+				<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iupset.gif" width="105" height="97" type="image">
+				row 2 CB1 BBBBB More Teeth and feet this is a really long string
+				row 2 CB1 DDDDD More Teeth and feet this is a really long string
+			</div>
+		</td>
+          </tr>
+
+          <tr onClick    ="selrow22('menuCB1', 3);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB1R1">
+            </td>
+            <td width="380" >
+			<div id="DIVmenuCB1ROW3">
+			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">
+			CB2 row 4
+			</div>
+		</td>
+          </tr>
+
+</table>
+</DIV>
+
+
+<!-- ******************************************************************** -->
+<!-- ******************************************************************** -->
+
+
+<!-- ******************************************************************** -->
+<!-- *                           CB2                                    * -->
+<!-- ******************************************************************** -->
+
+<div id="menuCB2" style="height: 140px; border: solid 1px black; overflow:auto; z-index : 21;
+                         visibility:hidden;" >
+<table border="1" cellpadding="3" >
+          <tr onClick    ="selrow22('menuCB2', 1);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB2R1">
+            </td>
+            <td width="380" >
+			<div id="DIVmenuCB2ROW1">
+			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iicecrm.gif" width="105" height="97" type="image">
+		        menuCB2 Row 1 
+			</div>
+		</td>
+          </tr>
+
+          <tr onClick    ="selrow22('menuCB2', 2);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB2R1">
+            </td>
+            <td width="380" >
+
+			<div id="DIVmenuCB2ROW2">
+				<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/iupset.gif" width="105" height="97" type="image">
+				menuCB2 row 2 CB2 Brush More Teeth and feet this is a really long string
+				menuCB2 row 2 CB2 Brush More Teeth and feet this is a really long string
+				menuCB2 row 2 CB2 Brush More Teeth and feet this is a really long string
+				menuCB2 row 2 CB2 Brush More Teeth and feet this is a really long string
+			</div>
+		</td>
+          </tr>
+
+          <tr onClick    ="selrow22('menuCB2', 3);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB2R1">
+            </td>
+            <td width="380" >
+			<div id="DIVmenuCB2ROW3">
+			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/ihouse3.gif" width="105" height="97" type="image">
+				menuCB2 CB2 row 3
+			</div>
+		</td>
+          </tr>
+
+          <tr onClick    ="selrow22('menuCB2', 4);">
+            <td width="10" height="1">
+            <input type="radio" value="V2" checked name="menuCB2R1">
+            </td>
+            <td width="380" >
+			<div id="DIVmenuCB2ROW4">
+			<IMG NAME="I55" border="0" src="/cgi/ngfop/pics/pic05.4.gif" width="105" height="97" type="image">
+			menuCB2 CB2 row 4
+			</div>
+		</td>
+          </tr>
+</table>
+</div>
+<!-- ******************************************************************** -->
+<!-- ******************************************************************** -->
+
+
+
+</body>
+
+</html>
+
+
+

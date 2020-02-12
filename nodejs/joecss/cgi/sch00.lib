@@ -1,0 +1,1202 @@
+####################################
+####################################
+# FM fix this image path problem!! #
+my $picroot   = "/cgi/ngfop/pics/";
+# FM fix this image path problem!! #
+####################################
+####################################
+
+use Time::Local;
+
+use strict "vars";
+require "./schdb.lib";
+
+#############################################################################
+# Cheesy security                                                           #
+#############################################################################
+
+ #####################################
+ # Cheesy atempts at DoS prevention. #
+ #####################################
+
+#<debug>for debuging only, remove in production. BEGIN
+#use CGI qw/:standard/;
+#      use CGI::Carp 'fatalsToBrowser';
+#      $CGI::POST_MAX=1024 * 100;  # max 100K posts
+#      $CGI::DISABLE_UPLOADS = 1;  # no uploads
+#</debug>for debuging only, remove in production. BEGIN
+      
+my $query = new CGI;
+
+sub SCH_getScheduleType()
+{
+   my($key) = @_;
+
+   my %types = (
+                sch=> "sch",
+                cb=> "cb",
+    );
+
+    return $types{$key} || "sch";
+}
+
+sub SCH_ValidateFilename()
+{
+   my($fn) = @_;
+
+   if( (($fn =~ tr/\//\//) >1) )
+   {  
+      return (0, $fn);
+   }
+   #../asdf/.bbb case
+   if( (($fn =~ tr/././) >1) || ($fn =~ m#/\.#))
+   {
+      return (0, $fn);
+   }
+
+   if ($fn =~ /[^\w\.\/]/)
+   {
+      return (0, $fn);
+   }
+
+   #$fn =~ /(.+)/;
+   $fn =~ /([\w\.\/]+)/;
+   $fn = $1 || "";
+   
+   return (1, $fn);
+}
+   
+
+
+
+
+################
+# Session data #
+################
+sub SCH_getSession()
+{
+
+#if (($ENV{'HTTP_REFERER'}) &&
+##($ENV{'HTTP_REFERER'} !~ /^http:\/\/example.com/)) {
+#($ENV{'HTTP_REFERER'} !~ /^http:\/\/gw/)) {
+## output error page or take other actions
+#        #print "Content-type: text/html\n\n";
+#        print "Hey are you trying to do something sneaky?  Email me, let's talk.\n";
+#        exit;
+#} 
+
+my $sessionID = $query->cookie(-name=>'sessionID') || "Demo";
+
+# un taint user input.
+#FM 8/19/7 ($sessionID) =~ /^(\w+)$/;
+$sessionID =~ /^([0-9a-zA-Z_\.\/]*?)$/;
+$sessionID = $1 || "";
+
+my %session = ();
+if ( $sessionID )
+{
+
+ %session = (
+                #id => 'Bucci',
+                #pw => '123456',
+#                dir=> './members/Bucci/',
+                dir=> ("./members/$sessionID/"),
+                dirCount=> 3000,
+#FM 3/27/5                dirSize=> 200000,
+                dirSize=> 100000000,  # 100Meg
+    );
+}
+
+   return %session;
+}
+##############################
+
+
+
+sub SCH_authenticate()
+{
+   my($id, $pw) = @_;
+
+   ################
+   # clean id, pw #
+   # nothing but "word" characters (alphabetics, numerics, and underscores), a hyphen.
+   # and now a . / for bla.org/Class01 cases.
+   ################
+
+#fm 1/24/9   if ($id =~ /^([0-9a-zA-Z_\.\/]*?)$/) {
+   if ($id =~ /^([0-9a-zA-Z_\.\/]*?)$/) {
+      $id = $1 || return "fail01";
+   } else {
+      return "fail1";
+       #FM 1/20/9 return 0;
+	   #die "Bad data in $id"; 	# log this somewhere
+   }  
+
+   if ($pw) 
+   {
+      if ($pw =~ /^([-\w]+)$/) {
+	      $pw = $1; 			# $data now untainted
+      } else {
+         #FM 1/20/9 return 0;
+         return "fail2";
+	      #die "Bad data in $pw"; 	# log this somewhere
+      }
+   }  
+
+   my $root = "./members/$id";
+=comment
+   if (!(-e $root))
+   {
+      return 0;
+   }
+   if ($id =~ /^Demo$/)
+   {
+      return 1;
+   }
+=cut
+
+   #print("$root$id$pw");
+   if (-e "$root/.schpw")
+   {
+      open(MSG, "$root/.schpw") || return "fail0";
+
+      my $lines = <MSG>;
+      close(MSG);
+
+
+      # my $trim = $1;
+      $lines =~ s/^\s+//;
+      $lines =~ s/\s+$//;
+
+      if ($lines =~ /^$pw$/i)
+      {
+         return $id;
+         #FM return 1;
+      }
+   }
+   
+   # FM 1/23/9
+   # if in the datbase use the information.
+   my $dir = &SCHDB_Validate($id, $pw);
+   if ($dir)
+   {
+      #Fm 1/20/9 return 1;
+      return $dir;
+   }
+   # FM 1/23/9
+   
+  #fm 1/24/9  return "fail4";
+   #fm 11/14/9 return "fail4$root$id";
+   return "fail4";
+   #FM 1/20/9 return 0;
+}
+
+
+sub  SCH_getUniqueFH()
+{
+   #$fh = &SCH_getUniqueFH($session{dir}, $type);
+
+   my($root, $type) = @_;
+
+   ########################
+   ## FM look into this.
+   # for now use this 
+   # cheesy implementaion.
+   ########################
+
+   my $unq =  time() -1073353928;
+   my $fn = "$root$type$unq.xml";
+   ########################
+   # FM fix these tainters!!!!!!!!!!!!!!!!!!!!
+   $fn =~ /(.+)/;
+   $fn = $1 || "ot oh!";
+   ########################
+
+#   print("FUCK($fn)\n");
+
+   open (LOG, ">>$fn") || SCH_ErrorMessage($fn);
+
+   return LOG, "$type$unq.xml";
+}
+
+sub SCH_getDescription()
+{
+   # SCH_getDescription(fn);
+   (my $xmlfilename) = @_;
+
+   my %session = SCH_getSession();
+
+   my $fn = "$session{dir}$xmlfilename";
+   my @schData;
+   open(MSG, $fn) || ErrorMessage($xmlfilename);
+   @schData = <MSG>;
+   close(MSG);
+
+   my $desc;
+
+   # Get file description
+   my @table = &SCH_xmLRD("<Ass><DESCRIPTION></Ass>", uc "<data>,<description>", @schData);
+   if ($table[0] =~ /./)
+   {
+      $desc = "@table";
+
+      #remove leading trailing ws
+      $desc =~ s/^\s+//;
+      $desc =~ s/\s+$//;
+   }
+
+   return $desc;
+}
+
+
+# FM 06/12/04
+sub SCH_getFN()
+{
+   # my ($fn) = &SCH_getFN(fullname);
+   (my $xmlfilename) = @_;
+
+   my $blankSchedule = "blank.xml";
+   my $fn;
+
+
+
+   ##################################
+   # Get session data               #
+   my %session = &SCH_getSession(); #
+   ##################################
+
+   if (!(-e "$session{dir}$xmlfilename"))
+   {
+      # if calander file, aka user/yyyy_mm_dd or user/Day  or sch/___.xml, or TBD.
+      my @calparts1 = split /\//, $xmlfilename;
+
+
+      if (@calparts1 > 1)
+      {
+         if ($calparts1[0]=~m/^schs$|^pics$/i)
+         {
+            $xmlfilename = "schs/$calparts1[1]";
+            ######$xmlfilename = "blank.xml";
+         }
+         else
+         {
+            my $root=$calparts1[0];
+
+            my ($fn1st, $fn2nd) = &SCH_getCalFN($calparts1[1]);
+            $fn1st="$root/$fn1st.xml";
+            $fn2nd="$root/$fn2nd.xml";
+
+            $xmlfilename  = "$fn1st";
+
+            if (!(-e "$session{dir}$fn1st"))
+            {
+               $xmlfilename = "$fn2nd";
+               if (!(-e "$session{dir}$fn2nd"))
+               {
+                  $xmlfilename = $blankSchedule;
+               }
+            }
+         }
+      }
+   }
+
+   $fn = "$session{dir}$xmlfilename";
+   if ($xmlfilename =~ /^$blankSchedule/i)
+   {
+      $fn = $xmlfilename;
+   }
+   if ($xmlfilename =~ m/^schs\//i)
+   {
+      $fn = $xmlfilename;
+   }
+
+   return ($fn);
+}
+# FM 06/12/04
+
+sub SCH_getCalFN()
+{
+   # my ($fn1st, $fn2nd) = &SCH_getCalFN(calparts1[1]);
+   (my $caldate) = @_;
+   my $day;
+
+   #yyyy_mm_dd
+
+   my @cal = split /_/, $caldate;
+   if (@cal==3)
+   {
+      my $mm = $cal[1]-1;
+
+      #safety
+      $cal[2] =~ /(^\d{1,2})/;
+      my $dd = $1 || "00";
+
+      my $fni = "$cal[0]_$cal[1]_$dd";
+
+      ###########################
+      #calcutate Day from date. #
+      ###########################
+      my $time = timegm(10, 10, 10, $cal[2], $mm, $cal[0]);
+      $day = (Sun,Mon,Tue,Wed,Thu,Fri,Sat)[(localtime($time))[6]];
+      ###########################
+
+      return ($fni, $day);
+   }
+
+   # its must be a day schedule
+   if (@cal == 1) 
+   {
+      $day = "Sun"; # default Sunday
+
+      $cal[0] =~ /(^.{3})/;
+      $cal[0] = $1 || "Sun";
+
+      if ($cal[0] =~ /Sun|Mon|Tue|Wed|Thu|Fri|Sat/i)
+      {
+         $day = $cal[0];
+      }
+   }
+
+   return ($day, $day); #default
+}
+
+
+sub SCH_getCalusers
+{
+   # mk dir name
+   my %session = SCH_getSession();
+   my $dir = "./$session{dir}";
+
+   opendir(DIRHANDLE, $dir) || SCH_ErrorMessage($dir);
+          
+   my @dirdata;
+
+   push(@dirdata, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+   push(@dirdata, "<data>\n");
+
+
+   my $fn;
+
+   push(@dirdata, "<description>\n");
+##   my ( $fn ) = ( $dir =~ /(\w+\.\w+)$/ );
+   my @lll = split /\//, $dir;
+   $fn = @lll[@lll - 1];
+   push(@dirdata, "$fn\n");
+   push(@dirdata, "</description>\n");
+
+   my @names;
+   while ( defined ($fn = readdir(DIRHANDLE)) ) {
+
+      if( !($fn =~ /^\./) && (-d "$dir$fn") )
+      {
+         #push(@dirdata, "<row>\n");
+         #push(@dirdata, "<name>$fn</name>\n");
+
+         push(@names, "$fn");
+
+         #push(@dirdata, "$fn");      #push(@dirdata,  "</name>\n");
+
+         #push(@dirdata, "</row>\n");
+      }
+   }
+
+   #sort list
+   foreach $fn(sort(@names)) {
+      push(@dirdata, "<row>\n<name>$fn</name>\n</row>\n");
+   }
+
+   push(@dirdata, "</data>\n");
+
+   return @dirdata;
+}
+
+sub SCH_ErrorMessage {
+   my $msg = shift(@_);
+        print "Content-type: text/html\n\n";
+        print "FM, The server can't! $msg.\n";
+        exit;
+}
+
+
+
+
+
+
+#################################
+# A cheesy quota check for now. #
+# Do this recursively.          #
+#################################
+sub SCH_checkDir()
+{
+   my %session = SCH_getSession();
+
+   # FM 3/3/4
+   # For now Demo can't write data, protection from Crackers
+   if ($session{dir}=~m|members/Demo|)
+   {
+      return 0;
+   }
+   # FM 3/3/4
+
+
+   my ($cnt, $size) = &myDirFileCountSize("./$session{dir}");
+
+   if ($cnt >= $session{dirCount})
+   {
+      return -10;
+   }
+
+   if ($size >= $session{dirSize})
+   {
+      return -20;
+   }
+
+   return 1;
+
+
+=comment
+   opendir(THEDIR, "./$session{dir}") || SCH_ErrorMessage("./$session{dir}");
+
+   my @logfiles= readdir(THEDIR);
+
+   closedir(THEDIR);
+
+   if ($#logfiles >= $session{dirCount})
+   {
+      return 0;
+   }
+
+   # sum directory
+   my $size=0;
+   foreach my $fn(@logfiles)
+   {
+      if (!(-d "./$session{dir}$fn"))
+      {
+         $size += -s "./$session{dir}$fn";
+         #$size += (stat "./$session{dir}$fn")[7];
+      }
+   }
+
+   if ($size >= $session{dirSize})
+   {
+      return 0;
+   }
+
+   return 1;
+=cut
+}
+
+########################
+#FM, use File:Find
+########################
+sub myDirFileCountSize()
+{
+   # (cnt, size) = sub myDirFileCountSize(/aa/bb)
+   my $dir=shift(@_);
+   my $iCount=0;
+   my $iTotal=0;
+
+   opendir(THEDIR, $dir) || SCH_ErrorMessage($dir);
+
+   my @logfiles= readdir(THEDIR);
+
+   closedir(THEDIR);
+
+   # sum directory
+   foreach my $fn(@logfiles)
+   {
+      if (-f "$dir/$fn")
+      {
+         $iCount++;
+         $iTotal += -s "$dir/$fn";
+
+      }
+      if (-d "$dir/$fn")
+      {
+
+         if ($fn eq '.' || $fn eq "..")
+         {
+            next;
+         }
+
+         my ($imyCount, $imyTotal) = &myDirFileCountSize("$dir/$fn");
+         $iCount+= $imyCount;
+         $iTotal+= $imyTotal;
+      }
+   }
+
+   return ($iCount, $iTotal);
+}
+
+
+sub SCH_deleteFile()
+{
+   #SCH_deleteFile($xmlfilename)
+   my $fn0=shift(@_);
+   (my $retval, my $fn) = &SCH_ValidateFilename($fn0);
+   unless($retval){ SCH_ErrorMessage("Bad filename($fn0)");}
+
+   #print("fn($fn)");
+
+   #FM, cheezy, If you Demo you can not do file Create, Delete
+   SCH_checkDir () != 0 || SCH_ErrorMessage("Your Not Allowed to Delete!");
+
+
+   ##################################
+   # Get session data               #
+   my %session = &SCH_getSession(); #
+   ##################################
+
+   $fn = "$session{dir}$fn";
+   my $cd = getcwd();
+   $fn =~ s/\./$cd/;
+
+   #print("fn($fn)");
+   if (-e $fn)
+   {
+      # FM 1/30/04
+      # get Description.
+
+      my $desc = &SCH_getDescription($fn0);
+
+      #print "Removed ($desc)!<br />";
+
+      $fn =~ /(.+)/;
+      $fn = $1 || "ot oh!";
+      # FM 1/30/04
+
+       unlink($fn) || print " having trouble deleting $fn0<br>";
+       #rename($fn, "$fn.rem") || print " having trouble removing $fn<br>";
+      #print "<h5>Removed aka renamed ($fn0)</h5>";
+   }
+
+}
+
+#############################################################################
+#############################################################################
+
+sub SCH_decorate()
+{
+   my(@lines) = @_;
+   my $results = "";
+
+   for my $x(0 .. $#lines) {
+      #################################
+      # FM, Cheesy cb check.          #
+      # Check for Selection           #
+      #################################
+      if ($lines[$x] =~ /(\s+\w+\.xml)/i)
+      {
+         my $trim = $1;
+         $trim =~ s/^\s+//;
+         $trim =~ s/\s+$//;
+
+         #mk cb selection
+         my @table = &SCH_mkselect22($trim);
+
+         $lines[$x] =~ s/\s+\w+\.xml/@table/igs;
+      }
+
+      #################################
+      # FM, Cheesy <picture>check.    #
+      #################################
+      if ($lines[$x] =~ /\s+<picture>.+<\/picture>/i)
+      {
+
+         ################
+         # Get 2 params.#
+         ################
+         $lines[$x] =~ /<pName>(.*)<\/pName>/is;
+         my $name = $1;
+
+         #$lines[$x] =~ /<pDescription>(.*)<\/pDescription>/is;
+         my $desc;
+         if ($lines[$x] =~ /<pDescription>(.*)<\/pDescription>/is)
+         {
+            $desc = $1;
+         }
+         else
+         {
+            $desc = "";
+         }
+
+my $picRow = <<"END";
+        <width="33%" height="19">
+        <input border="0" src="<PNAME>" name="I55" width="105" height="97" type="image">
+        <PDESCRIPTION>
+END
+
+         $picRow =~ s/<PNAME>/$name/igs;
+         $picRow =~ s/<PDESCRIPTION>/$desc/igs;
+         $lines[$x] =~ s /<Picture>.*<\/Picture>/$picRow/igs;
+      }
+
+   }
+
+   return @lines;
+}
+
+
+sub SCH_mkselect22()
+{
+   my $fn = shift(@_);
+   my @results = "";
+
+my @schData;
+open(MSG, $fn) || SCH_ErrorMessage($fn);
+@schData = <MSG>;
+close(MSG);
+
+my $marker = <<"END";
+        <description>
+		  <select name="D1" size="1">
+		  <option selected>
+        <DESCRIPTION>
+        </option>
+        </description>
+END
+
+   @results = &SCH_xmLRD($marker, uc "<data>,<description>", @schData);
+
+$marker = <<"END";
+        <row>
+		  <option><NAME></option>
+        </row>
+END
+
+#FM 10/18/03   my @results0 = &SCH_xmLRD($marker, uc "<row>,<time>,<name>", @schData);
+   my @results0 = &SCH_xmLRD($marker, uc "<row>,<name>,<picture>,<pdescription>", @schData);
+   push(@results, @results0);
+
+$marker = <<"END";
+          </select>
+END
+
+   push(@results, $marker);
+
+   return @results;
+
+}
+
+sub SCH_xmLRD2()
+{
+   my($leftVal, $rightVal,  @lines, $pic_root) = @_;
+   if (!$pic_root)
+   {
+      $picroot = $pic_root;
+   }
+   return &SCH_xmLRD($leftVal, $rightVal, @lines);
+
+}
+
+sub SCH_xmLRD()
+{
+   my($leftVal, $rightVal,  @lines) = @_;
+   my @results;
+
+   $leftVal =~ /<(.*?)>/i;
+   my $tag = $1 || "";
+
+
+#print("FUCKYOU tag($tag)\n");
+   $leftVal =~ /<\s*\b$tag\b\s*>(.*)<\s*\/\b$tag\b\s*>/igs;
+   $leftVal = $1 || "";
+#print("FUCKYOU leftval($leftVal)\n");
+
+   my @xmlkeys = split /,\s*/, $rightVal;  
+
+   # key, value pairs.
+   my %kd = ();
+
+   for my $x(0 .. $#xmlkeys) {
+
+      $xmlkeys[$x] =~ /<\s*(.*)\s*>/igs;
+
+      my $trim = $1;
+      $trim =~ s/^\s+//;
+      $trim =~ s/\s+$//;
+
+      $xmlkeys[$x] = $1;
+
+      $kd{$trim} = "$x";
+   }
+
+   my $parent = $xmlkeys[0];
+
+
+   my $section = "";
+   my $left    = 0;
+   my $right   = 0;
+
+   my @xmlValues = @xmlkeys;
+   for my $x(0 .. $#lines) {
+
+      # get begin parent.
+      if ($lines[$x] =~ /<\s*\b$parent\b\s*>/i)
+      {
+         $left = 1;
+      }
+
+      # get end parent.
+      if ($lines[$x] =~ /<\/\s*\b$parent\b\s*>/i)
+      {
+         $right = 1;
+      }
+
+      if ($left && !$right)
+      {
+          # copy section.
+          $section = "$section$lines[$x]";
+      }
+      
+
+      if ($left && $right)
+      {
+         # copy section.
+         $section = "$section$lines[$x]";
+
+         #$section =~ /<\s*\b$parent\b\s*>(.*)<\s*\/\b$parent\b\s*>/igs;
+         $section =~ /<\s*\b$parent\b\s*>(.*)<\s*\/\b$parent\b\s*>/is;
+
+         my $tag;
+         #get section values.
+         # FM 9/30/03 for $zz(1 .. $#xmlkeys) {
+         for my $zz(0 .. $#xmlkeys) 
+         {
+            $xmlValues[$zz] = "";
+
+            $tag = $xmlkeys[$zz];
+
+            $kd{$xmlkeys[$zz]} = "";
+
+#            $section =~ /<\s*\b$tag\b\s*>(.*)<\s*\/\b$tag\b\s*>/igs;
+            $section =~ /<\s*\b$tag\b\s*>(.*?)<\s*\/\b$tag\b\s*>/is;
+
+            my $trim= $1 || "";
+            if ($1)
+            {
+               $trim = "$1";
+
+            # FM 1/26/04 replace " and '
+            $trim =~ tr/"/'/;
+            $trim =~ s/'/&\#39;/g;
+            # FM 1/26/04
+
+               $trim =~ s/^\s+//;
+               $trim =~ s/\s+$//;
+            }
+
+            $xmlValues[$zz] = $trim;
+            $kd{$xmlkeys[$zz]} = $trim;
+         }
+
+         #FM 9/21/03
+         my $update;
+
+         #cheese for now.
+         if ($xmlkeys[0]=~ /Picture/i)
+         {
+            $kd{NAME} = "$picroot$kd{NAME}";
+         }
+
+         $update = $leftVal;
+#print("\nFUCK2u1($update)\n");
+
+
+         # FM 9/30/03 for $zz(1 .. $#xmlkeys) {
+         for my $zz(0 .. $#xmlkeys) {
+            $update =~ s/<\s*$xmlkeys[$zz]\s*>/$kd{$xmlkeys[$zz]}/igs;
+#print("\nFUCK $xmlkeys[$zz] === $kd{$xmlkeys[$zz]}\n");
+         }
+
+#print("\nFUCK2u2($update)\n");
+         #print $update;
+         #$results = "$results$update";
+         push(@results, $update);
+     
+         $left    = 0;
+         $right   = 0;
+         $section = "";
+      }
+   }
+
+   return @results;
+}
+
+
+sub SCH_xmlRemoveEmptyPics()
+{
+   #SCH_xmlRemoveEmptyPics(@table)
+   my(@rows) = @_;
+   my @results;
+
+   foreach my $row(@rows) {
+
+      if($row =~ /<IF_PICTURE>(.*)<\/IF_PICTURE>/igs)
+      {
+         my  $trim = $1 || "";
+
+         $trim =~ /src\s*=\s*"(.*?)"/i;
+         my $src = $1 || "";
+
+         if ($src =~ /\w/)
+         {
+            #$row = $trim;
+            # remove the wrappers
+            $row =~ s/<IF_PICTURE>//ig;
+            $row =~ s/<\/IF_PICTURE>//ig;
+         }
+         else
+         {
+            # clear 
+            $row =~ s/<IF_PICTURE>(.*)<\/IF_PICTURE>//igs;
+         }
+      }
+
+
+      push(@results, $row);
+   }
+
+   return @results;
+
+}
+
+
+
+sub readxmLRD22()
+{
+   my($leftVal, $rightVal,  @lines) = @_;
+
+   $leftVal =~ /<(.*)>/i;
+   my $tag = $1;
+   $leftVal =~ /<\s*\b$tag\b\s*>(.*)<\s*\/\b$tag\b\s*>/igs;
+   $leftVal = $1;
+
+   my @xmlkeys = split /,\s*/, $rightVal;  
+
+   # key, value pairs.
+   my %kd = ();
+
+   for my $x(0 .. $#xmlkeys) {
+
+      $xmlkeys[$x] =~ /<\s*(.*)\s*>/igs;
+
+      my $trim = $1;
+      $trim =~ s/^\s+//;
+      $trim =~ s/\s+$//;
+
+      $xmlkeys[$x] = $1;
+
+      $kd{$trim} = "$x";
+   }
+
+   my $parent = $xmlkeys[0];
+
+
+   my $section = "";
+   my $left    = 0;
+   my $right   = 0;
+
+   my @xmlValues = @xmlkeys;
+   for my $x(0 .. $#lines) {
+
+      # get begin parent.
+      if ($lines[$x] =~ /<\s*\b$parent\b\s*>/i)
+      {
+         $left = 1;
+      }
+
+      # get end parent.
+      if ($lines[$x] =~ /<\/\s*\b$parent\b\s*>/i)
+      {
+         $right = 1;
+      }
+
+      if ($left && !$right)
+      {
+          # copy section.
+          $section = "$section$lines[$x]";
+      }
+      
+
+      if ($left && $right)
+      {
+         # copy section.
+         $section = "$section$lines[$x]";
+
+         $section =~ /<\s*\b$parent\b\s*>(.*)<\s*\/\b$parent\b\s*>/igs;
+
+         #remove leading trailing ws
+         my $trim = $1;
+         $trim =~ s/^\s+//;
+         $trim =~ s/\s+$//;
+
+         $section = $trim;
+         my $tag;
+
+         #get section values.
+         for my $zz(1 .. $#xmlkeys) {
+            $xmlValues[$zz] = "";
+
+            $tag = $xmlkeys[$zz];
+
+            $kd{$xmlkeys[$zz]} = "";
+
+            $section =~ /<\s*\b$tag\b\s*>(.*)<\s*\/\b$tag\b\s*>/is;
+#            $section =~ /<\s*\b$tag\b\s*>(.*)<\s*\/\b$tag\b\s*>/igs;
+
+
+            my $trim = $1;
+            $trim =~ s/^\s+//;
+            $trim =~ s/\s+$//;
+            $xmlValues[$zz] = $trim;
+            $kd{$xmlkeys[$zz]} = $trim;
+         }
+
+
+         #FM 9/21/03
+         my $update;
+
+         #cheese for now.
+         if ($xmlkeys[0]=~ /Picture/i)
+         {
+            $kd{NAME} = "$picroot$kd{NAME}";
+         }
+         $update = $leftVal;
+
+         for my $zz(1 .. $#xmlkeys) {
+            $update =~ s/<\s*$xmlkeys[$zz]\s*>/$kd{$xmlkeys[$zz]}/igs;
+         }
+         print $update;
+         #FM 9/21/03
+     
+         $left    = 0;
+         $right   = 0;
+         $section = "";
+      }
+   }
+}
+
+
+sub readxmLRD()
+{
+   my($leftVal, $rightVal,  @lines) = @_;
+
+   $leftVal =~ /<(.*)>/i;
+   my $tag = $1;
+   $leftVal =~ /<\s*\b$tag\b\s*>(.*)<\s*\/\b$tag\b\s*>/igs;
+   $leftVal = $1;
+
+   my @xmlkeys = split /,\s*/, $rightVal;  
+
+   for my $x(0 .. $#xmlkeys) 
+   {
+      $xmlkeys[$x] =~ /<\s*(.*)\s*>/igs;
+
+      my $trim = $1;
+      $trim =~ s/^\s+//;
+      $trim =~ s/\s+$//;
+
+      $xmlkeys[$x] = $1;
+
+   }
+
+   my $parent = $xmlkeys[0];
+
+   my $section = "";
+   my $left    = 0;
+   my $right   = 0;
+
+   my @xmlValues = @xmlkeys;
+   for my $x(0 .. $#lines) {
+
+      # get begin parent.
+      if ($lines[$x] =~ /<\s*\b$parent\b\s*>/i)
+      {
+         $left = 1;
+      }
+
+      # get end parent.
+      if ($lines[$x] =~ /<\/\s*\b$parent\b\s*>/i)
+      {
+         $right = 1;
+      }
+
+      if ($left && !$right)
+      {
+          # copy section.
+          $section = "$section$lines[$x]";
+      }
+      
+
+      if ($left && $right)
+      {
+         # copy section.
+         $section = "$section$lines[$x]";
+
+         $section =~ /<\s*\b$parent\b\s*>(.*)<\s*\/\b$parent\b\s*>/igs;
+
+         #remove leading trailing ws
+         my $trim = $1;
+         $trim =~ s/^\s+//;
+         $trim =~ s/\s+$//;
+
+         $section = $trim;
+
+         #get section values.
+         for my $zz(1 .. $#xmlkeys) {
+            $xmlValues[$zz] = "";
+
+
+            my $tag = $xmlkeys[$zz];
+
+            $section =~ /<\s*\b$tag\b\s*>(.*)<\s*\/\b$tag\b\s*>/igs;
+
+
+            my $trim = $1;
+            $trim =~ s/^\s+//;
+            $trim =~ s/\s+$//;
+            $xmlValues[$zz] = $trim;
+         }
+
+         printf("$leftVal", "$picroot$xmlValues[1]", $xmlValues[2], $xmlValues[3]);
+     
+         $left    = 0;
+         $right   = 0;
+         $section = "";
+      }
+   }
+}
+
+# 4/20/8
+#################################################
+# My db for student data - working master sets. #
+#################################################
+my $gfnSWMs = "StudentAbaSWMs.xml";
+sub SCH_SWMs_GetRows()
+{
+  ##$swms = &SCH_SWMs_GetRows($session{dir}, $student, $xmlfilename);
+  my($root, $student, $xmlfilename) = @_;
+  
+  if (!$student)
+  {
+     return "AAAAAAAAAAa";
+  }
+   
+  my $key = "$student $xmlfilename";
+   
+  ###################################
+  # taint check
+  $root =~ /(.+)/;
+  $root = $1 || "ot oh!";
+
+  (my $retval, my $fn) = &SCH_ValidateFilename($gfnSWMs);
+  unless($retval){ SCH_ErrorMessage("Bad filename($gfnSWMs)");}
+  ###################################
+
+  ##########################
+  # if file exists!        #
+  ##########################
+  my $fname = "$root$fn";
+  if ( (($gfnSWMs =~ tr/\//\//) == 1) || (-e "$root$gfnSWMs"))
+  {
+     open (LOG, "<$fname") || &ErrorMessage("$gfnSWMs");
+  }
+  else  # file does not exists.
+  {
+     return;
+  }
+   
+  #open(LIST, $fname) || die print "<hr>can not open $gfnSWMs";
+  my @lines = <LOG>;
+  
+  # Sort put All Mastered on the bottom.
+  # FM 5/11/9
+  @lines = sort { if ($a =~m/All Mastered/i) { return 1; } elsif ($b =~m/All Mastered/i) { return -1; } else { return $a cmp $b; } } @lines;
+
+   
+  $retval="";
+  foreach my $line(@lines)
+  {
+     ## if match return it.
+     if ($line =~ /$key/i)
+     {
+         # Trim ws.
+         $line =~ s/^\s+//;
+         $line =~ s/\s+$//;
+         $retval .= $line;
+         $retval .= "|";
+        #return $line;
+     }
+  }
+  
+  chop($retval);
+  return $retval;
+}
+
+sub SCH_SWMs_SaveList()
+{
+   my($root, $data) = @_;
+   # $data like {Tisha sch17498395.xml, Tisha sch17498395.xml w(1), Tisha sch17499717.xml m(0,1,3)}
+   
+   # Revmoe multiple ws
+   $data =~ s/\s+/ /g;
+
+   if ($data !~ /\w+ \w+/ )   # if not like "Tisha sch17499717 ..."
+   {
+      return;
+   }
+   
+   my @parts = split ' ', $data;
+   if (@parts<2)
+   {
+      return;
+   }
+   
+   my $FMKey = "$parts[0] $parts[1]";
+   
+  ###################################
+  # taint check
+  $root =~ /(.+)/;
+  $root = $1 || "ot oh!";
+
+   (my $retval, my $fn) = &SCH_ValidateFilename($gfnSWMs);
+   unless($retval){ SCH_ErrorMessage("Bad filename($gfnSWMs)");}
+   ###################################
+
+   SCH_checkDir () == 1 || SCH_ErrorMessage("You reached your limit of files.");
+
+   ##########################
+   # if file exists!        #
+   ##########################
+   my $fname = "$root$fn";
+   if ( (($fn =~ tr/\//\//) == 1) || (-e "$root$fn"))
+   {
+      open (LOG, "+<$fname") || &ErrorMessage("$fn");
+   }
+   else  # new file name
+   {
+      open (LOG, "+>$fname") || SCH_ErrorMessage("FM 7/9/8  444 $fn");
+   }
+   
+   my @lines = <LOG>;
+   
+   my $FMlines =  join '', @lines;
+   
+   $FMlines =~ s/$FMKey.*//igs;
+   if (@parts > 2)
+   {
+      $FMlines .= "$data\n";
+   }
+     
+   seek (LOG, 0, SEEK_SET);
+   truncate(LOG, 0);
+   
+   print LOG "$FMlines";
+   close (LOG);
+   
+   return;
+   
+}
+
+1;

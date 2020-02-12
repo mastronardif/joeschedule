@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<title>JoeSchedule Top</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+
+<style type="text/css" media="all">
+#menu
+{
+background-color: rgb(201,232,251);
+color: rgb(24,28,31);
+font-family: Palatino, serif;
+font-style: normal;
+border-color: rgb(167,209,235);
+}
+
+a.menuitem
+{
+font-size: 90%;
+background-color: rgb(167,209,235);
+color: rgb(57,106,137);
+font-variant: normal;
+text-transform: none;
+font-weight: normal;
+margin-left: 10px; margin-right: 10px; margin-top: 0px; margin-bottom: 10px;
+border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
+border-left-style: none; border-right-style: none; border-top-style: none; border-bottom-style: none;
+border-color: rgb(201,232,251);
+text-align: left;
+}
+
+#menu a
+{
+text-decoration: none;
+}
+
+.menuitem:hover
+{
+background-color: rgb(57,106,137);
+color: rgb(167,209,235);
+}
+/**********************************************************************/
+</style>
+
+
+
+
+</head>
+
+<script type="text/javascript">
+<!-- language="JavaScript">-->
+
+function perl(pl)
+{
+	// FM 11/28/03var xmlfilename = document.myform.leftfname.value;
+	var xmlfilename = getLeftFN();
+
+	var str = "/cgi-bin/cgi/ngfop/"+pl+"?name="+xmlfilename;
+	window.open(str);
+}
+
+function ShowDate(szSrc)
+{
+	//var str;
+	if (szSrc == "Week")
+	{
+		showWeek();
+	}
+
+	if (szSrc == "Day")
+	{
+		showWeekDay();
+	}
+
+}
+
+function ShowExtra(szExtra)
+{
+	var str;
+
+	if (szExtra == "List")
+	{
+		//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=catagoryframe.htm&name=blank.xml";
+		var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml"
+//	onClick="top.frames[1].location='/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml'">
+
+
+
+		top.frames[1].location=str;
+
+		return;
+	}
+
+
+	if (szExtra == "Categorys")
+	{
+		//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=catagoryframe.htm&name=blank.xml";
+		var str = "/cgi-bin/cgi/ngfop/catagory.pl?htmlname=catagory.htm";
+		top.frames[1].location=str;
+
+		return;
+	}
+
+	if (szExtra == "Rewards")
+	{
+//		top.frames[2].location='/cgi-bin/cgi/ngfop/rewards.pl?name=rewards.xml';
+		top.frames[2].location='/cgi-bin/cgi/ngfop/sch3.pl?name=rewards.xml&htmlname=cb3a.htm';
+		return;
+	}
+	if (szExtra == "Pictures1")
+	{
+		//str = "/cgi-bin/cgi/ngfop/pictures01.pl?action=dir(./pics/pic_01)";
+		str = "/cgi-bin/cgi/ngfop/sch4.pl?action=dir(pic_01)&htmlname=catagory1.htm";
+		top.frames[2].location=str;
+		return;
+	}
+
+	if (szExtra == "Pictures2")
+	{
+		//str = "/cgi-bin/cgi/ngfop/pictures01.pl?action=dir(./pics/pic_02)";
+
+		str = "/cgi-bin/cgi/ngfop/sch4.pl?action=dir(pic_02)&htmlname=catagory1.htm";
+
+		//str = "/cgi-bin/cgi/ngfop/sch4.pl?action=dir(./pics/pic_02)&htmlname=catagory1.htm";
+		//str = "/cgi-bin/cgi/ngfop/sch4.pl?name=./pics/cbcooking.xml&htmlname=catagory1.htm";
+		top.frames[2].location=str;
+		return;
+	}
+
+
+
+	if (szExtra == "Local Pictures")
+	{
+		str = "/cgi-bin/cgi/ngfop/sch3.pl?name=picslocal.xml";
+		//top.frames[3].window.open(str);
+		top.frames[2].location=str;
+		return;
+	}
+	if (szExtra == "Make Form")
+	{
+		perl('form01.pl');
+		return;
+	}
+
+	if (szExtra == "S&R")
+	{
+  		showSR();
+		return;
+	}
+
+
+
+	alert(szExtra +" not implemented yet\n FM.");
+}
+
+function showWeekDay()
+{
+	var obj    = parent.left;
+	var objFrm = parent.left.myform;
+
+	//var xmlfilename = mkDateFile();
+	var xmlfilename;
+
+	var leftsrc   = document.myform.leftsrc.value;
+	if (leftsrc != "")
+	{
+		xmlfilename = getLeftFN();
+	}
+	else
+	{
+		xmlfilename = mkDateFile();
+	}
+
+	if (!xmlfilename)
+	{
+		alert(xmlfilename);
+	}
+
+	// FM 1/4/04var str = '/cgi-bin/cgi/ngfop/sch3a.pl?name='+xmlfilename;
+	//FM 1/6/4 var str = '/cgi-bin/cgi/ngfop/sch3a.pl?htmlname=sch3a.htm&name='+xmlfilename;
+	var str = '/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=sch3b.htm&name='+xmlfilename;
+
+	// find out how big the screen is
+	//var width = window.screen.availWidth;
+	//var ht    = window.screen.availHeight;
+	//var win = 'width='+width+",height="+ht+", left=0,top=0";
+	//	window.open(str, 'Weekly', win);
+
+//	window.open(str);
+
+  	top.frames[2].location=str;
+}
+
+
+function showWeek()
+{
+	var obj    = parent.left;
+	var objFrm = parent.left.myform;
+
+	var xmlfilename = mkDateFile();
+	var name;
+
+	if (objFrm != null)
+		name = objFrm.name.value;
+
+
+	if (!xmlfilename)
+	{
+		alert(xmlfilename);
+	}
+
+	var str = '/cgi-bin/cgi/ngfop/week.pl?name='+xmlfilename;
+
+	// find out how big the screen is
+	//var width = window.screen.availWidth;
+	//var ht    = window.screen.availHeight;
+	//var win = 'width='+width+",height="+ht+", left=0,top=0";
+
+	window.open(str);
+
+}
+
+
+
+function mkDateFile()
+{
+	var dDate = new Date();
+	var nDay = dDate.getDay();
+											
+	var obj = myform.elements.People;
+	var kid = obj.options[obj.selectedIndex].text;
+
+	if (!(nDay >= 0))
+	{
+		dDate = new Date();
+	}
+
+
+	var aWeekdays = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+	
+	var month = dDate.getMonth()+1;
+
+	var date =  dDate.getMonth()+1+"_"+dDate.getDate() + "_"+dDate.getYear();
+
+	var day = aWeekdays[dDate.getDay()];
+
+	var total = day+".xml";
+
+// FM 11/24/03	var total2 = "./"+kid+"/"+date+"."+day+".xml";
+	var total2 = kid+"/"+date+"."+day+".xml";
+
+	return total2;
+}
+
+
+gDate = new Date();
+function setLeftValue(src, value)
+{
+   //	document.myform.leftsrc.value = src;
+	myform.leftsrc.value = src;
+    myform.leftvalue.value = value;
+
+	gDate = value;
+
+//	myform.leftvalue.value = value;
+
+//	alert("setLeftValue("+src+", "+value+")" );
+//	alert("setLeftValue("+myform.leftsrc.value+", "+myform.leftvalue.value+")" );
+	
+//	myform.leftfname.value = value;
+}
+
+function showSR()
+{
+	var xmlfilename = getLeftFN();
+
+	var str = "/cgi-bin/cgi/ngfop/schnrew2.pl?name="+xmlfilename;
+	window.open(str);
+}
+
+function getLeftFN()
+{
+	var objLeft    = parent.left;
+	var objLeftFrm = parent.left.myform;
+
+	var leftsrc   = document.myform.leftsrc.value;
+	var leftvalue = document.myform.leftvalue.value;
+
+	var xmlfilename = document.myform.leftfname.value;
+
+	if (leftsrc == "")
+	{
+		xmlfilename = leftvalue;
+		return xmlfilename;
+	}
+
+
+
+	//if (objLeftFrm != null)
+	if (/calander/i.test(leftsrc))
+	{
+	//alert("hay fucker your a calander woe is me.");
+
+		// FM 1/4/04var name = objLeftFrm.name.value;
+		// FM 1/4/04if (/calander.htm/i.test(name))
+		{
+
+			var obj = myform.elements.People;
+			var kid = obj.options[obj.selectedIndex].text;
+
+			var dDate = new Date();
+			//alert(dDate);
+			
+			
+			//dDate = objLeft.getData();
+			//alert("leftvalue= "+leftvalue);
+
+			//dDate = leftvalue;
+
+		//dDate = new Date(leftvalue);
+			dDate = gDate;
+			//alert("leftvalue= "+dDate);
+
+
+			var nDay = dDate.getDay();
+
+
+
+
+
+			if (!(nDay >= 0))
+			{
+				dDate = new Date();
+			}
+
+
+			var aWeekdays = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+	
+			var month = dDate.getMonth()+1;
+
+			var date =  dDate.getMonth()+1+"_"+dDate.getDate() + "_"+dDate.getYear();
+
+			var day = aWeekdays[dDate.getDay()];
+
+			var total = day+".xml";
+
+			// Fm 11/25/03 var total2 = "./"+kid+"/"+date+"."+day+".xml";
+			//var total2 = "/"+kid+"/"+date+"."+day+".xml";
+			var total2 = kid+"/"+date+"."+day+".xml";
+
+			xmlfilename = total2;
+	
+		}
+	}
+
+	return xmlfilename;
+
+
+}
+function del()
+{
+	var fn = getLeftFN();
+
+//	var response = prompt("Do you want to delete "+fn+"?","");
+//	alert(response);
+
+	var response = confirm("Are you sure you want to delete "+fn+"?","");
+	if (response == false)
+		return;
+	//alert(response);
+
+
+	var str = "/cgi-bin/cgi/ngfop/other2.pl?action=delete&htmlname=delete.htm"+"&name="+fn;
+//	var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=delete.htm"+"&name="+fn;
+
+	//top.frames[3].location=str;
+	 window.open(str);
+}
+
+
+function editSchedule2()
+{
+	var xmlfilename = getLeftFN();
+	var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name="+xmlfilename;
+	top.frames[3].location=str;
+}
+
+
+
+function REMOVEME_editSchedule()
+{
+	var objLeft    = parent.left;
+	var objLeftFrm = parent.left.myform;
+
+// FM 9/4/03
+if (parent.left.myform.name.value != null)
+{
+	var name = objLeftFrm.name.value;
+	if (/calander.htm/i.test(name))
+	{
+
+	var obj = myform.elements.People;
+	var kid = obj.options[obj.selectedIndex].text;
+
+	var dDate = new Date();
+	dDate = objLeft.getData();
+	var nDay = dDate.getDay();
+
+		if (!(nDay >= 0))
+		{
+			dDate = new Date();
+		}
+
+
+	var aWeekdays = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+	
+	var month = dDate.getMonth()+1;
+
+	var date =  dDate.getMonth()+1+"_"+dDate.getDate() + "_"+dDate.getYear();
+//	alert(date);
+
+	var day = aWeekdays[dDate.getDay()];
+
+	var total = day+".xml";
+
+	var total2 = "./"+kid+"/"+date+"."+day+".xml";
+
+	xmlfilename = total2;
+	
+	//	total2 = "./"+kid+"/"+total;
+	//	xmlfilename = total2;
+
+
+	//alert(total);
+	//alert(total2);
+	//alert(parent.left.myform.name.value);
+
+			//var str = "/cgi-bin/cgi/ngfop/mksch01.pl?action=edit&name="+xmlfilename;
+			var str = "/cgi-bin/cgi/ngfop/mksch02.pl?action=edit&name="+xmlfilename;
+
+			top.frames[3].location=str;
+	}
+	return;
+}
+// FM 9/4/03
+
+
+	for (var iii = 0; iii < objLeftFrm.elements.C1.length; iii++)
+	{
+		if (objLeftFrm.elements.C1[iii].checked)	
+		{
+			var xmlfilename = objLeft.getListItem(iii);
+			var str = "/cgi-bin/cgi/ngfop/mksch03.pl?action=edit&name="+xmlfilename;
+
+			top.frames[3].location=str;
+		}
+	}
+}
+
+function myPicture()
+{
+//	alert("user supplied picture.\n Go somewhere get a picture and paste it here.\n You can have local pictures this way and or picture from anywhere on the net.");
+
+	src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=mypicture.htm";
+	top.frames[2].location=src;
+
+}
+
+function cp2ebcb()
+{
+  	var cb = getLeftFN();
+
+	cb = "\74MK_LISTBOX>"+cb+"\74/MK_LISTBOX>";
+
+	var str = "\74name>"+cb+"\74/name>";
+
+//alert(str);
+
+//	str = parent.middle.getListItem();
+
+	if (str)
+		parent.right.frames[1].test(str);
+}
+
+
+
+function cp2sch22()
+{
+	var str = "";
+
+	str = parent.middle.getListItem();
+
+	if (str)
+		parent.right.frames[1].test(str);
+}
+
+
+
+function REMOVEME_cp2sch()
+{
+	var obj    = parent.right.myform;
+	var objMid = parent.middle.myform;
+
+	//alert(parent.right.myform.name);
+//    alert(obj.elements.R1.length);
+
+//    alert("middle = "+objMid.elements.C1.length);
+
+//    alert("middle value = "+objMid.elements[3].checked);
+
+	var str = "";
+//	var str2 = "";
+	for (var iii = 0; iii < objMid.elements.C1.length; iii++)
+	{
+
+//		if (objMid.elements[iii].checked)	
+		if (objMid.elements.C1[iii].checked)	
+		{
+			if (str.length)
+			{
+				str += ", ";
+			}
+			str += parent.middle.getListItem(iii);
+		}
+	}
+
+    parent.right.test(str);
+}
+
+function func200()
+{
+   	alert(parent.middle.myform.elements.length);
+   	alert(parent.right.myform.elements.length);
+
+	for (var i = 0; i < parent.right.myform.elements.length; i++) 
+	{
+		var bob = parent.right.myform.elements[i];
+		alert(bob.type);
+		/*
+		alert(parent.right.myform.elements[i].type+","+
+              parent.middle.myform.elements[i].name+","+
+   		      parent.middle.myform.elements[i].value);
+			*/
+	}
+
+}
+
+function func100()
+{
+	var xmlfilename = parent.middle.myform.xmlfilename.value;
+	var str = "/cgi-bin/cgi/ngfop/other.pl?action=pdf&name="+xmlfilename;
+
+	top.frames[3].location=str;
+}
+
+</script>
+
+<!--<body topmargin="0" bgcolor='rgb(249, 201, 92)';> -->
+<body class="toolbar" topmargin="20" leftmargin="0" bgcolor=F5F3E4>
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/top.pl">
+
+    <div id="menu"
+		style="z-index: 2; 
+		position: absolute; height:23;left: 51px; top:0px;	background-color: #45B3DD;">
+
+<SELECT NAME="Extra" 
+    style="text-transform: uppercase; color: navy; background: #C9E8FB; font-family: Verdana; font-size:12;">
+	<OPTION VALUE="-1">List
+	<OPTION VALUE="1">Categorys
+	<OPTION VALUE="1">S&R
+	<OPTION VALUE="5">Pictures1
+	<OPTION VALUE="5">Pictures2
+	<OPTION VALUE="5">Local Pics
+	<OPTION VALUE="4">Make Form
+	<OPTION VALUE="1">Rewards
+	<OPTION VALUE="2">R. Rules
+	<OPTION VALUE="3">Soc.Story
+	<OPTION VALUE="4">ABC Gath.
+	<OPTION VALUE="4">O. Styles
+	<OPTION VALUE="4">UDL
+</SELECT>
+
+	<a class="menuitem" onclick ="ShowExtra(document.myform.Extra.options[document.myform.Extra.selectedIndex].text);"
+	title="Select a command">Go!</a> 
+
+<SELECT NAME="People" 
+	style="color: navy; background: #C9E8FB; font-family: Verdana; font-size:12;">
+	<OPTION VALUE="1">Jake
+</SELECT>
+
+<SELECT NAME="date" 
+	style="color: navy; background: #C9E8FB; font-family: Verdana; font-size:12;">
+	<!--onChange="ShowDate(this.options[this.selectedIndex].text);"-->
+	>
+	<OPTION VALUE="-1">Day
+	<OPTION VALUE="1">Week
+</SELECT>
+
+		<a class="menuitem" onClick="ShowDate(document.myform.date.options[document.myform.date.selectedIndex].text);"
+		title="Show Day or Week">Go! </a> 
+<IMG SRC="/cgi/ngfop/wayfind.gif" alt="My Picture" align="middle" width="23" height="15" border="1" onclick = "myPicture();"></A>
+  
+		<a class="menuitem"
+		onClick="top.frames[3].location='/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name=blank.xml'"
+		title="This is the menu (the links don't go anywhere)">New</a> 
+
+<IMG SRC="/cgi/ngfop/rarrow1.gif" ALT="copy left to right" align="middle" width="23" height="15" border="1" onclick = "cp2sch22();">
+</A>
+        <a class="menuitem" onclick = "cp2ebcb();"       title="Embed" >eb</a> 
+        <a class="menuitem" onclick = "editSchedule2();" title="Edit"  >Edit</a>
+		<a class="menuitem" onclick = "del();"           title="Delete">Delete</a> 
+
+    </div>
+
+
+  <input type="hidden" NAME="leftsrc" value="cb"/>
+  <input type="hidden" NAME="leftvalue" value="blank.xml"/>
+  <input type="hidden" NAME="leftfname" value="blank.xml"/>
+  <input type="hidden" NAME="middlefname" value=""/>
+
+<!-- ************************** BEGIN **************************************** -->
+
+<div style="background-color: #292929; color: white; 
+			position: absolute; left: 0px; top: 80px; width: 100px; height: 300px; 
+			padding: 5px; padding-right: 20px;">
+			This will be the navigation 'column', which will run down the left of the page.
+</div>
+
+<!--
+    <frame name="middle" src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=blank.htm">
+	<frame name="right"  src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name=blank.xml">
+-->
+
+
+
+  <iframe  name= "left"
+  style="; position: absolute; height=90%; width:35%;
+  top: 30px; bottom: 120px; left: 150px"
+  src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=0test.htm">
+    </iframe> 
+<!--  src="/cgi-bin/cgi/ngfop/sch3.pl?name=cbdinner.xml&htmlname=cb3a.htm">
+http://gw/cgi-bin/cgi/ngfop/other2.pl?htmlname=0test.htm
+
+-->
+
+
+  <iframe name="right"
+  style="; position: absolute; height=90%; width:35%;
+  top: 30px; bottom: 120px; left: 550px"
+  src="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name=blank.xml">
+  </iframe> 
+
+
+
+
+
+
+
+</form>
+
+</body>
+</html>

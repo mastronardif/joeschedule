@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Board games.
+</description>
+
+<row><picture>/cgi/ngfop/pics/temp/chutes.jpg</picture>
+<name>
+Chutes and ladders
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/checkers.jpg</picture>
+<name>
+Checkers
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/cardgame.jpg</picture>
+<name>
+Card Games
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/candyland.jpg</picture>
+<name>
+Candy Land
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/monopoly.jpg</picture>
+<name>
+Monoploy
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/trouble.jpg</picture>
+<name>
+Trouble
+</name>
+</row>
+
+</data>

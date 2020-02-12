@@ -1,0 +1,857 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<meta name="viewport" content="width=180; initial-scale=1.5; minimum-scale=1.0;user-scalable=10" />
+<title>Schedules</title>
+
+<link rel="stylesheet" type="text/css" href="sch01.css.2"/>
+
+</head>
+
+
+
+<script type="text/javascript">
+
+<!--
+createCookie('sessionID','Visitor',1)
+//alert('asdfasfasdf');
+//createCookie('ppkcookie','Visitor',1)
+
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=www.joeschedule.com/";
+//alert("createCookie "+name);
+
+}
+
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}
+
+function disable()
+{
+createCookie('sessionID','Visitor',1);
+alert('asdfasfasdf');
+return;
+	if (!document.myform.C1)
+
+		return;
+
+
+
+	// in case if there's only one.
+
+	document.myform.C1.checked=false;
+
+
+
+	var obj = document.myform.elements.C1;
+
+
+
+	if (obj)
+
+	{
+
+		for (var iii = 0; iii < obj.length; iii++)
+
+		{
+
+			document.myform.C1[iii].checked=false;
+
+		}
+
+	}
+
+}
+
+
+
+function notifytop(fn, desc)
+{
+
+	// Cheesy solution for the frames for iframe 
+
+	// FM 6/18/8 if (top.frames.length < 4)
+createCookie('sessionID','Visitor',1)
+ return;
+/*   if (top.frames.length < 3)
+	{
+		top.setLeftValue("", fn, desc);
+	}
+	else
+	{
+		top.frames[0].setLeftValue("", fn, desc);
+	}
+**/
+}
+
+
+
+function go33(url)
+
+{
+
+   var str= url;
+
+   var obj = top.frames[0];
+
+   var student = obj.document.myform.Students.options[obj.document.myform.Students.selectedIndex].text
+
+   student = "&student=" + student;
+
+   str += student;
+
+   var newwindow = window.open(str, "FMname", "menubar=0,status=0,resizable=1");
+
+   if (window.focus) {newwindow.focus()} 
+
+}
+
+
+
+function go(fn)
+
+{
+
+   var str="/cgi-bin/cgi/ngfop/abakitbuild.pl?htmlname=members/Sussina/0abakitxm44i.htm";   
+
+
+
+   var obj = top.frames[0];
+
+   //alert (obj.document.myform.Students.options[obj.document.myform.Students.selectedIndex].text);
+
+   var student = obj.document.myform.Students.options[obj.document.myform.Students.selectedIndex].text
+
+   student = "&student=" + student;
+
+   str += student;
+
+//alert(str);
+
+//window.open(str);
+
+
+
+top.frames[2].location=str;
+
+	//parent.middle.location=str;
+
+}
+
+// Fm 6/18/8
+
+
+
+-->
+
+
+
+
+
+
+
+</script>
+
+
+
+  
+
+
+
+  
+
+
+
+<body class="toolbar" topmargin="0" leftmargin="0">
+
+<form name = "myform" method="post" action="http://www.joeschedule.com/cgi-bin/cgi/ngfop/each.cgi">
+
+
+
+<!-- <font size="4" color="#FF0000"><b><i>My Schedules</i></b></font>
+
+   -->
+
+<font size="4" color="#FF0000"><b><i>Schedules by Category</i></b></font>
+
+<br>   
+
+<font size="2" color="#FF0000"><b><i>My Schedules</i></b></font>
+
+<br>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch32027761.xml", "Actions");' /> 
+  <a href="http://www.joeschedule.com/cgi-bin/cgi/ngfop/signin.pl?id=Visitor&pw=Visitor">Tiny Joe</A>
+<br>
+
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch32027761.xml", "Connect");' /> 
+  <a href="http://www.joeschedule.com/cgi/ngfop/itleft02.htm">Connect</A>
+<br>
+
+
+
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch181872076.xml", "00 iPhone");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch181872076.xml">00 iPhone</A>
+<br>
+</Schedule>
+
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch3.xml", "After School Routine");' /> 
+  <a href="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch3.xml">After School Routine</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch127854433.xml", "Ali&#39;s Schedule");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch127854433.xml">Ali&#39;s Schedule</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch69198123.xml", "Animals");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch69198123.xml" >Animals</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch90610727.xml", "Bathroom");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch90610727.xml" >Bathroom</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch115839194.xml", "Bray");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch115839194.xml" >Bray</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch116354886.xml", "Bray Shhhh");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch116354886.xml" >Bray Shhhh</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch116356388.xml", "Bray lunch");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch116356388.xml" >Bray lunch</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch84536557.xml", "Carve A Pumpkin");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch84536557.xml" >Carve A Pumpkin</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch115840270.xml", "Cathy");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch115840270.xml" >Cathy</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch69196891.xml", "Clothing");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch69196891.xml" >Clothing</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch141944994.xml", "David");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch141944994.xml" >David</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch69204604.xml", "Emotions 2");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch69204604.xml">Emotions 2</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch69279751.xml", "Feed the dog");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch69279751.xml" >Feed the dog</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch69279864.xml", "Fix breakfast");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch69279864.xml" >Fix breakfast</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch158606146.xml", "Go to school");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch158606146.xml" >Go to school</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch71161449.xml", "Grace&#39;s Morning");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch71161449.xml" >Grace&#39;s Morning</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch103457673.xml", "Jenn");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch103457673.xml" >Jenn</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch129411102.xml", "Jj");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch129411102.xml" >Jj</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch118169811.xml", "Karen");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch118169811.xml" >Karen</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch119881245.xml", "Laurie");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch119881245.xml" >Laurie</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch82817810.xml", "Make your bed");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch82817810.xml" >Make your bed</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch95811928.xml", "Man Shaving");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch95811928.xml" >Man Shaving</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch126926764.xml", "Monday schedule");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch126926764.xml" >Monday schedule</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch85152798.xml", "Morning routine");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch85152798.xml" >Morning routine</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch2.xml", "Night Routine");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch2.xml" >Night Routine</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch56296567.xml", "Shapes 1");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch56296567.xml" >Shapes 1</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch114483980.xml", "Social Questions Chris");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch114483980.xml" >Social Questions Chris</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("Students.xml", "Students");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=Students.xml" >Students</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch116896341.xml", "TEST 1");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch116896341.xml" >TEST 1</A>
+<br>
+</Schedule>
+<Schedule>
+  <input type="checkbox" name="C1" onclick = 'notifytop("sch101686762.xml", "What we do.");' /> 
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=isch.htm&amp;name=sch101686762.xml" >What we do.</A>
+<br>
+</Schedule>
+
+
+<font size="2" color="#FF0000"><b><i>My Choice Boards</i></b></font>
+
+<br>
+
+
+
+<input type="checkbox" name="C1" onclick = 'notifytop("cb99886508.xml", "0 - getting started");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb99886508.xml&amp;htmlname=isch.htm" >0 - getting started</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb100435314.xml", "00 - blowing nose");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb100435314.xml&amp;htmlname=cb3a.htm" >00 - blowing nose</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb103333821.xml", "00 Safe and dangerous");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb103333821.xml&amp;htmlname=cb3a.htm" >00 Safe and dangerous</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb101422208.xml", "<b>Comming soon ABA Bingo</b>");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb101422208.xml&amp;htmlname=cb3a.htm" ><b>Comming soon ABA Bingo</b></a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb99532594.xml", "Asd art");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb99532594.xml&amp;htmlname=cb3a.htm" >Asd art</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb100359556.xml", "Bathroom");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb100359556.xml&amp;htmlname=cb3a.htm" >Bathroom</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb129478590.xml", "Becca");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb129478590.xml&amp;htmlname=cb3a.htm" >Becca</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb106482026.xml", "Chris");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb106482026.xml&amp;htmlname=cb3a.htm" >Chris</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb133809218.xml", "Christian&#39;s Morning");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb133809218.xml&amp;htmlname=cb3a.htm" >Christian&#39;s Morning</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb100650386.xml", "Colors");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb100650386.xml&amp;htmlname=cb3a.htm" >Colors</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb69636541.xml", "Leisure");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb69636541.xml&amp;htmlname=cb3a.htm" >Leisure</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb181873747.xml", "Letters uppercase");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb181873747.xml&amp;htmlname=cb3a.htm" >Letters uppercase</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb1.xml", "School Activities");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb1.xml&amp;htmlname=cb3a.htm" >School Activities</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb129134503.xml", "Self injurus");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb129134503.xml&amp;htmlname=cb3a.htm" >Self injurus</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb2.xml", "Snack");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb2.xml&amp;htmlname=cb3a.htm" >Snack</a>
+  <br><input type="checkbox" name="C1" onclick = 'notifytop("cb89991044.xml", "V&#7879; sinh cá nhân");' />
+  <a HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3.pl?name=cb89991044.xml&amp;htmlname=cb3a.htm" >V&#7879; sinh cá nhân</a>
+  <br>   
+
+<hr></hr>
+
+<font size="2" color="#FF0000"><b><i>Classroom</i></b></font>
+
+
+
+<br>
+
+  <input type="checkbox" name="C1" onclick = "notifytop('schs/schlettersuc.xml', 'the description');">
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=schlettersuc.xml&amp;htmlname=cb3a.htm" >Letters 
+
+upper-case</A>
+
+
+
+<br>
+
+  <input type="checkbox" name="C1" onclick = "notifytop('schs/sch102686767.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch102686767.xml&amp;htmlname=cb3a.htm" >Class Schedule</A>
+
+<br>
+
+
+
+  <input type="checkbox" name="C1" onclick = "notifytop('schs/sch102686968.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch102686968.xml&amp;htmlname=cb3a.htm" >Class Choice Board</A>
+
+<br>
+
+
+
+  <input type="checkbox" name="C1" onclick = "notifytop('schs/sch15704716.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15704716.xml&amp;htmlname=cb3a.htm" >School Communication Forms</A>
+
+<br>
+
+
+
+  <input type="checkbox" name="C1" onclick = "notifytop('schs/sch97178354.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch97178354.xml&amp;htmlname=cb3a.htm" >Social questions</A>
+
+
+
+<br>
+
+
+
+<font size="2" color="#FF0000"><b><i>Chores</i></b></font>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12875936.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12875936.xml&amp;htmlname=cb3a.htm" >Changing the sheets</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch13217963.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13217963.xml&amp;htmlname=cb3a.htm" >Doing laundry</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12847280.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12847280.xml&amp;htmlname=cb3a.htm" >Make your bed</A>
+
+<br>
+
+   
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch14650544.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch14650544.xml&amp;htmlname=cb3a.htm" >Clearing the table</A>
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12962084.xml', 'the description');">      
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12962084.xml&amp;htmlname=cb3a.htm" >Sweeping</A>
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12849374.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12849374.xml&amp;htmlname=cb3a.htm" >Feed the dog</A>
+
+<br>
+
+
+
+<font size="2" color="#FF0000"><b><i>Bathroom</i></b></font>
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12651741.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12651741.xml&amp;htmlname=cb3a.htm" >Wash your hair</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12692642.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12692642.xml&amp;htmlname=cb3a.htm" >Washing hands</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch15488083.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15488083.xml&amp;htmlname=cb3a.htm" >Washing hands(boy)</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch15429316.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15429316.xml&amp;htmlname=cb3a.htm" >Go to the bathroom</A>
+
+
+
+<br>
+
+
+
+
+
+
+
+<font size="2" color="#FF0000"><b><i>Home Skills</i></b></font>
+
+<br>
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12759921.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12759921.xml&amp;htmlname=cb3a.htm" >Call 9-1-1</A>
+
+<br>
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12760440.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12760440.xml&amp;htmlname=cb3a.htm" >Call Grandma</A>
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12960307.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12960307.xml&amp;htmlname=cb3a.htm" >Fix breakfast</A>
+
+<br>
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch14570579.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch14570579.xml&amp;htmlname=cb3a.htm" >Fix lunch</A>
+
+   
+
+<br>
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12759167.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12759167.xml&amp;htmlname=cb3a.htm" >Get dressed</A>
+
+<br>
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch15514559.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15514559.xml&amp;htmlname=cb3a.htm" >Get dressed (winter)</A>
+
+<br>
+
+
+
+   
+
+<font size="2" color="#FF0000"><b><i>Play Skills</i></b></font>
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch13002058.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13002058.xml&amp;htmlname=cb3a.htm" >Trains</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch13001859.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13001859.xml&amp;htmlname=cb3a.htm" >Blocks</A>
+
+
+
+<br>
+
+
+
+
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch13001792.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13001792.xml&amp;htmlname=cb3a.htm" >Puzzle</A>
+
+
+
+<br>
+
+
+
+
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch13001677.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13001677.xml&amp;htmlname=cb3a.htm" >Play house</A>
+
+
+
+<br>
+
+
+
+
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch15167474.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15167474.xml&amp;htmlname=cb3a.htm" >Color</A>
+
+
+
+<br>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<font size="2" color="#FF0000"><b><i>Recipes</i></b></font>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch13084897.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13084897.xml&amp;htmlname=cb3a.htm" >Make a sundae</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12686642.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12686642.xml&amp;htmlname=cb3a.htm" >Make Chocolate Chip Cookies</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12008232.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12008232.xml&amp;htmlname=cb3a.htm" >Make a peanut butter and jelly sandwhich</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch14569362.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch14569362.xml&amp;htmlname=cb3a.htm" >Make a milkshake</A>
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<font size="2" color="#FF0000"><b><i>Routine</i></b></font>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12960175.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12960175.xml&amp;htmlname=cb3a.htm" >Morning routine</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12960076.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12960076.xml&amp;htmlname=cb3a.htm" >Night time routine</A>
+
+
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12865762.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12865762.xml&amp;htmlname=cb3a.htm" >Packing bag for school</A>
+
+<br>
+
+
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12921224.xml', 'the description');"> 
+
+
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12921224.xml&amp;htmlname=cb3a.htm" >Hang up coat</A>
+
+
+
+<br>
+
+  <input type="checkbox"  name="C1" onclick = "notifytop('schs/sch12848803.xml', 'the description');"> 
+
+  <A HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12848803.xml&amp;htmlname=cb3a.htm" >Doing homework</A>
+
+<br>
+
+   
+
+</form>
+
+</body>
+
+</html>
+

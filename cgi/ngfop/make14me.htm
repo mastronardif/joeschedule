@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Make one for me</title>
+
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="target" content="colspan, rowspan" />
+
+<meta name="author" content="Gracy LLC" />
+<meta name="copyright" content="Gracy LLC 2004 and beyond..." />
+<meta name="robots" content="all" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/print.css" media="print" />
+
+
+
+	<script type="text/javascript">
+	<!-- script helped along by PPK at http://www.xs4all.nl/~ppk/js/
+	function checkform()
+	{
+		if (document.fb.comment.value=='' || document.fb.comment.value=='Words go in here...')
+		{
+			alert('Please enter your problem');
+			document.fb.comment.focus();
+			return false;
+		}
+/********
+		else if (document.fb.negative.value=='' || document.fb.negative.value=='There\'s gotta be something...')
+		{
+			alert('Hard as it may be, please enter some negative comments');
+			document.fb.negative.focus();
+			return false;
+		}
+*********/
+		else if (document.fb.name.value=='')
+		{
+			alert('Please enter your name');
+			document.fb.name.focus();
+			return false;
+		}
+		else if (document.fb.email.value=='')
+		{
+			alert('Please enter your email address');
+			document.fb.email.focus();
+			return false;
+		}
+		else if (!checkMail())
+		{
+			alert('I can\'t reply unless you enter a valid email address...');
+			return false;
+		}
+		
+		// Everything's Okey
+		return true;
+	}
+	
+	function checkMail()
+	{
+		var x = document.fb.email.value;
+		var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9])+$/;
+		if (filter.test(x)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	-->
+	</script>
+
+
+</head>
+
+<body>
+
+
+<!-- Content Start -->
+<form method="post" action="/cgi-bin/cgi/ngfop/contactus.pl" name="fb" onsubmit="return checkform()">
+
+
+
+<fieldset style="padding: 10px; border: #DEDEFF solid 3px;">
+<legend><strong style="color: blue">1. Schedule Data</strong></legend>
+<p>
+ <table border="1" cellpadding="0" width="100%">
+    <tr>
+     <td valign="top">
+	 Create My Schedule<br/> 
+	 <i>
+	 <font size="1">
+	 <b>Examples:</b>
+I want an afterschool routine<br/>
+I want a choice board:embedded in my afterschool routine :<br/>
+Add a daily schedule in the calendar  Every thursday we have 10:00 OT With Ann
+</font>
+	 </i>
+     </td>
+     <td valign="top">
+	 Just Add Pictures to my Schedule(s)
+     </td>
+    </tr>
+    <tr>
+     <td>
+<textarea cols="40" rows="8" name="comment" style="font-family: arial; width: 430px;" onfocus="if (pcount == 0) {this.value='';} pcount++;">
+Enter data here...
+</textarea>
+     </td>
+
+     <td>
+<textarea cols="40" rows="8" name="negative" style="font-family: arial; width: 430px;" onfocus="if (ncount == 0) {this.value='';} ncount++;">
+Enter Schedule Name(s) here...
+</textarea>
+
+     </td>
+
+    </tr>
+</table>
+
+</p>
+
+<script type="text/javascript">
+<!--
+var pcount = 0;
+var ncount = 0;
+// -->
+</script>
+
+</fieldset><br />
+
+<fieldset style="padding: 10px; border: #DEDEFF solid 3px;">
+<legend><strong style="color: blue">2. Subscriber Information</strong></legend>
+<table cellspacing="0" cellpadding="1" border="0">
+<tr>
+    <td width="50%"><label for="yourname">JoeSchedule ID:</label></td>
+    <td><input type="text" name="name" style="border: black solid 1px" id="yourname" /></td>
+</tr>
+<tr>
+    <td><label for="youraddress">Your Email Address:</label></td>
+    <td><input type="text" name="email" style="border: black solid 1px" id="youraddress" /></td>
+</tr>
+</table>
+
+</fieldset><br />
+<fieldset style="padding: 10px; border: #DEDEFF solid 3px;">
+<legend><strong style="color: blue">3. The Buttons</strong></legend>
+<div align="center" style="margin-top: 5px"><input type="submit" value="Submit" /> &nbsp; &nbsp; 
+<input type="reset" onclick="pcount=0; ncount=0" /></div>
+</fieldset><br />
+
+<p style="background: #fcfbff; border: 1px dashed silver; padding: 8px; font-family: Georgia"><em>Privacy Policy:</em><br />
+Your name and address will never be given out to anybody, and I will only use them if I feel the need to reply to you.</p>
+
+</form>
+<a href="http://www.joeschedule.com/">www.joeschedule.com</a>
+
+</body>
+</html>
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<title>Choice Boards</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+
+<script type="text/javascript">
+<!--
+
+function disable()
+{
+	if (!document.myform.C1)
+		return;
+
+	// in case if there's only one.'
+	document.myform.C1.checked=false;
+
+	var obj = document.myform.elements.C1;
+
+	if (obj)
+	{
+		for (var iii = 0; iii < obj.length; iii++)
+		{
+			document.myform.C1[iii].checked=false;
+		}
+	}
+}
+
+function notifytop(fn, desc)
+{
+	parent.frames[0].disable();
+	// i'm [1]
+	parent.frames[2].disable();
+
+	//works in joeschedul w/ frames. top.frames[0].setLeftValue("", fn);
+
+	// Cheesy solution for the frames for iframe 
+	if (top.frames.length < 4)
+	{
+		top.setLeftValue("", fn, desc);
+	}
+	else
+	{
+		top.frames[0].setLeftValue("", fn, desc);
+	}
+}
+
+
+-->
+</script>
+</head>
+
+
+  
+  
+<body class="toolbar" topmargin="0" leftmargin="0"
+font-size: 13pt;
+>
+<!--
+<body topmargin="0" leftmargin="0"
+bgcolor='rgb(249, 201, 92)';
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif"
+text="#000080" link="#800000" vlink="#008080">
+-->
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<font size="4" color="#FF0000"><b><i>My Choice Boards</i></b></font>
+<br>
+<ChoiceBoard>
+  <input type="radio" name="C1" onclick = 'notifytop("<FILE>", "<DESCRIPTION>");' /> 
+  <a HREF="/cgi-bin/cgi/ngfop/sch3.pl?name=<FILE>&htmlname=cb3a.htm" TARGET="middle"><DESCRIPTION></a>
+  <br>
+</ChoiceBoard>
+</form>
+
+</body>
+</html>
+
+
+

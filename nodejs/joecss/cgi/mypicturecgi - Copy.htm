@@ -1,0 +1,157 @@
+<style>
+img.div2 {
+  display:inline-block; 
+  float:left
+}
+
+#div2 {
+  display: inline-block;
+  height: 90px;
+  width: 350px;
+  line-height: 90px;
+  text-align: center;
+  border: 2px dashed #f69c55;
+  background-color:pink;
+}
+</style>
+<script>
+
+function lazyBoy()
+{
+    for (var iii = 0; iii < document.myform.elements.R55.length; iii++)
+	{
+		if (document.myform.elements.R55[iii].value != "")
+		{
+			var str = "http://images.google.com/images?q="+ document.myform.elements.R55[iii].value;
+			window.open(str);
+		}
+		if (iii>5)
+			break;
+	}
+}
+
+function getListItem()
+{
+    var str = "";
+	str = "<picture>"+gR55+"</picture>";
+	return str;
+}
+
+var	gR55  = "";
+</script>
+
+<body topmargin="0" bgcolor='rgb(249, 201, 92)';>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myInput").value;
+  //alert(x);
+  //alert(document.getElementById("II55"));
+  document.getElementById("II55").src=x
+  // clear
+  document.getElementById("myInput").value="";
+  
+  //document.myform.I55 [iii].src   = szName;
+  //document.getElementById("demo").innerHTML = "You wrote: " + x;
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+  
+  //alert('allowDrop(ev)');
+//var imageUrl = ev.dataTransfer.getData('text/html');
+//alert(ev.dataTransfer.types);
+
+}
+
+function drop22(ev) { 
+  ev.preventDefault();
+  
+  //alert(ev.dataTransfer.types);
+console.log(ev); 
+
+  var data = ev.dataTransfer.getData("text");
+  console.log(data);
+  //ev.target.appendChild(document.getElementById(data));
+   document.getElementById('II57').src=data;
+  
+   // Print each item's "kind" and "type"
+ if (ev.dataTransfer.items != null) {
+   for (var i=0; i < ev.dataTransfer.items.length; i++) {
+     console.log("... items[" + i + "].kind = " + ev.dataTransfer.items[i].kind + " ; type = " + ev.dataTransfer.items[i].type);
+   }
+ }
+ 
+   //var nodeCopy = document.getElementById(data).cloneNode(true);
+  //nodeCopy.id = "newId"; /* We cannot use the same ID */
+  //ev.target.appendChild(nodeCopy);
+  
+  //alert(nodeCopy.src);
+}
+
+</script>
+<form name="myfor_mmypicturecgi_htm">
+  <table border="1" cellpadding="0" width="100%">
+  <tr>  			
+	<td colspan="2" align="center">
+	<align="left"><font size="5" color="#FF0000" face="Comic Sans MS">My Pictures</font>
+    <a class="menuitem" title="Let your computer do the work" href="javascript:lazyBoy();">Lazy Boy</a>
+  </td>
+  </tr> 
+
+  <tr>  				
+	<td width="1%">
+        <input type="radio" name="R1" onclick = "pastePicture(document.myfor_mmypicturecgi_htm.II57.src);">
+    </td>
+	<td align="top">
+	    <input type="hidden" NAME="HR55" value="<PICTURE>">
+		<img class="div2" id="II57" name="II57" border="0" alt = "drop" src="asdf" width="105px" height="96px">  
+		<div id="div2" ondrop="drop22(event)" ondragover="allowDrop(event)">
+		Drag an image on me.
+		</div>	
+	</td>
+  </tr>
+  
+  <tr>  				
+	<td width="1%">
+        <input type="radio" name="R1" onclick = "pastePicture(document.myfor_mmypicturecgi_htm.II55.src);">
+    </td>
+	<td>
+	    <input type="hidden" NAME="HR55" value="<PICTURE>">
+		<img id="II55" name="II55" border="0" alt = "drop" src="asdf" width="105px" height="96px">  
+	
+		drop image: <input type="text" name="R55" id="myInput" oninput="myFunction()"placeholder="drag/drop img url here">	
+	</td>
+  </tr>
+  
+  <tr>
+	<td width="1%">
+        <input type="radio" name="R1" onclick = "pastePicture(document.myfor_mmypicturecgi_htm.R55[1].value, document.myfor_mmypicturecgi_htm.I56);">
+    </td>
+    <td>
+		<input type="hidden" NAME="HR55" value="<PICTURE>">
+		<img NAME="I56" border="0" src="<PICTURE>" width="105px" height="96px">
+        <input type="text" name="R55"  size = 20 value = "" placeholder="past img url here">
+    </td>
+  </tr>
+  </table>
+</form>
+
+<script>
+gIwidth  = 105;//document.myform.I55[0].width;
+gIheight = 96;//document.myform.I55[0].height;
+
+function pastePicture(src, dest)
+{
+	re = /\\/g;
+	var szName = src.replace(re, "/");
+	gR55 = szName;
+	if (dest) {
+		dest.src   = gR55;
+	}
+}
+
+</script>
+
+

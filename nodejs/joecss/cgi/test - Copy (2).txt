@@ -1,0 +1,83 @@
+<?php
+// required headers
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+ 
+// include database and object file
+//include_once '../config/database.php';
+//include_once '../objects/product.php';
+ 
+// get database connection
+//$database = new Database();
+//$db = $database->getConnection();
+ 
+// prepare product object
+//$product = new Product($db);
+ 
+$request_method=$_SERVER["REQUEST_METHOD"]; 
+// get product id
+$data = json_decode(file_get_contents("php://input"));
+ 
+// set product id to be deleted
+//$product->id = $data->id;
+ 
+ if ($request_method != 'DELETE')
+ {
+	 //405 Method Not Allowed
+	 http_response_code(405);
+	 echo json_encode(array("message" => "405 Method Not Allowed."));
+	 return;
+ }
+
+// delete the product
+	$cookie_name = "sessionID";
+	//$root = './members/100170/';
+	$root = './members/'.$_COOKIE[$cookie_name].'/';
+	$imageName = $data->id ;
+	$fn = $root.$imageName;
+	$msg = "wtf";
+//if($product->delete()){
+if(delete($id, $msg)){	
+ 
+    // set response code - 200 ok
+    http_response_code(200);
+ 
+    // tell the user
+	// $data->id;
+    echo json_encode(array("message" => "Product was deleted.",
+	                       "id" => $data->id,
+						   "msg" => $msg,						   
+						   "fn" => $fn));
+} 
+// if unable to delete the product
+else{
+ 
+    // set response code - 503 service unavailable
+    http_response_code(503);
+ 
+    // tell the user
+    echo json_encode(array("message" => "Unable to delete product."));
+}
+
+// delete the product
+function delete($id, &$msg)
+{
+	$cookie_name = "sessionID";
+	//$root = './members/100170/';
+	$root = './members/'.$_COOKIE[$cookie_name].'/';
+	$imageName = $id ;
+	$fn = $root.$imageName;
+ 
+	if (file_exists($fn)) {
+		unlink($fn);
+		$msg = "The file $fn exists";
+	} else {
+		$msg = "The file $fn does not exists";
+    }
+	return true;
+}
+
+?>

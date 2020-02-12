@@ -1,0 +1,228 @@
+
+<script>
+<!--
+function hideEmptyPictures()
+{
+	var iChks = 0;
+
+//alert(document.myform.I55.length);
+
+	for (var iii = 0; iii < document.myform.I55.length; iii++)
+	{
+		var src = _listData[iii];
+		var szPic = src.match(/<picture>(.+)<\/picture>/i);
+//alert(szPic);
+		if (szPic)
+		{
+			szPic = szPic[1];
+		}
+		else
+		{
+			szPic = "";
+		}
+
+		if (szPic == "")
+		{
+			iChks++;
+			myform.elements.I55[iii].width = "0";
+			myform.elements.I55[iii].height = "0";
+
+	    }
+	}
+}
+
+var _listData = new Array(
+    <row>
+    "\74name><NAME>\74/name>\74picture><PICTURE>\74/picture>",
+    </row>
+"end"
+);
+
+
+function getListItem()
+{
+	//return _listData[iii];
+
+	var str = "";
+	var obj = document.myform;
+
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+	{
+		if (obj.elements.C1[iii].checked)	
+		{
+			str = _listData[iii];
+			break;
+		}
+	}
+
+	return str;
+}
+
+//var colorbgnd   = 'black';
+var colorbgnd   = 'pink';
+//var colorforgnd = 'pink';
+
+function rint()
+{
+    document.bgColor='rgb(256, 256, 256)';
+    document.body.background="";
+
+	document.myform.prin.style.visibility="hidden";
+
+	document.all.CC1.style.style="tiny";
+	document.all.CC1.style.color="silver";
+
+	document.all.CC1.style.visibility="visible";
+
+	document.all.CC1.style.visibility="visible";
+
+//  window.print();
+}
+
+var colorforgnd = 'rgb(249, 201, 92)'; //'#F5F3E4'; //'#00FFFF'; // .windowbg; ////
+//F5F3E4
+//FFFFFF
+//D5D1B3
+function mover(obj, row)
+{
+//	obj.bgColor='gold';
+}
+
+function mout(obj, row)
+{
+//	obj.bgColor= (myform.elements[row].checked) ?  colorbgnd : obj.document.bgColor; 
+}
+
+function mclick(obj, row)
+{
+	mkblack(obj, row)
+}
+
+function mkblack(obj, row)
+{
+//	obj.bgColor= (!myform.elements[row].checked) ? "#00FFFF" : colorbgnd;
+	obj.bgColor= (!myform.elements[row].checked) ? colorbgnd : colorforgnd;
+//	obj.font ="Comic Sans MS";
+//	<p><strike>this is a fuck test</strike></p>
+	obj.text ="fuck";
+	myform.elements[row].text = "fuckyou";
+	myform.elements.C1.value = "asdfasf";
+
+
+	myform.elements[row].checked = !myform.elements[row].checked;
+
+	CallBack_DisplayResults();
+}
+
+
+function CallBack_DisplayResults()
+{
+	
+	document.all.WARNING1.innerHTML = "****";
+	var checks = "";
+	var iChks = 0;
+
+	for (var iii = 0; iii < myform.elements.C1.length; iii++)
+	{
+		if (myform.elements.C1[iii].checked)
+		{
+			iChks++;
+			checks += "*";
+	    }
+	}
+
+	if (iChks > 4)
+	{
+		checks += " Good job you can do your reward now."
+	}
+	document.all.WARNING1.innerHTML = checks;
+}
+
+-->
+</script>
+
+
+<!--<body bgcolor="pink">
+  <body bgcolor=.windowbg>
+-->
+<body bgcolor='rgb(249, 201, 92)';>
+
+<!--
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif"
+text="#000080" link="#800000" vlink="#008080">
+-->
+
+
+<DIV CLASS="WARNING">
+<H1 ID="WARNING1" STYLE="color:red; text-align:center;position:absolute;top:0"></H1>
+
+</DIV>
+<div id="WARNING00" style="position:absolute;left:20;top:0;">
+<img src=/cgi/ngfop/hearts.gif name=Warning00 border="0" width="10" height="10">
+</div>
+
+<form name = "myform" method="POST" action="/cgi-bin/cgi/ngfop/each.cgi">
+<filename>
+<input type="hidden" NAME="xmlfilename" value="<FILENAME>">
+</filename>
+
+
+<table border="1" cellpadding="3" height="1">
+
+  <description>
+  <tr>
+<!--     <td valign="top" width="50%" height="29" > -->
+      <td  colspan="3" align="center">
+      <align="left"><font size="5"><DESCRIPTION></font></td>
+  </tr>
+  </description>
+<!--
+  <tr>
+    <td valign="top" width="60%" height="35">
+      <table border="1" width="448" height="28">
+-->
+<row>
+        <tr>
+          <td width="5%" height="1"><TIME></td>
+          <td width="5%" height="1"><input type="checkbox" name="C1" value="ON"></td>
+
+          <td width="54%" align="left" height="1"
+		  onClick    ="mkblack(this,1);"> 
+          <IMG NAME="I55" border="0" src="<PICTURE>" width="105" height="96" type="image" >
+
+		  <br>
+		  <name>
+		  </td>
+        </tr>
+</row>
+
+</table>
+
+<input type="button" Value="To Print" name="prin" onclick = "rint();">
+
+<!-- hidden vars to force arrays -->
+ <IMG NAME="I55" border="0" src="<PICTURE>" width="105" height="96" type="image">
+<!--  <IMG NAME="I55" border="0" src="/cgi/ngfop/bar1.gif" width="105" height="96" type="image"> -->
+
+</form>
+
+
+<DIV CLASS="CC">
+<div ID="CC1"  style="visibility:hidden;">
+<!--
+<img src="/cgi/ngfop/bar1.gif" width="582" height="9"><br>
+-->
+
+<h6>
+<address>
+mastronardif@netcarrier.com<br>
+Copyleft © 2003 by [Gracy LLC]. All rights reserved.<br>
+Revised: 27 Nov 2003
+</address>
+</h>
+
+</DIV>
+</body>
+<script>
+hideEmptyPictures();
+</script>

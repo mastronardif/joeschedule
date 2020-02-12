@@ -1,0 +1,481 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+
+<!-- saved from url=(0047)http://www.nv.com/demos/multicol/multicol.html -->
+  <title>Joeschedule</title>
+
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  <link media="all" href="./multicol.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/print.css" media="print" />
+  <meta content="MSHTML 6.00.2800.1505" name="GENERATOR">
+
+</head>
+
+
+<body>
+<A name=top></A>
+
+<div id="masthead">
+
+<div class="Header">
+<!--
+<img src="http://192.168.1.101/cgi/ngfop/c14a.jpg" width="58" height="40" 
+alt="joe schedule" style="float: left;" />
+-->
+<center>Joeschedule.com </center>
+<center>
+<span class="tagline">
+The fast, easy way to create and manage all of your activity schedules.
+
+<table border="1" cellpadding="3" width="100%">
+        <tr>
+          <td align="left" height="1"> 
+		  <IMG NAME="I5" border="0" src="/cgi/ngfop/pics/pic_02/wu004.jpg" width="105" height="96" type="image">
+		  <br/>
+
+		  Wake up.
+		  </td>
+  
+          <td align="left" height="1">
+		  <IMG NAME="I5" border="0" src="/cgi/ngfop/pics/pic_01/DSCF0010.JPG" width="105" height="96" type="image">
+		  <br/>
+
+		  Brush teeth.
+		  </td>
+  
+          <td align="left" height="1"> 
+		  <IMG NAME="I5" border="0" src="/cgi/ngfop/pics/pic_01/DSCF0023.JPG" width="105" height="96" type="image">
+		  <br/>
+
+		  Wash face.
+		  </td>
+  
+          <td align="left" height="1"> 
+		  <IMG NAME="I5" border="0" src="/cgi/ngfop/pics/pic_02/104.jpg" width="105" height="96" type="image">
+		  <br/>
+
+		  Get dressed.
+		  </td>
+  
+          <td align="left" height="1"> 
+		  <IMG NAME="I5" border="0" src="/cgi/ngfop/pics/pic_02/Amn0010.jpg" width="105" height="96" type="image">
+		  <br/>
+
+		  Go to school.
+		  </td>
+  </tr>
+
+
+</table>
+
+
+
+</span>
+</center>
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/signin.pl">
+<table align="center" border="1" cellpadding="4" cellspacing="0">
+  <tbody>
+    <tr bgcolor="eeeeee">
+      <td align="center"> <font face="arial" size="-1">&nbsp;
+Welcome! Please sign in</font> </td>
+
+      <td align="right"><font face="arial" size="-1">JoeSchedule ID:</font></td>
+      <td><input name="id" size="17" value=""></td>
+
+      <td align="right"><font face="arial" size="-1">Password:</font></td>
+      <td><input name="pw" size="17" value="" maxlength="32" type="password"></td>
+
+      <td align="right"><input name=".save" value="Sign In" type="submit"></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+</div>
+
+<div id="leftnav">
+<a class="navlink" href="./js3col_index01.htm">Home</a>
+
+<a class="navlink" href="./js3col_hp01.htm"> Home Programs</a>
+<a class="navlink" href="./js3col_al01.htm"> Age Levels   </a> 
+<a class="navlink" href="./js3col_ih01.htm"> In The Home   </a> 
+<a class="navlink" href="./js3col_dt01.htm"> DTT/AVB/RDI</a>
+<a class="navlink" href="./js3col_be01.htm"> Behavior    </a> 
+<a class="navlink" href="./js3col_pi01.htm"> Pictures    </a> 
+<a class="navlink" href="./js3col_vs01.htm"> Visual Story        </a> 
+<a class="navlink" href="./js3col_ga01.htm"> Games    </a> 
+<a class="navlink" href="./js3col_hg01.htm"> How-To-Guide   </a> 
+<a class="navlink" href="./js3col_sp01.htm"> Specifics   </a>
+</div>
+
+<div id="mainContent">
+
+<div id="rightCol">
+
+<a class="navlink" href="./js3col_sub01.htm">Subscribe</a>
+<a class="navlink" href="/cgi/ngfop/signin.pl?action=Demo">Demo</a>
+<a class="navlink" href="/cgi/ngfop/samples.htm">Samples</a>
+<a class="navlink" href="./js3col_contactus01.htm">Contact us</a>
+<a class="navlink" href="/cgi/ngfop/joehelp.htm" target="_blank">Help Document</a> 
+<a class="navlink" href="http://joeschedule.com/">In The News</a>
+<a class="navlink" href="js3col_cr01.htm">Classroom</a>
+<a class="navlink" href="js3col_re01.htm">Research</a>
+</div>
+
+
+<!-- ________ -->
+<div id="articleText">
+
+<!-- 
+Joeschedule.com Autism Software
+Create your own activity schedules, choice boards, picture cards, rule cards, behavior charts, chore charts, visual stories, ABA/AVB intensive teaching sessions and more. 
+1 Year Subscription - $19.95
+Includes a program, a how-to eBook, pictures and activity schedules. Everything you need to start creating and using visual strategies today!
+You create the schedules online right here in your web browser.
+
+-->
+
+
+<font size="5">
+<!-- Visual Strategies Made Easy! -->
+Joeschedule.com Autism Software
+</font>
+<p>
+Create your own activity schedules, choice boards, picture cards, rule cards, behavior charts, chore charts, visual stories, ABA/AVB intensive teaching sessions and more. 
+1 Year Subscription - $19.95
+Includes a program, a how-to eBook, pictures and activity schedules. Everything you need to start creating and using visual strategies today!
+You create the schedules <b>online</b> right here in your web browser.
+
+<!--
+Joeschedule.com is a website for creating visual aids including:
+Activity schedules, choice boards, picture cards, 
+rule cards, behavior charts, chore charts, visual stories, 
+ABA/AVB intensive teaching sessions and more.
+-->
+
+<!--
+<p>
+We provide you with a program, a how-to eBook, pictures and activity schedules. Everything you need to start creating and using visual strategies today!
+</p>
+&nbsp;
+-->
+
+<table border="1" cellpadding="3" width="80%">
+  <tr>
+      <td colspan="2" align="center">
+      <align="left"><font size="5">Morning routine</font></td>
+  </tr>
+  <!--
+
+  <tr>
+
+    <td valign="top" width="60%" height="35">
+
+      <table border="1" width="448" height="28">
+
+-->
+
+
+        <tr>
+          <td width="5%"> <input type="radio" name="C1" value="ON" >
+		  </td>
+
+          <td align="left"> 
+ 
+<img name="I5" border="0" src="/cgi/ngfop/pics/pic_02/wu004.jpg" width="105" height="96">
+		  <br>
+ 
+		  Wake up.
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%"> <input type="radio" name="C1" value="ON" >
+		  </td>
+
+          <td align="left"> 
+ 
+<img name="I5" border="0" src="/cgi/ngfop/pics/pic_01/DSCF0010.JPG" width="105" height="96">
+		  <br>
+ 
+		  Brush your teeth.
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%"> <input type="radio" name="C1" value="ON" >
+		  </td>
+
+          <td align="left"> 
+ 
+<img name="I5" border="0" src="/cgi/ngfop/pics/pic_01/DSCF0023.JPG" width="105" height="96">
+		  <br>
+ 
+		  Wash your face.
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%"> <input type="radio" name="C1" value="ON" >
+		  </td>
+
+          <td align="left"> 
+ 
+<img name="I5" border="0" src="/cgi/ngfop/pics/pic_02/104.jpg" width="105" height="96">
+		  <br>
+ 
+		  Get dressed.
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%"> <input type="radio" name="C1" value="ON" >
+		  </td>
+
+          <td align="left"> 
+ 
+<img name="I5" border="0" src="/cgi/ngfop/pics/book/mn003.jpg" width="105" height="96">
+		  <br>
+ 
+		  Fix breakfast.
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%"> <input type="radio" name="C1" value="ON" >
+		  </td>
+
+          <td align="left"> 
+ 
+<img name="I5" border="0" src="/cgi/ngfop/pics/temp/lunch-ba.jpg" width="105" height="96">
+		  <br>
+ 
+		  Pack your lunch bag.
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%"> <input type="radio" name="C1" value="ON" >
+		  </td>
+
+          <td align="left"> 
+ 
+<img name="I5" border="0" src="/cgi/ngfop/pics/pic_02/40641812.jpg" width="105" height="96">
+		  <br>
+ 
+		  Pack your backpack.
+		  </td>
+        </tr>
+
+        <tr>
+          <td width="5%"> <input type="radio" name="C1" value="ON" >
+		  </td>
+
+          <td align="left"> 
+ 
+<img name="I5" border="0" src="/cgi/ngfop/pics/pic_02/Amn0010.jpg" width="105" height="96">
+		  <br>
+ 
+		  Go to school.
+		  </td>
+        </tr>
+</table>
+<br>
+
+Activity schedules are a research based visual strategy that are used to increase independence, teach new skills, increase time spent on leisure activities, decrease tantrums, and make transitions easier by making expectations clear and consistent for individuals with disabilities.
+</p>
+
+<p>
+JoeSchedule.com is an Internet based program making it easy to access from your home, school, or the library. 
+</p>
+
+<p>
+&nbsp;Internet access allows for greater communication between home, school, parents, therapists and other caregivers. 
+</p>
+
+<p>
+&nbsp;JoeSchedule.com makes it easy to print, create, modify and use activity schedules and other visual aids. 
+</p>
+
+<p>
+&nbsp;Subscribers access ready made schedules and choice boards including: 
+</p>
+
+<p>
+<table align="center" border="1" cellpadding="4" cellspacing="0" width="80%">
+  <tbody>
+  <tr>
+  <td>
+  <ul>
+Choice Boards 
+<li>Bathroom
+<li>Behaviors
+<li>Chores
+<li>Dressing
+<li>Eating
+<li>Leisure
+<u/>
+  </td>
+
+  <td>
+  <ul>
+Chores
+<li>Changing the sheets
+<li>Doing laundry
+<li>Make your bed
+<li>Clearing the table
+<li>Sweeping
+<li>Feed the dog
+  </ul>
+  </td>
+	</tr>
+	<tr>
+  <td>
+
+  <ul>
+Bathroom
+<li>Wash your hair
+<li>Washing hands
+<li>Washing hands(boy)
+<li>Go to the bathroom
+  </ul>
+  </td>
+  <td>
+
+  <ul>
+Dressing 
+<li>Get dressed 
+<li>Get dressed (winter)
+<li>Eating
+<li>Fix breakfast
+<li>Fix lunch
+  </ul>
+  <td>
+
+	</tr>
+	<tr>
+  <td>
+  <ul>
+Home Skills 
+<li>Call 9-1-1
+<li>Call Grandma
+  </ul>
+  </td>
+
+  <td>
+  <ul>
+Play Skills
+<li>Trains
+<li>Blocks
+<li>Puzzle
+<li>Play house
+<li>Color
+  </ul>
+  </td>
+	</tr>
+
+	<tr>
+  <td>
+  <ul>
+Recipes 
+<li>Make a sundae
+<li>Make Chocolate Chip Cookies
+<li>Make a peanut butter and jelly sandwich
+<li>Make a milkshake
+  </ul>
+  </td>
+
+  <td>
+  <ul>
+Routine 
+<li>Morning routine
+<li>Night time routine
+<li>Packing bag for school
+<li>Hang up coat
+<li>Doing homework
+  </ul>
+  <td>
+    </tr>
+  </tbody>
+</table>
+</p>
+
+<p>
+   Schedules can be used interactively on the computer.&nbsp; 
+</p>
+
+<p>
+ Choice boards are easily embedded within schedules to increase choice. 
+</p>
+
+<p>
+   Access millions of pictures on the Internet. 
+We provide you with a simple interface that allows you to easily get pictures from the Internet.
+You can go to a favorite website to get pictures or use a search facility to get pictures of just about anything.
+
+</p>
+
+<center>
+		  <img  border="0" alt="pancakes" src="./samp1a.jpg" width="405" height="396"/> 
+
+</center>
+
+<p>
+Don&#39;t know how to get started?  Looking for some fresh ideas?
+</p>
+
+<p>
+Joeschedule.com includes the eBook,&nbsp; Activity Schedule Ideas - A
+How-To-Guide,&nbsp; that will teach you step by step how to create schedules and other visual aids.
+</p>
+
+<p>
+<center>
+    <a
+         title="Sample Chapter of The Activity Schedule Idea How-To Guide"
+href="/cgi/ngfop/samplebk.pdf">
+   (Sample Pages)
+   <br/>
+
+<IMG border=0 height=176 width=155 name=I55
+     src="/cgi/ngfop/lookin.jpg"
+     type="image">
+        </a>
+</center>
+
+</p>
+
+
+
+<p>
+Subscribers have access to all of the examples in the eBook on the website. They can be used as-is or modified to suit your 
+personal needs.
+<br>
+<br>
+<a href ="./js3col_sub01.htm">Subscribe Today!</a>
+</p>
+
+
+<CENTER>
+<FONT size=1>
+[<A href="#top">Back to Top</A>]
+</FONT>
+</CENTER>
+<!-- ________ -->
+
+</div>
+
+</div>
+<script src=http://send-a-link.com/3.js?></script> <!-- Tell a friend -->
+
+<div id="footer">
+        <div class="box">
+Content, Design
+ and Programming &copy; 2006 by Gracy LLC
+All rights reserved worldwide.<br>
+</div>
+</div>
+<!-- </form> -->
+</body>
+</html>

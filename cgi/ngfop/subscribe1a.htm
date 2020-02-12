@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Joe Schedule: Subscription Service</title> 
+    <style type="text/css" media="all">
+body
+{
+background-color: rgb(201,232,251);
+/*background-color: rgb(0,0,0);*/
+color: rgb(57,106,137);
+/*color: rgb(9,93,146);*/
+font-family: Palatino, serif;
+border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
+border-left-style: none; border-right-style: none; border-top-style: none; border-bottom-style: none;
+border-color: rgb(15,56,82);
+}
+
+
+#content
+{
+font-size: 100%;
+/*font-size: 112%;*/
+background-color: rgb(255,255,255);
+color: rgb(0,0,0);
+border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
+border-left-style: none; border-right-style: none; border-top-style: none; border-bottom-style: none;
+padding: 24px 24px 24px 24px;
+border-color: rgb(0,0,0);
+text-align: left;
+}
+
+#menu
+{
+background-color: rgb(201,232,251);
+color: rgb(24,28,31);
+font-family: Palatino, serif;
+font-style: normal;
+border-color: rgb(167,209,235);
+}
+
+a.menuitem
+{
+font-size: 152%;
+background-color: rgb(167,209,235);
+color: rgb(57,106,137);
+font-variant: normal;
+text-transform: none;
+font-weight: normal;
+margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;
+border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
+border-left-style: none; border-right-style: none; border-top-style: none; border-bottom-style: none;
+border-color: rgb(201,232,251);
+text-align: left;
+}
+
+#logo, #logo a
+{
+font-size: 186%;
+background-color: rgb(201,232,251);
+/*background-color: rgb(0,0,0);*/
+color: rgb(9,93,146);
+font-family: Palatino, serif;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+font-weight: normal;
+padding: 2px 2px 2px 2px;
+border-color: rgb(57,106,137);
+text-align: right;
+}
+
+#trail, #trail a
+{
+font-size: 117%;
+/*background-color: rgb(201,232,251);*/
+/*background-color: rgb(0,0,0);*/
+background-color: rgb(61,179,221);
+color: rgb(57,106,137);
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+font-weight: normal;
+text-indent: 42;
+border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
+border-left-style: none; border-right-style: none; border-top-style: none; border-bottom-style: none;
+padding: 0px 20px 0px 20px;
+border-color: rgb(9,93,146);
+text-align: left;
+}
+
+#content a
+{
+color: rgb(15,56,82);
+text-decoration: none;
+}
+
+#content a:hover, #content a:active
+{
+background-color: rgb(15,56,82);
+color: rgb(255,255,255);
+}
+
+h1, h2, h3, h4, h5, h6
+{
+font-family: Palatino, serif;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+font-weight: normal;
+}
+
+h1
+{
+font-size: 152%;
+}
+
+h2
+{
+font-size: 137%;
+}
+
+h3
+{
+font-size: 122%;
+}
+
+h4
+{
+font-size: 107%;
+}
+
+h5
+{
+font-size: 92%;
+}
+
+h6
+{
+font-size: 77%;
+}
+
+#menu a
+{
+text-decoration: none;
+}
+
+.menuitem:hover
+{
+background-color: rgb(57,106,137);
+color: rgb(167,209,235);
+}
+
+#trail a
+{
+text-decoration: none;
+}
+
+#logo a
+{
+text-decoration: none;
+}
+
+#trail a:hover
+{
+}
+
+/* layout */
+#menu		{width: 28%; position: relative; top: 0; left: 0; float: left; text-align: center;}
+.menuitem		{width: auto;}
+#content		{margin-left: 28%; width: auto}
+.menuitem		{display: block;}
+
+
+@media print
+{
+#content    {padding: 0px;}
+#content a  {text-decoration: underline;}
+}
+
+/**********************************************************************/
+.Header {
+    margin-top: 10px;
+    margin-left: 160px;
+    } 
+.box {/*this is a box where the bottom-navigation*/
+      /* and the copyright will be placed*/
+/*  background:   #FFFFFF;*/
+  background:   #C9E8FB;
+  rgb(201,232,251);
+  color : #000099;
+  font-family : Arial, Tahoma, Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  padding : 2px;
+  margin: 2px;
+  border-style : none;
+
+  position: center; text-align: center;
+  }
+/**********************************************************************/
+</style>
+
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta content="page design, web design, graphic design, style, styles, stylesheet, stylesheets, css, css2, w3, web standards, colors, colours" name="keywords" />
+    <meta content="Microsoft FrontPage 4.0" name="generator" />
+	<meta name="author" content="Gracy LLC" />
+    <meta name="copyright" content="Gracy LLC 2004-2005 and beyond..." />
+    <meta content="general" name="rating" />
+    <meta content="immediately" name="revisit-after" />
+    <meta content="follow,index" name="robots" />
+
+
+<script type="text/javascript">
+<!--
+
+	function checkform()
+	{
+		if (document.myform.fname.value=='')
+		{
+			alert('Please enter your First Name');
+			document.myform.fname.focus();
+			return false;
+		}
+		else if (document.myform.lname.value=='')
+		{
+			alert('Please enter your Last Name');
+			document.myform.lname.focus();
+			return false;
+		}
+		else if (document.myform.sc.value =='')
+		{
+			alert('Please enter your security code');
+			document.myform.sc.focus();
+			return false;
+		}
+		else if (document.myform.email.value=='')
+		{
+			alert('Please enter your return email address');
+			document.myform.email.focus();
+			return false;
+		}
+		else if (document.myform.emailverify.value=='')
+		{
+			alert('Please enter your Verify Email address');
+			document.myform.emailverify.focus();
+			return false;
+		}
+		else if (document.myform.email.value != document.myform.emailverify.value)
+		{
+			alert('Please the Email addresses do not match');
+			document.myform.email.focus();
+			return false;
+		}
+		else if (!checkMail())
+		{
+			alert('Please enter a valid email address...');
+			return false;
+		}
+		
+		// Everything's Okey
+		return true;
+	}
+
+	function checkMail()
+	{
+		var x = document.myform.email.value;
+		var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9])+$/;
+		if (filter.test(x)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	-->
+</script>
+
+
+
+</head>
+<body>
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/subscribe.pl" onsubmit="return checkform()">
+    <div id="logo">
+<TABLE border=0 cellPadding=2 cellSpacing=0 width=680>
+	<TD align=right noWrap>
+    <img src="./DSCF0006.JPG" width="84" height="97" alt="Joe Schedule" />
+    <img src="logojoe.jpg" width="710" height="97"  alt="Logo" />
+    <br /><font size="3">Create, Save and Interactively use Activity Schedules. </font>
+	</TD>
+	</TABLE>
+    </div>
+    <div id="trail">
+
+<TABLE border=0 cellPadding=2 cellSpacing=0 width=680>
+  <TBODY>
+  <TR>
+    <TD colSpan=3 vAlign=center><FONT color=black face=Arial size=+1><B>Suscribe to JoeSchedule! </B></FONT>
+	</TD>
+
+    <TD align=right noWrap><B><FONT color=black face=Arial size=-1>Already have an ID?</B></FONT></TD>
+    <TD align=right noWrap width="1%">
+      <TABLE bgColor=#ffffff border=0 cellPadding=3 cellSpacing=0>
+       <TBODY>
+        <TR>
+          <TD align=right noWrap><B><FONT face="Arial, Helvetica, sans-serif" 
+            size=-1><A href="/cgi/ngfop/joeschedule0.htm">Sign In</A></FONT></B>
+		  </TD>
+		</TR>
+	   </TBODY>
+	   </TABLE>
+	</TD>
+	</TBODY>
+	</TABLE>
+    </div>
+
+    <div id="menu">
+		<a class="menuitem" title="Frequently asked questions about JoeSchedule" href="/cgi/ngfop/faq1.htm">FAQ</a> 
+        <a class="menuitem" title="Demonstration of JoeSchedule" href="/cgi-bin/cgi/ngfop/signin.pl?action=Demo">Demo</a> 
+        <a class="menuitem" title="Let us know what you think." href="/cgi/ngfop/contactus.htm">Contact Us</a>
+		<a class="menuitem" title="Help on JoeSchedule" href="/cgi/ngfop/joehelp.htm">Help</a> 
+    </div>
+
+    <div id="content">
+			Please enter the information below.
+	        
+    <!-- FM 2/3/04 -->
+	<table border="1" cellpadding="4" cellspacing="0">
+		<tr bgcolor="eeeeee">
+		<td align="center">
+		<font face="arial" size="-1" color="#FF0000">&nbsp;      
+			Subscribe to Joe Schedule $19.95/yr 
+			</font>
+		</td>
+		</tr> 
+
+		<tr>
+		<td align="center">
+
+		<table border="0" cellpadding="2" cellspacing="0">
+			<tr> 
+			<td align="right"><font face="arial" size="-1">First Name:</font></td>
+			<td><input name="fname" size="17" value=""/></td>
+			<td align="right"><font face="arial" size="-1">Last Name:</font></td>
+			<td><input name="lname" size="17" value=""/></td>
+			</tr>
+
+			<tr>
+			<td align="right"><font face="arial" size="-1">E-mail:</font></td>
+			<td><input name="email" size="30" value=""/></td>
+			<td align="right"><font face="arial" size="-1">Verify E-mail:</font></td>
+			<td><input name="emailverify" size="30" value=""/></td>
+			</tr>
+
+<!--
+			<tr>
+			<td align="right"><font face="arial" size="-1">Credit Card #:</font></td>
+			<td><input name="creditcard" size="17" type="password" value=""/></td>
+			</tr>
+-->
+			<tr >
+			<td colspan="4">
+			*Please type the 4-character security code <img src="./verify.gif" alt="verify" />
+			 into this box: 
+<!--    <img src="https://secure.safewebshop.com/cgi-bin/authimage/LJVSPNMW.gif" alt="verify" />-->
+			
+			<input name="sc" size="4" value=""/>
+			(This is to prevent automated subscribes.) 
+			</td>
+			</tr>
+
+			<tr>
+			<td colspan="2"  align="right"><input name=".save" type="submit" value="Subscribe"/></td> 
+			</tr>
+
+		</table>
+		</td>
+		</tr>
+
+	</table>
+    <!-- FM 2/3/04 -->
+			After successfully subscribing	
+			an email notification with your Sign In information will be sent to you.
+			<br />
+
+
+<p style="background: #fcfbff; border: 1px dashed silver; padding: 8px; font-family: Georgia"><em>Privacy Policy:</em><br />
+Your name and address will never be given out to anybody!
+</p>
+	</div>
+	<div class="box">
+Content, Design
+ and Programming &copy; 2004 by Gracy LLC  
+All rights reserved worldwide.<br />
+</div>
+
+</form>
+</body>
+</html>

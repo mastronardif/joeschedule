@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>Left side</title>
+  </head>
+
+<script>
+  <!--
+var _listData = new Array(
+//"zero","one","two","three","four",
+/*
+<ChoiceBoard>
+*/
+"%s",
+/*%s*/
+/*
+</ChoiceBoard>
+*/
+
+/*
+<Schedule>
+*/
+"%s",
+/*%s*/
+/*
+</Schedule>
+*/
+
+"end"
+);
+
+function getListItem(iii)
+{
+	return _listData[iii];
+}
+-->
+</script>
+
+
+  
+  
+<body bgcolor='rgb(249, 201, 92)';>
+<!--
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif"
+text="#000080" link="#800000" vlink="#008080">
+-->
+
+<form name = "myform" method="POST" action="/cgi-bin/cgi/ngfop/each.cgi">
+<table border="0" width="100%">
+
+
+<ChoiceBoard>
+<tr>
+  <input type="radio" value="V1" checked name="C1"> <A HREF="/cgi-bin/cgi/ngfop/sch3.pl?name=%s&htmlname=cb3.htm" TARGET="middle">%s</A>
+</tr>
+</ChoiceBoard>
+
+<!--<hr>
+<img src="/cgi/ngfop/bbar8.gif" width="582" height="9"><br>
+</hr>-->
+
+<Schedule>
+<tr>
+  <input type="radio" value="V1" checked name="C1"> <A HREF="/cgi-bin/cgi/ngfop/sch3.pl?name=%s" TARGET="middle">%s</A>
+</tr>
+</Schedule>
+
+</table>
+
+</form>
+
+
+</body>
+</html>
+
+
+

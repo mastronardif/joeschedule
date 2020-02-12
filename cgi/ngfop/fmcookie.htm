@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<meta name="viewport" content="width=180; initial-scale=1.5; 
+
+minimum-scale=1.0;user-scalable=10" />
+<title>Schedules</title>
+
+
+</head>
+
+
+
+<script type="text/javascript">
+
+<!--
+//function readCookie(name) {
+function OnInit() 
+{
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+alert(document.cookie);
+//alert(ca);
+return;
+
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return 
+
+c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+-->
+</script>
+
+
+<body onload="OnInit();">
+<form name = "myform" method="post" action="http://www.joeschedule.com/cgi-bin/cgi/ngfop/each.cgi">
+
+<br/>
+what the f is going on w/ cookies?
+   
+
+</form>
+
+</body>
+
+</html>

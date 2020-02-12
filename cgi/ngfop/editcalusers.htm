@@ -1,0 +1,354 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<title>Edit Schedule</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch1.css"/>
+
+<SCRIPT LANGUAGE="JavaScript" for=window event=onload>
+{
+	//top.frames[0].ShowExtra("List");
+	var src ="/cgi-bin/cgi/ngfop/other2.pl?htmlname=top2.htm";
+
+	//parent.left.location=src;
+	top.frames[0].location=src;
+
+}
+</script>
+
+
+</head>
+
+<script type="text/javascript">
+var colorbgnd   = 'black';
+var colorforgnd = '#F5F3E4'; //'#00FFFF';
+
+
+function deleteUser(fn)
+{
+	var response = confirm("Are you sure you want to delete "+fn+"?","");
+	if (response == false)
+		return;
+
+}
+
+function save2(name, desc)
+{
+// FM 1/6/4 for you don't have to enter a filename	document.myform.name.value = name;
+	var type;
+
+   if (/cb/ig.test(name))
+	{
+		type = "cb";
+	}
+	else
+		type = "sch";
+
+
+	// check for filename chars
+	myRe=/\W+/;
+	for (var iii = 0; iii < myform.elements.R55.length; iii++)
+	{
+		if (myform.elements.R55[iii].value)
+		{
+			//if (/Reward/i.test(strTime))
+			// myRe=/(<tr.*>)/i;
+			//if (myRe.test(ar[iii]))
+			//if (/cb/ig.test(name))
+			
+			if (myform.elements.R55[iii].value.length > 12)
+			{
+				alert("("+myform.elements.R55[iii].value+")\n"+
+					  "Is to long");
+
+				document.myform.elements.R55[iii].focus();
+				return;
+			}
+
+			if (myRe.test(myform.elements.R55[iii].value))
+			{
+				alert("("+myform.elements.R55[iii].value+")\n"+
+					  "It is not a proper name");
+
+				//str = myform.elements.R55[iii].value;
+				//alert(myform.elements.R55[iii].value.length);
+				//alert(str.length);
+
+				document.myform.elements.R55[iii].focus();
+				return;
+			}
+
+
+			//alert(myform.elements.R55[iii].value);
+		}
+	}
+
+
+
+	document.myform.type.value = type;
+	document.myform.d0.value = desc;
+
+	document.myform.submit();
+
+//	var str = "/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=editsch.htm";
+//	var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name="+name;
+//	top.frames[3].location=str;
+}
+
+
+
+// the cut vars
+var	gT1   = "";
+//var	gR1   = "";
+var	gHR55 = "";
+var	gI55src  = "";
+var	gI55w = "";
+var	gI55h = "";
+var	gR55  = "";
+
+function cutRow()
+{
+	for (var iii = 0; iii < myform.elements.R1.length; iii++)
+	{
+		if (myform.elements.R1[iii].checked)	
+		{
+			//gT1   =document.myform.T1  [iii].value;
+			gHR55 =document.myform.HR55[iii].value;
+			
+			gI55src =document.myform.I55 [iii].src;
+			gI55w   =document.myform.I55 [iii].width;
+			gI55h   =document.myform.I55 [iii].height;
+
+			gR55  =document.myform.R55 [iii].value;
+
+//	alert("curRow\n"+gHR55+")\n"+gR55+"\n"+gI55w+"\n"+gI55src+"\n"+gI55h);
+
+			//
+			// clear row
+//			document.myform.T1  [iii].value ="";
+			document.myform.HR55[iii].value ="";
+			
+			document.myform.I55 [iii].src   ="";
+			document.myform.I55 [iii].width ="";
+			document.myform.I55 [iii].height="";
+
+			document.myform.R55 [iii].value ="";
+			//pasteRow();
+			//
+
+			break;
+		}
+	}
+
+
+}
+
+function pasteRow()
+{
+//	alert("("+gHR55+")\n"+gR55+"\n"+gI55w+"\n"+gI55src+"\n"+gI55h);
+
+	for (var iii = 0; iii < myform.elements.R1.length; iii++)
+	{
+		if (myform.elements.R1[iii].checked)	
+		{
+//			document.myform.T1  [iii].value = gT1;
+			document.myform.HR55[iii].value = gHR55;
+	
+			document.myform.I55 [iii].src   = gI55src;
+			document.myform.I55 [iii].width = gI55w;
+			document.myform.I55 [iii].height= gI55h;
+	
+			document.myform.R55 [iii].value = gR55;
+
+			break;
+		}
+	}
+}
+
+
+
+</script>
+
+
+<!--<body Bgcolor="#99CCFF">
+<body topmargin="0" bgcolor='rgb(249, 201, 92)';>
+-->
+<body topmargin="0" leftmargin="0" bgcolor=#3DB3DD>
+<!--
+<body topmargin="0">
+<body topmargin="0" bgcolor='rgb(249, 201, 92)';>
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif"
+text="#000080" link="#800000" vlink="#008080">
+-->
+
+
+
+<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/editsch.pl?action=save">
+<!-- hidden shits -->
+     <filename>
+  <input type="hidden" name=name size = "10" value="<FILENAME>">
+     </filename>
+  <input type="hidden" name=type value="">
+  <input type="hidden" name=d0 value="">
+  <input type="hidden" name=htmlname value="editcalusers.htm">
+  
+<!-- 
+     <td><input type=submit value="s"> 
+	 <input type="button" value="c" name="cutrow" onclick = "cutRow();">
+	 <input type="button" value="p" name="pasterow" onclick = "pasteRow();">
+<IMG SRC="/cgi/ngfop/darrow1.gif" ALT="insert a row" WIDTH="23" HEIGHT="23" BORDER="0" onclick = "insertRow();">
+</A>
+-->
+
+    <table style="height:"100%;" height="100%" width="100%"border="1">
+    
+<row>
+          <tr>
+			<!--
+            <td width="5%">
+            <input type="radio" name="R1">
+            </td>
+			-->
+
+            <td  TD align=left noWrap width="50%">
+			<input type="hidden" NAME="HR55name" value="<NAME>">
+<!--			<input type="hidden" NAME="HR55" value="<PICTURE>">
+			<img NAME="I55" border="0" src="<PICTURE>" width="12px" height="40px">
+-->
+
+			<input type="text" name="R55" size = "12" value = "<NAME>">
+			</td>
+
+			<td width ="50%">
+			<font size="3" color="blue">delete</font>
+			<input type="checkbox" name="C1<NAME>" value="ON">
+			</td>
+          </tr>
+</row>
+
+
+          <tr bgcolor="#3DB3DD">
+
+	<td colspan="2" align="center">
+<font size="4" color="#FF0000">	<b><i>Add New Users Below</i></b> </font>
+		  </td>
+          </tr>
+<Appendblanks>
+          <tr>
+
+			<!--
+            <td width="5%">
+            <input type="radio" name="R1">
+            </td>
+			-->
+
+
+            <td colspan="2">
+<!--			<input type="hidden" NAME="HR55" value="">
+			<img NAME="I55" border="0" src="http://gw/cgi/ngfop/pics/pic05.4.gif" width="40" height="40">
+			-->
+
+            <input type="text" name="R55" size = "12" value = "<NAME>">
+		    </td>
+          </tr>
+</Appendblanks>
+  
+  </table>
+
+<script>
+gIwidth  = 10;//document.myform.I55[0].width;
+gIheight = 10;//document.myform.I55[0].height;
+
+function test(src)
+{
+//	alert(document.myform.I55[1].height);
+	var szName = src.match(/<Name>(.+)<\/Name>/i);
+	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
+
+	if (szPic)
+	{
+		szPic = szPic[1];
+	}
+	else
+	{
+		szPic = "";
+	}
+
+	if (szName)
+	{
+		szName = szName[1];
+	}
+	else
+	{
+		szName = "";
+	}
+
+
+	for (var iii = 0; iii < myform.elements.R1.length; iii++)
+	{
+		if (myform.elements.R1[iii].checked)	
+		{
+			if (szName != "")
+				document.myform.R55[iii].value = szName;
+
+			if (szPic != "")
+			{
+				document.myform.HR55[iii].value = szPic;
+
+
+				document.myform.I55[iii].width  = gIwidth;
+				document.myform.I55[iii].height = gIheight;
+				document.myform.I55[iii].src    = szPic;
+			}
+		}
+	}
+
+}	// end
+
+
+
+function initializeRows()
+{
+	gIwidth  = 40;//document.myform.I55[0].width;
+	gIheight = 40;//document.myform.I55[0].height;
+
+//	alert(document.myform.I55[1].height);
+
+	var szhRow;
+	for (var iii = 0; iii < myform.elements.R1.length; iii++)
+	{
+		szhRow = document.myform.HR55[iii].value;
+
+		if (szhRow == "")
+		{
+			document.myform.I55[iii].width  = 0;
+			document.myform.I55[iii].height = 0;
+		}
+		else
+		{
+			document.myform.I55[iii].width  = gIwidth;
+			document.myform.I55[iii].height = gIheight;
+		}
+
+	}
+}
+
+
+//initializeRows();
+
+// FM 01/12/04
+if (parent.SetHeadValue)
+{
+    <description>
+		var desc = "<DESCRIPTION>";
+    </description>
+
+	parent.SetHeadValue("d0", desc);
+}
+// FM 01/12/04
+
+</script>
+</body>
+</html>

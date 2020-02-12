@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Washing hands
+</description>
+
+<row><picture>/cgi/ngfop/pics/book/b0004.jpg</picture>
+<name>
+Turn on water
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/b0005.jpg</picture>
+<name>
+Put soap on hands.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/b0006.jpg</picture>
+<name>
+Lather hands.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/b0007.jpg</picture>
+<name>
+Rinse hands.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/b0004.jpg</picture>
+<name>
+Turn off water.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/b0008.jpg</picture>
+<name>
+Dry hands.
+</name>
+</row>
+
+</data>

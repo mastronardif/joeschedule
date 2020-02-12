@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<meta name="viewport" content="width=180; initial-scale=1.5; minimum-scale=1.0;" />
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+<title>Schedules</title>
+</head>
+
+<script type="text/javascript">
+<!--
+function disable()
+{
+	if (!document.myform.C1)
+		return;
+
+	// in case if there's only one.
+	document.myform.C1.checked=false;
+
+	var obj = document.myform.elements.C1;
+
+	if (obj)
+	{
+		for (var iii = 0; iii < obj.length; iii++)
+		{
+			document.myform.C1[iii].checked=false;
+		}
+	}
+}
+
+function notifytop(fn, desc)
+{
+	// Cheesy solution for the frames for iframe 
+	// FM 6/18/8 if (top.frames.length < 4)
+   if (top.frames.length < 3)
+	{
+		top.setLeftValue("", fn, desc);
+	}
+	else
+	{
+		top.frames[0].setLeftValue("", fn, desc);
+	}
+
+	// works in joebinder top.setLeftValue("", fn);
+}
+
+function go33(url)
+{
+   var str= url;
+   var obj = top.frames[0];
+   var student = obj.document.myform.Students.options[obj.document.myform.Students.selectedIndex].text
+   student = "&student=" + student;
+   str += student;
+   var newwindow = window.open(str, "FMname", "menubar=0,status=0,resizable=1");
+   if (window.focus) {newwindow.focus()} 
+}
+
+function go(fn)
+{
+   var str="/cgi-bin/cgi/ngfop/abakitbuild.pl?htmlname=members/Sussina/0abakitxm44i.htm";   
+
+   var obj = top.frames[0];
+   //alert (obj.document.myform.Students.options[obj.document.myform.Students.selectedIndex].text);
+   var student = obj.document.myform.Students.options[obj.document.myform.Students.selectedIndex].text
+   student = "&student=" + student;
+   str += student;
+//alert(str);
+//window.open(str);
+
+top.frames[2].location=str;
+	//parent.middle.location=str;
+}
+// Fm 6/18/8
+
+-->
+
+
+
+</script>
+
+  
+
+  
+
+<body class="toolbar" topmargin="0" leftmargin="0">
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<i>Welcome <ID/></i><br/>
+<!-- <font size="4" color="#FF0000"><b><i>My Schedules</i></b></font>
+   -->
+<!-- fm 6/18/7 -->
+   <font size="4" color="#FF0000"><b><i>ABA Programs</i></b></font>
+<br>
+
+   &nbsp;&nbsp;
+   <a href= 
+"http://www.joeschedule.com/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=iaba.htm&usedir=usedir%28Sussina%29&action=fromlist%28sch69196891.xml,sch83899845.xml,%29">*ABA 
+Programs</a>   
+     
+   <br>
+   &nbsp;&nbsp;
+   <A 
+HREF="http://www.joeschedule.com/cgi-bin/cgi/ngfop/isch3b.pl?htmlname=isch32b.htm&name=schMyComBoard01.xml&id=<ID/>&pw=<PW/>">
+   Communication Board(v)</A>    
+<br/>
+   &nbsp;&nbsp;
+   <A HREF=
+"http://www.joeschedule.com/cgi-bin/cgi/ngfop/other2.pl?htmlname=imyjoepec.htm&&name=schMyComBoard01.xml&id=<ID/>">
+   *Communication Board(h)</A>
+
+<!--
+   <A HREF="/cgi-bin/cgi/ngfop/other2.pl?htmlname=joepicexchng03.htm&name=cb136168402.xml">Communication Board</A>    
+-->
+<br/>
+
+<hr/> 
+<!-- fm 6/18/7 -->
+<font size="4" color="#FF0000"><b><i>Schedules by Category</i></b></font>
+<br>   
+<font size="2" color="#FF0000"><b><i>My Schedules</i></b></font>
+<br>
+
+<Schedule>
+<input type="checkbox" name="C1" onclick = 'notifytop("sch127854433.xml", "Ali&#39;s Schedule");' />
+  <A HREF="/cgi-bin/cgi/ngfop/isch3b.pl?id=<ID/>&pw=<PW/>&htmlname=isch3b.htm&name=<FILE>"><DESCRIPTION></A>
+<br>
+</Schedule>
+
+<font size="2" color="#FF0000"><b><i>My Choice Boards</i></b></font>
+<br>
+
+<ChoiceBoard>
+  <input type="radio" name="C1" onclick = 'notifytop("<FILE>", "<DESCRIPTION>");' />
+  <A HREF="/cgi-bin/cgi/ngfop/isch3b.pl?id=<ID/>&pw=<PW/>&&htmlname=isch3b.htm&name=<FILE>"><DESCRIPTION></A>
+  <br>
+</ChoiceBoard>   
+   
+<hr/>
+<font size="2" color="#FF0000"><b><i>Classroom</i></b></font>
+
+<br>
+  <input type="radio" name="C1" onclick = "notifytop('schs/schlettersuc.xml', 'the description');">
+  <A HREF="/cgi-bin/cgi/ngfop/isch3b.pl?id=../schs&name=schlettersuc.xml&htmlname=isch.htm">Letters 
+upper-case</A>
+
+<br>
+  <input type="radio" name="C1" onclick = "notifytop('schs/sch102686767.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/isch3b.pl?id=../schs&name=sch102686767.xml&htmlname=isch.htm">Class 
+Schedule</A>
+<br>
+
+  <input type="radio" name="C1" onclick = "notifytop('schs/sch102686968.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/isch3b.pl?id=../schs&name=sch102686968.xml&htmlname=isch.htm">Class Choice 
+Board</A>
+<br>
+
+  <input type="radio" name="C1" onclick = "notifytop('schs/sch15704716.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15704716.xml&htmlname=isch.htm">School 
+Communication Forms</A>
+<br>
+
+  <input type="radio" name="C1" onclick = "notifytop('schs/sch97178354.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch97178354.xml&htmlname=isch.htm">Social 
+questions</A>
+
+<br>
+
+<font size="2" color="#FF0000"><b><i>Chores</i></b></font>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12875936.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12875936.xml&htmlname=isch.htm">Changing the 
+sheets</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch13217963.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13217963.xml&htmlname=isch.htm">Doing laundry</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12847280.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12847280.xml&htmlname=isch.htm">Make your bed</A>
+<br>
+   
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch14650544.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch14650544.xml&htmlname=isch.htm">Clearing the table</A>
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12962084.xml', 'the description');">      
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12962084.xml&htmlname=isch.htm">Sweeping</A>
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12849374.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12849374.xml&htmlname=isch.htm">Feed the dog</A>
+<br>
+
+<font size="2" color="#FF0000"><b><i>Bathroom</i></b></font>
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12651741.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12651741.xml&htmlname=isch.htm">Wash your hair</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12692642.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12692642.xml&htmlname=isch.htm">Washing hands</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch15488083.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15488083.xml&htmlname=isch.htm">Washing hands(boy)</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch15429316.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15429316.xml&htmlname=isch.htm">Go to the bathroom</A>
+
+<br>
+
+
+
+<font size="2" color="#FF0000"><b><i>Home Skills</i></b></font>
+<br>
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12759921.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12759921.xml&htmlname=isch.htm">Call 9-1-1</A>
+<br>
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12760440.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12760440.xml&htmlname=isch.htm">Call Grandma</A>
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12960307.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12960307.xml&htmlname=isch.htm">Fix breakfast</A>
+<br>
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch14570579.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch14570579.xml&htmlname=isch.htm">Fix lunch</A>
+   
+<br>
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12759167.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12759167.xml&htmlname=isch.htm">Get dressed</A>
+<br>
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch15514559.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15514559.xml&htmlname=isch.htm">Get dressed(winter)</A>
+<br>
+
+   
+<font size="2" color="#FF0000"><b><i>Play Skills</i></b></font>
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch13002058.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13002058.xml&htmlname=isch.htm">Trains</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch13001859.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13001859.xml&htmlname=isch.htm">Blocks</A>
+
+<br>
+
+
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch13001792.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13001792.xml&htmlname=isch.htm">Puzzle</A>
+
+<br>
+
+
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch13001677.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13001677.xml&htmlname=isch.htm">Play house</A>
+
+<br>
+
+
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch15167474.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch15167474.xml&htmlname=isch.htm">Color</A>
+
+<br>
+
+  
+
+
+
+
+
+
+<font size="2" color="#FF0000"><b><i>Recipes</i></b></font>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch13084897.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch13084897.xml&htmlname=isch.htm">Make a sundae</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12686642.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12686642.xml&htmlname=isch.htm">Make Chocolate Chip 
+Cookies</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12008232.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12008232.xml&htmlname=isch.htm">Make a peanut butter 
+and jelly sandwhich</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch14569362.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch14569362.xml&htmlname=isch.htm">Make a milkshake</A>
+
+<br>
+
+
+
+
+
+
+<font size="2" color="#FF0000"><b><i>Routine</i></b></font>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12960175.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12960175.xml&htmlname=isch.htm">Morning routine</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12960076.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12960076.xml&htmlname=isch.htm">Night time 
+routine</A>
+
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12865762.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12865762.xml&htmlname=isch.htm">Packing bag for 
+school</A>
+<br>
+
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12921224.xml', 'the description');"> 
+
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12921224.xml&htmlname=isch.htm">Hang up coat</A>
+
+<br>
+  <input type="radio"  name="C1" onclick = "notifytop('schs/sch12848803.xml', 'the description');"> 
+  <A HREF="/cgi-bin/cgi/ngfop/pubschs.pl?name=sch12848803.xml&htmlname=isch.htm">Doing homework</A>
+<br>
+   
+</form>
+</body>
+</html>
