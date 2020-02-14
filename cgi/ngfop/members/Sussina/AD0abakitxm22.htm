@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>joeschedule.com demo - Kits</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+html,body{margin:0;padding:0}
+body{font: 76% arial,sans-serif}
+p{margin:0 10px 10px}
+div#header h1{height:30px;line-height:30px;margin:0;
+  padding-left:10px;background: #EEE;color: #79B30B}
+div#content p{line-height:1.4}
+div#navigation{background:#B9CAFF}
+div#extra{background:#FF8539}
+div#footer{background: #333;color: #FFF}
+div#footer p{margin:0;padding:5px 10px}
+
+div#wrapper{float:left;width:100%}
+div#content{margin-left: 50%}
+div#navigation{float:left;width:25%;margin-left:-100%}
+div#extra{float:left;width:25%;margin-left:-75%}
+div#footer{clear:left;width:100%}
+</style>
+</head>
+
+<script language="javascript" src="./abakit.js"></script>
+<script language="javascript" src="/cgi/ngfop/abakit.js"></script>
+
+<script language="javascript">
+function runprograms00(list)
+{
+	if (!list)
+	{
+		return;
+	}
+
+//	javascript:abakit_runprograms00('/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=schABA22wh.htm', 'Bucci', list);
+	javascript:abakit_runprograms00('/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=schABA22wh.htm', 'Sussina', list);
+}
+</script>
+
+<body>
+<!--
+<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/editabasch.pl?action=no-save">
+-->
+<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/each.pl?action=no-save">
+<!-- hidden shits begin -->
+     <filename>
+  <input type="hidden" name=name size = "10" value="<FILENAME>">
+     </filename>
+  <input type="hidden" name=htmlname size = "10" value="editabasch.htm">
+  <input type="hidden" name=type size = "10" value="">
+  <input type="hidden" name=d0   size = "30" value="">
+
+  <input type="hidden" name=lllaction   size = "10" value="dir">
+  <input type="hidden" name=actionFFF   size = "10" value="AAVe">
+<!-- hidden shits end -->
+
+
+
+
+<div id="container">
+<div id="header">
+<h1>
+Programs
+
+&nbsp;
+<button type="reset" name="r2" value="reset"  WIDTH="28" HEIGHT="20">
+ Reset</button>
+
+&nbsp;
+<button type="reset" name="r2" value="reset" WIDTH="28" HEIGHT="20"
+ onclick = "abakit_runprograms('/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=schABA22wh.htm', 'usedir(Sussina)', 'mydesc');">
+ Run Program</button>
+
+ &nbsp;
+<button type="reset" name="r2" value="reset" WIDTH="28" HEIGHT="20"
+ onclick = "abakit_runprograms('/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=schABA22ma.htm', 'usedir(Sussina)','matching');">
+ Matching</button>
+
+</h1>
+
+
+<!--
+<h1>
+&nbsp;
+<button type="reset" name="r2" value="reset"  WIDTH="28" HEIGHT="20">
+ Reset</button>
+
+&nbsp;
+<button type="reset" name="r2" value="reset" 
+ onclick = "abakit_runprograms('/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=schABA22wh.htm', 'usedir(Sussina)', 'mydesc');">
+<img SRC="/cgi/ngfop/kdabull3.gif" WIDTH="28" HEIGHT="20"
+ ALT="run a program" /> Run Program</button>
+</h1> 
+ -->
+
+</div>
+ <i>Select the programs you want to run from the menu. &nbsp; Press Run Program.</i>
+
+<div id="wrapper">
+<div id="content">
+
+<p>
+
+</p>
+<p><strong>WH questions</strong> 
+<br>
+<input type="checkbox" name="C1" value="sch16926045.xml">
+<a HREF="javascript:runprograms00('sch16926045.xml')">Where questions</a>
+<br>
+<input type="checkbox" name="C1" value="sch94149461.xml" DISABLED>
+When questions
+<br>
+<input type="checkbox" name="C1" value="sch94140533.xml"DISABLED>
+Which questions
+
+<br><input type="checkbox" name="C1" value="sch16990962.xml"DISABLED> 
+Who questions
+
+<br><input type="checkbox" name="C1" value="sch94600139.xml"DISABLED> 
+Why/If questions
+</p>
+
+<p>
+<hr>
+<p><strong>Function of</strong> 
+<br>Instruction: <i>What do you ______ with?</i>
+<br><i>What do you do with a /your _____?</i>
+<br><input type="checkbox" name="C1" value="sch94773481.xml"> 
+<a HREF="javascript:runprograms00('sch94773481.xml')">Function of Body Parts</a>
+<br><input type="checkbox" name="C1" value="sch83887104.xml" DISABLED> 
+Function of Objects
+<br><input type="checkbox" name="C1" value="sch94149716.xml"DISABLED> 
+Function of Rooms
+<br><input type="checkbox" name="C1" value="sch94592591.xml"DISABLED> 
+Function of Occupation
+</p>
+
+
+<p>
+<hr>
+<p><strong>Social</strong> 
+<br>Instruction: <i>Point to ______.</i>
+<br>Instruction: <i>Show me ______.</i>
+<br><input type="checkbox" name="C1" value="sch17882238.xml"DISABLED> 
+Family
+<br><input type="checkbox" name="C1" value="000.xml"DISABLED> 
+Social Questions
+<br><input type="checkbox" name="C1" value="sch94839775.xml"DISABLED> 
+General Knowledge
+<br><input type="checkbox" name="C1" value="sch94592822.xml"DISABLED> 
+Pretends
+</p>
+
+<p>
+<hr>
+<p><strong>Seasonal</strong> 
+<br>Instruction: <i>Point to ______.</i>
+<br>Instruction: <i>What is this a picture of?</i>
+<br><input type="checkbox" name="C1" value="sch84463344.xml"DISABLED> 
+Holidays
+<br><input type="checkbox" name="C1" value="sch90985323.xml"DISABLED> 
+Winter
+<br><input type="checkbox" name="C1" value="000.xml"DISABLED> 
+Spring
+<br><input type="checkbox" name="C1" value="sch17532755.xml"DISABLED> 
+Summer
+<br><input type="checkbox" name="C1" value="sch18108057.xml"DISABLED> 
+Fall
+</p>
+
+
+
+
+
+
+</p>
+</div>
+</div>
+<div id="navigation">
+<p><strong>Objects</strong> 
+<br>Instruction: <i>What is it? </i>
+<br><i>Point to ______</i>
+<br>
+<br>
+<input type="checkbox" name="C1" value="sch17532564.xml"DISABLED>
+Accessories
+<br>
+
+<input type="checkbox"  name="C1" value="sch69198123.xml"> 
+<a HREF="javascript:runprograms00('sch69198123.xml')">Animals</a>
+
+
+<br><input type="checkbox" name="C1" DISABLED value="sch86208568.xml"DISABLED> 
+Body Parts
+
+<br><input type="checkbox" name="C1" value="sch37456341.xml"DISABLED> 
+Chores
+
+<br><input type="checkbox" name="C1" value="sch17531860.xml"DISABLED> 
+Classroom Objects
+<br><input type="checkbox" name="C1" value="sch69196891.xml"DISABLED> 
+Clothing
+
+
+<br><input type="checkbox" name="C1" value="sch39398513.xml"DISABLED> 
+Drinks
+<br><input type="checkbox" name="C1" value="000.xml"DISABLED> 
+Excercises
+<br><input type="checkbox" name="C1" value="sch85769109.xml"DISABLED> 
+Food
+<br><input type="checkbox" name="C1" value="sch18109096.xml"DISABLED> 
+Food (breakfast)
+<br><input type="checkbox" name="C1" value="sch17263444.xml"DISABLED> 
+Food (desert)
+<br><input type="checkbox" name="C1" value="sch17532427.xml"DISABLED> 
+Footwear
+<br><input type="checkbox" name="C1" value="sch83899845.xml"DISABLED> 
+Fruit
+<br><input type="checkbox" name="C1" value="sch17499717.xml"DISABLED> 
+Furniture
+<br><input type="checkbox" name="C1" value="sch17500439.xml"DISABLED> 
+Musical Instruments
+<br><input type="checkbox" name="C1" value="sch17337302.xml"DISABLED> 
+Sports
+<br><input type="checkbox" name="C1" value="sch17532167.xml"DISABLED> 
+Stationary
+<br><input type="checkbox" name="C1" value="sch17500475.xml"DISABLED> 
+Transportation
+<br><input type="checkbox" name="C1" value="sch17347078.xml"DISABLED> 
+Toys
+<br><input type="checkbox" name="C1" value="sch83899905.xml"DISABLED> 
+Vegetables
+
+<hr>
+<p><strong>Rooms</strong> 
+<br>Instruction: <i>Point to ______</i>
+<br><i>What room is this?</i>
+<br><i>What is this?</i>
+<br>
+<br><input type="checkbox" name="C1" value="sch90610727.xml"DISABLED> 
+Bathroom
+<br><input type="checkbox" name="C1" value="sch90610690.xml"DISABLED> 
+Bedroom
+<br><input type="checkbox" name="C1" value="sch90614084.xml"DISABLED> 
+Rooms
+<br><input type="checkbox" name="C1" value="sch90610701.xml"DISABLED> 
+Dining room
+<br><input type="checkbox" name="C1" value="sch90617618.xml"DISABLED> 
+Living room
+<br><input type="checkbox" name="C1" value="000.xml"DISABLED> 
+Family room
+<br><input type="checkbox" name="C1" value="sch17498767.xml"DISABLED> 
+House
+<br><input type="checkbox" name="C1" value="sch90610713.xml"DISABLED> 
+Kitchen
+<br><input type="checkbox" name="C1" value="sch91482688.xml"DISABLED> 
+Yard
+</p>
+</div>
+
+<div id="extra">
+<p><strong>Academic</strong> 
+<br>Instruction: <i>What is this? </i>
+<br><i>Point to ______</i>
+<br>
+<br><input type="checkbox" name="C1" value="sch69195547.xml"> 
+<a HREF="javascript:runprograms00('sch69195547.xml')">Colors</a>
+
+<br><input type="checkbox" name="C1" value="sch85761918.xml" DISABLED>
+Colors Words
+<br><input type="checkbox" name="C1" value="sch86300557.xml"DISABLED>
+Numbers
+<br><input type="checkbox" name="C1" value="sch85762082.xml"DISABLED> 
+Number Words
+<br><input type="checkbox" name="C1" value="sch84028307.xml"DISABLED> 
+Shapes
+<br><input type="checkbox" name="C1" value="sch86294727.xml"DISABLED> 
+Uppercase letters
+<br><input type="checkbox" name="C1" value="sch69032883.xml"DISABLED> 
+Lowercase letters
+<br><input type="checkbox" name="C1" value="sch94839775.xml"DISABLED> 
+General knowledge
+<hr>
+<br>
+<p><strong><u>Community</u></strong> 
+<br>Instruction: <i>Point to ______</i>
+<br><i>What/Who is this a picture of?</i>
+<br>
+<br><input type="checkbox" name="C1" value="sch91487629.xml"DISABLED> 
+Occupations
+<br><input type="checkbox" name="C1" value="sch31766010.xml"DISABLED> 
+Places to go
+<br><input type="checkbox" name="C1" value="sch94839982.xml"DISABLED> 
+Gender
+
+<hr>
+<br>
+<p><strong><u>Verbs</u></strong> 
+<br>Instruction: <i>What is she/he doing?</i>
+<br>
+<br><input type="checkbox" name="C1" value="sch17498395.xml"DISABLED> 
+Commands
+<br><input type="checkbox" name="C1" value="sch17497434.xml"DISABLED> 
+Actions
+
+
+
+</p>
+</div>
+<div id="footer"><p>Visit joeschedule.com</p></div>
+</div>
+</form>
+</body>
+</html>
