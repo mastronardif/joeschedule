@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>my- PureCSS Tabs</title>
+    <script
+      src="https://kit.fontawesome.com/129016d5d8.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/style.css" />
     <script language="javascript" src="/cgi/ngfop/js/jsdebugtop.js"></script>
     <!-- <script src="./js/jsdebug.js"></script> -->
@@ -14,6 +18,10 @@
       <input checked="checked" id="tab1" type="radio" name="pct" />
       <input id="tab2" type="radio" name="pct" />
       <input id="tab3" type="radio" name="pct" />
+      <input id="tab31" type="radio" name="pct" />
+      <input id="tab32" type="radio" name="pct" />
+      <input id="tab33" type="radio" name="pct" />
+      <input id="tab34" type="radio" name="pct" />
       <input id="tab4" type="radio" name="pct" />
       <nav>
         <ul>
@@ -40,7 +48,6 @@
                 <option value="3">Story</option>
                 <option value="3">*Matching</option>
               </select>
-
               <a
                 id="goLink"
                 class="menuitem"
@@ -50,12 +57,51 @@
               >
             </label>
           </li>
+          <!-- <li class="tab2">
+            <label for="tab2">Second 
+              <a class="menuitem" title="My Picture" href="javascript:myPicture();"><IMG SRC="/cgi/ngfop/ca1.png" alt="My Picture" align="middle" width="23" height="15" border="1"></a>
+              Tab</label>
+          </li> -->
+
           <li class="tab2">
-            <label for="tab2">Second Tab</label>
+            <label
+              for="tab2"
+              class="tab-label-with-icon"
+              onclick="javascript:myPicture()"
+            >
+              <!-- <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon"> -->
+              <i class="fa-solid fa-camera"></i>
+              <!-- <a id="goLinkmyPicture" class="menuitem" title="My Picture" href="javascript:myPicture();">
+                <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon">
+              </a>               -->
+            </label>
           </li>
+
           <li class="tab3">
-            <label for="tab3">Third Tab</label>
+            <label for="tab3" onclick="javascript:cp2sch22()">
+              Third Z
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              Tab</label
+            >
           </li>
+
+          <li class="tab31" onclick="help('Help Me!')">
+            <label for="tab31"> new </label>
+          </li>
+          <li class="tab32" onclick="help('Help Me!')">
+            <label for="tab31"> Edit </label>
+          </li>
+          <li class="tab33" onclick="help('Help Me!')">
+            <label for="tab31"> Del </label>
+          </li>
+          <li class="tab34" onclick="help('Help Me!')">
+            <label for="tab31"> Sign Out </label>
+          </li>
+
+          <!-- <li class="tab3">
+            <label for="tab3">Third Tab</label>
+          </li> -->
+
           <li class="tab4" onclick="help('Help Me!')">
             <label for="tab4">
               Help
@@ -114,6 +160,11 @@
         document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
       });
 
+    document
+      .getElementById("goLinkmyPicture")
+      .addEventListener("click", function () {
+        document.getElementById("tab2").checked = true; // Manually set the corresponding radio button to checked
+      });
     document.getElementById("goLink").addEventListener("click", function () {
       //var selectedIndex = document.getElementById('helpSelect').selectedIndex + 1; // Adjust index based on your options
       document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked

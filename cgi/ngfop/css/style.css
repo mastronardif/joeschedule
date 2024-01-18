@@ -1,6 +1,6 @@
-/* Component Needs */
+/* Component Needs
 @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700);
-@import url(https://fonts.googleapis.com/css?family=Raleway:100,400,700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,400,700); */
 .pc-tab > input,
 .pc-tab section > div {
   display: none;
@@ -42,7 +42,7 @@ h1 {
 
 .pc-tab {
   width: 100%;
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
 }
 .pc-tab ul {
@@ -120,3 +120,20 @@ footer a {
   color: #AAA;
   text-decoration: none;
 }
+
+
+
+/* Add this CSS to your existing styles */
+
+.pc-tab label {
+  position: relative;
+}
+
+.tab-label-with-icon .tab-icon {
+  width: auto; /* Allow the width to be automatically determined */
+  height: 20px; /* Set a fixed height for the icon */
+  max-width: 100%; /* Ensure the icon does not exceed its container's width */
+  max-height: 100%; /* Ensure the icon does not exceed its container's height */
+  display: block; /* Make the image a block element to prevent inline alignment issues */
+}
+
