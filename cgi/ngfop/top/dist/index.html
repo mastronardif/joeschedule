@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>my- PureCSS Tabs</title>
+    <link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/style.css" />
+    <script language="javascript" src="/cgi/ngfop/js/jsdebugtop.js"></script>
+    <!-- <script src="./js/jsdebug.js"></script> -->
+  </head>
+  <body>
+    <h1>PuCSS Tabs</h1>
+
+    <div class="pc-tab">
+      <input checked="checked" id="tab1" type="radio" name="pct" />
+      <input id="tab2" type="radio" name="pct" />
+      <input id="tab3" type="radio" name="pct" />
+      <input id="tab4" type="radio" name="pct" />
+      <nav>
+        <ul>
+          <li class="tab1">
+            <label for="tab1">
+              <button id="goButton">Go!</button>
+              <select
+                id="helpSelect"
+                name="Extra"
+                style="
+                  text-transform: uppercase;
+                  color: navy;
+                  background: #c9e8fb;
+                  font-family: Verdana;
+                  font-size: 12px;
+                "
+              >
+                <option value="-1">List</option>
+                <option value="3">----------</option>
+                <option value="4">Form</option>
+                <option value="1">Cards</option>
+                <option value="1">Reward</option>
+                <option value="1">Left2rt</option>
+                <option value="3">Story</option>
+                <option value="3">*Matching</option>
+              </select>
+
+              <a
+                id="goLink"
+                class="menuitem"
+                title="Execute a command"
+                href="javascript:ShowExtra(document.myform.Extra.options[document.myform.Extra.selectedIndex].text);"
+                >Go!</a
+              >
+            </label>
+          </li>
+          <li class="tab2">
+            <label for="tab2">Second Tab</label>
+          </li>
+          <li class="tab3">
+            <label for="tab3">Third Tab</label>
+          </li>
+          <li class="tab4" onclick="help('Help Me!')">
+            <label for="tab4">
+              Help
+              <!-- <a class="menuitem" title="Help" href="javascript:alert('Help Me!');">Help</a> -->
+              <!-- <button type="button" onclick="javascript:ShowExtra(document.myformtop.Extra.options[document.myformtop.Extra.selectedIndex].text);">Go!</button> -->
+            </label>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <div class="tab1">
+          <h2>First</h2>
+          <p>
+            First Tab is a combo of button, select, link. Repellendus itaque
+            quidem minus nostrum, voluptatem accusamus aspernatur quia harum
+            ratione, officia laudantium inventore autem doloribus atque labore
+            numquam non. Hic, animi.
+          </p>
+        </div>
+        <div class="tab2">
+          <h2>Second</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
+            nesciunt ipsum dolore error repellendus officiis aliquid a, vitae
+            reprehenderit, accusantium vero, ad. Obcaecati numquam sapiente
+            cupiditate. Praesentium eaque, quae error!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Perferendis, maiores.
+          </p>
+        </div>
+        <div class="tab3">
+          <h2>Third</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio,
+            nobis culpa rem, vitae earum aliquid.
+          </p>
+        </div>
+        <!-- <div class="tab4">
+      <h2>Third</h2>
+      <p>Lorem ipsum 4444444 sit amet, consectetur adipisicing elit. Optio, nobis culpa rem, vitae earum aliquid.</p>
+    </div> -->
+      </section>
+    </div>
+
+    <!-- <footer>
+  by <a href="http://rena.to/" target="_blank">rena.to</a>
+</footer> -->
+  </body>
+  <script type="text/javascript">
+    document
+      .getElementById("helpSelect")
+      .addEventListener("change", function () {
+        //var selectedIndex = this.selectedIndex + 1; // Adjust index based on your options
+        document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+      });
+
+    document.getElementById("goLink").addEventListener("click", function () {
+      //var selectedIndex = document.getElementById('helpSelect').selectedIndex + 1; // Adjust index based on your options
+      document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+    });
+    document.getElementById("goButton").addEventListener("click", function () {
+      var selectedIndex =
+        document.getElementById("helpSelect").selectedIndex + 1; // Adjust index based on your options
+      document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+    });
+  </script>
+</html>
