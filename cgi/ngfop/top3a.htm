@@ -11,8 +11,9 @@
     <script language="javascript" src="/cgi/ngfop/js/jsdebugtop.js"></script>
     <!-- <script src="./js/jsdebug.js"></script> -->
   </head>
-  <body>
-    <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/top.pl">
+  <body class="top-body">
+    <!-- <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/top.pl"> -->
+      <form name="myform">
       <input type="hidden" name="leftsrc" value="cb" />
       <input type="hidden" name="leftvalue" value="blank.xml" />
       <input type="hidden" name="leftfname" value="blank.xml" />
@@ -20,7 +21,7 @@
       <input type="hidden" name="middlefname" value="" />
 
       <div class="pc-tab">
-        <input checked="checked" id="tab1" type="radio" name="pct" />
+        <input id="tab1" type="radio" name="pct"  checked="checked" />
         <input id="tab2" type="radio" name="pct" />
         <input id="tab3" type="radio" name="pct" />
         <input id="tab31" type="radio" name="pct" />
@@ -31,8 +32,8 @@
         <nav>
           <ul>
             <li class="tab1">
-              <label for="tab1">
-                <button id="goButton">Go!</button>
+              <label for="tab1">        
+               Go!
                 <select
                   id="helpSelect"
                   name="Extra"
@@ -168,19 +169,19 @@
         document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
       });
 
-    document
-      .getElementById("goLinkmyPicture")
-      .addEventListener("click", function () {
-        document.getElementById("tab2").checked = true; // Manually set the corresponding radio button to checked
-      });
+   //  document
+   //    .getElementById("goLinkmyPicture")
+   //    .addEventListener("click", function () {
+   //      document.getElementById("tab2").checked = true; // Manually set the corresponding radio button to checked
+   //    });
     document.getElementById("goLink").addEventListener("click", function () {
       //var selectedIndex = document.getElementById('helpSelect').selectedIndex + 1; // Adjust index based on your options
       document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
     });
-    document.getElementById("goButton").addEventListener("click", function () {
-      var selectedIndex =
-        document.getElementById("helpSelect").selectedIndex + 1; // Adjust index based on your options
-      document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
-    });
+   //  document.getElementById("goButton").addEventListener("click", function () {
+   //    var selectedIndex =
+   //      document.getElementById("helpSelect").selectedIndex + 1; // Adjust index based on your options
+   //    document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+   //  });
   </script>
 </html>

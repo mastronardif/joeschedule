@@ -27,10 +27,11 @@
   box-sizing: border-box;
 }
 
-body {
+body.top-body {
   -webkit-font-smoothing: antialiased;
   background: #ecf0f1;
   font-family: "Raleway";
+  margin: 0; /* Add this line to set top margin to 0 */
 }
 
 h1 {
@@ -128,7 +129,7 @@ footer a {
 .pc-tab label {
   position: relative;
 }
-
+ 
 .tab-label-with-icon .tab-icon {
   width: auto; /* Allow the width to be automatically determined */
   height: 20px; /* Set a fixed height for the icon */

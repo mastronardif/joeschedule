@@ -3,7 +3,8 @@ function help() {
 }
 
 function myPicture() {
-  src = "/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=mypicture.htm";
+  src =
+    "/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=mypicture.htm";
   //top.frames[2].location=src;
   parent.middle.location = src;
 }
@@ -87,10 +88,10 @@ function getLeftFN(action) {
 function editSchedule2() {
   var xmlfilename = getLeftFN();
   var usedir = "";
-  var student ="Jake"
-//   var student =
-//     document.myform.Students.options[document.myform.Students.selectedIndex]
-//       .text;
+  var student = "Jake";
+  //   var student =
+  //     document.myform.Students.options[document.myform.Students.selectedIndex]
+  //       .text;
   if (student) {
     student = "&student=" + student;
   }
@@ -187,4 +188,142 @@ function editSchedule2() {
 
   top.frames[3].location = str;
   //parent.right.location=str;
+}
+
+function ShowExtra(szExtra) {
+  var str;
+  var xmlfilename = getLeftFN();
+
+  if (szExtra == "Add a Student") {
+    javascript: editSchedule33("Students.xml");
+    return;
+  }
+
+  if (szExtra == "List") {
+    // FM 06/12/04
+    getLeftFN("clear");
+    // FM 06/12/04
+
+    var str =
+      "/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml";
+
+    //top.frames[1].location=str;
+    parent.left.location = str;
+
+    return;
+  }
+
+  if (szExtra == "Schedules") {
+    // FM 6/12/4
+    getLeftFN("clear");
+    // FM 6/12/4
+
+    var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=pubschedules.htm";
+
+    //top.frames[1].location=str;
+    parent.left.location = str;
+
+    return;
+  }
+
+  if (szExtra == "Schedules(2)") {
+    // FM 6/12/4
+    getLeftFN("clear");
+    // FM 6/12/4
+
+    //var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=pubschedules.htm"
+    var str =
+      "/cgi-bin/cgi/ngfop/other2.pl?htmlname=demoFramesetLeftFrame.html";
+
+    //top.frames[1].location=str;
+    parent.left.location = str;
+
+    return;
+  }
+
+  if (szExtra == "*Matching") {
+    var xmlfilename = getLeftFN();
+    var student =
+      document.myform.Students.options[document.myform.Students.selectedIndex]
+        .text;
+    var str = "/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=schABA44wh.htm";
+
+    if (student) {
+      student = "&student=" + student;
+      str += student;
+    }
+
+    // FM 2/25/8
+    var szDir = "";
+    var szFN = xmlfilename;
+    myre = /schs\//i;
+    if (myre.test(xmlfilename)) {
+      szFN = xmlfilename.replace(myre, "");
+      //var strUsedir = "&usedir=usedir(../schs)";
+      szDir = "../schs";
+      //var strFromList = "&action=fromlist(" + fn + ")";
+    }
+    // Fm 2/25/8
+    // FM 6/29/7 javascript:abakit_runprograms00(str, szDir, xmlfilename);
+    //javascript:abakit_runprograms00(str, "", xmlfilename);
+    javascript: abakit_runprograms00(str, szDir, szFN);
+    return;
+  }
+
+  /******************/
+  // Point and Shoot.
+  myre = /\.xml/i;
+  if (!myre.test(xmlfilename)) {
+    var strMsg =
+      "Click on the radio button to the left of the \nschedule you wish to view as " +
+      szExtra;
+    alert(strMsg);
+    return;
+  }
+  /******************/
+
+  if (szExtra == "Cards") {
+    var str =
+      "/cgi-bin/cgi/ngfop/cards1.pl" +
+      "?htmlname=buscards1.htm&name=" +
+      xmlfilename;
+
+    //parent.middle.location= str;
+    window.open(str);
+
+    return;
+  }
+
+  if (szExtra == "Form") {
+    var str =
+      "/cgi-bin/cgi/ngfop/sch5.pl" + "?htmlname=form01.htm&name=" + xmlfilename;
+    window.open(str);
+    return;
+  }
+
+  if (szExtra == "Reward") {
+    showSR();
+    return;
+  }
+
+  if (szExtra == "Left2rt") {
+    var str =
+      "/cgi-bin/cgi/ngfop/sch5.pl" +
+      "?htmlname=left2rt.htm&name=" +
+      xmlfilename;
+    window.open(str);
+    return;
+  }
+
+  /* Edit Communication board begin */
+  if (szExtra == "----------") {
+    var xmlfilename = getLeftFN();
+    var xmlname = "&name=" + xmlfilename;
+    var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=0combrd.htm" + xmlname;
+    parent.middle.location = str;
+
+    return;
+  }
+
+  alert(szExtra + " not implemented yet\n FM.");
 }
