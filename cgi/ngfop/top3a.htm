@@ -1,785 +1,186 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
-<meta http-equiv="Content-Language" content="en-us"/>
-<title>JoeSchedule Top</title>
-<link rel="stylesheet" type="text/css" href="/cgi-bin/cgi/ngfop/sch01.css"/>
-
-<style type="text/css" media="all">
-#menu
-{
-background-color: rgb(201,232,251);
-color: rgb(24,28,31);
-
-font-family: Palatino, serif;
-font-style: normal;
-border-color: rgb(167,209,235);
-}
-
-a.menuitem
-{
-font-size: 90%;
-background-color: #3DB3DD;
-color:blue;
-
-font-variant: normal;
-text-transform: none;
-font-weight: normal;
-margin-left: 10px; margin-right: 10px; margin-top: 0px; margin-bottom: 10px;
-border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
-border-left-style: none; border-right-style: none; border-top-style: none; border-bottom-style: none;
-border-color: rgb(201,232,251);
-text-align: left;
-}
-
-#menu a
-{
-text-decoration: none;
-}
-
-.menuitem:hover
-{
-background-color: rgb(57,106,137);
-color: rgb(167,209,235);
-}
-/**********************************************************************/
-</style>
-
-</head>
-
-<script type="text/javascript">
-<!-- language="JavaScript">-->
-
-function help()
-{
-	var str = "../../../cgi/ngfop/joehelp.htm";
-	poptastic(str)
-}
-function poptastic(url)
-{
-    if (url)
-    {
-		newwindow=window.open(url,'name1');
-
-		if (window.focus) {newwindow.focus()}
-    }
-}
-
-
-function perl(pl)
-{
-	// FM 11/28/03var xmlfilename = document.myform.leftfname.value;
-	var xmlfilename = getLeftFN();
-
-	var str = "/cgi-bin/cgi/ngfop/"+pl+"?name="+xmlfilename;
-	window.open(str);
-}
-
-function ShowExtra(szExtra)
-{
-   var str;
-   var xmlfilename = getLeftFN();
-
-   if (szExtra == "Add a Student")
-   {
-      javascript:editSchedule33('Students.xml');
-      return;
-   }
-   
-   if (szExtra == "List")
-   {
-		// FM 06/12/04
-		getLeftFN("clear");
-		// FM 06/12/04
-
-
-		var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml"
-
-		//top.frames[1].location=str;
-		parent.left.location=str;
-
-		return;
-	}
-
-
-	if (szExtra == "Schedules")
-	{
-		// FM 6/12/4
-		getLeftFN("clear");
-		// FM 6/12/4
-
-
-		var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=pubschedules.htm"
-
-		//top.frames[1].location=str;
-		parent.left.location=str;
-
-		return;
-
-	
-	}
-
-	if (szExtra == "Schedules(2)")
-	{
-		// FM 6/12/4
-		getLeftFN("clear");
-		// FM 6/12/4
-
-
-		//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=pubschedules.htm"
-		var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=demoFramesetLeftFrame.html"
-
-		//top.frames[1].location=str;
-		parent.left.location=str;
-
-		return;
-
-	
-	}
-
-   if (szExtra == "Folders")
-   {
-      //var str = "/cgi-bin/cgi/ngfop/catagory.pl?htmlname=catagory.htm";
-      var str = "/cgi-bin/cgi/ngfop/sch5.pl?htmlname=left2rt.htm&name=sch71700.xml"
-      
-      // FM 7/11/8 parent.location=str;
-      return;
-   }
-   if (szExtra == "Folder")
-   {
-      var student = getStudent();
-      if (student)
-      {
-         student = "&student=" + student;
-         
-      
-      // FM 5/16/9 var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=studentfolder.htm" + student;
-      var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=myabaframe32.htm" + student;
-      parent.location=str;
-      return;
-      }
-   
-   }
-
-  	if (szExtra == "*Student Prgs")
-	{
-		//#var str= '/cgi-bin/cgi/ngfop/abakitbuild.pl?htmlname=schmyaba.htm';
-      var student = document.myform.Students.options[document.myform.Students.selectedIndex].text;
-
-		// Fm 10/16/7 var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=myabaframe.htm&name="+xmlfilename;
-		var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=myabaframe.htm&name="+xmlfilename;
-
-		// FM 6/29/7 var szDir='Bucci';
-		// FM 6/29/7 javascript:abakit_runprograms00(str, szDir, xmlfilename);
-		//javascript:abakit_runprograms00(str, "", xmlfilename);
-		window.open(str);
-		return;
-	}
-
-
-   if (szExtra == "*Folder for:")
-   {
-      var student = document.myform.Students.options[document.myform.Students.selectedIndex].text;
-      student = "&student=" + student;
-      var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=studentfolder.htm";
-      window.open(str);
-		return;
-   }
-   
-   if (szExtra == "*List ABA for:")
-	{
-      var student = document.myform.Students.options[document.myform.Students.selectedIndex].text;
-      student = "&student=" + student;
-      
-
-		//#var str= '/cgi-bin/cgi/ngfop/abakitbuild.pl?htmlname=schmyaba.htm';
-		// Fm 10/16/7 var str= '/cgi-bin/cgi/ngfop/abakitbuild.pl';
-      
-		//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=abaprogsfor.htm&name="+xmlfilename;
-      //var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=myabaframe.htm&name="+xmlfilename;
-      //var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=myabaframe.htm&student=Jack&name="+xmlfilename;
-      var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=myabaframe.htm";
-      str += student;
-      alert(str)
-
-		// FM 6/29/7 var szDir='Bucci';
-		// FM 6/29/7 javascript:abakit_runprograms00(str, szDir, xmlfilename);
-		//javascript:abakit_runprograms00(str, "", xmlfilename);
-		window.open(str);
-		return;
-	}
-
-
-	if (szExtra == "*List My ABA")
-	{
-		//#var str= '/cgi-bin/cgi/ngfop/abakitbuild.pl?htmlname=schmyaba.htm';
-
-		// Fm 10/16/7 var str= '/cgi-bin/cgi/ngfop/abakitbuild.pl';
-		var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=myabaframe.htm&name="+xmlfilename;
-
-		// FM 6/29/7 var szDir='Bucci';
-		// FM 6/29/7 javascript:abakit_runprograms00(str, szDir, xmlfilename);
-		//javascript:abakit_runprograms00(str, "", xmlfilename);
-		window.open(str);
-		return;
-	}
-
-
-
-	if (szExtra == "ABA")
-	{
-	    var xmlfilename = getLeftFN();
-
-		if (/blank.xml/i.test(xmlfilename))
-		{
-			var strMsg = "Click on the radio button to the left of the \nschedule you wish to view as ABA";
-			alert(strMsg);
-			return;
-		}
-// FM 2/25/8
-myre=/schs\//i;
-var str;
-if (myre.test(xmlfilename))
-{
-   alert(xmlfilename);
-var fn  = xmlfilename.replace(myre, "");
-//alert(xmlfilename);
-var strUsedir = "&usedir=usedir(../schs)";
-//var fn = xmlfilename
-var strFromList = "&action=fromlist(" + fn + ")";
-
-//alert(strUsedir+strFromList);
-str = "/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=schABA22ma.htm"+strUsedir+strFromList;
-
-}
-else
-{
-// FM2/25/8
-
-	    str = "/cgi-bin/cgi/ngfop/schABA.pl"+"?htmlname=schABA.htm&name="+xmlfilename;
-}
-		window.open(str);
-
-		return;
-	}
-
-
-	if (szExtra == "*Matching")
-	{
-		var xmlfilename = getLeftFN();
-      var student = document.myform.Students.options[document.myform.Students.selectedIndex].text;
-		var str= '/cgi-bin/cgi/ngfop/schABA22.pl?htmlname=schABA44wh.htm';
-      
-      if (student)
-      {
-         student = "&student="+student;
-         str += student;
-      }
-         
-// FM 2/25/8
-var szDir="";
-var szFN= xmlfilename;
-myre=/schs\//i;
-if (myre.test(xmlfilename))
-{
-   szFN = xmlfilename.replace(myre, "");
-//var strUsedir = "&usedir=usedir(../schs)";
-szDir="../schs";
-//var strFromList = "&action=fromlist(" + fn + ")";
-}
-// Fm 2/25/8  
-		// FM 6/29/7 javascript:abakit_runprograms00(str, szDir, xmlfilename);
-		//javascript:abakit_runprograms00(str, "", xmlfilename);
-		javascript:abakit_runprograms00(str, szDir, szFN);
-		return;
-	}
-
-	if (szExtra == "Pix(1)")
-	{
-		var xmlfilename = getLeftFN();
-		var str = "/cgi-bin/cgi/ngfop/sch5jh.pl"+"?htmlname=jh2a.htm&name="+xmlfilename;
-
-		window.open(str);
-
-		return;
-	}
-
-      if (szExtra == "*Edit Pix(3)")
-      {
-            var xmlfilename = getLeftFN();
-            //var str = "/cgi/ngfop/sch5.pl"+"?htmlname=jh2.htm&name="+xmlfilename;
-            //var str = "/cgi/ngfop/joepicexchng01.htm";
-            var xmlname = "&name=cb136168402.xml"
-            //var str = "/cgi/ngfop/sch3.pl?name=cb136168402.xml&htmlname=cb3a.htm"
-            var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=cb3a.htm" + xmlname;
-            //window.open(str);
-            //alert(str)
-            parent.middle.location=str;
-
-            return;
-      }
-      
-      if (szExtra == "*Prnt Pix(3)")
-      {
-         var xmlname = "&name=cb136168402.xml";
-         var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=pecsbook.htm";
-         window.open(str);
-         return;
-      }
-      
-      if (szExtra == "Pix(3)")
-      {
-            var xmlfilename = getLeftFN();
-            //var str = "/cgi/ngfop/sch5.pl"+"?htmlname=jh2.htm&name="+xmlfilename;
-            // FM 4/30/8 var str = "/cgi/ngfop/joepicexchng01.htm";
-            
-            var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=joepicexchng03.htm&name="+xmlfilename;
-            //var str = "/cgi-bin/cgi/ngfop/sch5.pl"+"?htmlname=jh2.htm&name="+xmlfilename;
-            //fm 6/4/8 window.open(str);
-            window.open(str, "mywindow", "menubar=0,status=0,resizable=1");
-
-            return;
-      }
-
-	/******************/
-	// Point and Shoot.
-	myre=/\.xml/i;
-	if (!myre.test(xmlfilename))
-	{
-      	    var strMsg = "Click on the radio button to the left of the \nschedule you wish to view as " + 
-                         szExtra;
-            alert(strMsg);
-            return;
- 	}
-	/******************/
-
-	if (szExtra == "Cards")
-	{
-		var str = "/cgi-bin/cgi/ngfop/cards1.pl"+"?htmlname=buscards1.htm&name="+xmlfilename;
-
-		//parent.middle.location= str;
-		window.open(str);
-
-		return;
-	}
-
-	if (szExtra == "Form")
-	{
-        	var str = "/cgi-bin/cgi/ngfop/sch5.pl"+"?htmlname=form01.htm&name="+xmlfilename;
-		window.open(str);
-		return;
-	}
-
-	if (szExtra == "Reward")
-	{
-  		showSR();
-		return;
-	}
-
-	if (szExtra == "Left2rt")
-	{
-            var str = "/cgi-bin/cgi/ngfop/sch5.pl"+"?htmlname=left2rt.htm&name="+xmlfilename;
-		window.open(str);
-		return;
-	}
-
-	/* Edit Communication board begin */
-        if (szExtra == "----------")
-        {
-            var xmlfilename = getLeftFN();
-            var xmlname = "&name="+xmlfilename;
-            var str = "/cgi-bin/cgi/ngfop/sch3.pl?htmlname=0combrd.htm" + xmlname;
-            parent.middle.location=str;
-
-            return;
-        }
-
-        if (szExtra == "*ijoepec")
-        {
-            var xmlfilename = getLeftFN();
-            var xmlname = "&name="+xmlfilename;
-            var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=imyjoepec.htm&"+xmlname;
-            window.open(str);
-            return;
- 	}
-	/* Edit Communication board end*/
-
-
-
-	alert(szExtra +" not implemented yet\n FM.");
-}
-
-function showSR()
-{
-	var xmlfilename = getLeftFN();
-
-	var str = "/cgi-bin/cgi/ngfop/schnrew2.pl?name="+xmlfilename;
-	window.open(str);
-}
-
-
-function setLeftValue(src, value, fdesc)
-{
-// FM 10/13/7
-//alert("setLeftValue = "+src+", "+value+", "+fdesc); return;
-
-
-    document.myform.leftfname.value = value;
-
-// FM 6/12/4
-
-	document.myform.leftsrc.value = src;
-    document.myform.leftvalue.value = value;
-    document.myform.leftfdesc.value = fdesc;
-}
-
-
-function getLeftfDesc()
-{
-	var leftsrc   = document.myform.leftsrc.value;
-
-	if (leftsrc == "")
-	{
-		return document.myform.leftfdesc.value;
-	}
-
-	return "";
-}
-
-function getStudent()
-{
-   var student = document.myform.Students.options[document.myform.Students.selectedIndex].text;
-   return student;
-}
-
-function getLeftFN(action)
-{
-// FM 6/12/04
-
-if (action == "clear")
-{
-//	alert ("clear the global vars!!!");
-
-	document.myform.leftsrc.value   = "";
-	document.myform.leftvalue.value = "";
-	document.myform.leftfname.value = "";
-	return;
-}
-// FM 6/12/04
-
-	//var objLeft    = parent.left;
-	//var objLeftFrm = parent.left.myform;
-
-	var leftsrc   = document.myform.leftsrc.value;
-	var leftvalue = document.myform.leftvalue.value;
-	var xmlfilename = document.myform.leftfname.value;
-
-//alert("getLeftFN = "+leftsrc+", "+leftvalue+", "+xmlfilename);
-
-
-	if (leftsrc == "")
-	{
-		xmlfilename = leftvalue;
-		return xmlfilename;
-	}
-
-
-	//if (objLeftFrm != null)
-	if (/calander/i.test(leftsrc))
-	{
-		var obj = myform.elements.People;
-		var kid = obj.options[obj.selectedIndex].text;
-
-		date = document.myform.leftvalue.value;
-
-		var total2 = kid+"/"+date+".xml";
-
-		xmlfilename = total2;
-	}
-
-	return xmlfilename;
-}
-
-function del()
-{
-	var fn  = getLeftFN();
-	var desc= getLeftfDesc();
-
-	var response = confirm("Are you sure you want to delete \n"+ desc+"\n("+fn+")?","");
-	if (response == false)
-		return;
-
-	var str="/cgi-bin/cgi/ngfop/editsch.pl?action=delete&htmlname=delete.htm&name="+fn;
-
-	//top.frames[3].location=str;
-	// window.open(str);
- 	parent.middle.location=str;
-   
-   // FM 7/8/8
-	//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml"
-   var str   = "/cgi-bin/cgi/ngfop/left02.pl?htmlname=leftsch.htm";
-	//top.frames[1].location=str;
-   
-	//parent.left.location=str;
-   //parent.left[0].location=str;
-   // FM 7/8/8
-
-}
-
-function editSchedule33(xmlfilename)
-{
-   var student = document.myform.Students.options[document.myform.Students.selectedIndex].text;
-   if (student)
-   {
-      student = "&student="+student;
-   }
-
-   var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name="+xmlfilename+student;
-   top.frames[3].location=str;
-}
-
-function editSchedule2()
-{
-	var xmlfilename = getLeftFN();
-   var usedir="";
-   var student = document.myform.Students.options[document.myform.Students.selectedIndex].text;
-   if (student)
-   {
-      student = "&student="+student;
-   }
-
-//alert(xmlfilename)
-// FM 7/8/8
-//usedir = "&usedir=usedir(Sussina)";
-// FM 7/8/8
-
-// aba programs are in the middle.
-if (top.frames[2].runprograms00)
-{
-/*******************
-   alert("yo0u can edit an aba ___ FM SKip this")
-   var obj = top.frames[2].document.myform;
-   len = obj.elements.C1.length
-   
-   var strTot = "";
-   for (var iii = 0; iii < obj.elements.C1.length; iii++)
-   {
-     if (obj.elements.C1[iii].checked)
-     {
-         strTot += obj.elements.C1[iii].value;
-
-         xmlfilename = strTot;
-         usedir = "&usedir=usedir(Sussina)";
-         break;
-     }
-   }
- *********************/
-}
-else if ((top.frames[2].document.myform) && top.frames[2].document.myform.elements.C1)
-{
-   // Editing an ____.xml from the middle list.
-
-   //if (top.frames[2].runprograms00)
-   var obj = top.frames[2].document.myform;
-   len = obj.elements.C1.length
-   //var fn = "---";
-   //var strTot;
-   /******
-   for (var iii = 0; iii < obj.elements.C1.length; iii++)
-   {
-      if (obj.elements.C1[iii].checked)
-      {
-         strTot += obj.elements.C1[iii].value;
-
-         xmlfilename = strTot;
-         
-         //usedir = "&usedir=usedir(Sussina)";
-         break;
-      }
-   }
-   ******/
-   
-   str = parent.middle.getListItem();
-   //alert("str = "+ str)
-
-   var szName =  ""; //str.match(/<Name>(.+)<\/Name>/i);
-   if (szName)
-   {
-      szName = szName[1];
-      
-      if (szName.indexOf(".xml") != -1)
-      {
-         var sz22 = szName.match(/<MK_LISTBOX>(.+)<\/MK_LISTBOX>/i);
-         if (sz22)
-         {
-            szName = sz22[1];
-         }
-         // FM 6/4/8
-         usedir = "&usedir=usedir(Sussina)";
-         // Fm 6/4/8
-         alert("your special " + szName + "  " + usedir);
-         xmlfilename = szName;
-      }
-   }
-}
-
-	if (/blank.xml/i.test(xmlfilename))
-	{
-		var strMsg = "Click on the radio button to the left of the \nschedule you wish to edit";
-		alert(strMsg);
-		return;
-	}
-   
-  if(usedir)
-  {
-      // __ = "123.xml, usedir(Sussina)"
-      xmlfilename += ",usedir(Sussina)";
-  }
-
-   //m 5/11/8 var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name="+xmlfilename;
-   var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name="+xmlfilename+student;
-   
-	top.frames[3].location=str;
-	//parent.right.location=str;
-}
-
-
-function myPicture()
-{
-//	alert("user supplied picture.\n Go somewhere get a picture and paste it here.\n You can have local pictures this way and or picture from anywhere on the net.");
-
-	src="/cgi-bin/cgi/ngfop/editsch.pl?action=edit&name=blank.xml&htmlname=mypicture.htm";
-	//top.frames[2].location=src;
-	parent.middle.location=src;
-}
-
-function cp2ebcb()
-{
-	// FM 06/12/04 if(!parent.middle.getListItem || !parent.right.frames[1].test)
-	if(getLeftFN()== "blank.xml" || !parent.right.frames[1].test)
-	{
-		return;
-	}
-
-
-  	var cb = getLeftFN();
-
-	cb = "\74MK_LISTBOX>"+cb+"\74/MK_LISTBOX>";
-
-	var str = "\74name>"+cb+"\74/name>";
-
-//alert(str);
-
-//	str = parent.middle.getListItem();
-
-	if (str)
-	{
-		if (parent.right.frames[1].test(str))
-			parent.right.frames[1].test(str);
-	}
-}
-
-function cp2sch22()
-{
-   if(!parent.middle.getListItem) return;
-
-   var szMid = parent.middle.getListItem();
-   if (szMid)
-   {
-		// Cheesy solution for the frames for iframe
-		if (parent.right.frames.length == 0)
-		{
-			parent.right.test(szMid);
-		}
-		else
-		{
-			parent.right.frames[1].test(szMid);
-		}
-   }
-}
-
-function OnInit()
-{
-   //alert("top2.htm, OnInit")
-   //document.frm.sel.disabled = disableIt;
-   //document.myform.Students.disabled = 1;
-   var selObj = document.myform.Students
-   //var selObj = document.getElementById('selSeaShells1');
-//<student>   
-   var stu = '<STUDENT>';
-//</student>      
-   
-   // find ___ in list
-   for(var iii = 0; iii < selObj.length; iii++)
-   {
-      if (selObj.options[iii].text.toLowerCase() == stu.toLowerCase())
-      {
-         selObj.selectedIndex = iii;
-         break;
-      }
-         
-   }
-	//selObj.selectedIndex = 3;
-}
-</script>
-</script>
-
-<!--<body topmargin="0" bgcolor='rgb(249, 201, 92)';> 
-<body class="toolbar" topmargin="0" leftmargin="0" bgcolor=F5F3E4>
-bgcolor="#006db6" 
-<body class="toolbar" topmargin="0" leftmargin="0" bgcolor=F5F3E4>
-<body bgcolor="#006DB6" topmargin="0" leftmargin="0" >
-<body bgcolor="#006DB6" topmargin="0" leftmargin="0" >
--->
-<body onLoad="OnInit();" class="toolbar" topmargin="0" leftmargin="0">
-<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/top.pl">
-
-  <input type="hidden" NAME="leftsrc" value="cb"/>
-  <input type="hidden" NAME="leftvalue" value="blank.xml"/>
-  <input type="hidden" NAME="leftfname" value="blank.xml"/>
-  <input type="hidden" NAME="leftfdesc" value=""/>
-  <input type="hidden" NAME="middlefname" value=""/>
-
-   <table height="100%" width="100%" border="0">
-
-	<tr align="center">
-<td>      
-      
-<SELECT NAME="Extra" 
-    style="text-transform: uppercase; color: navy; background: #C9E8FB; 
-           font-family: Verdana; font-size:12px;">
-	<OPTION VALUE="-1">List
-
-	<OPTION VALUE="3">
-        ----------
-	<OPTION VALUE="4">Form
-	<OPTION VALUE="1">Cards
-	<OPTION VALUE="1">Reward
-   <OPTION VALUE="1">Left2rt 
-	<OPTION VALUE="3">Story
-   <OPTION VALUE="3">*Matching
-      <OPTION VALUE="3">Add a Student
-	</SELECT>
-    <a class="menuitem" title="Execute a command" href="javascript:ShowExtra(document.myform.Extra.options[document.myform.Extra.selectedIndex].text);">Go!</a> 
-	<a class="menuitem" title="My Picture" href="javascript:myPicture();"><IMG SRC="/cgi/ngfop/ca1.gif" alt="My Picture" align="middle" width="23" height="15" border="1"></a>
-
-
-	<a class="menuitem" title="copy left to right" href="javascript:cp2sch22();"><IMG SRC="/cgi/ngfop/rarrow1.gif" ALT="copy left to right" align="middle" width="23" height="15" border="1"></a>
-    <a class="menuitem" title="Embed" href="javascript:cp2ebcb();">Embed</a> 
-	<a class="menuitem" title="Create a new schedule or choice board"
-		href="/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name=blank.xml" target="right">New</a> 
-
-    <a class="menuitem" title="Edit" href="javascript:editSchedule2();" >Edit</a>
-	<a class="menuitem" title="Delete" href="javascript:del();">Del</a> 
-
-	 <a class="menuitem" title="Sign Out" href="javascript:top.location='/cgi-bin/cgi/ngfop/signin.pl?action=signout'">Sign Out</a>
-	 <a class="menuitem" title="Help" href="javascript:help();">Help</a>
-
-	</td>
-    </tr>
-  </table>
-</form>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <script
+      src="https://kit.fontawesome.com/129016d5d8.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/style.css" />
+    <script language="javascript" src="/cgi/ngfop/js/jsdebugtop.js"></script>
+    <!-- <script src="./js/jsdebug.js"></script> -->
+  </head>
+  <body>
+    <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/top.pl">
+      <input type="hidden" name="leftsrc" value="cb" />
+      <input type="hidden" name="leftvalue" value="blank.xml" />
+      <input type="hidden" name="leftfname" value="blank.xml" />
+      <input type="hidden" name="leftfdesc" value="" />
+      <input type="hidden" name="middlefname" value="" />
+
+      <div class="pc-tab">
+        <input checked="checked" id="tab1" type="radio" name="pct" />
+        <input id="tab2" type="radio" name="pct" />
+        <input id="tab3" type="radio" name="pct" />
+        <input id="tab31" type="radio" name="pct" />
+        <input id="tab32" type="radio" name="pct" />
+        <input id="tab33" type="radio" name="pct" />
+        <input id="tab34" type="radio" name="pct" />
+        <input id="tab4" type="radio" name="pct" />
+        <nav>
+          <ul>
+            <li class="tab1">
+              <label for="tab1">
+                <button id="goButton">Go!</button>
+                <select
+                  id="helpSelect"
+                  name="Extra"
+                  style="
+                    text-transform: uppercase;
+                    color: navy;
+                    background: #c9e8fb;
+                    font-family: Verdana;
+                    font-size: 12px;
+                  "
+                >
+                  <option value="-1">List</option>
+                  <option value="3">----------</option>
+                  <option value="4">Form</option>
+                  <option value="1">Cards</option>
+                  <option value="1">Reward</option>
+                  <option value="1">Left2rt</option>
+                  <option value="3">Story</option>
+                  <option value="3">*Matching</option>
+                </select>
+                <a
+                  id="goLink"
+                  class="menuitem"
+                  title="Execute a command"
+                  href="javascript:ShowExtra(document.myform.Extra.options[document.myform.Extra.selectedIndex].text);"
+                  >Go!</a
+                >
+              </label>
+            </li>
+            <!-- <li class="tab2">
+            <label for="tab2">Second 
+              <a class="menuitem" title="My Picture" href="javascript:myPicture();"><IMG SRC="/cgi/ngfop/ca1.png" alt="My Picture" align="middle" width="23" height="15" border="1"></a>
+              Tab</label>
+          </li> -->
+
+            <li class="tab2">
+              <label
+                for="tab2"
+                class="tab-label-with-icon"
+                onclick="javascript:myPicture()"
+              >
+                <!-- <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon"> -->
+                <i class="fa-solid fa-camera"></i>
+                <!-- <a id="goLinkmyPicture" class="menuitem" title="My Picture" href="javascript:myPicture();">
+                <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon">
+              </a>               -->
+              </label>
+            </li>
+
+            <li class="tab3">
+              <label for="tab3" onclick="javascript:cp2sch22()">
+                Third Z
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Tab</label
+              >
+            </li>
+
+            <li
+              class="tab31"
+              onclick="openInFrame('/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name=blank.xml', 'right')"
+            >
+              <label for="tab31"> new </label>
+            </li>
+            <li class="tab32" onclick="javascript:editSchedule2()">
+              <label for="tab31"> Edit </label>
+            </li>
+            <li class="tab33" onclick="help('Help Me!')">
+              <label for="tab31"> Del </label>
+            </li>
+            <li class="tab34" onclick="help('Help Me!')">
+              <label for="tab31"> Sign Out </label>
+            </li>
+
+            <!-- <li class="tab3">
+            <label for="tab3">Third Tab</label>
+          </li> -->
+
+            <li
+              class="tab4"
+              onclick="window.open('https://www.joeschedule.com/cgi/ngfop/joehelp.htm')"
+            >
+              <label for="tab4"> Help </label>
+            </li>
+          </ul>
+        </nav>
+        <section>
+          <div class="tab1">
+            <h2>First</h2>
+            <p>
+              First Tab is a combo of button, select, link. Repellendus itaque
+              quidem minus nostrum, voluptatem accusamus aspernatur quia harum
+              ratione, officia laudantium inventore autem doloribus atque labore
+              numquam non. Hic, animi.
+            </p>
+          </div>
+          <div class="tab2">
+            <h2>Second</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
+              nesciunt ipsum dolore error repellendus officiis aliquid a, vitae
+              reprehenderit, accusantium vero, ad. Obcaecati numquam sapiente
+              cupiditate. Praesentium eaque, quae error!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Perferendis, maiores.
+            </p>
+          </div>
+          <div class="tab3">
+            <h2>Third</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio,
+              nobis culpa rem, vitae earum aliquid.
+            </p>
+          </div>
+          <!-- <div class="tab4">
+      <h2>Third</h2>
+      <p>Lorem ipsum 4444444 sit amet, consectetur adipisicing elit. Optio, nobis culpa rem, vitae earum aliquid.</p>
+    </div> -->
+        </section>
+      </div>
+
+      <!-- <footer>
+  by <a href="http://rena.to/" target="_blank">rena.to</a>
+</footer> -->
+    </form>
+  </body>
+  <script type="text/javascript">
+    document
+      .getElementById("helpSelect")
+      .addEventListener("change", function () {
+        //var selectedIndex = this.selectedIndex + 1; // Adjust index based on your options
+        document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+      });
+
+    document
+      .getElementById("goLinkmyPicture")
+      .addEventListener("click", function () {
+        document.getElementById("tab2").checked = true; // Manually set the corresponding radio button to checked
+      });
+    document.getElementById("goLink").addEventListener("click", function () {
+      //var selectedIndex = document.getElementById('helpSelect').selectedIndex + 1; // Adjust index based on your options
+      document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+    });
+    document.getElementById("goButton").addEventListener("click", function () {
+      var selectedIndex =
+        document.getElementById("helpSelect").selectedIndex + 1; // Adjust index based on your options
+      document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+    });
+  </script>
 </html>
