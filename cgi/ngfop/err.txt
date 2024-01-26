@@ -1,0 +1,14 @@
+CONTAINER ID   IMAGE                                           COMMAND                  CREATED        STATUS                      PORTS                                                 NAMES
+476b91de24e3   your_repository/backup_image:tagjoeschedule22   "/sbin/entrypoint.sh"    6 hours ago    Up 6 hours                  0.0.0.0:80->80/tcp, 0.0.0.0:8080->8080/tcp, 443/tcp   joey
+97763cc9004b   mivale/apache-perl-php:5.4                      "/sbin/entrypoint.sh"    8 hours ago    Exited (0) 8 hours ago                                                            sleepy_rhodes
+f9a7e1703ee1   abec12652ec8                                    "/sbin/entrypoint.sh"    9 days ago     Exited (0) 24 hours ago                                                           gallant_lewin
+774748573ff1   postgres:latest                                 "docker-entrypoint.s…"   7 months ago   Exited (1) 7 months ago                                                           pensive_buck
+cbedbfb5e3ca   spring-helloworld                               "./mvnw spring-boot:…"   7 months ago   Exited (1) 7 months ago                                                           friendly_matsumoto
+225b3df550ef   spring-helloworld                               "./mvnw spring-boot:…"   7 months ago   Exited (1) 7 months ago                                                           cool_tharp
+edc974337e25   jenkins/jenkins:lts                             "/usr/bin/tini -- /u…"   8 months ago   Exited (255) 8 months ago   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp      my_jenny
+c3e077f108bf   jenkins/jenkins:latest                          "/usr/bin/tini -- /u…"   8 months ago   Exited (255) 8 months ago   8080/tcp, 50000/tcp                                   objective_morse
+abcba6960f3b   jenkins/jenkins                                 "/usr/bin/tini -- /u…"   8 months ago   Exited (130) 8 months ago                                                         romantic_brattain
+fe28705c45e1   jenkins/jenkins:lts-jdk11                       "/usr/bin/tini -- /u…"   8 months ago   Exited (143) 30 hours ago                                                         modest_zhukovsky
+80f04fd20061   jenkins/jenkins:latest                          "/usr/bin/tini -- /u…"   8 months ago   Exited (143) 8 months ago                                                         xenodochial_colden
+15d048c2960f   mastronardif/myfirstapp:latest                  "python /usr/src/app…"   8 months ago   Exited (137) 8 months ago                                                         nice_nobel
+42e76f611f50   mastronardif/myfirstapp:latest                  "python /usr/src/app…"   8 months ago   Exited (137) 8 months ago                                                         heuristic_keldysh

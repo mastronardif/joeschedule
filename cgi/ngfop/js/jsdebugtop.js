@@ -85,6 +85,44 @@ function getLeftFN(action) {
   return xmlfilename;
 }
 
+function getLeftfDesc()
+{
+	var leftsrc   = document.myform.leftsrc.value;
+
+	if (leftsrc == "")
+	{
+		return document.myform.leftfdesc.value;
+	}
+
+	return "";
+}
+
+function del()
+{
+	var fn  = getLeftFN();
+	var desc= getLeftfDesc();
+
+	var response = confirm("Are you sure you want to delete \n"+ desc+"\n("+fn+")?","");
+	if (response == false)
+		return;
+
+	var str="/cgi-bin/cgi/ngfop/editsch.pl?action=delete&htmlname=delete.htm&name="+fn;
+
+	//top.frames[3].location=str;
+	// window.open(str);
+ 	parent.middle.location=str;
+   
+   // FM 7/8/8
+	//var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml"
+// FM 1/20/24  var str   = "/cgi-bin/cgi/ngfop/left02.pl?htmlname=leftsch.htm";
+	//top.frames[1].location=str;
+   
+	//parent.left.location=str;
+   //parent.left[0].location=str;
+   // FM 7/8/8
+
+}
+
 function editSchedule2() {
   var xmlfilename = getLeftFN();
   var usedir = "";

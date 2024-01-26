@@ -85,7 +85,7 @@ sub SCH_getSession()
 #        exit;
 #} 
 
-my $sessionID = $query->cookie(-name=>'sessionID') || "Demo";
+my $sessionID = $query->cookie(-name=>'sessionID') ||  "Bucci"; # "Demo"; ##  "Bucci"; # 
 
 # un taint user input.
 #FM 8/19/7 ($sessionID) =~ /^(\w+)$/;
