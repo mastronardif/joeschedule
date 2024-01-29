@@ -1,0 +1,39 @@
+# Use the official httpd image as the base
+FROM httpd:2.4
+
+# Install Python and pip
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip
+	
+ # Install Jinja2 with the specified flag
+RUN pip3 install Jinja2 --break-system-packages
+#RUN pip3 install Flask --break-system-packages.
+ 
+# Set the working directory
+#WORKDIR /usr/local/apache2/htdocs/
+WORKDIR /usr/local/apache2/public_html/
+
+# Add Python to the PATH
+ENV PATH="/usr/bin/python3:${PATH}"
+
+# Install additional dependencies if needed
+#RUN pip3 install Jinja2
+
+# Create a symbolic link to set up 'python' as an alias for 'python3'
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# Copy the Apache configuration file
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
+
+# Enable CGI module
+##RUN sed -i 's/#LoadModule cgid_module/LoadModule cgid_module/' /usr/local/apache2/conf/httpd.conf
+
+# Copy your CGI scripts and other contents
+COPY ./public_html/ .
+#COPY ./public_html/cgi/ngfop/ ./cgi/ngfop/
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache in the foreground
+CMD ["httpd-foreground"]

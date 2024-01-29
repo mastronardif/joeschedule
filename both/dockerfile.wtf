@@ -1,0 +1,47 @@
+# Content of dockerfile.all
+
+FROM ubuntu:20.04
+
+# Set the timezone non-interactively
+ENV TZ=America/New_York
+
+# Set the DEBIAN_FRONTEND to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install tzdata without prompting
+RUN apt-get update && apt-get install -y tzdata
+
+# Other instructions for your Dockerfile
+RUN echo "Hello from MyDockerfile!"
+
+# Update the package lists
+RUN apt-get update
+
+# Install Apache HTTP Server
+RUN apt-get install -y apache2
+
+# Install Python and pip
+RUN apt-get install -y python3 python3-pip
+
+# Add Python to the PATH
+ENV PATH="/usr/bin/python3:${PATH}"
+
+# Install Perl
+##RUN apt-get install -y perl
+
+# Install PHP
+##RUN apt-get install -y php libapache2-mod-php
+
+# Expose port 80 to allow external access
+EXPOSE 80
+
+# Copy the Apache configuration file
+##COPY apache2.conf /etc/apache2/apache2.conf
+
+WORKDIR /var/www/public_html
+
+# Copy your CGI scripts and other contents
+COPY ./public_html/ .
+
+# Start the Apache service when the container starts
+CMD ["apache2ctl", "-D", "FOREGROUND"]
