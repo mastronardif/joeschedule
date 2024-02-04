@@ -93,7 +93,7 @@ def get_template(html_name):
     # Use an if-else statement to determine the template based on html_name
     if html_name == 'editschhead3a.htm':
         return 'editschhead3a.htm'
-    elif html_name == 'editsch.htm':
+    elif html_name == 'editsch3a.htm':
         return 'editsch3a.htm'
     else:
         # Default template if no match
