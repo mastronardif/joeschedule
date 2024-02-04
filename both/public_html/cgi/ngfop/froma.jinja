@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+<style type="text/css">
+p.fm1 {background-image: url(../images/tile.gif); background-repeat: no-repeat; } 
+p.footer1 {font-family: Verdana , sans-serif; color: black; font-size: 50%;} 
+</style>
+
+<style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Use a common iPhone font */
+    }
+
+    textarea {
+      box-sizing: border-box;
+      width: calc(100% - 20px);
+      margin: 10px;
+      
+      padding: 0 20px; /* Adjust padding as needed */
+      border: 1px solid #ccc;
+      border-radius: 8px; /* Slightly rounded corners for a modern look */
+      resize: vertical;
+      font-size: 16px; /* Adjust the font size for better readability on iPhone */
+    }
+    .content {
+      display: flex;
+      align-items: center;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px 20px; /* Adjust padding as needed */
+    }
+
+    .content img {
+      max-width: 200px;
+      margin-right: 20px;
+      margin-right: 20px;
+    }
+
+    .content p {
+      font-size: 16px;
+    }
+
+    p.row {
+      display: flex;
+      align-items: center;
+    }
+
+    p.row img {
+      margin-right: 10px; /* Adjust the margin as needed */
+    }
+
+</style>
+  
+    <title>{{ variable|escape }}</title>
+  </head>
+  <body>
+  <p><font size="6" color="#FF0000"><b>{{item_list.description}}</b></font></p>
+    <ul>
+      {%- for item in item_list.row %}		
+		<hr/>
+  <div class="content">
+    <img src="{{item.picture}}" alt="Example Image">
+    <p> <font size="6">{{ item.name }} </font> </p>
+  </div>
+</li>
+ <textarea rows="4" name="comment"></textarea>
+ 
+      {%- endfor %}
+    </ul>
+	
+	<p class="footer1">
+<!--<a href="http://www.joeschedule.com">visit www.joeschedule.com-->
+visit www.joeschedule.com
+</p>
+  </body>
+</html>

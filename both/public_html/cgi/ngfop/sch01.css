@@ -1,0 +1,195 @@
+/*<!-- 
+File: mystyles.css
+Purpose: my foray into style shits.
+-->*/
+
+/* this stylesheet is for Joe Schedule */
+body
+{
+background-color: rgb(201,232,251);
+
+/*background-color: rgb(201,232,251);
+background-color: black;
+background-color: white;
+background-color: #66CCCC;
+
+*/
+/*background-color: rgb(249, 201, 92);
+color: rgb(9,93,146);
+*/
+color: black;
+font-family: Palatino, serif;
+
+border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
+border-left-style: none; border-right-style: none; border-top-style: none; border-bottom-style: none;
+border-color: rgb(15,56,82);
+}
+
+body.toolbar{
+	color: black;
+	background-color: #3DB3DD;
+}
+
+body.leftbar{
+	color: black;
+	background-color : #B2D8EF;
+}
+
+button.toolbar {
+	text-align: center;
+	font-family: Verdana , sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	background: Navy;
+	color: white;
+	border: 1pt gray outset;
+	background-color: Aqua;
+}  
+
+
+
+
+
+
+
+p {font-family: Arial, sans-serif; color: #000000; font-size: 100%; background-color: #F5F3E4} 
+
+p.bob {font-family: Verdana , sans-serif; color: black; font-size: 120%; background-color: Lightskyblue } 
+p.large {font-family: Verdana , sans-serif; color: black; font-size: 480%;} 
+
+h1 {font-family: Verdana, sans-serif; color: black; font-size: 20pt; } 
+
+
+a.ttt:link {color: #0033cc; text-decoration: underline; }
+a.ttt:visited {color: #81b; text-decoration: underline; }
+a.ttt:active {color: #FF82b4; }
+a.ttt:hover {color: #00FF00; } #content p a:hover {text-decoration: underline; }
+a.ttt{color: #FFff01;text-decoration: none; }
+
+/* FM 3/17/7
+#.navsel{
+text-transform: uppercase; 
+color: white;
+background: blue; 
+font-family: Verdana; font-size: 120%; font-weight: bold;
+}
+
+#.navbut{
+
+background: blue; 
+}
+*/
+a:link {color: white; }
+a:visited {color: white; }
+a:active {color: white; }
+a:hover {color: Blue; }
+
+a.left:link {color: white; }
+a.left:visited {color: white; }
+a.left:active {color: green; }
+a.left:hover {color: blue; }
+
+
+a.earthsource:link {color: green; }
+a.earthsource:visited {color: teal; }
+a.earthsource:active {color: black; }
+a.earthsource:hover {color: navy; }
+
+
+a.diddy:link {color: #0000ff; font-size: 18pt; }
+a.diddy:visited {color: #894f7b;}
+a.diddy:active {color: red; }
+a.diddy:hover {text-decoration: overline; background-color: yellow; } 
+
+
+#nav{
+height : 200px;
+left : 25px;
+position : absolute;
+top : 145px;
+width : 115px;
+z-index : 10;
+}
+
+.nav1 {
+background-color : #B2D8EF;
+border : 2px ridge #32CD32;
+font-family : Verdana, Arial, Tahoma, Helvetica, sans-serif;
+font-size : 15px;
+font-weight : 600;
+margin-bottom : 5px;
+margin-top : 0px;
+padding : 0;
+width : 145px;
+}
+
+
+.nav1 a{
+background-color : #B2D8EF;
+color : #2F4F4F;
+display : block;
+padding-bottom : 1px;
+padding-left : 3px;
+padding-top : 1px;
+text-decoration : none;
+width : 142px;
+}
+
+.nav1 a:hover{
+background-color : #EEE8AA;
+color : #2F4F4F;
+text-decoration : none;
+}
+
+.nav1 a:active{
+color : #2F4F4F;
+text-decoration : none;
+}
+
+.nav1 a:visited{
+color : #2F4F4F;
+text-decoration : underline;
+}
+
+
+
+
+
+
+button {color: #0033cc; text-decoration: underline; }
+
+
+
+
+
+ul { /* all lists */
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+li { /* all list items */
+	float: left;
+	position: relative;
+	width: 10em;
+}
+
+li ul { /* second-level lists */
+	display: none;
+	position: absolute;
+	top: 1em;
+	left: 0;
+}
+
+li>ul { /* to override top and left in browsers other than IE, which will position to the top right of the containing li, rather than bottom left */
+	top: auto;
+	left: auto;
+}
+
+li:hover ul, li.over ul { /* lists nested under hovered list items */
+	display: block;
+}
+
+#content {
+	clear: left;
+}

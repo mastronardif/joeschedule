@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Make a sundae
+</description>
+
+<row><picture>/cgi/ngfop/pics/temp/bowl_8oz.jpg</picture>
+<name>
+Get bowl.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/breyers.jpg</picture>
+<name>
+Get ice cream.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/banana00.jpg</picture>
+<name>
+Get bananas.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/hersyrup.jpg</picture>
+<name>
+Get syrup.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/temp/reddiwip.jpg</picture>
+<name>
+Get whipped cream.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/ic1.jpg</picture>
+<name>
+Scoop ice cream in bowl.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/ic3.jpg</picture>
+<name>
+Slice banana into bowl.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/ic6.jpg</picture>
+<name>
+Put on whipped cream.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/book/ic7.jpg</picture>
+<name>
+Pour syrup over ice cream.
+</name>
+</row>
+
+</data>

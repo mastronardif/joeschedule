@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <script
+      src="https://kit.fontawesome.com/129016d5d8.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/style.css" />
+    <script language="javascript" src="/cgi/ngfop/js/jsdebugtop.js"></script>
+    <!-- <script src="./js/jsdebug.js"></script> -->
+  </head>
+  <body class="top-body">
+    <!-- <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/top.pl"> -->
+      <form name="myform">
+      <input type="hidden" name="leftsrc" value="cb" />
+      <input type="hidden" name="leftvalue" value="blank.xml" />
+      <input type="hidden" name="leftfname" value="blank.xml" />
+      <input type="hidden" name="leftfdesc" value="" />
+      <input type="hidden" name="middlefname" value="" />
+
+      <div class="pc-tab">
+        <input id="tab1" type="radio" name="pct"  checked="checked" />
+        <input id="tab2" type="radio" name="pct" />
+        <input id="tab3" type="radio" name="pct" />
+        <input id="tab31" type="radio" name="pct" />
+        <input id="tab32" type="radio" name="pct" />
+        <input id="tab33" type="radio" name="pct" />
+        <input id="tab34" type="radio" name="pct" />
+        <input id="tab4" type="radio" name="pct" />
+        <nav>
+          <ul>
+            <li class="tab1">
+              <label for="tab1">        
+               Go!
+                <select
+                  id="helpSelect"
+                  name="Extra"
+                  style="
+                    text-transform: uppercase;
+                    color: navy;
+                    background: #c9e8fb;
+                    font-family: Verdana;
+                    font-size: 12px;
+                  "
+                >
+                  <option value="-1">List</option>
+                  <option value="3">----------</option>
+                  <option value="4">Form.a</option>
+                  <option value="4">Form</option>
+                  <option value="1">Cards</option>
+                  <option value="1">Reward</option>
+                  <option value="1">Left2rt</option>
+                  <option value="3">Story</option>
+                  <option value="3">*Matching</option>
+                </select>
+                <a
+                  id="goLink"
+                  class="menuitem"
+                  title="Execute a command"
+                  href="javascript:ShowExtra(document.myform.Extra.options[document.myform.Extra.selectedIndex].text);"
+                  >Go!</a
+                >
+              </label>
+            </li>
+            <!-- <li class="tab2">
+            <label for="tab2">Second 
+              <a class="menuitem" title="My Picture" href="javascript:myPicture();"><IMG SRC="/cgi/ngfop/ca1.png" alt="My Picture" align="middle" width="23" height="15" border="1"></a>
+              Tab</label>
+          </li> -->
+
+            <li class="tab2">
+              <label
+                for="tab2"
+                class="tab-label-with-icon"
+                onclick="javascript:myPicture()"
+              >
+                <!-- <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon"> -->
+                <i class="fa-solid fa-camera"></i>
+                <!-- <a id="goLinkmyPicture" class="menuitem" title="My Picture" href="javascript:myPicture();">
+                <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon">
+              </a>               -->
+              </label>
+            </li>
+
+            <li class="tab3">
+              <label for="tab3" onclick="javascript:cp2sch22()">
+                Third Z
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Tab</label
+              >
+            </li>
+
+            <li
+              class="tab31"
+              onclick="openInFrame('/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe3a.htm&name=blank.xml', 'right')"
+            >
+              <label for="tab31"> new </label>
+            </li>
+            <li class="tab32" onclick="javascript:editSchedule2()">
+              <label for="tab31"> Edit </label>
+            </li>
+            <li class="tab33" onclick="javascript:del()">
+              <label for="tab31"> Del </label>
+            </li>
+            <li class="tab34" onclick="javascript:top.location='/cgi-bin/cgi/ngfop/signin.pl?action=signout'">
+              <label for="tab31"> Sign Out </label>
+            </li>
+
+            <!-- <li class="tab3">
+            <label for="tab3">Third Tab</label>
+          </li> -->
+
+            <li
+              class="tab4"
+              onclick="window.open('https://www.joeschedule.com/cgi/ngfop/joehelp.htm')"
+            >
+              <label for="tab4"> Help </label>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <!-- <footer>
+  by <a href="http://rena.to/" target="_blank">rena.to</a>
+</footer> -->
+
+ <!-- Students -->
+ <SELECT NAME="Students"
+     <MYSTUDENTS></MYSTUDENTS>
+     <option value="1">Jake</option>
+<!-- <row>
+ <OPTION VALUE="1"><NAME>   
+</row> -->
+
+      <option value="-1">Jake</option>
+</SELECT> 
+
+    </form>
+  </body>
+  <script type="text/javascript">
+    document
+      .getElementById("helpSelect")
+      .addEventListener("change", function () {
+        //var selectedIndex = this.selectedIndex + 1; // Adjust index based on your options
+        document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+      });
+
+   //  document
+   //    .getElementById("goLinkmyPicture")
+   //    .addEventListener("click", function () {
+   //      document.getElementById("tab2").checked = true; // Manually set the corresponding radio button to checked
+   //    });
+    document.getElementById("goLink").addEventListener("click", function () {
+      //var selectedIndex = document.getElementById('helpSelect').selectedIndex + 1; // Adjust index based on your options
+      document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+    });
+   //  document.getElementById("goButton").addEventListener("click", function () {
+   //    var selectedIndex =
+   //      document.getElementById("helpSelect").selectedIndex + 1; // Adjust index based on your options
+   //    document.getElementById("tab1").checked = true; // Manually set the corresponding radio button to checked
+   //  });
+  </script>
+</html>

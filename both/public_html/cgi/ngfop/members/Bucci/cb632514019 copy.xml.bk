@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <description>Water Jugs</description>
+
+  <row>
+    <picture>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu66CqZvy1OudCfXRk2H1AOP8KOmRaN1KayA&usqp=CAU</picture>
+    <name>Put your water containers away!</name>
+  </row>
+
+  <row>
+    <picture>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt2cEdD-jkUqOQTSEr5sQOzYHU1zdKfUw8BA&usqp=CAU</picture>
+    <name>I will put in a bag</name>
+  </row>
+</data>

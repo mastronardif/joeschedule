@@ -1,0 +1,227 @@
+####################################
+####################################
+# File: schdb.lib
+# 
+# Purpose: - js's db access.
+# Last Modified: 01/18/09
+####################################
+####################################
+use DBI;
+use Authen::Users;
+use strict "vars";
+use File::Find();
+
+my $GROUP= "s1";
+#my $GROUP= "s1FMTESTING";
+sub SCHDB_DoesIDExists()
+{
+   my($id) = @_;
+
+#=comment
+   my $found="";
+   #print($id);
+   
+   File::Find::find( {
+    preprocess => sub { return grep { -d } @_ },
+    wanted => sub {$found = $found || m/^($id)$/i; }, untaint => qr|^([-+@\w./]+)$|
+    }, "./members");
+
+   if ($found)
+   {
+     return "found in \"old school\" ($id) system"; #11;
+   }
+
+#=cut
+   
+   my $authen = new Authen::Users(dbtype => 'MySQL', dbhost => 'www3.pairlite.com', dbname => 'pl1321_dbjs',  
+                              dbuser => 'pl1321_w', dbpass => 'Fm123456', dbname =>'pl1321_dbjs', create => 0);
+
+   return $authen->is_in_table($GROUP, $id);
+}
+
+sub  SCHDB_Adduser()
+{
+   my($id, $pw, $fullname, $email) = @_;
+ # FM 2/23/19 https://metacpan.org/pod/Authen::Users    NO_SALT => 1 
+   my $authen = new Authen::Users(dbtype => 'MySQL', dbhost => 'www3.pairlite.com', dbname => 'pl1321_dbjs',  
+                               NO_SALT => 1, dbuser => 'pl1321_w', dbpass => 'Fm123456', dbname =>'pl1321_dbjs', create => 0);
+   $authen->add_user($GROUP, $id, $pw, $fullname, $email, "", "") or return $authen->error;                               
+   
+   return "";
+}
+
+sub  SCHDB_Validate()
+{
+    #SCHDB_Validate(id, pw)
+    my($id, $pw) = @_;
+   
+	my $href = &SCHDB_UserInfo($id);
+	  
+	my $fullname = $href->{fullname};
+	my @array1 = split /\s+/, $fullname;
+	my $pwDB = @array1[0];
+	  
+	if ($pw eq $pwDB) 
+	{
+		return $href->{dir};
+	}
+      
+   return 0;
+}
+
+
+sub  SCHDB_Validate00()
+{
+   #SCHDB_Validate(id, pw)
+   my($id, $pw) = @_;
+   my $authen = new Authen::Users(dbtype => 'MySQL', dbhost => 'www3.pairlite.com', dbname => 'pl1321_dbjs',  
+                              dbuser => 'pl1321_w', dbpass => 'Fm123456', dbname =>'pl1321_dbjs', create => 0);
+  
+   # FM 1/20/9 return $authen->authenticate($GROUP, $id, $pw);
+   if ($authen->authenticate($GROUP, $id, $pw))
+   {
+      my $href = &SCHDB_UserInfo($id);
+
+#FM 2/1/09
+=comment
+if ($href)  # for Testing.
+{
+   if ($GROUP =~ /s1FMTESTING/)
+
+   {
+	return "100002";
+   }
+}
+=cut
+      return $href->{dir};
+   }
+   return 0;
+}
+
+sub SCHDB_UserInfo()
+{
+   ## $userinfo = &SCHDB_UserInfo($id);
+   my($id) = @_;
+   my $retval = "";
+   my $authen = new Authen::Users(dbtype => 'MySQL', dbhost => 'www3.pairlite.com', dbname => 'pl1321_dbjs',  
+                                  dbuser => 'pl1321_w', dbpass => 'Fm123456', dbname =>'pl1321_dbjs', create => 0);
+                        
+   my $href;
+   $href = $authen->user_info_hashref($GROUP, $id) or return $authen->errstr;
+   #print "die Cannot retrieve information about $user in group $GROUP:$authen->errstr";
+   return $href;
+}
+
+sub SCHDB_Mail_ReplyFor()
+{
+   #untaint the shit.
+   delete @ENV{qw(PATH IFS CDPATH ENV BASH_ENV)};   # Make %ENV safer
+
+   #sub SCHDB_Mail($template, $id)
+   my($id, $pw) = @_;
+
+   my $href = &SCHDB_UserInfo($id);
+   if (!$href->{user})
+   {
+       return -1;
+   }
+
+#fm 1/25/9   open(DBG, ">>fmdebug.txt") || print "can not open mydebug.txt";
+
+my $msg=<<"END";
+From: mastronardif\@netcarrier.com
+bcc: mastronardif\@netcarrier.com
+To: <EMAIL/>
+cc: mastronardif\@netcarrier.com
+Subject: <SUBJECT/>
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+END
+
+   # Get boiler plate.
+   $msg .= &getLetter_Reply();
+
+   $msg =~ s/<Subject\/>/joeschedule.com registration confirmation/igs;
+
+   $msg =~ s/<fullname\/>/$href->{fullname}/igs;
+   $msg =~ s/<id\/>/$href->{user}/igs;
+   $msg =~ s/<pw\/>/$pw/igs;
+   $msg =~ s/<email\/>/$href->{email}/igs;
+   $msg =~ s/<dir\/>/$href->{dir}/igs;
+
+   open(SENDMAIL, "|/usr/sbin/sendmail -i -oi -t -odq")
+                        or return -2;
+
+   print SENDMAIL $msg;
+#   print SENDMAIL "\n";
+#   print SENDMAIL ".\n";
+
+   close(SENDMAIL)     or print "sendmail didn't close nicely";
+
+#print DBG "\npass sendmail\n";
+#close(DBG);
+}
+
+sub getLetter_Reply()
+{
+my $msg=<<"END";
+<p style="
+ color: #0060ab;
+ font-family: 'Verdana', sans-serif;
+ font-size: 26px;
+ font-style: normal;
+ font-variant: normal;
+ font-weight: normal;
+ letter-spacing: 0;
+ line-height: 44px;
+ margin-bottom: 0px;
+ margin-left: 0px;
+ margin-right: 0px;
+ margin-top: 0px;
+ opacity: 1.00;
+ padding-bottom: 0px;
+ padding-top: 0px;
+ text-align: left;
+ text-decoration: none;
+ text-indent: 0px;
+ text-transform: none;">
+<b>Congratulations, <FULLNAME/>!</b>
+</p>
+
+
+
+<p align="left">
+<b>Below are your account details for joeschedule.com</b>
+<br/>You will need this information to sign in to joeschedule! and to reset your password in
+case you forget it. Please print and keep this information in a safe place for future reference.
+</p>
+
+<p align="left">
+   JoescheduleID: <b><ID/></b>
+   <br/>      PW: <b><PW/></b>
+   <br/> Email address: <b><EMAIL/></b>
+</p>
+
+<p align="left">
+<a href="http://www.joeschedule.com"> www.joeschedule.com</a>
+<br/>
+The eBook is here:
+go to
+<a href="http://www.joeschedule.com/cgi/ngfop/book/thebook.pdf">
+http://www.joeschedule.com/cgi/ngfop/book/thebook.pdf
+</a>
+&nbsp; to download the eBook Activity Schedule Ideas: A How-To Guide
+
+<br/>Any questions, please email us.
+<br/>Regards,
+<br/>joeschedule! Member Services
+<br/><span style="font-size:xx-small;"><DIR/></span>
+</p>
+END
+
+return $msg;
+}
+
+
+1;

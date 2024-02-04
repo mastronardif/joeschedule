@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Category</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
+  </head>
+<script>
+<!--
+
+function clearAllRadioButtons()
+{
+	var obj = document.myform.elements.C1;
+	for (var iii = 0; iii < obj.length; iii++)
+	{
+		document.myform.C1[iii].checked=false;
+	}
+}
+
+function notifytop(fn)
+{
+	top.frames[0].myform.leftfname.value=fn;
+}
+
+function go(fn)
+{
+//alert(fn); return;
+	var str="/cgi-bin/cgi/ngfop/lwpyahoo.pl?jsquery="+fn
+	// FM 6/18/8 parent.middle.location=str;
+   top.frames[2].location=str;
+}
+
+function goNewWindow(fn)
+{
+	var str="/cgi-bin/cgi/ngfop/lwpyahoo.pl?jsquery="+fn
+	window.open(str);
+}
+
+-->
+
+</script>
+
+<!--  
+<body class="toolbar" topmargin="0" leftmargin="0" font-size: 13pt;>
+-->
+
+<body class="toolbar" topmargin="0" leftmargin="0" onload="document.myform.id.focus();">
+<form name = "myform" method="POST" action="javascript:go(document.myform.id.value);">
+<font size="4" color="#FF0000"><b><i>Pictures</i></b></font>
+<br>
+&nbsp;&nbsp;Search For:<br>
+&nbsp;&nbsp;<input name="id" type=text size=25 name=gg> 
+<br>
+&nbsp;&nbsp;<input type="button" value="Web! Search" onClick="javascript:go(document.myform.id.value);">
+<br>
+<i>
+<font size="1">
+Web images may be subject to copyright.  
+</font>
+</i>
+   
+<hr></hr>
+<ChoiceBoard>
+   
+<!--  <input type="radio" value="V1" name="C1" onclick = "notifytop('<FILE>');"> 
+-->
+   &nbsp;&nbsp;
+  
+  <A HREF="/cgi-bin/cgi/ngfop/sch4.pl?name=<FILE>&htmlname=catagory1.htm" TARGET="middle"><DESCRIPTION></A>
+<br>
+</ChoiceBoard>
+<!--
+&nbsp;&nbsp;Search For:<br>
+&nbsp;&nbsp;<input name="id" type=text size=25 name=gg> 
+<br>
+&nbsp;&nbsp;<input type="button" value="Web! Search" onClick="javascript:go(document.myform.id.value);">
+<br>
+<i>
+<font size="1">
+Web images may be subject to copyright.  
+</font>
+</i>
+-->
+
+</form>
+</body>
+</html>

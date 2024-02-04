@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0077)http://www.joeschedule.com/cgi-bin/cgi/ngfop/schnrew2.pl?name=sch13460043.xml -->
+<HTML lang=en xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><HEAD><TITLE>Schedule & Reward</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META http-equiv=Content-Language content=en-us><LINK href="011_files/sch01.css" 
+type=text/css rel=stylesheet><LINK media=print href="011_files/print.css" 
+type=text/css rel=stylesheet>
+<STYLE type=text/css media=all>P.footer1 {
+	FONT-SIZE: 50%; COLOR: black; FONT-FAMILY: Verdana , sans-serif
+}
+</STYLE>
+
+<SCRIPT>
+
+function sch_check(obj)
+
+{
+
+	CallBack_DisplayResults();
+
+}
+
+
+
+function init()
+
+{
+
+return;  // FM removed 6/9/4
+
+	if (myform.elements.C1)
+
+	{
+
+		var iCnt=1;
+
+		if (myform.elements.C1.length)
+
+		{
+
+			iCnt = myform.elements.C1.length;
+
+		}
+
+		
+
+		document.all.tb01.innerHTML = iCnt + " * = 3 Tokens";
+
+	}
+
+}
+
+
+
+function CallBack_DisplayResults()
+
+{
+
+
+
+ document.all.tb00.innerHTML = "****";
+
+ var checks = "";
+
+ var iChks = 0;
+
+
+
+ for (var iii = 0; iii < myform.elements.C1.length; iii++)
+
+ {
+
+  if (myform.elements.C1[iii].checked)
+
+  {
+
+   iChks++;
+
+   checks += "* ";
+
+  }
+
+ }
+
+
+
+ if (iChks == myform.elements.C1.length)
+
+ {
+
+  checks += " Good job you can do your reward now."
+
+ }
+
+
+
+ document.all.tb00.innerHTML = checks;
+
+
+
+// document.all.tb00.innerHTML = document.all.tb01.innerHTML;
+
+}
+
+</SCRIPT>
+
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY bgColor=white leftMargin=14 onload=init(); marginwidth="14">
+<FORM name=myform><INPUT type=hidden value=sch13460043.xml name=xmlfilename> 
+<TABLE cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
+  <TBODY>
+  <TR>
+    <TD class=helpCentreTitle><B>&nbsp;<B></B> <!--      ______'s Schedule for _____</b>--><BR></B></TD>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=8 width="100%" bgColor=#f3f3f3 
+        border=1><FORM name="textselector">
+        <TBODY>
+        <TR>
+          <TH>Schedule 
+          <TH>Working for 
+        <TR vAlign=top>
+          <TD><INPUT onclick=sch_check(this); type=checkbox value=ON name=C1> 
+            <WIDTH="33%" height="19"><IMG height=96 
+            src="http://thm-ar1r2.search.vip.scd.yahoo.com/image/397581640.jpg" width=105 border=0 name=I55 
+            type="image"> Hang up backback 
+            <HR>
+            </HR><INPUT onclick=sch_check(this); type=checkbox value=ON name=C1> 
+            <WIDTH="33%" height="19"><IMG height=96 src="http://www.joeschedule.com/cgi/ngfop/pics/pic_02/eop6645.gif" 
+            width=105 border=0 name=I55 type="image"> Math Sheet 
+            <HR>
+            </HR><INPUT onclick=sch_check(this); type=checkbox value=ON name=C1> 
+            <WIDTH="33%" height="19"><IMG height=96 
+            src="http://www.joeschedule.com/cgi/ngfop/pics/pic_02/School%20Days%2070.gif" width=105 border=0 name=I55 
+            type="image"> play time 
+            <HR>
+            </HR></TD>
+          <TD><!-- FM 9/23/03 -->
+            <DIV class=tb01>
+            <DIV id=tb01></DIV></DIV><!-- FM 9/23/03 --><!-- FM 9/23/03 -->
+            <DIV class=tb00>
+            <DIV id=tb00 
+            style="FONT-SIZE: 15pt; COLOR: green; TEXT-ALIGN: center"></DIV></DIV><!-- FM 9/23/03 -->
+            <HR>
+            </HR><WIDTH="33%" height="19"><IMG height=96 
+            src="http://images.google.com/images?q=tbn:OEJ9s8c1SSQJ:www.51wall.com/adver/misc/pic/m%26m.jpg" width=105 border=0 name=I55 type="image"> 
+            Reward 
+<BR><BR></TD></TR></FORM></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>
+<P class=footer1><!--<a href="http://www.joeschedule.com">visit www.joeschedule.com-->visit 
+www.joeschedule.com </P></BODY></HTML>

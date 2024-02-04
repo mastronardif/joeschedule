@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+Jake&#39;s Saturday
+</description>
+
+<row><name>
+Brush your teeth
+</name>
+</row>
+
+<row><name>
+Get dressed
+</name>
+</row>
+
+<row><name>
+Make your bed
+</name>
+</row>
+
+<row><name>
+vitamin
+</name>
+</row>
+
+<row><name>
+go for bagels
+</name>
+</row>
+
+<row><name>
+cbparks.xml
+</name>
+</row>
+
+<row><name>
+Go see Grandma
+</name>
+</row>
+
+<row><name>
+pizza for dinner
+</name>
+</row>
+
+<row><name>
+Go for a walk around the block
+</name>
+</row>
+
+<row><name>
+bath/shower
+</name>
+</row>
+
+<row><name>
+read
+</name>
+</row>
+
+<row><name>
+tv
+</name>
+</row>
+
+<row><name>
+bed
+</name>
+</row>
+<Reward><Time>Reward</Time><Picture><Description>Let's have ice cream for desert.</Description>http://gw.example.org/cgi/ngfop/pics/iicecrm.gifhttp://gw.example.org/cgi/ngfop/pics/iicecrm.gif</Name></Picture><Name>http://gw.example.org/cgi/ngfop/pics/iicecrm.gif</Name></Reward>
+
+</data>

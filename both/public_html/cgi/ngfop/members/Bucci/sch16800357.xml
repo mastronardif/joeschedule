@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<description>
+0 Morning Routine (get dressed)
+</description>
+
+<row><picture>/cgi/ngfop/pics/pic_02/wu004.jpg</picture>
+<name>
+Wake up.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_01/DSCF0010.JPG</picture>
+<name>
+Brush your teeth.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_01/DSCF0023.JPG</picture>
+<name>
+Wash your face.
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_02/108.jpg</picture>
+<name>
+Put on pants
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_02/103.jpg</picture>
+<name>
+Put on shirt
+</name>
+</row>
+
+<row><picture>/cgi/ngfop/pics/pic_02/104.jpg</picture>
+<name>
+Put on socks
+</name>
+</row>
+
+</data>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<title>Schedules</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01b.css"/>
+</head>
+
+<script type="text/javascript">
+<!--
+
+function disable()
+{
+	if (!document.myform.C1)
+		return;
+
+	// in case if there's only one.
+	document.myform.C1.checked=false;
+
+	var obj = document.myform.elements.C1;
+
+	if (obj)
+	{
+		for (var iii = 0; iii < obj.length; iii++)
+		{
+			document.myform.C1[iii].checked=false;
+		}
+	}
+}
+
+function notifytop(fn)
+{
+	parent.frames[0].disable();
+	parent.frames[1].disable();
+	// I'm [2]
+
+	//top.frames[0].setLeftValue("schedule", fn);
+	top.frames[0].setLeftValue("", fn);
+
+}
+-->
+
+</script>
+  
+  
+<body class="toolbar" topmargin="0" leftmargin="0">
+<!--
+<body bgcolor="#FFFFFF" background="/cgi/ngfop/bg1.gif"
+text="#000080" link="#800000" vlink="#008080">
+-->
+
+<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<table border="0" width="100%">
+
+<!--<hr>
+<img src="/cgi/ngfop/bbar8.gif" width="582" height="9"><br>
+</hr>-->
+
+<font size="4" color="#FF0000"><b><i>Schedules</i></b></font>
+
+<Schedule>
+<tr>
+  <input type="radio" name="C1" onclick = "notifytop('<FILE>');"> 
+<!--  <A HREF="/cgi-bin/cgi/ngfop/sch3.pl?name=<FILE>" TARGET="middle"><DESCRIPTION></A>-->
+<!--  <A HREF="/cgi-bin/cgi/ngfop/sch3a.pl?htmlname=sch3a.htm&name=<FILE>" TARGET="middle"><DESCRIPTION></A>-->
+  <A HREF="/cgi-bin/cgi/ngfop/sch3b.pl?htmlname=sch3b.htm&name=<FILE>" TARGET="middle"><DESCRIPTION></A>
+</tr>
+</Schedule>
+
+</table>
+
+</form>
+
+</body>
+</html>
+
+
+

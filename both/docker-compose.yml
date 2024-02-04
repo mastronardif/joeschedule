@@ -1,0 +1,8 @@
+version: '3'
+services:
+  my-apache-container:
+    image: my_both
+    ports:
+      - "8080:80"
+    volumes:
+      - /c/FxM/Dev/JoeSchedule/joeschedule/both/public_html:/usr/local/apache2/public_html

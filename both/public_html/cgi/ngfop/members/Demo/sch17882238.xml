@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <data>
+ <description>
+ Emotions
+ </description>
+ 
+ <row><picture>/cgi/ngfop/pics/temp/emotions/je0005.jpg</picture>
+ <name>
+ sad
+ </name>
+ </row>
+ 
+ <row><picture>/cgi/ngfop/pics/temp/emotions/je0006.jpg</picture>
+ <name>
+ surprised
+ </name>
+ </row>
+ 
+ <row><picture>/cgi/ngfop/pics/temp/emotions/ji0004.jpg</picture>
+ <name>
+ happy
+ </name>
+ </row>
+ 
+ <row><picture>/cgi/ngfop/pics/temp/emotions/ji0013.jpg</picture>
+ <name>
+ scared
+ </name>
+ </row>
+ 
+ <row><picture>/cgi/ngfop/pics/temp/emotions/je0012.jpg</picture>
+ <name>
+ angry
+ </name>
+ </row>
+ 
+ </data>
