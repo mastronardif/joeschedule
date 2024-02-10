@@ -1,0 +1,15 @@
+{
+  "data": {
+    "description": "Water Jugs",
+    "row": [
+      {
+        "picture": "ZZZ",
+         "name": "Put your water containers away!"
+      },
+      {
+        "picture": "AAA",
+        "name": "I will put in a bag"
+      }
+    ]
+  }
+}

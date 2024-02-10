@@ -31,6 +31,20 @@ def SCH_xmlRemoveEmptyPics(rows):
 # output_rows = xml_remove_empty_pics(input_rows)
 # print(output_rows)
 
+def SCH_ValidateFilename(fn):
+    if fn.count("/") > 1:
+        return (0, fn)
+    
+    if fn.count(".") > 1 or re.search(r'/\.', fn):
+        return (0, fn)
+    
+    if not re.match(r'^[\w./]+$', fn):
+        return (0, fn)
+    
+    match = re.match(r'([\w./]+)', fn)
+    fn = match.group(1) if match else ""
+    
+    return (1, fn)
 
 def get_session():
     # Check the HTTP_REFERER if needed

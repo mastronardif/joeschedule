@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 import cgi
 import sys
+import re
 from sch00 import get_session
 from sch00 import get_fn
+from sch00 import SCH_ValidateFilename
 import xmltodict
 import json
 import xml.etree.ElementTree as E
@@ -84,7 +86,8 @@ def render_template(template, fn, data):
     from jinja2 import Template
     with open(template) as f:
         tmpl = Template(f.read())
-    print("Content-type: text/html\n")
+    # print("Content-type: text/html\n")
+    # print(data)
     print(tmpl.render(
         FILENAME=fn,
         item_list=data #['data']
@@ -100,78 +103,152 @@ def get_template(html_name):
         # Default template if no match
         return 'default_template.jinja'
 
-def save(query):
+def saveList(query, root, fn, type):
+    description = query.getvalue('d0')   
+    # action = query.getvalue('action')    
+    # xml_filename = query.getvalue('name') or "blankSchedule" 
+
+    # Taint check
+    root = re.match(r'(.+)', root).group(1) if re.match(r'(.+)', root) else "ot oh!"
+    
+    retval, fn = SCH_ValidateFilename(fn)
+    if not retval:
+        print("<hr/><hr/>Debug: SCH_ValidateFilename FAILED!!!<br/>")
+        return
+    
+    pics = query.getlist('HR55')
+    names = query.getlist('R55')
+
+    data = {
+        "data": {
+            "description": description,
+            "row": []
+        }
+    }
+    # Add pictures and names to the "row" list
+    for pic, name in zip(pics, names):
+        data["data"]["row"].append({"picture": pic, "name": name})
+
+    fname = f"{root}{fn}.json"
+    with open(fname, 'w') as json_file:
+        json.dump(data, json_file, indent=2)
+
+    json_data = json.dumps(data, indent=2)
+    # print(json_data)
+    # print(fname)
+
+
+def save(query,dir, fn, type):
     print("Content-type: text/html\n") 
     print("<hr/><hr/>Debug<br/>")
    
-    desc = query.getvalue('d0')   
+    description = query.getvalue('d0')   
     action = query.getvalue('action')    
     xml_filename = query.getvalue('name') or "blankSchedule" 
 
     print(f"action: {action}<br/>")
-    print(f"desc: {desc}<br/>")
-    # print(f"query: {query}<br/>")
+    print(f"description: {description}<br/>")   
     print(f"xml_filename: {xml_filename}<br/>")
-    print("<br/>")   
+    
+        # Get the CGI form data
+    # form = cgi.FieldStorage()
+
+    # Get the values for 'HR55' parameter
+    pics = query.getlist('HR55')
+    names = query.getlist('R55')
+
+    # Construct the JSON structure
+    data = {
+        "data": {
+            "description": description,
+            "row": []
+        }
+    }
+    # Add pictures and names to the "row" list
+    for pic, name in zip(pics, names):
+        data["data"]["row"].append({"picture": pic, "name": name})
+    
+    # Convert dictionary to JSON
+    json_data = json.dumps(data, indent=2)
+    print(json_data)
+
+    # Print the values
+    # print("<br/>")
+    # print("picture:", pics)
+    # print("<br/>")
+    # print("<br/>")
+    # print("name:", names)
+
 
         
 if __name__ == "__main__":
+    session = get_session()
+    # print(session)
     query = cgi.FieldStorage()     
     action = query.getvalue('action')
-    ## sw/
-    if action == 'save':
-        save(query)
-        sys.exit()
-
-
-    html_name = query.getvalue('htmlname') or "./editsch.htm"
+    html_name = query.getvalue('htmlname') or "./_____________editsch.htm"
     xml_filename = query.getvalue('name') or "blankSchedule" 
+    type         = query.getvalue('type')
 
+    ## sw/
+    print("Content-type: text/html\n") 
+    if action == 'save':
+        saveList(query, session['dir'], xml_filename, type)
+        # sys.exit()
+
+    fn = get_fn(xml_filename)
+    fname = f"{fn}.json" 
+    with open(fname, 'r') as json_file:
+        ddddJson = json.load(json_file)
+
+    # print("Content-type: text/html\n")
+    # print(ddddJson)
+
+    # data = convert_xml_to_json(xml_string)
+    # dddd = convert_xml_to_json33(fn)
+    # print(f"html_name: {html_name}<br/>")
+    template = get_template(html_name)
+    # render_template(template, xml_filename, dddd)
+    render_template(template, xml_filename, ddddJson['data'])
 
     
-
-
-    fn = get_fn(xml_filename) ##get_fn("cb632514019.xml")  # json")
-    with open(fn, 'r') as file:
-        xml_string = file.read()  # json.load(file) #file.read()
-
-    data = convert_xml_to_json(xml_string)
-    dddd = convert_xml_to_json33(fn)
-
-    template = get_template(html_name)
-    render_template(template, xml_filename, dddd)
 	
     
     ################################
     # Write JSON data to the file
-    with open('./fuck.json', 'w') as json_file:
-       json.dump(dddd, json_file, separators=(',', ': '))
+    # with open('./fuck.json', 'w') as json_file:
+    #    json.dump(dddd, json_file, separators=(',', ': '))
     
     
     ################################
-    print("<hr/><hr/>Debug<br/>")
+    print("<hr/><hr/>Debug<br/>")    
     print(f"action: {action}<br/>")
+    print(f"html_name: {html_name}<br/>")
     print(f"XML Filename: {xml_filename}<br/>")
     print(f"fn: {fn}<br/>")
+    print(f"fname: {fname}<br/>")
+    print(f"session: {session}<br/>")
     print("<br/>")
+    
+    print(f"ddddJson: {ddddJson}<br/>")
 
     #print(xml_string)
-    print(json.dumps(data, indent=2))  # Print the data dictionary with indentation
+    # print(json.dumps(data, indent=2))  # Print the data dictionary with indentation
 
-    message = get_session()
-    print(message)
+    # message = get_session()
+    # print(message)
 
-    tree = E.parse(fn)
-    root = tree.getroot()
-    d={}
-    for child in root:
-        if child.tag not in d:
-            d[child.tag]=[]
-        dic={}
-        for child2 in child:
-            if child2.tag not in dic:
-                dic[child2.tag]=child2.text
-        d[child.tag].append(dic)
-    print(d)
+    # tree = E.parse(fn)
+    # root = tree.getroot()
+    # d={}
+    # for child in root:
+    #     if child.tag not in d:
+    #         d[child.tag]=[]
+    #     dic={}
+    #     for child2 in child:
+    #         if child2.tag not in dic:
+    #             dic[child2.tag]=child2.text
+    #     d[child.tag].append(dic)
+    # print(d)
 
-    print("<br/>")
+    # print("<br/>")
