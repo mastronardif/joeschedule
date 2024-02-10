@@ -1,17 +1,14 @@
-<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
-<title>Edit Schedule</title>
-<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
-</head>
-<script language="javascript" src="/cgi/ngfop/js/editsch.js"></script>
-<script type="text/javascript">
-var colorbgnd   = 'black';
-var colorforgnd = '#F5F3E4'; //'#00FFFF';
+function help() {
+  alert("___.js: help");
+}
+function test(ddddd) {
+  alert(ddddd);
+}
 
 function OnInit()
 {
+  // alert('.js OnInit')
+  // debugger
    var xmlfile = document.myform.name.value;
    if (xmlfile.toLowerCase() == "Students.xml".toLowerCase())
    {
@@ -99,7 +96,7 @@ function getList(obj)
 
 function save2(name, desc, student)
 {
-debugger
+  // debugger
    if (student)
    {
       var xmlfile = document.myform.name.value;
@@ -140,7 +137,6 @@ debugger
 	else
 		type = "sch";
 
-	debugger
 	document.myform.type.value = type;
 	document.myform.d0.value = desc;
 	document.myform.submit();
@@ -271,54 +267,19 @@ function insertRow()
 		}
 	}
 
-	debugger
+	// debugger
 	initializeRows();
 }
 
-// this was in the bottome script tag. ????
-gIwidth  = 10;//document.myform.I55[0].width;
-gIheight = 10;//document.myform.I55[0].height;
 
-function initializeRows()
+
+gIwidth  = 50;//document.myform.I55[0].width;
+gIheight = 50;//document.myform.I55[0].height;
+
+function test(src)
 {
-	alert('line 448. initializeRows()')
-	gIwidth  = 40;//document.myform.I55[0].width;
-	gIheight = 40;//document.myform.I55[0].height;
-
-	var szhRow;
-   
-   var iLen =document.getElementsByName("R1").length;
-      
-	//for (var iii = 0; iii < myform.elements.R1.length; iii++)
-   for (var iii = 0; iii < iLen; iii++)
-	{
-		szhRow = document.myform.HR55[iii].value;
-		if (szhRow == "")
-		{
-			document.myform.I55[iii].width  = 0;
-			document.myform.I55[iii].height = 0;
-		}
-		else
-		{
-			document.myform.I55[iii].width  = gIwidth;
-			document.myform.I55[iii].height = gIheight;
-		}
-	}
-}
-
-initializeRows();
-if (parent.SetHeadValue)
-
-{
-    <description>
-		var desc = "<DESCRIPTION>";
-    </description>
-	parent.SetHeadValue("d0", desc);
-}
-
-function testAAAAA(src)
-{
-	alert(document.myform.I55[1].height);
+	//debugger
+//	alert(document.myform.I55[1].height);
 	var szName = src.match(/<Name>(.+)<\/Name>/i);
 	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
 
@@ -359,165 +320,4 @@ function testAAAAA(src)
 	}
 }	// end
 
-	</script>
 
-<!--<body Bgcolor="#99CCFF">
-<body topmargin="0" bgcolor='rgb(249, 201, 92)';>
--->
-
-<body onLoad="OnInit();" topmargin="0">
-<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/editsch3a.py?action=save">
-
-<!-- hidden shits -->
-<filename>
-  <input type="hidden" name=name size = "10" value="{{FILENAME|escape}}">
-</filename>
-  <input type="hidden" name=type size = "10" value="">
-  <input type="hidden" name=d0 size = "30" value="ZZZZZZZZZZZZZZZ">
-  <input type="hidden" name=student size = "30" value="">   
-<swms>
-  <input type="hidden" name="SWMs" value="<SWMS>"/>
-</swms>     
-
-zzzzzzzzzzzzzzzzzz
-{{FILENAME|escape}}
-
-<table border="1" cellpadding="0" width="100%">
-<row>
-	{%- for item in item_list.row %}	
-          <tr>
-            <td width="5%">
-               <!-- stude w m's -->
-      <input type="checkbox" name="CW1" value="ON" >:<input type="checkbox" name="CM2" value="ON" >               
-         <input type="hidden" NAME="HCW1" value=""> <input type="hidden" NAME="HCM2" value="">
-               <!-- stude w m's -->
-
-            <input type="text" name="T1" size="4" value="<TIME>" checked>
-            </td>
-
-            <td width="5%">
-            <input type="radio" name="R1">
-            </td>
-
-            <td width="64%">
-			<input type="hidden" NAME="HR55" value="{{item.picture}}">
-			<img NAME="I55" border="0" src="{{item.picture}}" width="12px" height="40px">         
-			<input type="text" name="R55" size = "24" value = "{{ item.name }}">
-			</td>
-         </tr>
-	{%- endfor %}
-</row>
-
-<Appendblanks>
-          <tr>
-            <td width="5%" height="1">
-              <!-- stude w m's -->
-               <input type="checkbox" name="CW1" value="ON" >:<input type="checkbox" name="CM2" value="ON" >               
-               <input type="hidden" NAME="HCW1" value=""> <input type="hidden" NAME="HCM2" value="">                  
-              <!-- stude w m's -->
-               
-            <input type="text" name="T1" size="4" value="<TIME>" checked >
-            </td>
-
-            <td width="5%">
-            <input type="radio" name="R1">
-            </td>
-
-           <td width="64%">
-			   <input type="hidden" NAME="HR55" value="">
-			   <img NAME="I55" border="0" src="" width="40" height="40">
-            <input type="text" name="R55" size = "24" value = "<NAME>">
-		    </td>
-          </tr>
-</Appendblanks>
-  </table>
-
-<script>
-
-// gIwidth  = 10;//document.myform.I55[0].width;
-// gIheight = 10;//document.myform.I55[0].height;
-
-// function test(src)
-// {
-// 	debugger
-// //	alert(document.myform.I55[1].height);
-// 	var szName = src.match(/<Name>(.+)<\/Name>/i);
-// 	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
-
-// 	if (szPic)
-// 	{
-// 		szPic = szPic[1];
-// 	}
-// 	else
-// 	{
-// 		szPic = "";
-// 	}
-
-// 	if (szName)
-// 	{
-// 		szName = szName[1];
-// 	}
-// 	else
-// 	{
-// 		szName = "";
-// 	}
-
-// 	for (var iii = 0; iii < myform.elements.R1.length; iii++)
-// 	{
-// 		if (myform.elements.R1[iii].checked)	
-// 		{
-// 			if (szName != "")
-// 				document.myform.R55[iii].value = szName;
-
-// 			if (szPic != "")
-// 			{
-
-// 				document.myform.HR55[iii].value = szPic;
-// 				document.myform.I55[iii].width  = gIwidth;
-// 				document.myform.I55[iii].height = gIheight;
-// 				document.myform.I55[iii].src    = szPic;
-// 			}
-// 		}
-// 	}
-// }	// end
-
-
-
-function initializeRows()
-{
-	alert('line 448. initializeRows()')
-	gIwidth  = 40;//document.myform.I55[0].width;
-	gIheight = 40;//document.myform.I55[0].height;
-
-	var szhRow;
-   
-   var iLen =document.getElementsByName("R1").length;
-      
-	//for (var iii = 0; iii < myform.elements.R1.length; iii++)
-   for (var iii = 0; iii < iLen; iii++)
-	{
-		szhRow = document.myform.HR55[iii].value;
-		if (szhRow == "")
-		{
-			document.myform.I55[iii].width  = 0;
-			document.myform.I55[iii].height = 0;
-		}
-		else
-		{
-			document.myform.I55[iii].width  = gIwidth;
-			document.myform.I55[iii].height = gIheight;
-		}
-	}
-}
-
-initializeRows();
-if (parent.SetHeadValue)
-{
-    <description>
-		var desc = "<DESCRIPTION>";
-    </description>
-	parent.SetHeadValue("d0", desc);
-}
-</script>
-</body>
-</html>

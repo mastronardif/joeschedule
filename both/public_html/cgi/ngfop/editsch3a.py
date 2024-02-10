@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import cgi
+import sys
 from sch00 import get_session
 from sch00 import get_fn
 import xmltodict
@@ -79,13 +80,13 @@ def convert_xml_to_json33(fn):
 
     return result
 
-def render_template(template, data):
+def render_template(template, fn, data):
     from jinja2 import Template
     with open(template) as f:
         tmpl = Template(f.read())
     print("Content-type: text/html\n")
     print(tmpl.render(
-        variable='forma data',
+        FILENAME=fn,
         item_list=data #['data']
     ))
 
@@ -98,12 +99,37 @@ def get_template(html_name):
     else:
         # Default template if no match
         return 'default_template.jinja'
+
+def save(query):
+    print("Content-type: text/html\n") 
+    print("<hr/><hr/>Debug<br/>")
+   
+    desc = query.getvalue('d0')   
+    action = query.getvalue('action')    
+    xml_filename = query.getvalue('name') or "blankSchedule" 
+
+    print(f"action: {action}<br/>")
+    print(f"desc: {desc}<br/>")
+    # print(f"query: {query}<br/>")
+    print(f"xml_filename: {xml_filename}<br/>")
+    print("<br/>")   
+
         
 if __name__ == "__main__":
     query = cgi.FieldStorage()     
     action = query.getvalue('action')
+    ## sw/
+    if action == 'save':
+        save(query)
+        sys.exit()
+
+
     html_name = query.getvalue('htmlname') or "./editsch.htm"
-    xml_filename = query.getvalue('name') or "blankSchedule"    
+    xml_filename = query.getvalue('name') or "blankSchedule" 
+
+
+    
+
 
     fn = get_fn(xml_filename) ##get_fn("cb632514019.xml")  # json")
     with open(fn, 'r') as file:
@@ -113,7 +139,7 @@ if __name__ == "__main__":
     dddd = convert_xml_to_json33(fn)
 
     template = get_template(html_name)
-    render_template(template, dddd)
+    render_template(template, xml_filename, dddd)
 	
     
     ################################

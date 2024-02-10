@@ -223,6 +223,7 @@ if (action == "clear")
 
 function cp2sch22()
 {
+  alert('cp2sch22');
    if(!getListItem) return;
    
    var szMid = getListItem();   
