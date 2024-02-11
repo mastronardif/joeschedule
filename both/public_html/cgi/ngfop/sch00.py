@@ -2,6 +2,36 @@
 
 import os
 import re
+import time
+
+def SCH_ErrorMessage(msg):
+    print("Content-type: text/html\n\n")
+    print(f"FM, The server can't! {msg}.\n")
+    exit()
+
+def SCH_getUniqueFH(root, type):
+    # Calculate unique filename based on current time
+    unq = int(time.time()) - 1073353928
+    fn = f"{root}{type}{unq}.xml"
+
+    # Fix potential tainting issues (not applicable in Python)
+    # This section can be removed in Python
+
+    # Open the file in append mode and return the file handle and filename
+    try:
+        log_file = open(fn, "a")
+        return log_file, f"{type}{unq}.xml"
+    except IOError:
+        # Handle error if unable to open file
+        SCH_ErrorMessage(fn)
+
+def SCH_getUniqueFN(root, type):
+    # Calculate unique filename based on current time
+    unq = int(time.time()) - 1073353928
+    fn = f"{root}{type}{unq}.xml"
+
+    return f"{type}{unq}.xml"
+        
 
 def SCH_xmlRemoveEmptyPics(rows):
     results = []

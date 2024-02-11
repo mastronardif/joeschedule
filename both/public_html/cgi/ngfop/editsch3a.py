@@ -5,6 +5,7 @@ import re
 from sch00 import get_session
 from sch00 import get_fn
 from sch00 import SCH_ValidateFilename
+from sch00 import SCH_getUniqueFN
 import xmltodict
 import json
 import xml.etree.ElementTree as E
@@ -188,11 +189,14 @@ if __name__ == "__main__":
     action = query.getvalue('action')
     html_name = query.getvalue('htmlname') or "./_____________editsch.htm"
     xml_filename = query.getvalue('name') or "blankSchedule" 
-    type         = query.getvalue('type')
+    type         = query.getvalue('type')  or "cb"
 
     ## sw/
     print("Content-type: text/html\n") 
     if action == 'save':
+        ##fh, filename = SCH_getUniqueFH(session['dir'], 'type_value')
+        if xml_filename == 'blank.xml':
+            xml_filename = SCH_getUniqueFN(session['dir'], type)
         saveList(query, session['dir'], xml_filename, type)
         # sys.exit()
 
@@ -200,6 +204,8 @@ if __name__ == "__main__":
     fname = f"{fn}.json" 
     with open(fname, 'r') as json_file:
         ddddJson = json.load(json_file)
+
+     # append blank rows if edit
 
     # print("Content-type: text/html\n")
     # print(ddddJson)

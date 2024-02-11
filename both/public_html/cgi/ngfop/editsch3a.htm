@@ -5,7 +5,7 @@
 <title>Edit Schedule</title>
 <link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
 </head>
-<script language="javascript" src="/cgi/ngfop/js/editsch.js"></script>
+<!-- <script language="javascript" src="/cgi/ngfop/js/editsch.js"></script> -->
 <script type="text/javascript">
 var colorbgnd   = 'black';
 var colorforgnd = '#F5F3E4'; //'#00FFFF';
@@ -99,7 +99,7 @@ function getList(obj)
 
 function save2(name, desc, student)
 {
-debugger
+// debugger
    if (student)
    {
       var xmlfile = document.myform.name.value;
@@ -140,7 +140,7 @@ debugger
 	else
 		type = "sch";
 
-	debugger
+	// debugger
 	document.myform.type.value = type;
 	document.myform.d0.value = desc;
 	document.myform.submit();
@@ -224,6 +224,7 @@ function pasteRow()
 
 function insertRow()
 {
+	// alert('editsch.htm scrip, insertRow() line 227')
 	var iRow = 0;
 	mylistT1   = new Array();
 	mylistR1   = new Array();
@@ -271,95 +272,10 @@ function insertRow()
 		}
 	}
 
-	debugger
+	//debugger
 	initializeRows();
 }
-
-// this was in the bottome script tag. ????
-gIwidth  = 10;//document.myform.I55[0].width;
-gIheight = 10;//document.myform.I55[0].height;
-
-function initializeRows()
-{
-	alert('line 448. initializeRows()')
-	gIwidth  = 40;//document.myform.I55[0].width;
-	gIheight = 40;//document.myform.I55[0].height;
-
-	var szhRow;
-   
-   var iLen =document.getElementsByName("R1").length;
-      
-	//for (var iii = 0; iii < myform.elements.R1.length; iii++)
-   for (var iii = 0; iii < iLen; iii++)
-	{
-		szhRow = document.myform.HR55[iii].value;
-		if (szhRow == "")
-		{
-			document.myform.I55[iii].width  = 0;
-			document.myform.I55[iii].height = 0;
-		}
-		else
-		{
-			document.myform.I55[iii].width  = gIwidth;
-			document.myform.I55[iii].height = gIheight;
-		}
-	}
-}
-
-initializeRows();
-if (parent.SetHeadValue)
-
-{
-    <description>
-		var desc = "<DESCRIPTION>";
-    </description>
-	parent.SetHeadValue("d0", desc);
-}
-
-function testAAAAA(src)
-{
-	alert(document.myform.I55[1].height);
-	var szName = src.match(/<Name>(.+)<\/Name>/i);
-	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
-
-	if (szPic)
-	{
-		szPic = szPic[1];
-	}
-	else
-	{
-		szPic = "";
-	}
-
-	if (szName)
-	{
-		szName = szName[1];
-	}
-	else
-	{
-		szName = "";
-	}
-
-	for (var iii = 0; iii < myform.elements.R1.length; iii++)
-	{
-		if (myform.elements.R1[iii].checked)	
-		{
-			if (szName != "")
-				document.myform.R55[iii].value = szName;
-
-			if (szPic != "")
-			{
-
-				document.myform.HR55[iii].value = szPic;
-				document.myform.I55[iii].width  = gIwidth;
-				document.myform.I55[iii].height = gIheight;
-				document.myform.I55[iii].src    = szPic;
-			}
-		}
-	}
-}	// end
-
-	</script>
+</script>
 
 <!--<body Bgcolor="#99CCFF">
 <body topmargin="0" bgcolor='rgb(249, 201, 92)';>
@@ -370,9 +286,9 @@ function testAAAAA(src)
 <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/editsch3a.py?action=save&htmlname=editsch3a.htm">
 
 <!-- hidden shits -->
-<filename>
+<!-- <filename> -->
   <input type="hidden" name=name size = "10" value="{{FILENAME|escape}}">
-</filename>
+<!-- </filename> -->
   <input type="hidden" name=type size = "10" value="">
   <input type="hidden" name=d0 size = "30" value="ZZZZZZZZZZZZZZZ">
   <input type="hidden" name=student size = "30" value="">   
@@ -435,58 +351,58 @@ zzzzzzzzzzzzzzzzzz
 
 <script>
 
-// gIwidth  = 10;//document.myform.I55[0].width;
-// gIheight = 10;//document.myform.I55[0].height;
+gIwidth  = 10;//document.myform.I55[0].width;
+gIheight = 10;//document.myform.I55[0].height;
 
-// function test(src)
-// {
-// 	debugger
-// //	alert(document.myform.I55[1].height);
-// 	var szName = src.match(/<Name>(.+)<\/Name>/i);
-// 	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
+function test(src)
+{
+	debugger
+//	alert(document.myform.I55[1].height);
+	var szName = src.match(/<Name>(.+)<\/Name>/i);
+	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
 
-// 	if (szPic)
-// 	{
-// 		szPic = szPic[1];
-// 	}
-// 	else
-// 	{
-// 		szPic = "";
-// 	}
+	if (szPic)
+	{
+		szPic = szPic[1];
+	}
+	else
+	{
+		szPic = "";
+	}
 
-// 	if (szName)
-// 	{
-// 		szName = szName[1];
-// 	}
-// 	else
-// 	{
-// 		szName = "";
-// 	}
+	if (szName)
+	{
+		szName = szName[1];
+	}
+	else
+	{
+		szName = "";
+	}
 
-// 	for (var iii = 0; iii < myform.elements.R1.length; iii++)
-// 	{
-// 		if (myform.elements.R1[iii].checked)	
-// 		{
-// 			if (szName != "")
-// 				document.myform.R55[iii].value = szName;
+	for (var iii = 0; iii < myform.elements.R1.length; iii++)
+	{
+		if (myform.elements.R1[iii].checked)	
+		{
+			if (szName != "")
+				document.myform.R55[iii].value = szName;
 
-// 			if (szPic != "")
-// 			{
+			if (szPic != "")
+			{
 
-// 				document.myform.HR55[iii].value = szPic;
-// 				document.myform.I55[iii].width  = gIwidth;
-// 				document.myform.I55[iii].height = gIheight;
-// 				document.myform.I55[iii].src    = szPic;
-// 			}
-// 		}
-// 	}
-// }	// end
+				document.myform.HR55[iii].value = szPic;
+				document.myform.I55[iii].width  = gIwidth;
+				document.myform.I55[iii].height = gIheight;
+				document.myform.I55[iii].src    = szPic;
+			}
+		}
+	}
+}	// end
 
 
 
 function initializeRows()
 {
-	alert('line 448. initializeRows()')
+	//alert('line 448. initializeRows()')
 	gIwidth  = 40;//document.myform.I55[0].width;
 	gIheight = 40;//document.myform.I55[0].height;
 
@@ -512,13 +428,13 @@ function initializeRows()
 }
 
 initializeRows();
-if (parent.SetHeadValue)
-{
-    <description>
-		var desc = "<DESCRIPTION>";
-    </description>
-	parent.SetHeadValue("d0", desc);
-}
+// if (parent.SetHeadValue)
+// {
+//     <description>
+// 		var desc = "<DESCRIPTION>";
+//     </description>
+// 	parent.SetHeadValue("d0", desc);
+// }
 </script>
 </body>
 </html>

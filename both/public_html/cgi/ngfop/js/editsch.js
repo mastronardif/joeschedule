@@ -320,4 +320,42 @@ function test(src)
 	}
 }	// end
 
+// this was in the bottome script tag. ????
+gIwidth  = 10;//document.myform.I55[0].width;
+gIheight = 10;//document.myform.I55[0].height;
+
+function initializeRows()
+{
+	gIwidth  = 40;//document.myform.I55[0].width;
+	gIheight = 40;//document.myform.I55[0].height;
+
+	var szhRow;
+   
+   var iLen =document.getElementsByName("R1").length;
+      
+	//for (var iii = 0; iii < myform.elements.R1.length; iii++)
+   for (var iii = 0; iii < iLen; iii++)
+	{
+		szhRow = document.myform.HR55[iii].value;
+		if (szhRow == "")
+		{
+			document.myform.I55[iii].width  = 0;
+			document.myform.I55[iii].height = 0;
+		}
+		else
+		{
+			document.myform.I55[iii].width  = gIwidth;
+			document.myform.I55[iii].height = gIheight;
+		}
+	}
+}
+
+// initializeRows();
+// if (parent.SetHeadValue)
+// {
+//     <description>
+// 		var desc = "<DESCRIPTION>";
+//     </description>
+// 	parent.SetHeadValue("d0", desc);
+// }
 
