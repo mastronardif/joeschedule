@@ -96,7 +96,7 @@ function getList(obj)
 
 function save2(name, desc, student)
 {
-  // debugger
+  debugger
    if (student)
    {
       var xmlfile = document.myform.name.value;

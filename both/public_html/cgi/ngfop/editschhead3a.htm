@@ -20,11 +20,12 @@ function cutRow()
 
 function save2(type)
 {
+	// debugger
    var obj = top.frames[0].document.myform;
-   var student = obj.Students.options[obj.Students.selectedIndex].text;
+   var student ='Jake';// obj.Students.options[obj.Students.selectedIndex].text;
 
 	// Fm 5/10/8 parent.frames[1].save2(type, document.myform.d0.value);
-   parent.frames[1].save2(type, document.myform.d0.value, student);
+   parent.frames[1].save2(type, document.myform.d0.value, 'Jake'); //).student);
 }
 
 
@@ -41,6 +42,7 @@ function insertRow()
 
 function decorateRow(strdec)
 {
+	debugger
 	parent.frames[1].decorateRow(strdec);
 }
 

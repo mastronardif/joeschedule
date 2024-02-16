@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 import cgi
+import urllib.parse
+import os
+from urllib.parse import parse_qs
 import sys
 import re
 from sch00 import get_session
@@ -104,8 +107,19 @@ def get_template(html_name):
         # Default template if no match
         return 'default_template.jinja'
 
-def saveList(query, root, fn, type):
-    description = query.getvalue('d0')   
+def saveList(postData, query, root, fn, type):
+    # # form = query
+    # print("<hr/><hr/>Debug: begin begin <br/>")
+    # # Print the name of each field
+    # for field in query.keys():
+    #     print(field)
+
+    # # Print the value of each field
+    # for field in query.keys():
+    #     print({query[field].value})
+    # print("<hr/><hr/>Debug: lplplplplplpl <br/>")
+
+    description = postData["form_data"]["d0"][0] ##query.getvalue('d0')   
     # action = query.getvalue('action')    
     # xml_filename = query.getvalue('name') or "blankSchedule" 
 
@@ -117,8 +131,13 @@ def saveList(query, root, fn, type):
         print("<hr/><hr/>Debug: SCH_ValidateFilename FAILED!!!<br/>")
         return
     
-    pics = query.getlist('HR55')
-    names = query.getlist('R55')
+    # pics = data["form_data"]["HR55"][0]   ##query.getlist('HR55')
+    pics = postData["form_data"].get("HR55", [])
+    # names = data["form_data"]["R55"][0] #query.getlist('R55')
+    names = postData["form_data"].get("R55", [])
+
+    print(f"<br/>name len= {(len(names))}<br/>")
+    print(f"pics len= {(len(pics))}<br/>")
 
     data = {
         "data": {
@@ -126,9 +145,24 @@ def saveList(query, root, fn, type):
             "row": []
         }
     }
-    # Add pictures and names to the "row" list
+
     for pic, name in zip(pics, names):
-        data["data"]["row"].append({"picture": pic, "name": name})
+        if pic or name:  # Check if either pic or name is not empty
+            if pic and not name:  # Check if pic is not empty and name is empty
+                data["data"]["row"].append({"picture": pic})
+            elif name and not pic:  # Check if name is not empty and pic is empty
+                data["data"]["row"].append({"name": name})
+            else:
+                data["data"]["row"].append({"picture": pic, "name": name})
+
+
+    # for pic, name in zip(pics, names):        
+    #     if pic and not name:  # Check if pic is not empty and name is empty
+    #         data["data"]["row"].append({"picture": pic})
+    #     elif name and not pic:  # Check if name is not empty and pic is empty
+    #         data["data"]["row"].append({"name": name})
+    #     else:
+    #         data["data"]["row"].append({"picture": pic, "name": name})        
 
     fname = f"{root}{fn}.json"
     with open(fname, 'w') as json_file:
@@ -138,66 +172,113 @@ def saveList(query, root, fn, type):
     # print(json_data)
     # print(fname)
 
+def wtfQuery():
 
-def save(query,dir, fn, type):
-    print("Content-type: text/html\n") 
-    print("<hr/><hr/>Debug<br/>")
-   
-    description = query.getvalue('d0')   
-    action = query.getvalue('action')    
-    xml_filename = query.getvalue('name') or "blankSchedule" 
+    form = cgi.FieldStorage()
 
-    print(f"action: {action}<br/>")
-    print(f"description: {description}<br/>")   
-    print(f"xml_filename: {xml_filename}<br/>")
+    # Print the name of each field
+    for field in form.keys():
+        print(field)
+
+    # Print the value of each field
+    for field in form.keys():
+        print(form[field].value)
+
+    query_string = os.environ.get("QUERY_STRING", "")
+    print("<hr/><hr/>Debug: BEGIN <br/>")
+    print(f"query_string: {query_string}<br/>")
+
+    content_length = int(os.environ.get("CONTENT_LENGTH", 0))
+    post_data = sys.stdin.read(content_length)
+    print("POST data:")
+    print(post_data)
+    print("<hr/><hr/>Debug: END <br/>")
+
+def get_form_data(request_url,  request_body):
+    url_params = urllib.parse.parse_qs(request_url, keep_blank_values=True)
     
-        # Get the CGI form data
-    # form = cgi.FieldStorage()
+    formatted_url_params = {}
+    for key, value in url_params.items():
+        # Extract the parameter name from the key
+        param_name = key.split('?')[-1]
+        # Store the parameter name and its value in the formatted dictionary
+        formatted_url_params[param_name] = value
+    
+    # Parse form data
+    form_data = urllib.parse.parse_qs(request_body, keep_blank_values=True)
 
-    # Get the values for 'HR55' parameter
-    pics = query.getlist('HR55')
-    names = query.getlist('R55')
-
-    # Construct the JSON structure
+    # Construct a dictionary to hold the data
     data = {
-        "data": {
-            "description": description,
-            "row": []
-        }
+        'url_params': formatted_url_params, ##dict(url_params),
+        'form_data': dict(form_data)
     }
-    # Add pictures and names to the "row" list
-    for pic, name in zip(pics, names):
-        data["data"]["row"].append({"picture": pic, "name": name})
-    
-    # Convert dictionary to JSON
+
+    # Serialize the dictionary to JSON
     json_data = json.dumps(data, indent=2)
-    print(json_data)
 
-    # Print the values
-    # print("<br/>")
-    # print("picture:", pics)
-    # print("<br/>")
-    # print("<br/>")
-    # print("name:", names)
+    return json_data
 
+def print_form_data():
+    print("Content-type: text/html\n")
 
+    # Get the CGI form data
+    form = cgi.FieldStorage()
+
+    # Print GET parameters
+    print("<h2>GET Parameters:</h2>")
+    for key in form.keys():
+        values = form.getlist(key)
+        for value in values:
+            print(f"<p>{key}: {value}</p>")
+
+    # Read POST data from stdin
+    content_length = int(os.environ.get("CONTENT_LENGTH", 0))
+    post_data = sys.stdin.read(content_length)
+
+    # Parse POST data and print
+    if post_data:
+        print("<h2>POST Data:</h2>")
+        for key, value in cgi.parse_qs(post_data).items():
+            for item in value:
+                print(f"<p>{key}: {item}</p>")
         
 if __name__ == "__main__":
+    print("Content-type: text/html\n") 
+    request_body = sys.stdin.read()
+    request_uri = os.environ.get('REQUEST_URI')
+    # result = get_form_data(request_uri, request_body)
+    result = json.loads(get_form_data(request_uri, request_body))
+
     session = get_session()
     # print(session)
-    query = cgi.FieldStorage()     
-    action = query.getvalue('action')
-    html_name = query.getvalue('htmlname') or "./_____________editsch.htm"
-    xml_filename = query.getvalue('name') or "blankSchedule" 
-    type         = query.getvalue('type')  or "cb"
+    # print_form_data()
+    query = 0 #cgi.FieldStorage()     
+    action    = result["url_params"]["action"][0] ##query.getvalue('action')
+    html_name = result["url_params"]["htmlname"][0] ##query.getvalue('htmlname') or "./_____________editsch.htm"
+    type = 'cb'
+    xml_filename = 'blank.xml'
+
+    if "name" in result["form_data"]:
+        xml_filename = result["form_data"]["name"][0]
+    
+    if "type" in result["form_data"]:
+        type = result["form_data"]["type"][0]
+    
+
+    # xml_filename = result.get("form_data", {}).get("name", ["blank.xml"])[0]
+        
+    # xml_filename = result["form_data"]["name"][0]     #query.getvalue('name') or "blankSchedule22" 
+    # xml_filename = result["form_data"]["name"][0]
+    # type         = result["form_data"]["type"][0] #query.getvalue('type')  or "cb"
 
     ## sw/
-    print("Content-type: text/html\n") 
+    # print("Content-type: text/html\n") 
     if action == 'save':
+        # wtfQuery()
         ##fh, filename = SCH_getUniqueFH(session['dir'], 'type_value')
         if xml_filename == 'blank.xml':
             xml_filename = SCH_getUniqueFN(session['dir'], type)
-        saveList(query, session['dir'], xml_filename, type)
+        saveList(result, query, session['dir'], xml_filename, type)
         # sys.exit()
 
     fn = get_fn(xml_filename)
@@ -237,6 +318,53 @@ if __name__ == "__main__":
     print("<br/>")
     
     print(f"ddddJson: {ddddJson}<br/>")
+
+    print("<hr/><hr/>Debug post data<br/>")  
+    print (request_body)
+    print (request_uri)
+    # form_data = urllib.parse.parse_qs(request_body, keep_blank_values=True)
+    # print (urllib.parse.parse_qs(request_body, keep_blank_values=True))
+    print("<hr/><hr/>results<br/>") 
+    print(result)
+
+    print("<hr/><hr/>QUERY params BEGIN<br/>") 
+    action_value   = result["url_params"]["action"][0]
+    htmlname_value = result["url_params"]["htmlname"][0]
+    print(f"action: {action_value}<br/>")
+    print(f"html_name: {htmlname_value}<br/>")
+
+    # xml_filename = result["form_data"]["name"][0]  
+    xml_filename = result.get("form_data", {}).get("name", ["dummy"])[0]
+  
+    #type = result["form_data"]["type"][0]
+    type = result.get("form_data", {}).get("type", ["cb"])[0]
+    #d0 = result["form_data"]["d0"][0]
+    d0 = result.get("form_data", {}).get("do", ["dummyname"])[0]
+    print(f"xml_filename: {xml_filename}<br/>")
+    print(f"type: {type}<br/>")
+    print(f"d0: {d0}<br/>")
+
+
+    R55 = result.get("form_data", {}).get("R55", ["r55555"])[0]
+    #  html_name = query.getvalue('htmlname') or "./_____________editsch.htm"
+    # xml_filename = query.getvalue('name') or "blankSchedule22" 
+    # type         = query.getvalue('type')  or "cb"
+    # print(result["form_data"]["R55"])
+    # complex_key_value = result["url_params"]["/cgi-bin/cgi/ngfop/editsch3a.py?action"]
+    # action_value = complex_key_value[0]
+    # action_value = result["url_params"]["action"][0]
+    # type_value   = result["url_params"]["type"]
+    # name_value   = result["url_params"]["name"]
+    # htmlname_value=result["url_params"]["htmlname"]
+    # print("<hr/><hr/>QUERY  params<br/>") 
+    # print(f"action_value: {action_value}<br/>")
+    # print(f"htmlname_value: {html_name}<br/>")
+    print("<hr/><hr/>QUERY params END<br/>") 
+
+    # print(result["<br/>form_data"]["d0"])
+    # print(result["<br/>form_data"]["R55"])
+    print (R55)
+    # print(result["<br/>form_data"]["HR55"])
 
     #print(xml_string)
     # print(json.dumps(data, indent=2))  # Print the data dictionary with indentation

@@ -12,47 +12,51 @@ var colorforgnd = '#F5F3E4'; //'#00FFFF';
 
 function OnInit()
 {
+	// alert('OnInit');
+	//debugger
+
    var xmlfile = document.myform.name.value;
-   if (xmlfile.toLowerCase() == "Students.xml".toLowerCase())
-   {
-      //alert("editsch.htm::OnInit() xmlfile = " + xmlfile);
-      top.frames[0].location.reload()
-   }
+   return;
+// //    if (xmlfile.toLowerCase() == "Students.xml".toLowerCase())
+// //    {
+// //       //alert("editsch.htm::OnInit() xmlfile = " + xmlfile);
+// //       top.frames[0].location.reload()
+// //    }
 
-   var SWMs  = document.myform.SWMs.value;
-   //alert(":OnInit() SWMs["+SWMs+"]");
+//    var SWMs  = document.myform.SWMs.value;
+//    //alert(":OnInit() SWMs["+SWMs+"]");
 
-   var szPic = SWMs.match(/(\((.+?)\))/);
+//    var szPic = SWMs.match(/(\((.+?)\))/);
    
-   // Working On
-   var szMatches = SWMs.match(/w\((.+?)\)/);
-   //alert("szMatches["+szMatches+"]");
+//    // Working On
+//    var szMatches = SWMs.match(/w\((.+?)\)/);
+//    //alert("szMatches["+szMatches+"]");
    
-   if (szMatches && szMatches[0] && szMatches[1])
-   {
-      //alert("szMatches[1]["+szMatches[1]+"]");
-      atemp  = szMatches[1].split(/\s*,\s*/);
-      var obj = document.myform.CW1;
-      for (var iii = 0; iii < atemp.length; iii++)
-      {
-         obj[(atemp[iii])].checked = 1;
-      }   
-   }
+//    if (szMatches && szMatches[0] && szMatches[1])
+//    {
+//       //alert("szMatches[1]["+szMatches[1]+"]");
+//       atemp  = szMatches[1].split(/\s*,\s*/);
+//       var obj = document.myform.CW1;
+//       for (var iii = 0; iii < atemp.length; iii++)
+//       {
+//          obj[(atemp[iii])].checked = 1;
+//       }   
+//    }
    
-   // Mastered
-   szMatches = SWMs.match(/m\((.+?)\)/);
-   //alert("szMatches["+szMatches+"]");
+//    // Mastered
+//    szMatches = SWMs.match(/m\((.+?)\)/);
+//    //alert("szMatches["+szMatches+"]");
     
-   if (szMatches && szMatches[0] && szMatches[1])
-   {
-      //alert("szMatches[1]["+szMatches[1]+"]");
-      atemp  = szMatches[1].split(/\s*,\s*/);
-      var obj = document.myform.CM2;
-      for (var iii = 0; iii < atemp.length; iii++)
-      {
-         obj[(atemp[iii])].checked = 1;
-      }   
-   }
+//    if (szMatches && szMatches[0] && szMatches[1])
+//    {
+//       //alert("szMatches[1]["+szMatches[1]+"]");
+//       atemp  = szMatches[1].split(/\s*,\s*/);
+//       var obj = document.myform.CM2;
+//       for (var iii = 0; iii < atemp.length; iii++)
+//       {
+//          obj[(atemp[iii])].checked = 1;
+//       }   
+//    }
 }
 
 function getList(obj)
@@ -99,20 +103,20 @@ function getList(obj)
 
 function save2(name, desc, student)
 {
-// debugger
-   if (student)
-   {
-      var xmlfile = document.myform.name.value;
+//   debugger
+//    if (student)
+//    {
+//       var xmlfile = document.myform.name.value;
       
-      var obj = document.myform.elements.CW1;
-      var szList = getList(obj);
+//       var obj = document.myform.elements.CW1;
+//       var szList = getList(obj);
       
-      var szData = student + " " + xmlfile;
-      document.myform.student.value = szData;
-      // Fm 6/8/9 var answer = confirm (":save2 "+ desc);
-      //desc
-      //if (!answer) return;
-   }
+//       var szData = student + " " + xmlfile;
+//       document.myform.student.value = szData;
+//       // Fm 6/8/9 var answer = confirm (":save2 "+ desc);
+//       //desc
+//       //if (!answer) return;
+//    }
    
 	var w_space = String.fromCharCode(32);
 	var bValidName=0;
@@ -147,27 +151,27 @@ function save2(name, desc, student)
 }
 
 
-function decorateRow(str)
-{
-	for (var iii = 0; iii < myform.elements.R1.length; iii++)
-	{
-		if (myform.elements.R1[iii].checked)	
-		{
-			// toggle
-			strTime = myform.elements.T1[iii].value;
-			if (/Reward/i.test(strTime))
-				myform.elements.T1[iii].value = "";
-			else
-				myform.elements.T1[iii].value = "Reward";
+// function decorateRow(str)
+// {
+// 	for (var iii = 0; iii < myform.elements.R1.length; iii++)
+// 	{
+// 		if (myform.elements.R1[iii].checked)	
+// 		{
+// 			// toggle
+// 			strTime = myform.elements.T1[iii].value;
+// 			if (/Reward/i.test(strTime))
+// 				myform.elements.T1[iii].value = "";
+// 			else
+// 				myform.elements.T1[iii].value = "Reward";
 
-			break;
-		}
-	}
-}
+// 			break;
+// 		}
+// 	}
+// }
 
 
 // the cut vars
-var	gT1   = "";
+//var	gT1   = "";
 var	gHR55 = "";
 var	gI55src  = "";
 var	gI55w = "";
@@ -180,7 +184,7 @@ function cutRow()
 	{
 		if (myform.elements.R1[iii].checked)	
 		{
-			gT1   =document.myform.T1  [iii].value;
+			//gT1   =document.myform.T1  [iii].value;
 			gHR55 =document.myform.HR55[iii].value;
 			gI55src =document.myform.I55 [iii].src;
 			gI55w   =document.myform.I55 [iii].width;
@@ -189,9 +193,10 @@ function cutRow()
 
 			//
 			// clear row
-			document.myform.T1  [iii].value ="";
+			//document.myform.T1  [iii].value ="";
 			document.myform.HR55[iii].value ="";
 			document.myform.I55 [iii].src   ="";
+
 			document.myform.I55 [iii].width ="";
 			document.myform.I55 [iii].height="";
 			document.myform.R55 [iii].value ="";
@@ -210,7 +215,7 @@ function pasteRow()
 	{
 		if (myform.elements.R1[iii].checked)	
 		{
-			document.myform.T1  [iii].value = gT1;
+			// document.myform.T1  [iii].value = gT1;
 			document.myform.HR55[iii].value = gHR55;
 			document.myform.I55 [iii].src   = gI55src;
 			document.myform.I55 [iii].width = gI55w;
@@ -226,7 +231,7 @@ function insertRow()
 {
 	// alert('editsch.htm scrip, insertRow() line 227')
 	var iRow = 0;
-	mylistT1   = new Array();
+	// mylistT1   = new Array();
 	mylistR1   = new Array();
 	mylistHR55 = new Array();
 	mylistI55  = new Array();
@@ -234,7 +239,7 @@ function insertRow()
 
    for (var iii = 0; iii < myform.elements.R1.length; iii++)
    {
-	   mylistT1.  push(document.myform.T1  [iii].value);
+	//    mylistT1.  push(document.myform.T1  [iii].value);
 	   mylistR1.  push(document.myform.R1  [iii].value);
 	   mylistHR55.push(document.myform.HR55[iii].value);
 	   mylistI55. push(document.myform.I55 [iii].src);
@@ -249,7 +254,7 @@ function insertRow()
 	if ((iRow +1)< myform.elements.R1.length)
 	{
 		// move radio check
-		document.myform.T1  [iRow].value = "";
+		// document.myform.T1  [iRow].value = "";
 		document.myform.R1  [iRow].value = "";
 		document.myform.HR55[iRow].value = "";
 		document.myform.I55 [iRow].src   = "";
@@ -263,7 +268,7 @@ function insertRow()
 			// pop
 			if ((iii +1)< myform.elements.R1.length)
 			{
-				document.myform.T1  [(iii+1)].value = mylistT1  [iii%myform.elements.R1.length];
+				// document.myform.T1  [(iii+1)].value = mylistT1  [iii%myform.elements.R1.length];
 				document.myform.R1  [(iii+1)].value = mylistR1  [iii%myform.elements.R1.length];
 				document.myform.HR55[(iii+1)].value = mylistHR55[iii%myform.elements.R1.length];
 				document.myform.I55 [(iii+1)].src   = mylistI55 [iii%myform.elements.R1.length];
@@ -285,16 +290,16 @@ function insertRow()
 <!--<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/editsch3a.py?action=save"> -->
 <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/editsch3a.py?action=save&htmlname=editsch3a.htm">
 
-<!-- hidden shits -->
+	<!-- hidden shits -->
 <!-- <filename> -->
   <input type="hidden" name=name size = "10" value="{{FILENAME|escape}}">
 <!-- </filename> -->
   <input type="hidden" name=type size = "10" value="">
   <input type="hidden" name=d0 size = "30" value="ZZZZZZZZZZZZZZZ">
   <input type="hidden" name=student size = "30" value="">   
-<swms>
+<!-- <swms>
   <input type="hidden" name="SWMs" value="<SWMS>"/>
-</swms>     
+</swms>      -->
 
 zzzzzzzzzzzzzzzzzz
 {{FILENAME|escape}}
@@ -305,11 +310,11 @@ zzzzzzzzzzzzzzzzzz
           <tr>
             <td width="5%">
                <!-- stude w m's -->
-      <input type="checkbox" name="CW1" value="ON" >:<input type="checkbox" name="CM2" value="ON" >               
-         <input type="hidden" NAME="HCW1" value=""> <input type="hidden" NAME="HCM2" value="">
+      <!-- <input type="checkbox" name="CW1" value="ON" >:<input type="checkbox" name="CM2" value="ON" >                -->
+         <!-- <input type="hidden" NAME="HCW1" value=""> <input type="hidden" NAME="HCM2" value=""> -->
                <!-- stude w m's -->
 
-            <input type="text" name="T1" size="4" value="<TIME>" checked>
+            <!-- <input type="text" name="T1" size="4" value="<TIME>" checked> -->
             </td>
 
             <td width="5%">
@@ -317,36 +322,40 @@ zzzzzzzzzzzzzzzzzz
             </td>
 
             <td width="64%">
+				<!-- <input type="hidden" NAME="HR55" value=""> -->
 			<input type="hidden" NAME="HR55" value="{{item.picture}}">
+			<!-- <img NAME="I55" border="0" src="" width="12px" height="40px">   -->
 			<img NAME="I55" border="0" src="{{item.picture}}" width="12px" height="40px">         
 			<input type="text" name="R55" size = "24" value = "{{ item.name }}">
 			</td>
          </tr>
 	{%- endfor %}
 </row>
+	 <!-- append -->
+	 {% for i in range(10) %}
+	 <tr>
+	   <td width="5%">
+		  <!-- stude w m's -->
+ <!-- <input type="checkbox" name="CW1" value="ON" >:<input type="checkbox" name="CM2" value="ON" >                -->
+	<!-- <input type="hidden" NAME="HCW1" value=""> <input type="hidden" NAME="HCM2" value=""> -->
+		  <!-- stude w m's -->
 
-<Appendblanks>
-          <tr>
-            <td width="5%" height="1">
-              <!-- stude w m's -->
-               <input type="checkbox" name="CW1" value="ON" >:<input type="checkbox" name="CM2" value="ON" >               
-               <input type="hidden" NAME="HCW1" value=""> <input type="hidden" NAME="HCM2" value="">                  
-              <!-- stude w m's -->
-               
-            <input type="text" name="T1" size="4" value="<TIME>" checked >
-            </td>
+	   <!-- <input type="text" name="T1" size="4" value="<TIME>" checked> -->
+	   </td>
 
-            <td width="5%">
-            <input type="radio" name="R1">
-            </td>
+	   <td width="5%">
+	   <input type="radio" name="R1">
+	   </td>
 
-           <td width="64%">
-			   <input type="hidden" NAME="HR55" value="">
-			   <img NAME="I55" border="0" src="" width="40" height="40">
-            <input type="text" name="R55" size = "24" value = "<NAME>">
-		    </td>
-          </tr>
-</Appendblanks>
+	   <td width="64%">
+		   <!-- <input type="hidden" NAME="HR55" value=""> -->
+	   <input type="hidden" NAME="HR55" value="">
+	   <!-- <img NAME="I55" border="0" src="" width="12px" height="40px">   -->
+	   <img NAME="I55" border="0" src="" width="12px" height="40px">         
+	   <input type="text" name="R55" size = "24" value = "">
+	   </td>
+	</tr>
+{%- endfor %}
   </table>
 
 <script>
@@ -356,7 +365,7 @@ gIheight = 10;//document.myform.I55[0].height;
 
 function test(src)
 {
-	debugger
+	// debugger
 //	alert(document.myform.I55[1].height);
 	var szName = src.match(/<Name>(.+)<\/Name>/i);
 	var szPic = src.match(/<Picture>(.+)<\/Picture>/i);
@@ -409,7 +418,7 @@ function initializeRows()
 	var szhRow;
    
    var iLen =document.getElementsByName("R1").length;
-      
+    // debugger  
 	//for (var iii = 0; iii < myform.elements.R1.length; iii++)
    for (var iii = 0; iii < iLen; iii++)
 	{
@@ -428,13 +437,14 @@ function initializeRows()
 }
 
 initializeRows();
-// if (parent.SetHeadValue)
-// {
-//     <description>
-// 		var desc = "<DESCRIPTION>";
-//     </description>
-// 	parent.SetHeadValue("d0", desc);
-// }
+if (parent.SetHeadValue)
+{
+	// debugger
+    // <description>
+		var desc = "aadsadadadadadadasd"; //"<DESCRIPTION>";
+    // </description>
+	parent.SetHeadValue("d0", desc);
+}
 </script>
 </body>
 </html>
