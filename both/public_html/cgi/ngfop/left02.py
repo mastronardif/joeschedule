@@ -128,7 +128,7 @@ def saveList(postData, query, root, fn, type):
     
     retval, fn = SCH_ValidateFilename(fn)
     if not retval:
-        print(f"<hr/><hr/>Debug: SCH_ValidateFilename {fn} FAILED!!!<br/>")
+        print("<hr/><hr/>Debug: SCH_ValidateFilename FAILED!!!<br/>")
         return
     
     # pics = data["form_data"]["HR55"][0]   ##query.getlist('HR55')
@@ -164,7 +164,7 @@ def saveList(postData, query, root, fn, type):
     #     else:
     #         data["data"]["row"].append({"picture": pic, "name": name})        
 
-    fname = f"{root}{fn}" #f"{root}{fn}.json"
+    fname = f"{root}{fn}.json"
     with open(fname, 'w') as json_file:
         json.dump(data, json_file, indent=2)
 
@@ -239,28 +239,49 @@ def print_form_data():
         for key, value in cgi.parse_qs(post_data).items():
             for item in value:
                 print(f"<p>{key}: {item}</p>")
-        
+
+
+def list_files_with_filter(folder_path, filter_func=None):
+    """
+    List files in a folder based on a filter function.
+
+    Parameters:
+    - folder_path (str): Path to the folder.
+    - filter_func (function): Filter function that takes a file name as input and returns True or False.
+
+    Returns:
+    - files (list): List of file names in the folder that pass the filter function.
+    """
+    # Get list of all files in the folder
+    files = os.listdir(folder_path)
+    
+    # Apply filter function if provided
+    if filter_func:
+        files = [file for file in files if filter_func(file)]
+    
+    return files
+
 if __name__ == "__main__":
     print("Content-type: text/html\n") 
     request_body = sys.stdin.read()
     request_uri = os.environ.get('REQUEST_URI')
-    # result = get_form_data(request_uri, request_body)
     result = json.loads(get_form_data(request_uri, request_body))
 
     session = get_session()
     # print(session)
     # print_form_data()
-    query = 0 #cgi.FieldStorage()     
-    action    = result["url_params"]["action"][0] ##query.getvalue('action')
-    html_name = result["url_params"]["htmlname"][0] ##query.getvalue('htmlname') or "./_____________editsch.htm"
+    # query = 0 #cgi.FieldStorage()     
+    # action    = '' ##result["url_params"]["action"][0] ##query.getvalue('action')
+    htmlname = result.get("url_params", {}).get("htmlname", ["dummy"])[0]
+    # html_name = result["url_params"]["htmlname"][0] ##query.getvalue('htmlname') or "./_____________editsch.htm"
     type = 'cb'
     xml_filename = 'blank.xml'
 
-    if "name" in result["form_data"]:
-        xml_filename = result["form_data"]["name"][0]
+    # if "name" in result["form_data"]:
+    #     xml_filename = result["form_data"]["name"][0]
     
-    if "type" in result["form_data"]:
-        type = result["form_data"]["type"][0]
+    # if "type" in result["form_data"]:
+    #     type = result["form_data"]["type"][0]
     
 
     # xml_filename = result.get("form_data", {}).get("name", ["blank.xml"])[0]
@@ -270,26 +291,23 @@ if __name__ == "__main__":
     # type         = result["form_data"]["type"][0] #query.getvalue('type')  or "cb"
 
     ## sw/
-    if action == 'edit':
-        xml_filename = result["url_params"]["name"][0]
-
     # print("Content-type: text/html\n") 
-    if action == 'save':
-        xml_filename = result.get("form_data", {}).get("name", ["dummy"])[0]
-        # wtfQuery()
-        ##fh, filename = SCH_getUniqueFH(session['dir'], 'type_value')
-        if xml_filename == 'blank.xml':
-            xml_filename = SCH_getUniqueFN(session['dir'], type)
-        saveList(result, query, session['dir'], xml_filename, type)
-        # sys.exit()
+    # if action == 'save':
+    #     # wtfQuery()
+    #     ##fh, filename = SCH_getUniqueFH(session['dir'], 'type_value')
+    #     if xml_filename == 'blank.xml':
+    #         xml_filename = SCH_getUniqueFN(session['dir'], type)
+    #     saveList(result, query, session['dir'], xml_filename, type)
+    #     # sys.exit()
 
-    fn = get_fn(xml_filename)
-    fname = fn
-    if fn == 'blank.xml':
-        fname = f"{fn}.json"  # fname = f"{fn}.json" 
+    # session['dir']
+    filtered_files = list_files_with_filter(session['dir'], lambda x: x.endswith(".json"))
+    # print(filtered_files)
 
-    with open(fname, 'r') as json_file:
-        ddddJson = json.load(json_file)
+    # fn = get_fn(xml_filename)
+    # fname = f"{fn}.json" 
+    # with open(fname, 'r') as json_file:
+    #     ddddJson = json.load(json_file)
 
      # append blank rows if edit
 
@@ -299,9 +317,11 @@ if __name__ == "__main__":
     # data = convert_xml_to_json(xml_string)
     # dddd = convert_xml_to_json33(fn)
     # print(f"html_name: {html_name}<br/>")
-    template = get_template(html_name)
+    template = htmlname #'leftsch.htm.jinja' #get_template(html_name)
     # render_template(template, xml_filename, dddd)
-    render_template(template, xml_filename, ddddJson['data'])
+    # render_template(template, xml_filename, ddddJson['data'])
+    render_template(template, xml_filename, filtered_files)
+    
 
     
 	
@@ -314,8 +334,8 @@ if __name__ == "__main__":
     
     ################################
     print("<hr/><hr/>Debug<br/>")    
-    print(f"action: {action}<br/>")
-    print(f"html_name: {html_name}<br/>")
+    # print(f"action: {action}<br/>")
+    print(f"htmlname: {htmlname}<br/>")
     print(f"XML Filename: {xml_filename}<br/>")
     print(f"fn: {fn}<br/>")
     print(f"fname: {fname}<br/>")
@@ -333,9 +353,9 @@ if __name__ == "__main__":
     print(result)
 
     print("<hr/><hr/>QUERY params BEGIN<br/>") 
-    action_value   = result["url_params"]["action"][0]
+    # action_value   = result["url_params"]["action"][0]
     htmlname_value = result["url_params"]["htmlname"][0]
-    print(f"action: {action_value}<br/>")
+    # print(f"action: {action_value}<br/>")
     print(f"html_name: {htmlname_value}<br/>")
 
     # xml_filename = result["form_data"]["name"][0]  
@@ -348,46 +368,5 @@ if __name__ == "__main__":
     print(f"xml_filename: {xml_filename}<br/>")
     print(f"type: {type}<br/>")
     print(f"d0: {d0}<br/>")
-
-
-    R55 = result.get("form_data", {}).get("R55", ["r55555"])[0]
-    #  html_name = query.getvalue('htmlname') or "./_____________editsch.htm"
-    # xml_filename = query.getvalue('name') or "blankSchedule22" 
-    # type         = query.getvalue('type')  or "cb"
-    # print(result["form_data"]["R55"])
-    # complex_key_value = result["url_params"]["/cgi-bin/cgi/ngfop/editsch3a.py?action"]
-    # action_value = complex_key_value[0]
-    # action_value = result["url_params"]["action"][0]
-    # type_value   = result["url_params"]["type"]
-    # name_value   = result["url_params"]["name"]
-    # htmlname_value=result["url_params"]["htmlname"]
-    # print("<hr/><hr/>QUERY  params<br/>") 
-    # print(f"action_value: {action_value}<br/>")
-    # print(f"htmlname_value: {html_name}<br/>")
     print("<hr/><hr/>QUERY params END<br/>") 
 
-    # print(result["<br/>form_data"]["d0"])
-    # print(result["<br/>form_data"]["R55"])
-    print (R55)
-    # print(result["<br/>form_data"]["HR55"])
-
-    #print(xml_string)
-    # print(json.dumps(data, indent=2))  # Print the data dictionary with indentation
-
-    # message = get_session()
-    # print(message)
-
-    # tree = E.parse(fn)
-    # root = tree.getroot()
-    # d={}
-    # for child in root:
-    #     if child.tag not in d:
-    #         d[child.tag]=[]
-    #     dic={}
-    #     for child2 in child:
-    #         if child2.tag not in dic:
-    #             dic[child2.tag]=child2.text
-    #     d[child.tag].append(dic)
-    # print(d)
-
-    # print("<br/>")

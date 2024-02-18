@@ -65,8 +65,8 @@ def SCH_ValidateFilename(fn):
     if fn.count("/") > 1:
         return (0, fn)
     
-    if fn.count(".") > 1 or re.search(r'/\.', fn):
-        return (0, fn)
+    # if fn.count(".") > 1 or re.search(r'/\.', fn):
+    #     return (0, fn)
     
     if not re.match(r'^[\w./]+$', fn):
         return (0, fn)
