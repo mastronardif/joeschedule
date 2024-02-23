@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from sch00 import get_session
+from sch00 import SCH_getSession
 from sch00 import get_fn
 import json
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 """
 print("<hr/><hr/>Debug<br/>'")
 print(data)
-message = get_session()
+message = SCH_getSession()
 print(message)
 print("<br/>")
 

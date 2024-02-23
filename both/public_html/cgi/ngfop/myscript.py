@@ -1,6 +1,6 @@
 # myscript.py
 from sch00 import greet
-from sch00 import get_session
+from sch00 import SCH_getSession
 from sch00 import get_fn
 from sch00 import SCH_xmlRemoveEmptyPics
 from sch00 import SCH_xmLRD
@@ -10,7 +10,7 @@ def main():
     message = greet(name)
     print(message)
 
-    message = get_session()
+    message = SCH_getSession()
     print(message)
 
     result = get_fn("example.xml")

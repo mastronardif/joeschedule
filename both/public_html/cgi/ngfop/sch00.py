@@ -1,7 +1,10 @@
 # mylib.py
 
+import json
+import logging
 import os
 import re
+import sys
 import time
 
 def SCH_ErrorMessage(msg):
@@ -56,10 +59,85 @@ def SCH_xmlRemoveEmptyPics(rows):
 
     return results
 
-# Example usage
-# input_rows = ["<IF_PICTURE>...</IF_PICTURE>", "<IF_PICTURE>...</IF_PICTURE>", "<IF_PICTURE>...</IF_PICTURE>"]
-# output_rows = xml_remove_empty_pics(input_rows)
-# print(output_rows)
+
+def myDirFileCountSize(directory):
+    iCount = 0
+    iTotal = 0
+
+    for root, dirs, files in os.walk(directory):
+        for fn in files:
+            filepath = os.path.join(root, fn)
+            iCount += 1
+            iTotal += os.path.getsize(filepath)
+
+    return (iCount, iTotal)
+
+def SCH_getDescription(xmlfilename):
+    session = SCH_getSession()
+
+    file_path = os.path.join(session['dir'], xmlfilename)
+    try:
+        with open(file_path, 'r') as file:
+            json_data = file.read()
+            data = json.loads(json_data)
+            description = data['data']['description']
+            return description
+    except (FileNotFoundError, json.JSONDecodeError, KeyError):
+        return "Description not found or invalid JSON format"
+
+
+def SCH_checkDir():
+    session = SCH_getSession()
+
+    # FM 3/3/4
+    # For now Demo can't write data, protection from Crackers
+    if 'members/Demo' in session['dir']:
+        return 0
+    # FM 3/3/4
+
+    cnt, size = myDirFileCountSize(os.path.join(".", session['dir']))
+
+    if cnt >= session['dirCount']:
+        return -10
+
+    if size >= session['dirSize']:
+        return -20
+
+    return 1
+
+def SCH_deleteFile(xmlfilename):
+    desc = ''
+    retval, fn = SCH_ValidateFilename(xmlfilename)
+    if not retval:
+        SCH_ErrorMessage(f"Bad filename({xmlfilename})")
+     # FM, cheezy, If you Demo you can not do file Create, Delete
+    # if SCH_checkDir() != 0:
+    check_result = SCH_checkDir()
+    if check_result != 1:
+        SCH_ErrorMessage(SCH_ErrorMessage(f"Your Not Allowed to Delete! ({check_result})"))
+
+    ##################################
+    # Get session data               #
+    session = SCH_getSession()
+    ##################################
+
+    fn = os.path.join(session['dir'], xmlfilename)
+    # fn = os.path.join(session['dir'], fn)
+    # fn = fn.replace('.', os.getcwd())
+
+    if os.path.exists(fn):
+        desc = SCH_getDescription(xmlfilename)
+        os.unlink(fn)
+        logging.basicConfig(level=logging.DEBUG)
+        logging.debug(f"File {fn} {desc}")
+
+        # shutil.move(fn, f"{fn}.rem")  # Uncomment this line if you want to rename instead of delete
+        # print(f"Removed ({desc})!<br>")
+    else:
+        print(f"File {fn} does not exist.")
+        
+    return desc
+
 
 def SCH_ValidateFilename(fn):
     if fn.count("/") > 1:
@@ -76,7 +154,7 @@ def SCH_ValidateFilename(fn):
     
     return (1, fn)
 
-def get_session():
+def SCH_getSession():
     # Check the HTTP_REFERER if needed
     # referer = os.environ.get('HTTP_REFERER', '')
     # if referer and not referer.startswith('http://example.com'):
@@ -110,7 +188,7 @@ def get_fn(xml_filename):
     fn = ""
 
     # Get session data
-    session = get_session()
+    session = SCH_getSession()
 
     fn = f"{session['dir']}{xml_filename}"
 

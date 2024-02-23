@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-import cgi
+# import cgi
 import urllib.parse
 import os
 from urllib.parse import parse_qs
 import sys
 import re
-from sch00 import get_session
+from sch00 import SCH_getSession
 from sch00 import get_fn
 from sch00 import SCH_ValidateFilename
 from sch00 import SCH_getUniqueFN
@@ -127,7 +127,7 @@ if __name__ == "__main__":
     request_uri = os.environ.get('REQUEST_URI')
     result = json.loads(get_form_data(request_uri, request_body))
 
-    session = get_session()
+    session = SCH_getSession()
     # print(session)
     # print_form_data()
     # query = 0 #cgi.FieldStorage()     
@@ -164,7 +164,7 @@ if __name__ == "__main__":
     # print(f"action: {action}<br/>")
     print(f"htmlname: {htmlname}<br/>")
     print(f"XML Filename: {xml_filename}<br/>")
-    print(f"fn: {fn}<br/>")
+    # print(f"fn: {fn}<br/>")
     print(f"fname: {fname}<br/>")
     print(f"session: {session}<br/>")
     print("<br/>")

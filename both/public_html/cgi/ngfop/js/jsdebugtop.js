@@ -106,7 +106,7 @@ function del()
 	if (response == false)
 		return;
 
-	var str="/cgi-bin/cgi/ngfop/editsch.pl?action=delete&htmlname=delete.htm&name="+fn;
+	var str="/cgi-bin/cgi/ngfop/editsch3a.py?action=delete&htmlname=delete.jinja.htm&name="+fn;
 
 	//top.frames[3].location=str;
 	// window.open(str);
@@ -243,7 +243,7 @@ function ShowExtra(szExtra) {
     // FM 06/12/04
 
     var str =
-      "/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame.htm&name=blank.xml";
+      "/cgi-bin/cgi/ngfop/other2.pl?htmlname=left01frame3a.htm&name=blank.xml";
 
     //top.frames[1].location=str;
     parent.left.location = str;
