@@ -7,6 +7,7 @@ import sys
 import re
 from sch00 import SCH_getSession
 from sch00 import get_fn
+from sch00 import get_form_data
 from sch00 import SCH_ValidateFilename
 from sch00 import SCH_getUniqueFN
 import xmltodict
@@ -99,41 +100,14 @@ def get_template(html_name):
     # print(json_data)
     # print(fname)
 
-def get_form_data(request_url,  request_body):
-    url_params = urllib.parse.parse_qs(request_url, keep_blank_values=True)
-    
-    formatted_url_params = {}
-    for key, value in url_params.items():
-        # Extract the parameter name from the key
-        param_name = key.split('?')[-1]
-        # Store the parameter name and its value in the formatted dictionary
-        formatted_url_params[param_name] = value
-
-    form_data = urllib.parse.parse_qs(request_body, keep_blank_values=True)
-
-    data = {
-        'url_params': formatted_url_params, ##dict(url_params),
-        'form_data': dict(form_data)
-    }
-
-    # Serialize the dictionary to JSON
-    json_data = json.dumps(data, indent=2)
-
-    return json_data
-
 if __name__ == "__main__":
     print("Content-type: text/html\n") 
-    request_body = sys.stdin.read()
-    request_uri = os.environ.get('REQUEST_URI')
-    result = json.loads(get_form_data(request_uri, request_body))
+
+    request_uri, request_body, result = get_form_data()
 
     session = SCH_getSession()
-    # print(session)
-    # print_form_data()
-    # query = 0 #cgi.FieldStorage()     
-    # action    = '' ##result["url_params"]["action"][0] ##query.getvalue('action')
+
     htmlname = result.get("url_params", {}).get("htmlname", ["dummy"])[0]
-    # html_name = result["url_params"]["htmlname"][0] ##query.getvalue('htmlname') or "./_____________editsch.htm"
     type = 'cb'
     xml_filename = result.get("url_params", {}).get("name", ["dummy"])[0] #'blank.xml'
 
@@ -149,14 +123,6 @@ if __name__ == "__main__":
     
     # template = get_template(htmlname)
     render_template(htmlname, xml_filename, ddddJson['data'])
-
-    
-	
-    
-    ################################
-    # Write JSON data to the file
-    # with open('./fuck.json', 'w') as json_file:
-    #    json.dump(dddd, json_file, separators=(',', ': '))
     
     
     ################################
@@ -174,8 +140,6 @@ if __name__ == "__main__":
     print("<hr/><hr/>Debug post data<br/>")  
     print (request_body)
     print (request_uri)
-    # form_data = urllib.parse.parse_qs(request_body, keep_blank_values=True)
-    # print (urllib.parse.parse_qs(request_body, keep_blank_values=True))
     print("<hr/><hr/>results<br/>") 
     print(result)
 

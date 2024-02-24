@@ -7,6 +7,7 @@ import sys
 import re
 from sch00 import SCH_getSession
 from sch00 import get_fn
+from sch00 import get_form_data
 from sch00 import SCH_ValidateFilename
 from sch00 import SCH_getUniqueFN
 from sch00 import SCH_deleteFile
@@ -100,29 +101,7 @@ def saveList(postData, query, root, fn, type):
     # print(json_data)
     # print(fname)
 
-def wtfQuery():
-
-    form = cgi.FieldStorage()
-
-    # Print the name of each field
-    for field in form.keys():
-        print(field)
-
-    # Print the value of each field
-    for field in form.keys():
-        print(form[field].value)
-
-    query_string = os.environ.get("QUERY_STRING", "")
-    print("<hr/><hr/>Debug: BEGIN <br/>")
-    print(f"query_string: {query_string}<br/>")
-
-    content_length = int(os.environ.get("CONTENT_LENGTH", 0))
-    post_data = sys.stdin.read(content_length)
-    print("POST data:")
-    print(post_data)
-    print("<hr/><hr/>Debug: END <br/>")
-
-def get_form_data(request_url,  request_body):
+def get_form_data00(request_url,  request_body):
     url_params = urllib.parse.parse_qs(request_url, keep_blank_values=True)
     
     formatted_url_params = {}
@@ -144,40 +123,19 @@ def get_form_data(request_url,  request_body):
 
     return json_data
 
-def print_form_data():
-    print("Content-type: text/html\n")
-
-    # Get the CGI form data
-    form = cgi.FieldStorage()
-
-    # Print GET parameters
-    print("<h2>GET Parameters:</h2>")
-    for key in form.keys():
-        values = form.getlist(key)
-        for value in values:
-            print(f"<p>{key}: {value}</p>")
-
-    # Read POST data from stdin
-    content_length = int(os.environ.get("CONTENT_LENGTH", 0))
-    post_data = sys.stdin.read(content_length)
-
-    # Parse POST data and print
-    if post_data:
-        print("<h2>POST Data:</h2>")
-        for key, value in cgi.parse_qs(post_data).items():
-            for item in value:
-                print(f"<p>{key}: {item}</p>")
         
 if __name__ == "__main__":
     print("Content-type: text/html\n") 
-    request_body = sys.stdin.read()
-    request_uri = os.environ.get('REQUEST_URI')
-    # result = get_form_data(request_uri, request_body)
-    result = json.loads(get_form_data(request_uri, request_body))
+    # request_body = sys.stdin.read()
+    # request_uri = os.environ.get('REQUEST_URI')
+
+    request_uri, request_body, result = get_form_data()
+    # result = json.loads(get_form_data00(request_uri, request_body))
+    # result = json.loads(result)
 
     session = SCH_getSession()
     # print(session)
-    # print_form_data()
+
     query = 0 #cgi.FieldStorage()     
     action    = result["url_params"]["action"][0] ##query.getvalue('action')
     html_name = result["url_params"]["htmlname"][0] ##query.getvalue('htmlname') or "./_____________editsch.htm"

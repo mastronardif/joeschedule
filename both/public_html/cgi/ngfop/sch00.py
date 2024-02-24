@@ -1,5 +1,5 @@
 # mylib.py
-
+import urllib.parse
 import json
 import logging
 import os
@@ -276,13 +276,30 @@ def SCH_xmLRD(left_val, right_val, lines):
 
     return results
 
-# Example usage
-# left_value = "<Tag>...</Tag>"
-# right_value = "<Key1, Key2>"
-# lines = ["<Parent>", "Content", "</Parent>", "<Parent>", "Content", "</Parent>"]
+def get_form_data():
+    request_body = sys.stdin.read()
+    request_uri = os.environ.get('REQUEST_URI')
+    url_params = urllib.parse.parse_qs(request_uri, keep_blank_values=True)
+    
+    formatted_url_params = {}
+    for key, value in url_params.items():
+        # Extract the parameter name from the key
+        param_name = key.split('?')[-1]
+        # Store the parameter name and its value in the formatted dictionary
+        formatted_url_params[param_name] = value
 
-# result = xm_lrd(left_value, right_value, lines)
-# print(result)
+    form_data = urllib.parse.parse_qs(request_body, keep_blank_values=True)
+
+    data = {
+        'url_params': formatted_url_params, ##dict(url_params),
+        'form_data': dict(form_data)
+    }
+
+    # Serialize the dictionary to JSON
+    json_data = json.dumps(data, indent=2)
+    json_data = json.loads(json_data)
+
+    return (request_uri, request_body, json_data)
 
 
 def greet(name):
