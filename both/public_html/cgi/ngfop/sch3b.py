@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # import cgi
-import urllib.parse
-import os
+# import urllib.parse
+# import os
 from urllib.parse import parse_qs
-import sys
+# import sys
 import re
 from sch00 import SCH_getSession
 from sch00 import get_fn
 from sch00 import get_form_data
 from sch00 import SCH_ValidateFilename
 from sch00 import SCH_getUniqueFN
-import xmltodict
+# import xmltodict
 import json
 import xml.etree.ElementTree as E
 
@@ -22,7 +22,8 @@ def render_template(template, fn, data):
     # print("Content-type: text/html\n")
     # print(data)
     print(tmpl.render(
-        FILENAME=data['description'],
+        DESC=data['description'],
+        FILENAME=fn,
         item_list=data #['data']
     ))
 
@@ -126,38 +127,38 @@ if __name__ == "__main__":
     
     
     ################################
-    print("<hr/><hr/>Debug<br/>")    
-    # print(f"action: {action}<br/>")
-    print(f"htmlname: {htmlname}<br/>")
-    print(f"XML Filename: {xml_filename}<br/>")
-    # print(f"fn: {fn}<br/>")
-    print(f"fname: {fname}<br/>")
-    print(f"session: {session}<br/>")
-    print("<br/>")
+    # print("<hr/><hr/>Debug<br/>")    
+    # # print(f"action: {action}<br/>")
+    # print(f"htmlname: {htmlname}<br/>")
+    # print(f"XML Filename: {xml_filename}<br/>")
+    # # print(f"fn: {fn}<br/>")
+    # print(f"fname: {fname}<br/>")
+    # print(f"session: {session}<br/>")
+    # print("<br/>")
     
-    print(f"ddddJson: {ddddJson}<br/>")
+    # print(f"ddddJson: {ddddJson}<br/>")
 
-    print("<hr/><hr/>Debug post data<br/>")  
-    print (request_body)
-    print (request_uri)
-    print("<hr/><hr/>results<br/>") 
-    print(result)
+    # print("<hr/><hr/>Debug post data<br/>")  
+    # print (request_body)
+    # print (request_uri)
+    # print("<hr/><hr/>results<br/>") 
+    # print(result)
 
-    print("<hr/><hr/>QUERY params BEGIN<br/>") 
-    # action_value   = result["url_params"]["action"][0]
-    htmlname_value = result["url_params"]["htmlname"][0]
-    # print(f"action: {action_value}<br/>")
-    print(f"html_name: {htmlname_value}<br/>")
+    # print("<hr/><hr/>QUERY params BEGIN<br/>") 
+    # # action_value   = result["url_params"]["action"][0]
+    # htmlname_value = result["url_params"]["htmlname"][0]
+    # # print(f"action: {action_value}<br/>")
+    # print(f"html_name: {htmlname_value}<br/>")
 
-    # xml_filename = result["form_data"]["name"][0]  
-    xml_filename = result.get("form_data", {}).get("name", ["dummy"])[0]
+    # # xml_filename = result["form_data"]["name"][0]  
+    # xml_filename = result.get("form_data", {}).get("name", ["dummy"])[0]
   
-    #type = result["form_data"]["type"][0]
-    type = result.get("form_data", {}).get("type", ["cb"])[0]
-    #d0 = result["form_data"]["d0"][0]
-    d0 = result.get("form_data", {}).get("do", ["dummyname"])[0]
-    print(f"xml_filename: {xml_filename}<br/>")
-    print(f"type: {type}<br/>")
-    print(f"d0: {d0}<br/>")
-    print("<hr/><hr/>QUERY params END<br/>") 
+    # #type = result["form_data"]["type"][0]
+    # type = result.get("form_data", {}).get("type", ["cb"])[0]
+    # #d0 = result["form_data"]["d0"][0]
+    # d0 = result.get("form_data", {}).get("do", ["dummyname"])[0]
+    # print(f"xml_filename: {xml_filename}<br/>")
+    # print(f"type: {type}<br/>")
+    # print(f"d0: {d0}<br/>")
+    # print("<hr/><hr/>QUERY params END<br/>") 
 

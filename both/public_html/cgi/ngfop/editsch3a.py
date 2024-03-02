@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # import cgi
 import urllib.parse
-import os
+# import os
 from urllib.parse import parse_qs
 import sys
 import re
@@ -11,7 +11,7 @@ from sch00 import get_form_data
 from sch00 import SCH_ValidateFilename
 from sch00 import SCH_getUniqueFN
 from sch00 import SCH_deleteFile
-import xmltodict
+# import xmltodict
 import json
 import xml.etree.ElementTree as E
 
@@ -101,27 +101,27 @@ def saveList(postData, query, root, fn, type):
     # print(json_data)
     # print(fname)
 
-def get_form_data00(request_url,  request_body):
-    url_params = urllib.parse.parse_qs(request_url, keep_blank_values=True)
+# def get_form_data00(request_url,  request_body):
+#     url_params = urllib.parse.parse_qs(request_url, keep_blank_values=True)
     
-    formatted_url_params = {}
-    for key, value in url_params.items():
-        # Extract the parameter name from the key
-        param_name = key.split('?')[-1]
-        # Store the parameter name and its value in the formatted dictionary
-        formatted_url_params[param_name] = value
+#     formatted_url_params = {}
+#     for key, value in url_params.items():
+#         # Extract the parameter name from the key
+#         param_name = key.split('?')[-1]
+#         # Store the parameter name and its value in the formatted dictionary
+#         formatted_url_params[param_name] = value
 
-    form_data = urllib.parse.parse_qs(request_body, keep_blank_values=True)
+#     form_data = urllib.parse.parse_qs(request_body, keep_blank_values=True)
 
-    data = {
-        'url_params': formatted_url_params, ##dict(url_params),
-        'form_data': dict(form_data)
-    }
+#     data = {
+#         'url_params': formatted_url_params, ##dict(url_params),
+#         'form_data': dict(form_data)
+#     }
 
-    # Serialize the dictionary to JSON
-    json_data = json.dumps(data, indent=2)
+#     # Serialize the dictionary to JSON
+#     json_data = json.dumps(data, indent=2)
 
-    return json_data
+#     return json_data
 
         
 if __name__ == "__main__":
@@ -250,7 +250,7 @@ if __name__ == "__main__":
     print(f"d0: {d0}<br/>")
 
 
-    R55 = result.get("form_data", {}).get("R55", ["r55555"])[0]
+    # R55 = result.get("form_data", {}).get("R55", ["r55555"])[0]
     #  html_name = query.getvalue('htmlname') or "./_____________editsch.htm"
     # xml_filename = query.getvalue('name') or "blankSchedule22" 
     # type         = query.getvalue('type')  or "cb"
@@ -268,7 +268,7 @@ if __name__ == "__main__":
 
     # print(result["<br/>form_data"]["d0"])
     # print(result["<br/>form_data"]["R55"])
-    print (R55)
+    # print (R55)
     # print(result["<br/>form_data"]["HR55"])
 
     #print(xml_string)

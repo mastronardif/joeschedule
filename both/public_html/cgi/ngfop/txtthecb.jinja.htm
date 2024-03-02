@@ -1,21 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
 <meta http-equiv="Content-Language" content="en-us"/>
 <title>Choice Board</title>
 <link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css" />
 <link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/print.css" media="print" />
 
-<style type="text/css" media="all">
-a.ad1:link {color: #0000ff; font-size: 250% }
-a.ad1:visited {color: #894f7b;}
-a.ad1:active {color: red; font-size: 50% }
-a.ad1:hover {text-decoration: overline; background-color: yellow; } 
-p.footer1 {font-family: Verdana , sans-serif; color: black; font-size: 50%;} 
-
-</style>
-
+<style type="text/css">
+    a.ad1:link { color: #0000ff; font-size: 1.5em; }
+    a.ad1:visited { color: #894f7b; }
+    a.ad1:active { color: red; }
+    a.ad1:hover { text-decoration: underline; background-color: yellow; }
+    p.footer1 { font-family: Verdana, sans-serif; font-size: 0.8em; color: black; }
+    </style>
 </head>
 
 
@@ -65,11 +64,11 @@ function getListItem()
 	return str;
 }
 
-
+-->
 function callCGIFunction() {
     const formData = new URLSearchParams();
-    formData.append("xmlfilename", document.myform.elements.xmlfilename.value);
     formData.append("htmlname", 'txtthecb.jinja.htm');
+    formData.append("xmlfilename", document.myform.elements.xmlfilename.value);
 
     fetch('/cgi-bin/cgi/ngfop/txtthecb.py', {
         method: 'POST',
@@ -93,35 +92,40 @@ function callCGIFunction() {
         console.error('There was a problem with the fetch operation:', error);
     });
 }
+
 </script>
+
 
 <body>
 
 <form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
 <input type="hidden" name="xmlfilename" value="{{FILENAME|escape}}"/>
 
-<table border="1" cellpadding="3" width="100%">
-
-  <tr>
+  <table border="1" cellpadding="3" width="100%">
+    <tr>
       <td colspan="2" align="center">
-      <align="left"><font size="5">{{DESC|escape}}</font></td>
+        <font size="4">{{ DESC|escape }}</font>
+      </td>
+    </tr>
+
+<!--
+  <tr>
+    <td valign="top" width="60%" height="35">
+      <table border="1" width="448" height="28">
+-->
+
+{% for item in item_list.row %}
+  <tr>
+    <td align="center">
+      {% if item.picture %}
+      <img name="I5" border="0" src="{{ item.picture }}" width="105" height="96"><br>
+      {% endif %}
+      <span style="font-size: 1.2em;">{{ item.name }}</span>
+    </td>
   </tr>
-
-{%- for item in item_list.row %}
-        <tr>
-          <td width="5%"> <input type="radio" name="C1" value="ON" >
-		  </td>
-
-          <td align="left"> 
-			{% if item.picture %} 
-			<img name="I5" border="0" src="{{item.picture}}" width="105" height="96">
-		  	<br>
-		  	{% endif %}
- 			{{item.name}}
-		  </td>
-        </tr>
-{%- endfor %}
+{% endfor %}
 </table>
+
 <!-- hidden vars to force arrays -->
 <!--   <IMG NAME="I5" border="0" src="<PICTURE>" width="105" height="96" type="image"> -->
 </form>
@@ -134,3 +138,4 @@ visit www.joeschedule.com
 
 </body>
 </html>
+
