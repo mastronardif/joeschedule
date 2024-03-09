@@ -11,82 +11,82 @@ from sch00 import get_fn
 from sch00 import get_form_data
 from sch00 import SCH_ValidateFilename
 from sch00 import SCH_getUniqueFN
-import xmltodict
+# import xmltodict
 import json
 import xml.etree.ElementTree as E
 
-def convert_xml_to_json00(xml_string):
-    try:
-        # print('kkkkkkkkkkkkkkkkkkkkkkkk data_dict')
-        # print(xml_string)
-        # print('zzzzzzzzzzzzzzzzzzzzzzzzzz data_dict')
-        # Convert XML to Python dictionary
-        data_dict = xmltodict.parse(xml_string)
-        # print(data_dict)
+# def convert_xml_to_json00(xml_string):
+#     try:
+#         # print('kkkkkkkkkkkkkkkkkkkkkkkk data_dict')
+#         # print(xml_string)
+#         # print('zzzzzzzzzzzzzzzzzzzzzzzzzz data_dict')
+#         # Convert XML to Python dictionary
+#         data_dict = xmltodict.parse(xml_string)
+#         # print(data_dict)
         
-        # Convert Python dictionary to JSON
-        json_data = json.dumps(data_dict, indent=2)
+#         # Convert Python dictionary to JSON
+#         json_data = json.dumps(data_dict, indent=2)
         
-        return json_data
-    except Exception as e:
-        # print('EEEEEEEEEEEEEEEEEEEEEEEEEEE data_dict')
-        # print(str(e))
-        return str(e)
+#         return json_data
+#     except Exception as e:
+#         # print('EEEEEEEEEEEEEEEEEEEEEEEEEEE data_dict')
+#         # print(str(e))
+#         return str(e)
 
-def convert_xml_to_json(xml_string):
-    try:
-        # Convert XML to Python dictionary using xmltodict
-        data_dict = xmltodict.parse(xml_string)
+# def convert_xml_to_json(xml_string):
+#     try:
+#         # Convert XML to Python dictionary using xmltodict
+#         data_dict = xmltodict.parse(xml_string)
         
-        # Extract the required data structure from the dictionary
-        data = {
-            "data": {
-                "description": data_dict["data"]["description"],
-                "row": [
-                    {"picture": row["picture"], "name": row["name"]}
-                    for row in data_dict["data"]["row"]
-                ]
-            }
-        }
+#         # Extract the required data structure from the dictionary
+#         data = {
+#             "data": {
+#                 "description": data_dict["data"]["description"],
+#                 "row": [
+#                     {"picture": row["picture"], "name": row["name"]}
+#                     for row in data_dict["data"]["row"]
+#                 ]
+#             }
+#         }
 
-        # Convert Python dictionary to JSON
-        json_data = json.dumps(data, indent=2)
+#         # Convert Python dictionary to JSON
+#         json_data = json.dumps(data, indent=2)
         
-        return json_data
-    except Exception as e:
-        return str(e)
+#         return json_data
+#     except Exception as e:
+#         return str(e)
 
-def convert_xml_to_json22(fn):
-    tree = E.parse(fn)
-    root = tree.getroot()
-    d={}
-    for child in root:
-        if child.tag not in d:
-            d[child.tag]=[]
-        dic={}
-        for child2 in child:
-            if child2.tag not in dic:
-                dic[child2.tag]=child2.text
-        d[child.tag].append(dic)
-    return(d)
+# def convert_xml_to_json22(fn):
+#     tree = E.parse(fn)
+#     root = tree.getroot()
+#     d={}
+#     for child in root:
+#         if child.tag not in d:
+#             d[child.tag]=[]
+#         dic={}
+#         for child2 in child:
+#             if child2.tag not in dic:
+#                 dic[child2.tag]=child2.text
+#         d[child.tag].append(dic)
+#     return(d)
 
-def convert_xml_to_json33(fn):
-    tree = E.parse(fn)
-    root = tree.getroot()
-    result = {"description": {}, "row": []}
+# def convert_xml_to_json33(fn):
+#     tree = E.parse(fn)
+#     root = tree.getroot()
+#     result = {"description": {}, "row": []}
 
-    for child in root:
-        if child.tag == "description":
-            # Assuming there is only one "description" element
-            result["description"] = child.text.strip()
-        else:
-            element_data = {}
-            for child2 in child:
-                element_data[child2.tag] = child2.text.strip()
+#     for child in root:
+#         if child.tag == "description":
+#             # Assuming there is only one "description" element
+#             result["description"] = child.text.strip()
+#         else:
+#             element_data = {}
+#             for child2 in child:
+#                 element_data[child2.tag] = child2.text.strip()
 
-            result["row"].append(element_data)
+#             result["row"].append(element_data)
 
-    return result
+#     return result
 
 def render_template(template, fn, data):
     from jinja2 import Template
@@ -191,38 +191,27 @@ if __name__ == "__main__":
 
     render_template(template, xml_filename, filtered_files['data']['row'])
  	
-    print("<hr/><hr/>Debug<br/>")    
-    # print(f"action: {action}<br/>")
-    print(f"htmlname: {htmlname}<br/>")
-    print(f"XML Filename: {xml_filename}<br/>")
-    # print(f"fn: {fn}<br/>")
-    # print(f"fname: {fname}<br/>")
-    print(f"session: {session}<br/>")
-    print("<br/>")
-    
-    # print(f"ddddJson: {ddddJson}<br/>")
+    # print("<hr/><hr/>Debug<br/>")    
+    # print(f"htmlname: {htmlname}<br/>")
+    # print(f"XML Filename: {xml_filename}<br/>")
+    # print(f"session: {session}<br/>")
+    # print("<br/>")
+    # print("<hr/><hr/>Debug post data<br/>")  
+    # print (request_body)
+    # print (request_uri)
+    # print("<hr/><hr/>results<br/>") 
+    # print(result)
 
-    print("<hr/><hr/>Debug post data<br/>")  
-    print (request_body)
-    print (request_uri)
-    print("<hr/><hr/>results<br/>") 
-    print(result)
+    # print("<hr/><hr/>QUERY params BEGIN<br/>") 
+    # htmlname_value = result["url_params"]["htmlname"][0]
+    # print(f"html_name: {htmlname_value}<br/>")
 
-    print("<hr/><hr/>QUERY params BEGIN<br/>") 
-    # action_value   = result["url_params"]["action"][0]
-    htmlname_value = result["url_params"]["htmlname"][0]
-    # print(f"action: {action_value}<br/>")
-    print(f"html_name: {htmlname_value}<br/>")
-
-    # xml_filename = result["form_data"]["name"][0]  
-    xml_filename = result.get("form_data", {}).get("name", ["dummy"])[0]
+    # xml_filename = result.get("form_data", {}).get("name", ["dummy"])[0]
   
-    #type = result["form_data"]["type"][0]
-    type = result.get("form_data", {}).get("type", ["cb"])[0]
-    #d0 = result["form_data"]["d0"][0]
-    d0 = result.get("form_data", {}).get("do", ["dummyname"])[0]
-    print(f"xml_filename: {xml_filename}<br/>")
-    print(f"type: {type}<br/>")
-    print(f"d0: {d0}<br/>")
-    print("<hr/><hr/>QUERY params END<br/>") 
+    # type = result.get("form_data", {}).get("type", ["cb"])[0]
+    # d0 = result.get("form_data", {}).get("do", ["dummyname"])[0]
+    # print(f"xml_filename: {xml_filename}<br/>")
+    # print(f"type: {type}<br/>")
+    # print(f"d0: {d0}<br/>")
+    # print("<hr/><hr/>QUERY params END<br/>") 
 
