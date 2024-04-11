@@ -1,0 +1,33 @@
+.image-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive grid layout */
+    grid-gap: 10px; /* Adjust the gap between items */
+    counter-reset: item; /* Reset the counter */
+}
+
+.image-list li {
+    display: inline-block;
+    width: 100%; /* Ensure each item takes up full width of column */
+    text-align: center; /* Center align the content */
+    counter-increment: item; /* Increment the counter */
+}
+
+.image-list li::before {
+    content: counter(item); /* Display the counter */
+    display: inline-block;
+    width: 1em; /* Adjust the width of the counter */
+    text-align: right; /* Align the counter to the right */
+    margin-right: 0.5em; /* Add some spacing between the counter and the content */
+}
+
+.image-list li img {
+    max-width: 100%; /* Ensure images don't exceed the width of their parent container */
+    height: auto; /* Maintain the aspect ratio of the images */
+}
+
+.image-list li.selected {
+    border: 2px solid red; /* Add a red border to selected images */
+}

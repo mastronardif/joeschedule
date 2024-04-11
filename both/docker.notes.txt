@@ -1,6 +1,15 @@
 # 
 docker volume create my_volume
 docker run -d -p 8080:80 -v my_volume:/usr/local/apache2/public_html my_both
-
+docker run -d -p 9090:90  spring-helloworld  
  
 docker cp C:\FxM\Dev\JoeSchedule\joeschedule\both\public_html/.  b51e30554f1b:/usr/local/apache2/public_html
+
+# backup image
+docker save -o joescheduleAll.tar my_both
+
+April 2024
+# apt-get install libcgi-pm-perl
+
+
+docker run --hostname=57459f29758d --mac-address=02:42:ac:11:00:02 --env=PATH=/usr/bin/python3:/usr/local/apache2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env=HTTPD_PREFIX=/usr/local/apache2 --env=HTTPD_VERSION=2.4.58 --env=HTTPD_SHA256=fa16d72a078210a54c47dd5bef2f8b9b8a01d94909a51453956b3ec6442ea4c5 --env=HTTPD_PATCHES= --volume=C:/FxM/Dev/JoeSchedule/joeschedule/both/public_html:/usr/local/apache2/public_html --workdir=/usr/local/apache2/public_html -p 8080:80 --restart=no --runtime=runc -d my_both

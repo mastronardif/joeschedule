@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+<meta http-equiv="Content-Language" content="en-us"/>
+<title>List Imgs</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css" />
+
+<title>List Images</title>
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/imglist.css"/>
+
+<link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/print.css" media="print" />
+</head>
+
+
+<script type="text/javascript">
+<!--
+var _listData = new Array(
+{%- for item in item_list.row %}
+    "\74name>{{item.name}}\74/name>\74picture>{{item.picture}}\74/picture>",
+{%- endfor %}
+"end"
+);
+
+var colorforgnd = 'rgb(249, 201, 92)'; //'#F5F3E4'; //'#00FFFF'; // .windowbg; ////
+var gStr = null;
+var gObj = null;
+var gStr = null;
+function mkblack(obj, pic)
+{
+	if (gObj)
+		gObj.bgColor = colorforgnd;
+
+	obj.bgColor= "black";
+//	obj.bgColor= "#FFFFFF";
+
+	gObj = obj;
+	gStr = pic;
+
+return;
+
+	var obj    = document.myform;
+
+	var str;
+
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+	{
+		if (obj.elements.C1[iii].checked)
+		{
+			str = obj.elements.HR55[iii].value;
+
+			break;
+		}
+	}
+}
+
+function setListItem(pic, name)
+{
+    gStr = "\74picture>"+pic+"\74/picture>\74name>"+name+"\74/name>";
+}
+
+function getListItem()
+{
+	var str = "";
+	var obj = document.myform;
+
+	// the case of 0 elements
+	if (obj.elements.C1 === undefined)
+		return str;
+
+	if (obj.elements.C1.length === undefined)
+	{
+		if (obj.C1.checked)
+			str = _listData[0];
+
+		return str;
+	}
+
+	// Yes there is an array of elements.
+	for (var iii = 0; iii < obj.elements.C1.length; iii++)
+	{
+		if (obj.elements.C1[iii].checked)	
+		{
+			str = _listData[iii];
+			break;
+		}
+	}
+
+	return str;
+}
+
+
+function callCGIFunction() {
+    const formData = new URLSearchParams();
+    formData.append("xmlfilename", document.myform.elements.xmlfilename.value);
+    formData.append("htmlname", 'txtthecb.jinja.htm');
+
+    fetch('/cgi-bin/cgi/ngfop/txtthecb.py', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData.toString(), // Convert form data to URL-encoded string
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Handle the response data here
+        console.log(data);
+    })
+    .catch(error => {
+        // Handle errors here
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
+</script>
+
+
+
+
+
+
+<form method='get'>    
+<body>
+<h1>images[{{ item_list|length }}]</h1>
+<label for='jsquery'>JS Query:</label>
+<input type='text' id='jsquery' name='jsquery' value='{{jsquery}}'>&nbsp;
+<label for='idx'>Idx:</label>
+<input type='text' id='idx' name='idx' value='{{idx}}'>&nbsp;
+<input type='submit' value='Submit'>
+
+<ul class='image-list'>
+{%- for item in item_list %}
+    <li><img src='{{item}}' alt='Image' onClick  ="mkblack(this, '{{item}}');"> /></li>
+{%- endfor %}
+</ul>
+<!-- hidden vars to force arrays -->
+<!--   <IMG NAME="I5" border="0" src="<PICTURE>" width="105" height="96" type="image"> -->
+    
+</body>
+</form>
+<p class="footer1">
+<!--<a href="http://www.joeschedule.com">visit www.joeschedule.com</a>-->
+visit www.joeschedule.com
+</p>
+
+<button onclick="callCGIFunction()">txt me</button>
+
+</html>
