@@ -1,4 +1,7 @@
-# 
+# run the below in folder where .yaml file is.
+docker-compose up -d
+
+
 docker volume create my_volume
 docker run -d -p 8080:80 -v my_volume:/usr/local/apache2/public_html my_both
 docker run -d -p 9090:90  spring-helloworld  
@@ -11,5 +14,44 @@ docker save -o joescheduleAll.tar my_both
 April 2024
 # apt-get install libcgi-pm-perl
 
-
+docker run -d -p 8080:80 -v my_volume:/usr/local/apache2/public_html my_both
 docker run --hostname=57459f29758d --mac-address=02:42:ac:11:00:02 --env=PATH=/usr/bin/python3:/usr/local/apache2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env=HTTPD_PREFIX=/usr/local/apache2 --env=HTTPD_VERSION=2.4.58 --env=HTTPD_SHA256=fa16d72a078210a54c47dd5bef2f8b9b8a01d94909a51453956b3ec6442ea4c5 --env=HTTPD_PATCHES= --volume=C:/FxM/Dev/JoeSchedule/joeschedule/both/public_html:/usr/local/apache2/public_html --workdir=/usr/local/apache2/public_html -p 8080:80 --restart=no --runtime=runc -d my_both
+
+
+http://localhost:8080/cgi/ngfop/
+http://localhost:8080/cgi/ngfop/new_page_3.htm
+
+http://joeschedule.com/cgi-bin/api_caller.py?url=https://jsonplaceholder.typicode.com/posts/1
+http://localhost:8080/cgi/ngfop/new_page_3a.htm
+
+
+
+////////
+docker joe notes.
+Install CGI.pm
+apt-get update
+apt-get install -y cpanminus
+cpanm CGI
+ 
+ OR Update Docker with
+ # Use an official Perl runtime as a parent image
+FROM perl:latest
+
+# Update the package list and install cpanminus
+RUN apt-get update && \
+    apt-get install -y cpanminus
+
+# Install CGI.pm using cpanm
+RUN cpanm CGI
+
+# Create a directory for the application
+WORKDIR /usr/src/app
+
+# Copy the current directory contents into the container at /usr/src/app
+COPY . /usr/src/app
+
+# Make port 80 available to the world outside this container
+EXPOSE 80
+
+# Set the default command to run when starting the container
+CMD ["perl", "your_script.pl"]
