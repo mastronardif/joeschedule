@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCC Treatment Note</title>
+    <link rel="stylesheet" href="./minds/form1001.css">
     <link rel="stylesheet" href="./form1001.css">
 </head>
 <body>
@@ -38,6 +39,9 @@
         </div>
         </div>
         </div>
+        
+        <div class="section">
+        <div class="label2">Objective/Treatment Areas Addressed:</div>
         <table>
         <tr>
         <th>Developmental Level/ Focus Area</th>
@@ -52,12 +56,30 @@
         <td><textarea name="t101">UPDATE ME</textarea></td>
         </tr>
         </table>
-        <button type="submit">Submit</button>
+        </div>
+        
+        <div class="section">
+        <div class="label2">How did they use their body?</div><br/>
+        <div class="label2">For activities of daily living/ self-care:</div>
+        <div class="checkbox-container">
+            <div><input type="checkbox" name="chk101"> Avoided</div>
+            <div><input type="checkbox" name="chk101q"> Tried with help</div>
+            <div><input type="checkbox" name="chk1023" checked> Attempted (If attempted, mark one of the following):</div>
+            <div><input type="checkbox" name="chk1024" checked> Gave up/unsuccessful</div>
+            <div><input type="checkbox" name="chk1025"> Independent</div>
+            <div><input type="checkbox" name="chk1026"> N/A</div>
+        </div>
+        </div>
+        
+        <button type="submit">Submit</button>        
+        
         <footer>
         <span id="formID">GR-6900134 (3-22) </span>
         </footer>
-        <input onclick="submitForm()" type="button" value="Submit2"/>
-        </form>
         
+        
+
+        </form>
+        <input onclick="submitForm()" type="button" value="Submit2"/>
 </body>
 </html>
