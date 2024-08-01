@@ -55,13 +55,24 @@ def serve_html_file(file_path):
     print("Content-type: text/html\n")
     print(content)
 
+def get_form_name(formid):
+    # lookup
+
+    return f"./minds/{formid}.html"
+
 
 if __name__ == "__main__":
     params = handle_request()
+    formid = params['formid']
     #logging.debug(f"params: {json.dumps(params, indent=2)}")
+    # in_file_path = "./minds/GR-6900134(3-22).html" 
+    in_file_path  = f"./minds/{formid}.html"
+    out_file_path = f"./minds/out_{formid}.html" 
     
-    in_file_path = "./minds/GR-6900134(3-22).html" 
-    out_file_path = "./minds/out_GR-6900134(3-22).html"
+    if params['formid']:
+        in_file_path = get_form_name(params['formid'])    
+    
+    # out_file_path = "./minds/out_GR-6900134(3-22).html"
     
     if params['caseid']  == "out":
         in_file_path = out_file_path
