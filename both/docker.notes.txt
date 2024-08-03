@@ -1,4 +1,9 @@
-# run the below in folder where .yaml file is.
+  Aug 2 2024
+  524  docker build -t my_both .
+  525  docker ps
+  526  docker-compose up -d
+
+# run the below in folder where docker-compose.yaml file is.
 docker-compose up -d
 
 
