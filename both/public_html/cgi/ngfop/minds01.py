@@ -64,14 +64,6 @@ def handle_request00():
     logging.debug(f"Form Data: {form_data}")
     return form_data
 
-def handle_requestAA():
-    #request_uri, request_body, result = get_form_data()
-    request_uri, request_body, result = get_form_data22()
-    logging.debug(f"result: {result}")
-    # Get form data as a dictionary
-    #form_data = {key: form.getvalue(key) for key in form.keys()}
-    return result["form_data"]
-
 
 def extract_form_data(file_path):
     """

@@ -6,6 +6,8 @@ import urllib.parse
 import sys
 import os
 import json
+from mindsutilitys import set_form_inputs
+from mindsutilitys import extract_form_data
 #from sch00 import get_form_data
 
 
@@ -51,9 +53,39 @@ def serve_html_file(file_path):
     with open(file_path, 'r') as file:
         content = file.read()
 
+    form_html = extract_form_data(file_path) 
+    logging.debug(f"form_html 00= {form_html}") 
+    with open("000.html", 'w') as file:
+        file.write(form_html)  
+
+    # Change the input fields to have unique id's
+    form_html  = set_form_inputs(form_html)
+
+    logging.debug(f"form_html 22= {form_html }")
+    with open("111.html", 'w') as file:
+        file.write(form_html)  
+
+    
+        # Extract the part before and after the <form> tags
+                # Find the start and end of the <form> tags
+        form_start = content.find('<form')
+        form_end   = content.find('</form>', form_start) + len('</form>')
+
+        before_form = content[:form_start]
+        after_form = content[form_end:]
+
+        # Construct the new HTML content
+        new_html_content = f"{before_form}{form_html}{after_form}"
+
+        # a cheesey technique for now.
+        with open(file_path, 'w') as file:
+            file.write(new_html_content)  
+
+    ########
+
     # Set the content type to HTML
     print("Content-type: text/html\n")
-    print(content)
+    print(new_html_content)
 
 def get_form_name(formid):
     # lookup
