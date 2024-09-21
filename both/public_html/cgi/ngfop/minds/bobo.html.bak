@@ -6,25 +6,23 @@
     <title>DCC Bobo Note</title>
     <link rel="stylesheet" href="./minds/form1001.css">
     <link rel="stylesheet" href="./form1001.css">
-    <link rel="stylesheet" href="./minds/watermark.css">
 
     <style>
         @media print {
-            textarea {
-                height: auto; /* Reset height to auto for printing */
-                width: 100%;
-                overflow: visible; /* Make sure the content is fully visible */
-                page-break-inside: avoid; /* Avoid breaking the page inside the textarea */
-            }
-        }
-
-        textarea {
-            box-sizing: border-box;
+          textarea {
+            height: auto; /* Reset to auto for printing */
             width: 100%;
-            min-height: 100px; /* Initial height */
-            overflow: hidden;
+            overflow: visible; /* Make sure the content is fully visible */
+          }
         }
-    </style>
+  
+        textarea {
+          box-sizing: border-box;
+          width: 100%;
+          min-height: 100px; /* Initial height */
+          overflow: hidden;
+        }
+      </style>
 </head>
 <body>
 <form action="http://localhost:8080/cgi-bin/cgi/ngfop/minds01.py?formid=bobo" id="myForm" method="POST">
@@ -82,7 +80,7 @@
 <td rowspan="">No id or name</td>
 <td class="goal">John ZZZZAZAZAZAZAZ for 5 minutes.</td>
 <td></td>
-<td><textarea id="myTextareaNoName" name="56z-20053">UPDATE ME</textarea></td>
+<td><textarea id="myTextarea" name="56z-20053">UPDATE ME</textarea></td>
 </tr>
 </table>
 </div>
@@ -103,30 +101,22 @@
 <span id="formID">Bobo </span>
 </footer>
 </form>
-<input onclick="submitForm()" type="button" value="Submit2"/>
+        <input onclick="submitForm()" type="button" value="Submit2"/>
 
-<script>
-    function resizeTextarea(textarea) {
-        textarea.style.height = 'auto'; // Reset height to auto to calculate the new height
-        textarea.style.height = textarea.scrollHeight + 'px'; // Set height to scrollHeight to fit the content
-    }
-
-    // Apply resizing to all textareas
-    function resizeAllTextareas() {
-        var textareas = document.querySelectorAll('textarea');
-        textareas.forEach(function(textarea) {
-            resizeTextarea(textarea);
-        });
-    }
-
-    // Call resize function on page load and before printing
-    window.onload = function () {
-        resizeAllTextareas();
-    };
-
-    window.onbeforeprint = function () {
-        resizeAllTextareas();
-    };
-</script>
+        <script>
+            function resizeTextarea(textarea) {
+              // Reset height to auto to calculate the new height
+              textarea.style.height = "auto";
+              // Set height to scrollHeight to fit the content
+              textarea.style.height = textarea.scrollHeight + "px";
+            }
+      
+            // Optional: Call resize function on page load if textarea has pre-filled content
+            window.onload = function () {
+                // alert('onLoad')
+              var textarea = document.getElementById("myTextarea");
+              resizeTextarea(textarea);
+            };
+          </script>
 </body>
 </html>

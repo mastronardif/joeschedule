@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCC Intake</title>
+    <link rel="stylesheet" href="./minds/form1001.css">
+    <link rel="stylesheet" href="./form1001.css">
+    <link rel="stylesheet" href="./minds/watermark.css">
+</head>
+<body>
+    <form action="http://localhost:8080/cgi-bin/cgi/ngfop/minds01.py?formid=GR-intake(-1)" method="POST">
+<div class="container">
+<div class="header">
+<h2>DCC Intake: </h2>
+<div>
+<span class="label">Client:</span>
+<span class="input"><input id="client123" name="client" type="text" value="John Doe"/></span>
+<span class="label">D.O.B:</span>
+<span class="input"><input name="gcb-20050" placeholder="1/1/12" type="date"/></span>
+<span class="label">Year of Diagnosis:</span>
+<span class="input"><input name="gcb-20051" placeholder="8/30/21" type="date"/></span>
+</div>
+<div>
+<span class="label">Insurance:</span>
+<span class="input"><input name="gcb-20052" placeholder="Phelps Johnston" type="text"/></span>
+<span class="label">Phone:</span>
+<span class="input"><input name="gcb-20052" placeholder="908-899-0000" type="text"/></span>
+</div>
+<!-- <div>
+<span class="label">Time in:</span>
+<span class="input"><input name="gcb-20053" placeholder="2:00pm" type="time"/></span>
+<span class="label">Time out:</span>
+<span class="input"><input name="gcb-20054" placeholder="3:50pm" type="time"/></span>
+<span class="label">Duration:</span>
+<span class="input"><input name="gcb-20055" placeholder="1 hr, 50 min" type="text"/></span>
+</div> -->
+<div>
+<span class="label">Location:</span>
+<span class="input"><input name="gcb-20056" placeholder="Client Home" type="text"/></span>
+</div>
+</div>
+<!-- -->
+<div class="section">
+<div>
+<label for="additional-comments">Additional Comments:</label>
+<textarea cols="50" id="additional-comments" name="additional-comments" rows="4">
+ Was happy, regulated, and engaged during swing activity.
+ Was able to complete ~8 repetitions of a 4-step obstacle course:
+                 
+Retrieve nume and repeat this phrase until a cookie was given to him. He does this frequently with other requests (“I want to play with water”, “I want to go outside”).
+</textarea>
+</div>
+</div>
+<div class="section">
+<div>
+<label for="How did you here about us">How did you here about us:</label>
+<textarea cols="50" id="additional-comments" name="additional-comments" rows="4">
+How did you hear about us.
+</textarea>
+</div>
+</div>
+<div class="section">
+<div>
+<span><i>Internal Use:</i></span>
+</div>
+<div>
+<label for="therapist-signature">Therapist Signature:</label>
+<input class="input-field" id="therapist-signature" name="therapist-signature" type="text" value="Charmaine Del Rosario"/>
+<br/>
+<label for="date">Date:</label>
+<span class="input"><input id="signeddate" name="signeddate" placeholder="8/30/21" type="date"/></span>
+</div>
+</div>
+</div>
+<button type="submit">Submit</button>
+<footer>
+<span id="formID">GR-intake(0-1).</span>
+</footer>
+<!-- <input type="button" value="Submit2" onclick="submitForm()"> -->
+</form>
+
+</body>
+</html>

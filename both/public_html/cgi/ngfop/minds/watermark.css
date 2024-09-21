@@ -1,0 +1,71 @@
+.watermark-container {
+    position: relative;
+}
+
+/* styles.css */
+/* styles.css */
+.watermark {
+    background-image: url('watermark22.png'); 
+    /* background-image: url('watermark.svg'); */
+    background-repeat: no-repeat;
+    background-size: contain; /* Try 'contain' or 'cover' */
+    position: absolute; /* Make sure it’s positioned correctly */
+    top: 0;
+    left: 0;
+    width: 100%; /* Adjust width and height as needed */
+    height: 100%;
+    opacity: 0.1; /* Adjust opacity if necessary */
+    pointer-events: none; /* Ensure the watermark does not block interactions */
+    z-index: 9999; /* Ensure it’s on top of other content */
+}
+
+.watermark-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Adjust the size of the watermark image */
+    height: auto;
+    /*background: url('..\watermark.png') no-repeat center; */
+    background-image: url('watermark.png');
+    background-size: contain;
+    opacity: 0.3; /* Adjust opacity as needed */
+    pointer-events: none; /* Ensures watermark does not block interactions */
+    z-index: 9999;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+/* styles.css */
+body::before {
+    content: "";
+    background-image: url('watermark.svg');
+    background-repeat: no-repeat;
+    background-size: contain; /* Adjust size as needed */
+    position: fixed; /* Keeps the watermark fixed in position */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9; /* Adjust opacity as needed */
+    pointer-events: none; /* Ensures the watermark does not block interactions */
+    z-index: 9999; /* Ensures the watermark is on top */
+}
+
+body::after {
+    content: "";
+    background-image: url('watermark.svg');
+    background-repeat: no-repeat;
+    background-size: contain; /* Adjust size as needed */
+    position: fixed; /* Keeps the watermark fixed in position */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1; /* Adjust opacity as needed */
+    pointer-events: none; /* Ensures the watermark does not block interactions */
+    z-index: 9999; /* Ensures the watermark is on top */
+}

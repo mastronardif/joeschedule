@@ -7,6 +7,8 @@ import re
 import sys
 import time
 
+logging.basicConfig(level=logging.DEBUG)
+
 def SCH_ErrorMessage(msg):
     print("Content-type: text/html\n\n")
     print(f"FM, The server can't! {msg}.\n")
@@ -304,3 +306,11 @@ def get_form_data():
 
 def greet(name):
     return f"Hello, {name}!"
+
+def SCH_authenticate(id, pw):
+    if id == 'Bucci' and pw == '123456':
+        return 'Bucci'
+    if id == 'Visitor'and pw == '123456':
+        return 'Visitor'
+    else:
+        return 'fail'

@@ -46,6 +46,7 @@ def serve_html_file(file_path):
     # Check if the file exists
     if not os.path.isfile(file_path):
         print("Content-type: text/html\n")
+        print(file_path)
         print("<html><body><h1>File not found</h1></body></html>")
         return
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/strict.dtd">
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,91 +14,44 @@
     a.ad1:active { color: red; }
     a.ad1:hover { text-decoration: underline; background-color: yellow; }
     p.footer1 { font-family: Verdana, sans-serif; font-size: 0.8em; color: black; }
-    </style>
+
+    /* Style for image container */
+    .img-container {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    /* Style for checkmark overlay */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-6UlUYbI4Sz24NdZQZ_ACtjur1cQ2mPU7g&s') no-repeat center; 
+
+        /* background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_check.svg/1024px-Yes_check.svg.png') no-repeat center; */
+        background-size: contain;
+        display: none;
+    }
+
+    .checked .checkmark {
+        display: block;
+    }
+</style>
 </head>
 
-
 <script type="text/javascript">
-<!--
-var _listData = new Array(
-{%- for item in item_list.row %}
-    "\74name>{{item.name}}\74/name>\74picture>{{item.picture}}\74/picture>",
-{%- endfor %}
-"end"
-);
-
-var gStr = null;
-
-function setListItem(pic, name)
-{
-    gStr = "\74picture>"+pic+"\74/picture>\74name>"+name+"\74/name>";
+// Function to toggle checkmark on image click
+function toggleCheckmark(imgContainer) {
+    imgContainer.classList.toggle('checked'); // Toggle the 'checked' class
 }
-
-function getListItem()
-{
-	var str = "";
-	var obj = document.myform;
-
-	// the case of 0 elements
-	if (obj.elements.C1 === undefined)
-		return str;
-
-	if (obj.elements.C1.length === undefined)
-	{
-		if (obj.C1.checked)
-			str = _listData[0];
-
-		return str;
-	}
-
-	// Yes there is an array of elements.
-	for (var iii = 0; iii < obj.elements.C1.length; iii++)
-	{
-		if (obj.elements.C1[iii].checked)	
-		{
-			str = _listData[iii];
-			break;
-		}
-	}
-
-	return str;
-}
-
--->
-function callCGIFunction() {
-    const formData = new URLSearchParams();
-    formData.append("htmlname", 'txtthecb.jinja.htm');
-    formData.append("xmlfilename", document.myform.elements.xmlfilename.value);
-
-    fetch('/cgi-bin/cgi/ngfop/txtthecb.py', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formData.toString(), // Convert form data to URL-encoded string
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Handle the response data here
-        console.log(data);
-    })
-    .catch(error => {
-        // Handle errors here
-        console.error('There was a problem with the fetch operation:', error);
-    });
-}
-
 </script>
-
 
 <body>
 
-<form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
 <input type="hidden" name="xmlfilename" value="{{FILENAME|escape}}"/>
 
   <table border="1" cellpadding="3" width="100%">
@@ -108,29 +61,26 @@ function callCGIFunction() {
       </td>
     </tr>
 
-<!--
-  <tr>
-    <td valign="top" width="60%" height="35">
-      <table border="1" width="448" height="28">
--->
-
 {% for item in item_list.row %}
   <tr>
     <td align="center">
       {% if item.picture %}
-      <img name="I5" border="0" src="{{ item.picture }}" width="105" height="96"><br>
+      <div class="img-container" onclick="toggleCheckmark(this)">
+        <img name="I5" border="0" src="{{ item.picture }}" width="105" height="96">
+        <span class="checkmark"></span> <!-- Checkmark overlay -->
+      </div>
       {% endif %}
+      <br>
       <span style="font-size: 1.2em;">{{ item.name }}</span>
     </td>
   </tr>
 {% endfor %}
-</table>
 
-<!-- hidden vars to force arrays -->
-<!--   <IMG NAME="I5" border="0" src="<PICTURE>" width="105" height="96" type="image"> -->
+  </table>
+
 </form>
+
 <p class="footer1">
-<!--<a href="http://www.joeschedule.com">visit www.joeschedule.com</a>-->
 visit www.joeschedule.com
 </p>
 
@@ -138,4 +88,3 @@ visit www.joeschedule.com
 
 </body>
 </html>
-

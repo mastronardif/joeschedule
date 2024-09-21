@@ -1,0 +1,6 @@
+
+for cgi debuging form command line.
+www3:~/public_html/cgi/ngfop% setenv QUERY_STRING "`cat input.txt`"
+
+input.txt
+formid=GR-intake(0-1)
