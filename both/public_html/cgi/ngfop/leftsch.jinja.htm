@@ -91,10 +91,9 @@ top.frames[2].location=str;
 <body class="toolbar" topmargin="0" leftmargin="0">
 <form name = "myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
 
-   <i>Welcome <ID/></i><br/>
+   <i>Welcome {{ID}}</i><br/>
    <font size="4" color="#FF0000"><b><i>Programs</i></b></font>
 <br>
-{{FILENAME|escape}}
 <ul>
   {%- for item in item_list %}
   <li>

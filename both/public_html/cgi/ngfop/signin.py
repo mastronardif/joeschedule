@@ -123,61 +123,46 @@ if "fail" in authCode.lower():
    sys.exit()
 
 
-# Create a cookie
-oreo = http.cookies.SimpleCookie()
-oreo['sessionID'] = id  # Assign your session ID value here
-oreo['sessionID']['domain'] = '.joeschedule.com'
-oreo['sessionID']['expires'] = 'Mon, 01-Jan-2025 00:00:00 GMT'  # Manually set an expiration date; adjust as needed
 
+# Get the hostname and environment variables
 hostname = socket.gethostname()
-logging.debug(f"hostname= {hostname}")
 
-# Get the local IP address
-try:
-    local_ip = socket.gethostbyname(hostname)
-    logging.debug(f"Local IP: {local_ip}")
-except socket.gaierror:
-    logging.debug("Failed to get local IP")
-
+# Get the host and request URI to form the full URL
 host = os.environ.get('HTTP_HOST', 'localhost')
 request_uri = os.environ.get('REQUEST_URI', '')
 logging.debug(f"request_uri= {request_uri}")
 logging.debug(f"host= {host}")
 
 # Determine if the connection is secure (https) or not (http)
-if os.environ.get('HTTPS', 'off') == 'on':
-    scheme = 'https'
-else:
-    scheme = 'http'
+scheme = 'https' if os.environ.get('HTTPS', 'off') == 'on' else 'http'
 
-# Get the host and request URI to form the full URL
-host = os.environ.get('HTTP_HOST', 'localhost')
-request_uri = os.environ.get('REQUEST_URI', '')
 # Full URL
 url = f"{scheme}://{host}{request_uri}"
 logging.debug(f"Full URL: {url}")
 
-# Check if the IP is localhost.  Cheesey Docker test.
-# if host.find('localhost') > -1 :
-#     host = "http://localhost:8080"
-# else:
-#     host = "http://www.joeschedule.com"
+# Create the session ID cookie
+oreo = http.cookies.SimpleCookie()
+oreo['sessionID'] = id  # Replace with actual session ID
+oreo['sessionID']['expires'] = 'Mon, 01-Jan-2025 00:00:00 GMT'
 
-# if hostname == 'localhost':
-#     host = "http://localhost:8080"
-# else:
-#     host = "https://www.joeschedule.com"
+# Only set domain for joeschedule.com
+if 'localhost' not in host:
+    oreo['sessionID']['domain'] = '.joeschedule.com'
 
-whither = f"{scheme}://{host}/cgi/ngfop/new_page_3a.htm"
-# whither  = "http://www.joeschedule.com/cgi/ngfop/new_page_3a.htm"
-# whither  = "http://localhost:8080/cgi/ngfop/new_page_3a.htm"
-logging.debug(f"whither =  {whither}")
+logging.debug(f"oreo['sessionID'] = {oreo['sessionID']}")
+
+# Determine the redirection URL based on the host
+if 'localhost' in host:
+    whither = f"{scheme}://localhost:8080/cgi/ngfop/new_page_3a.htm"
+else:
+    whither = f"{scheme}://www.joeschedule.com/cgi/ngfop/new_page_3a.htm"
+
+logging.debug(f"whither = {whither}")
+
+# Print headers (make sure to print them in correct order)
 print("Content-Type: text/html")
-print(oreo.output())  # Set cookie in the HTTP response
+print(oreo.output())  # Set the cookie in the HTTP response
 print(f"Location: {whither}")  # Redirect to the new page
 print()  # End headers
-
-# You can also print optional HTML if necessary (e.g., in case the redirect doesn't work)
-# print(f'<html><head><meta http-equiv="refresh" content="0;url={whither}"></head></html>')
 
 sys.exit()

@@ -2,6 +2,7 @@
 import urllib.parse
 import json
 import logging
+from http import cookies
 import os
 import re
 import sys
@@ -155,35 +156,35 @@ def SCH_ValidateFilename(fn):
     fn = match.group(1) if match else ""
     
     return (1, fn)
-
 def SCH_getSession():
-    # Check the HTTP_REFERER if needed
-    # referer = os.environ.get('HTTP_REFERER', '')
-    # if referer and not referer.startswith('http://example.com'):
-    #     print("Hey, are you trying to do something sneaky? Email me, let's talk.")
-    #     exit()
+    # Get the cookie string from the environment variable
+    cookie_string = os.environ.get('HTTP_COOKIE', '')
+    cookie = cookies.SimpleCookie(cookie_string)
 
-    # Get session ID from cookie or use a default value
-    session_id = os.environ.get('HTTP_COOKIE', '').split('=')[-1] or "Bucci"
+    # Extract the sessionID from the cookie and make sure it's a string
+    session_id = cookie.get('sessionID')
+    session_id = session_id.value if session_id else "NO ID"
 
-    # Untaint user input
-    session_id = session_id[:30]  # Adjust the length if needed
-    session_id = ''.join(c for c in session_id if c.isalnum() or c in ['_', '.', '/'])
-
+    # Define session details
     session = {}
-    if session_id:
+    if session_id != "NO ID":
         session = {
-            # 'id': 'Bucci',
-            # 'pw': '123456',
-            # 'dir': './members/Bucci/',
-            'dir': f'./members/{session_id}/',
+            'id': session_id,  # Set the session ID
+            'dir': f'./members/{session_id}/',  # Create the directory path based on session ID
             'dirCount': 3000,
-            # 'dirSize': 200000,
-            'dirSize': 100000000,  # 100Meg
+            'dirSize': 100000000,  # 100 Megabytes
+        }
+    else:
+        session = {
+            'id': session_id,  # If no session ID, set as "NO ID"
+            'dir': './members/NO_ID/',  # Fallback directory for no session ID
+            'dirCount': 0,
+            'dirSize': 0,  # No directory size for NO ID
         }
 
+    # Log the session details
+    logging.debug(f"\n\t\t session=  {session}")
     return session
-
 
 def get_fn(xml_filename):
     blank_schedule = "blank.xml"

@@ -88,14 +88,14 @@ import xml.etree.ElementTree as E
 
 #     return result
 
-def render_template(template, fn, data):
+def render_template(template, id, data):
     from jinja2 import Template
     with open(template) as f:
         tmpl = Template(f.read())
     # print("Content-type: text/html\n")
     # print(data)
     print(tmpl.render(
-        FILENAME=fn,
+        ID=id,
         item_list=data #['data']
     ))
 
@@ -189,7 +189,7 @@ if __name__ == "__main__":
 
     template = htmlname #'leftsch.htm.jinja' #get_template(html_name)
 
-    render_template(template, xml_filename, filtered_files['data']['row'])
+    render_template(template, session['id'], filtered_files['data']['row'])
  	
     # print("<hr/><hr/>Debug<br/>")    
     # print(f"htmlname: {htmlname}<br/>")
