@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-# import cgi
 from sch00 import get_form_data
 import urllib.request
 from html.parser import HTMLParser

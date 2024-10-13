@@ -23,6 +23,7 @@
       <div class="pc-tab">
         <input id="tab1" type="radio" name="pct"  checked="checked" />
         <input id="tab2" type="radio" name="pct" />
+        <input id="tab21" type="radio" name="pct" />
         <input id="tab3" type="radio" name="pct" />
         <input id="tab31" type="radio" name="pct" />
         <input id="tab32" type="radio" name="pct" />
@@ -70,14 +71,29 @@
               Tab</label>
           </li> -->
 
-            <li class="tab2">
+          <li class="tab2">
+            <label
+              for="tab2"
+              class="tab-label-with-icon"
+              onclick="javascript:myPicture()"
+            >
+              <!-- <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon"> -->
+              <i class="fa-solid fa-camera"></i>
+              <!-- <a id="goLinkmyPicture" class="menuitem" title="My Picture" href="javascript:myPicture();">
+              <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon">
+            </a>               -->
+            </label>
+          </li>
+
+            <li class="tab21">
               <label
-                for="tab2"
+                for="tab21"
                 class="tab-label-with-icon"
-                onclick="javascript:myPicture()"
-              >
+
+                onclick="javascript: parent.middle.location='/cgi-bin/cgi/ngfop/listmyimages.py'">
+
                 <!-- <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon"> -->
-                <i class="fa-solid fa-camera"></i>
+                <i class="fa-solid fa-folder-closed"></i>
                 <!-- <a id="goLinkmyPicture" class="menuitem" title="My Picture" href="javascript:myPicture();">
                 <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon">
               </a>               -->
