@@ -36,24 +36,7 @@
       }
 
       function getListItem() {
-        var str = "";
-        var obj = document.myform;
-
-        if (!obj.elements.C1) return str;
-
-        if (!Array.isArray(obj.elements.C1)) {
-          if (obj.C1.checked) str = _listData[0];
-          return str;
-        }
-
-        for (var iii = 0; iii < obj.elements.C1.length; iii++) {
-          if (obj.elements.C1[iii].checked) {
-            str = _listData[iii];
-            break;
-          }
-        }
-
-        return str;
+        return "\x3cpicture>"+gStr+"\x3c/picture>";
       }
 
       function callCGIFunction() {
@@ -96,7 +79,9 @@
       <ul class="image-list">
         {%- for item in item_list %}
         <li>
-          <img src="{{item}}" alt="Image" onClick="mkblack(this, '{{item}}');" />
+          <!-- <img src="{{item}}" alt="Image" onClick="mkblack(this, '{{item}}');" /> -->
+          <img src="{{item}}" alt="Image" style="max-width: 160px; max-height: 160px;" onClick="mkblack(this, '{{item}}');" />
+
         </li>
         {%- endfor %}
       </ul>
