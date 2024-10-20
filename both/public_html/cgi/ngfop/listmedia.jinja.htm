@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+  <meta http-equiv="Content-Language" content="en-us" />
+  <title>List Media</title>
+  <link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css" />
+
+  <style>
+    /* The CSS provided earlier is placed here */
+    .media-item {
+      display: inline-block;
+      text-align: center;
+      margin: 10px;
+      padding: 5px;
+      max-width: 160px;
+      border: 2px solid transparent;
+    }
+
+    .media-item.selected {
+      border: 2px solid black;
+    }
+
+    .number {
+      color: black;
+      font-size: 18px;
+    }
+
+    .number.clicked {
+      color: green;
+    }
+
+    img,
+    video {
+      max-width: 160px;
+      max-height: 160px;
+    }
+
+    .footer1 {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background-color: #696363;
+      padding: 5px;
+      height: 30px;
+      line-height: 30px;
+      color: white;
+    }
+  </style>
+
+  <script type="text/javascript">
+    var gStr = null;
+    var gObj = null;
+
+    function mkblack(wrapper, media, numElem) {
+      // Reset previously selected media
+      if (gObj) {
+        gObj.classList.remove('selected');
+      }
+
+      // Add black outline to the newly selected media wrapper
+      wrapper.classList.add('selected');
+      gObj = wrapper;
+
+      // Reset the styles for all numbers
+      var numbers = document.querySelectorAll('.number');
+      numbers.forEach(function (elem) {
+        elem.classList.remove('clicked');
+        elem.textContent = elem.id.replace('number', ''); // Reset to "n"
+      });
+
+      // Update the selected number's style and content
+      numElem.classList.add('clicked');
+      numElem.textContent = `(${numElem.id.replace('number', '')})`;
+
+      gStr = media;
+    }
+
+    function getListItem() {
+      return "\x3cpicture>" + gStr + "\x3c/picture>";
+    }
+
+  </script>
+</head>
+
+<body>
+  <h1>{{FILENAME}} [{{ item_list|length }}]</h1>
+  <form name="myform" method="get">
+    <label for="jsquery">JS Query:</label>
+    <input type="text" id="jsquery" name="jsquery" value="{{jsquery}}" />&nbsp;
+    <label for="idx">Idx:</label>
+    <input type="text" id="idx" name="idx" value="{{idx}}" />&nbsp;
+    <input type="submit" value="Submit" />
+
+    <ul class="media-list">
+      {%- for item in item_list %}
+      <li>
+        <div class="media-item" id="media{{loop.index}}"
+          onClick="mkblack(this, '{{item.picture}}' || '{{item.video}}', document.getElementById('number{{loop.index}}'));">
+          {%- if item.picture %}
+          <img src="{{item.picture}}" alt="Image" />
+          {%- elif item.video %}
+          <video controls>
+            <source src="{{item.video}}" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {%- endif %}
+
+          <!-- Number element below the media -->
+          <div id="number{{loop.index}}" class="number">{{loop.index}}</div>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </form>
+
+  <p class="footer1">
+    visit <a href="http://www.joeschedule.com">www.joeschedule.com</a>
+  </p>
+</body>
+
+</html>
