@@ -2,6 +2,7 @@
 import urllib.parse
 import json
 import logging
+import datetime
 from http import cookies
 import os
 import re
@@ -156,6 +157,7 @@ def SCH_ValidateFilename(fn):
     fn = match.group(1) if match else ""
     
     return (1, fn)
+
 def SCH_getSession():
     # Get the cookie string from the environment variable
     cookie_string = os.environ.get('HTTP_COOKIE', '')
@@ -185,6 +187,25 @@ def SCH_getSession():
     # Log the session details
     logging.debug(f"\n\t\t session=  {session}")
     return session
+
+def set_session_cookie(session_id):
+    # Create a cookie object
+    cookie = cookies.SimpleCookie()
+
+    # Set the cookie for sessionID
+    cookie["sessionID"] = session_id
+
+    # Set the cookie to expire in 30 days
+    expires = datetime.datetime.now() + datetime.timedelta(days=30)
+    cookie["sessionID"]["expires"] = expires.strftime("%a, %d-%b-%Y %H:%M:%S GMT")
+
+    # Set additional cookie attributes if needed
+    cookie["sessionID"]["path"] = "/"  # Makes the cookie available site-wide
+    cookie["sessionID"]["httponly"] = True  # Ensure the cookie is only sent over HTTP, not accessible via JavaScript for security
+
+    # Output the cookie as an HTTP header
+    print(cookie.output())  # This prints the Set-Cookie header
+
 
 def get_fn(xml_filename):
     blank_schedule = "blank.xml"

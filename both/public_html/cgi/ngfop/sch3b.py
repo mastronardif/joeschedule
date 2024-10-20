@@ -3,12 +3,14 @@
 # import urllib.parse
 # import os
 from urllib.parse import parse_qs
-# import sys
+import sys
 import re
 from sch00 import SCH_getSession
 from sch00 import get_fn
 from sch00 import get_form_data
 from sch00 import SCH_ValidateFilename
+from sch00 import set_session_cookie
+
 from sch00 import SCH_getUniqueFN
 # import xmltodict
 import json
@@ -102,63 +104,23 @@ def get_template(html_name):
     # print(fname)
 
 if __name__ == "__main__":
-    print("Content-type: text/html\n") 
-
     request_uri, request_body, result = get_form_data()
-
-    session = SCH_getSession()
-
+    
     htmlname = result.get("url_params", {}).get("htmlname", ["dummy"])[0]
-    type = 'cb'
     xml_filename = result.get("url_params", {}).get("name", ["dummy"])[0] #'blank.xml'
+    sessionID = result.get("url_params", {}).get("sessionID", [""])[0]
 
-    # session['dir']
+    if (sessionID):
+        set_session_cookie(sessionID)
+
+    print("Content-type: text/html\n") 
 
     fn = get_fn(xml_filename)
     fname = fn
     if fn == 'blank.xml':
-        fname = f"{fn}.json"  # fname = f"{fn}.json" 
+        fname = f"{fn}.json"
 
     with open(fname, 'r') as json_file:
         ddddJson = json.load(json_file)
     
-    # template = get_template(htmlname)
     render_template(htmlname, xml_filename, ddddJson['data'])
-    
-    
-    ################################
-    # print("<hr/><hr/>Debug<br/>")    
-    # # print(f"action: {action}<br/>")
-    # print(f"htmlname: {htmlname}<br/>")
-    # print(f"XML Filename: {xml_filename}<br/>")
-    # # print(f"fn: {fn}<br/>")
-    # print(f"fname: {fname}<br/>")
-    # print(f"session: {session}<br/>")
-    # print("<br/>")
-    
-    # print(f"ddddJson: {ddddJson}<br/>")
-
-    # print("<hr/><hr/>Debug post data<br/>")  
-    # print (request_body)
-    # print (request_uri)
-    # print("<hr/><hr/>results<br/>") 
-    # print(result)
-
-    # print("<hr/><hr/>QUERY params BEGIN<br/>") 
-    # # action_value   = result["url_params"]["action"][0]
-    # htmlname_value = result["url_params"]["htmlname"][0]
-    # # print(f"action: {action_value}<br/>")
-    # print(f"html_name: {htmlname_value}<br/>")
-
-    # # xml_filename = result["form_data"]["name"][0]  
-    # xml_filename = result.get("form_data", {}).get("name", ["dummy"])[0]
-  
-    # #type = result["form_data"]["type"][0]
-    # type = result.get("form_data", {}).get("type", ["cb"])[0]
-    # #d0 = result["form_data"]["d0"][0]
-    # d0 = result.get("form_data", {}).get("do", ["dummyname"])[0]
-    # print(f"xml_filename: {xml_filename}<br/>")
-    # print(f"type: {type}<br/>")
-    # print(f"d0: {d0}<br/>")
-    # print("<hr/><hr/>QUERY params END<br/>") 
-
