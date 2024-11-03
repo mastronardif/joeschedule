@@ -88,11 +88,11 @@
 <body>
   <h1>{{FILENAME}} [{{ item_list|length }}]</h1>
   <form name="myform" method="get">
-    <label for="jsquery">JS Query:</label>
+    <!-- <label for="jsquery">JS Query:</label>
     <input type="text" id="jsquery" name="jsquery" value="{{jsquery}}" />&nbsp;
     <label for="idx">Idx:</label>
     <input type="text" id="idx" name="idx" value="{{idx}}" />&nbsp;
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit" /> -->
 
     <ul class="media-list">
       {%- for item in item_list %}
@@ -102,10 +102,13 @@
           {%- if item.picture %}
           <img src="{{item.picture}}" alt="Image" />
           {%- elif item.video %}
-          <video controls>
+          <video controls 
+            poster="{{item.poster}}">
+            <!-- http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/posters/MOV_4493.mov -->
             <source src="{{item.video}}" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          {{item.video}}
           {%- endif %}
 
           <!-- Number element below the media -->
