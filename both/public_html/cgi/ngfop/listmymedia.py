@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from sch00 import get_form_data
 from sch00 import SCH_getSession
-import urllib.request
+# import urllib.request
 import logging
 import os
 from jinja2 import Template
@@ -66,14 +66,16 @@ json_data = {
             {"picture": f"{domain}/{domainpath}/{folder}/{image_file}"} for image_file in image_files
         ] 
         + [
-            {"video": f"{domain}/{domainpath}/{folder}/{video_file}"} for video_file in video_files
+            {"video": f"{domain}/{domainpath}/{folder}/{video_file}",
+             "poster": f"{domain}/{domainpath}/{folder}/posters/{video_file}.jpg"
+             } for video_file in video_files
         ]
     }
 }
 
 logging.debug(json_data)
 
-media_urls = [item['picture'] if 'picture' in item else item['video'] for item in json_data['data']['row']]
+# media_urls = [item['picture'] if 'picture' in item else item['video'] for item in json_data['data']['row']]
 
 print("")
 

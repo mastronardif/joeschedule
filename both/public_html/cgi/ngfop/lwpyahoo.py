@@ -3,6 +3,9 @@
 from sch00 import get_form_data
 import urllib.request
 from html.parser import HTMLParser
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 def render_template(template, fn, data, **kwargs):
     from jinja2 import Template
@@ -26,7 +29,8 @@ jsquery    = result["url_params"]["jsquery"][0]
 jswrap = result["url_params"].get("jswrap", [""])[0]
 idx = result["url_params"].get("idx", [""])[0]
 # html_name = result["url_params"]["htmlname"][0] 
-html_name = result["url_params"].get("htmlname", ["lwpyahoo.jinja.htm"])[0]
+# html_name = result["url_params"].get("htmlname", ["lwpyahoo.jinja.htm"])[0]
+html_name = result["url_params"].get("htmlname", ["listmedia.jinja.htm"])[0]
 
 
 # Construct URL
@@ -100,11 +104,28 @@ else:  # Display all images if idx is not provided
 # for image_url in parser.image_urls:
 #     print(f"<li><img src='{image_url}' alt='Image' /></li>")
 # print("</ul>")
+# // fm 11/2
+json_data = {
+    "data": {
+        "description": "Yahoo Search pics",
+        "row": [
+            {"picture": f"{image_file}"} for image_file in image_urls
+        ] 
+        # + [
+        #     {"video": f"{domain}/{domainpath}/{folder}/{video_file}",
+        #      "poster": f"{domain}/{domainpath}/{folder}/posters/{video_file}.jpg"
+        #      } for video_file in video_files
+        # ]
+    }
+}
+# logging.debug(json_data)
+# // fm 1/2
 
 fdesc = f"mmmmmmmmmmmmmm"
 # render_template(html_name, fdesc, parser.image_urls)
 # render_template('template.html', parser.image_urls, jsquery=jsquery, idx=idx)
 # render_template(html_name, fdesc= fdesc, image_urls= parser.image_urls, jsquery=jsquery, idx=idx)
-render_template(html_name, fdesc, image_urls, jsquery=jsquery, idx=idx)
+# render_template(html_name, fdesc, image_urls, jsquery=jsquery, idx=idx)
+render_template(html_name, fdesc, json_data['data']['row'], jsquery=jsquery, idx=idx)
 
 # render_template(html_name, fdesc, ddddJson['data'])
