@@ -143,15 +143,15 @@ function del()
 function editSchedule2() {
   var xmlfilename = getLeftFN();
   var usedir = "";
-  var student = "Jake";
+  //var student = "Jake";
   //   var student =
   //     document.myform.Students.options[document.myform.Students.selectedIndex]
   //       .text;
-  if (student) {
-    student = "&student=" + student;
-  }
-
-  //alert(xmlfilename)
+  // if (student) {
+  //   student = "&student=" + student;
+  // }
+// debugger;
+  // alert(xmlfilename)
   // FM 7/8/8
   //usedir = "&usedir=usedir(Sussina)";
   // FM 7/8/8
@@ -206,21 +206,21 @@ function editSchedule2() {
     //alert("str = "+ str)
 
     var szName = ""; //str.match(/<Name>(.+)<\/Name>/i);
-    if (szName) {
-      szName = szName[1];
+    // if (szName) {
+    //   szName = szName[1];
 
-      if (szName.indexOf(".xml") != -1) {
-        var sz22 = szName.match(/<MK_LISTBOX>(.+)<\/MK_LISTBOX>/i);
-        if (sz22) {
-          szName = sz22[1];
-        }
-        // FM 6/4/8
-        usedir = "&usedir=usedir(Sussina)";
-        // Fm 6/4/8
-        alert("your special " + szName + "  " + usedir);
-        xmlfilename = szName;
-      }
-    }
+    //   if (szName.indexOf(".xml") != -1) {
+    //     var sz22 = szName.match(/<MK_LISTBOX>(.+)<\/MK_LISTBOX>/i);
+    //     if (sz22) {
+    //       szName = sz22[1];
+    //     }
+    //     // FM 6/4/8
+    //     usedir = "&usedir=usedir(Sussina)";
+    //     // Fm 6/4/8
+    //     alert("your special " + szName + "  " + usedir);
+    //     xmlfilename = szName;
+    //   }
+    // }
   }
 
   if (/blank.xml/i.test(xmlfilename)) {
@@ -230,16 +230,16 @@ function editSchedule2() {
     return;
   }
 
-  if (usedir) {
-    // __ = "123.xml, usedir(Sussina)"
-    xmlfilename += ",usedir(Sussina)";
-  }
+  // if (usedir) {
+  //   // __ = "123.xml, usedir(Sussina)"
+  //   xmlfilename += ",usedir(Sussina)";
+  // }
 
   //m 5/11/8 var str = "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe.htm&name="+xmlfilename;
   var str =
-    "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe3a.htm&name=" +
-    xmlfilename +
-    student;
+    "/cgi-bin/cgi/ngfop/other2.pl?htmlname=editschframe3a.htm&name=" + xmlfilename 
+    //+
+    //student;
 
   top.frames[3].location = str;
   //parent.right.location=str;
