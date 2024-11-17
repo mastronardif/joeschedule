@@ -8,12 +8,13 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/style.css" />
-    <script language="javascript" src="/cgi/ngfop/js/jsdebugtop.js"></script>
+    <script language="javascript" src="/cgi/ngfop/js/jsdebugtop3a.js"></script>
     <!-- <script src="./js/jsdebug.js"></script> -->
   </head>
   <body class="top-body">
     <!-- <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/top.pl"> -->
       <form name="myform">
+      <!-- <input type="hidden" name="sessionID" value="tbd" /> -->
       <input type="hidden" name="leftsrc" value="cb" />
       <input type="hidden" name="leftvalue" value="blank.xml" />
       <input type="hidden" name="leftfname" value="blank.xml" />
@@ -54,7 +55,8 @@
                   <option value="1">Reward</option>
                   <option value="1">Left2rt</option>
                   <option value="3">Story</option>
-                  <option value="3">*Matching</option>
+                  <!-- <option value="3">*Matching</option> -->
+                  <option value="1">cbmedia</option>
                 </select>
                 <a
                   id="goLink"
@@ -90,7 +92,7 @@
                 for="tab21"
                 class="tab-label-with-icon"
 
-                onclick="javascript: parent.middle.location='/cgi-bin/cgi/ngfop/listmyimages.py'">
+                onclick="javascript: parent.middle.location='/cgi-bin/cgi/ngfop/listmymedia.py'">
 
                 <!-- <img src="/cgi/ngfop/ca1.png" alt="My Picture" class="tab-icon"> -->
                 <i class="fa-solid fa-folder-closed"></i>
@@ -119,7 +121,7 @@
               <label for="tab31"> Del </label>
             </li>
             <li class="tab34" onclick="javascript:top.location='/cgi-bin/cgi/ngfop/signin.py?action=signout'">
-              <label for="tab31"> Sign Out </label>
+              <label for="tab31"> Sign Out <i>{{ID}}</i> </label>
             </li>
 
             <!-- <li class="tab3">

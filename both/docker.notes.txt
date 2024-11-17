@@ -63,3 +63,6 @@ docker commit d54f16051fff aug1:latest
 
 docker run -d -p 80:80 my-new-image:latest
 docker run -d -p 80:80  aug1:latest
+
+Steps to Rebuild and Replace the Docker Containe
+docker stop <container_name_or_id>

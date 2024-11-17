@@ -1,0 +1,16 @@
+{
+  "data": {
+    "description": "both",
+    "row": [
+      {
+        "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/IMG_1523.jpg",
+        "name": "steps"
+      },
+      {
+        "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/MOV_4493.mov",
+        "poster": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/posters/MOV_4493.mov.jpg",
+        "name": "dance"
+      }
+    ]
+  }
+}

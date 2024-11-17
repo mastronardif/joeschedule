@@ -1,28 +1,30 @@
 {
-  "data": {
-    "description": "My Pics",
-    "row": [
-      {
-        "picture": "https://joeschedule.com/cgi/ngfop/././members/Bucci//mypics/image_67185665.JPG"
-      },
-      {
-        "picture": "https://joeschedule.com/cgi/ngfop/././members/Bucci//mypics/IMG_1519.jpg"
-      },
-      {
-        "picture": "https://joeschedule.com/cgi/ngfop/././members/Bucci//mypics/IMG_1521.jpg"
-      },
-      {
-        "picture": "https://joeschedule.com/cgi/ngfop/././members/Bucci//mypics/IMG_1523.jpg"
-      },
-      {
-        "picture": "https://joeschedule.com/cgi/ngfop/././members/Bucci//mypics/IMG_1557.PNG"
-      },
-      {
-        "picture": "https://joeschedule.com/cgi/ngfop/././members/Bucci//mypics/IMG_1558.JPEG"
-      },
-      {
-        "picture": "https://joeschedule.com/cgi/ngfop/././members/Bucci//mypics/IMG_1559.JPEG"
-      }
-    ]
-  }
+  "description": "My Pics and Videos",
+  "row": [
+    {
+      "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/image_67185665.JPG"
+    },
+    {
+      "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/IMG_1519.jpg"
+    },
+    {
+      "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/IMG_1521.jpg"
+    },
+    {
+      "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/IMG_1523.jpg"
+    },
+    {
+      "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/IMG_1557.PNG"
+    },
+    {
+      "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/IMG_1558.JPEG"
+    },
+    {
+      "picture": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/IMG_1559.JPEG"
+    },
+    {
+      "video": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/MOV_4493.mov",
+      "poster": "http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/posters/MOV_4493.mov"
+    }
+  ]
 }

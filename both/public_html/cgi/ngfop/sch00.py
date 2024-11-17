@@ -167,22 +167,30 @@ def SCH_getSession():
     session_id = cookie.get('sessionID')
     session_id = session_id.value if session_id else "NO ID"
 
+    session = {
+        'id': session_id,
+        'dir': f'./members/{session_id}/' if session_id != "NO ID" else './members/NO_ID/',
+        'dirCount': 3000 if session_id != "NO ID" else 0,
+        'dirSize': 100000000 if session_id != "NO ID" else 0
+    }
+
+
     # Define session details
-    session = {}
-    if session_id != "NO ID":
-        session = {
-            'id': session_id,  # Set the session ID
-            'dir': f'./members/{session_id}/',  # Create the directory path based on session ID
-            'dirCount': 3000,
-            'dirSize': 100000000,  # 100 Megabytes
-        }
-    else:
-        session = {
-            'id': session_id,  # If no session ID, set as "NO ID"
-            'dir': './members/NO_ID/',  # Fallback directory for no session ID
-            'dirCount': 0,
-            'dirSize': 0,  # No directory size for NO ID
-        }
+    # session = {}
+    # if session_id != "NO ID":
+    #     session = {
+    #         'id': session_id,  # Set the session ID
+    #         'dir': f'./members/{session_id}/',  # Create the directory path based on session ID
+    #         'dirCount': 3000,
+    #         'dirSize': 100000000,  # 100 Megabytes
+    #     }
+    # else:
+    #     session = {
+    #         'id': session_id,  # If no session ID, set as "NO ID"
+    #         'dir': './members/NO_ID/',  # Fallback directory for no session ID
+    #         'dirCount': 0,
+    #         'dirSize': 0,  # No directory size for NO ID
+    #     }
 
     # Log the session details
     logging.debug(f"\n\t\t session=  {session}")

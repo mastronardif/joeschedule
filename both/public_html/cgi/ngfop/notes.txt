@@ -1,0 +1,9 @@
+csh
+setenv REQUEST_METHOD POST
+setenv CONTENT_LENGTH `wc -c < input.txt`
+cat input.txt | python3 s.py
+
+
+Install ffmpeg on your server (if it's not already installed).
+Ensure that the Python script is executable and placed in the correct CGI-bin directory.
+Update permissions if necessary (chmod +x getposter.py).

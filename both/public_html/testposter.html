@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+    <meta http-equiv="Content-Language" content="en-us"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Ensures responsive scaling -->
+    <title>Video Gallery with Poster</title>
+    <style>
+        .media-item {
+            margin-bottom: 20px;
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Media Gallery</h1>
+
+<video controls poster="http://localhost:8080/cgi-bin/cgi/ngfop/getposter.py?media=/usr/local/apache2/public_html/cgi/ngfop/members/Bucci/mypics/MOV_4493.mov">
+    <source src="/path/to/video.mov" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<video controls="" poster="http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/poster_MOV_4493.mov.jpg">
+    <source src="http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/MOV_4493.mov" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <img src="http://localhost:8080/cgi/ngfop/./members/Bucci//mypics/poster_MOV_4493.mov.jpg" alt="Image">
+
+<img src="http://localhost:8080/cgi-bin/cgi/ngfop/getposter.py?media=/usr/local/apache2/public_html/cgi/ngfop/members/Bucci/mypics/MOV_4493.mov" alt="Image" />
+
+</body>
+</html>

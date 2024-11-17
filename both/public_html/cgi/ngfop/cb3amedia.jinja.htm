@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+    <meta http-equiv="Content-Language" content="en-us"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Ensures responsive scaling -->
+    <title>Media Board</title>
+    <link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css" />
+    <link rel="stylesheet" type="text/css" href="/cgi/ngfop/css/print.css" media="print" />
+
+    <style type="text/css" media="all">
+        a.ad1:link { color: #0000ff; font-size: 150%; }
+        a.ad1:visited { color: #894f7b; }
+        a.ad1:active { color: red; font-size: 80%; }
+        a.ad1:hover { text-decoration: overline; background-color: yellow; }
+        
+        p.footer1 { font-family: Verdana, sans-serif; color: black; font-size: 12px; }
+        
+        table {
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            font-size: 14px;
+            td {
+                font-size: 14px;
+            }
+            video {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+
+<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+    <input type="hidden" name="xmlfilename" value="{{FILENAME|escape}}"/>
+
+    <table border="1" cellpadding="3" width="100%">
+        <tr>
+            <td colspan="2" align="center">
+                <font size="4">{{DESC|escape}}</font>
+            </td>
+        </tr>
+
+        {%- for item in item_list.row %}
+        <tr>
+            <td width="5%"><input type="radio" name="C1" value="ON"></td>
+            <td align="left">
+                {% if item.picture %}
+                    {%- if item.picture.endswith(('.mp4', '.mov', '.avi', '.mkv', '.wmv')) %}
+                    <video controls id="video{{loop.index}}" width="160" height="120" preload="metadata"
+                        poster="{{item.poster}}">
+                        <source src="{{item.picture}}" type="video/mp4"/>
+                        Your browser does not support the video tag.
+                    </video>
+                    {%- else %}
+                    <img src="{{item.picture}}" alt="{{item.name}}" />
+                    {%- endif %}
+                {% endif %}
+                <br>
+                {{item.name}}
+            </td>
+        </tr>
+        {%- endfor %}
+    </table>
+</form>
+
+<p class="footer1">visit www.joeschedule.com</p>
+<button onclick="callCGIFunction()">txt me</button>
+
+</body>
+</html>

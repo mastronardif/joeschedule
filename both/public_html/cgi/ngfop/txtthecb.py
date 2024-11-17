@@ -1,5 +1,7 @@
 #!/usr/bin/python
 import logging
+# import zlib
+# import base64
 # import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -8,7 +10,38 @@ import sys
 from sch00 import get_form_data
 
 
+# def compress_url(url):
+#     # https://www.joeschedule.com/cgi-bin/cgi/ngfop
+#     # Compress the URL using zlib
+#     compressed_data = zlib.compress(url.encode('utf-8'))
+    
+#     # Encode the compressed data to base64 for safe transmission
+#     base64_encoded = base64.urlsafe_b64encode(compressed_data)
+    
+#     # Convert to a string
+#     return base64_encoded.decode('utf-8')
 
+# def decompress_url(compressed_url):
+#     # Decode from base64
+#     compressed_data = base64.urlsafe_b64decode(compressed_url)
+    
+#     # Decompress using zlib
+#     decompressed_data = zlib.decompress(compressed_data)
+    
+#     # Convert back to a string
+#     return decompressed_data.decode('utf-8')
+
+def expandShort(short_url):
+    # Replace 'R' back with the original base URL to expand it
+    base_url = "https://www.joeschedule.com/cgi-bin/cgi/ngfop"
+    expanded_url = short_url.replace("R", base_url)
+    return expanded_url
+
+def makeShort(long_url):
+    # Replace the base URL with 'R' for shortening
+    base_url = "https://www.joeschedule.com/cgi-bin/cgi/ngfop"
+    short_url = long_url.replace(base_url, "R")
+    return short_url
 
 def mailtheform(email_from, email_to, subject, params):
     # Construct the message body
@@ -21,15 +54,21 @@ def mailtheform(email_from, email_to, subject, params):
     logging.debug(f"xmlfilename= {xml_filename}")
     logging.debug(f"htmlname= {htmlname}")
     # sys.exit()
-
+    long_url = f'https://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.py?htmlname={htmlname}&sessionID=Bucci&name={xmlfilename}'
     html_body = ""
     # html_body = "<html><body>"
     # for key, values in params.items():
     #     values_str = ', '.join(values)
     #     html_body += f"<p><b>{key}:</b> {values_str}</p>"
     # html_body += f'<a href="https://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.py?htmlname=cb3a.jinja.htm&name=cb632514019.json">bobo</a>'
-    # html_body += "</body></html>"
-    html_body += f'https://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.py?htmlname={htmlname}&name={xmlfilename}'
+    # html_body += "</body></html>"    
+
+    # short_url = makeShort(long_url)
+    # html_body = f'https://www.joeschedule.com/cgi-bin/cgi/ngfop/s.py?s={short_url} \n'
+    html_body = f'https://www.joeschedule.com/cgi-bin/cgi/ngfop/s.py?s={xml_filename} \n'
+    # html_body += f'{long_url}'
+
+    # html_body += f'https://www.joeschedule.com/cgi-bin/cgi/ngfop/sch3b.py?htmlname={htmlname}&sessionID=Bucci&name={xmlfilename}'
     # msg_body = f"<data from paybycheck.pl/>\n"
     # for key, values in params.items():
     #     values_str = ', '.join(values)

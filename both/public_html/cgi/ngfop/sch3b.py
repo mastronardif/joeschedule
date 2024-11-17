@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-# import cgi
-# import urllib.parse
-# import os
 from urllib.parse import parse_qs
-import sys
 import re
 from sch00 import SCH_getSession
 from sch00 import get_fn
@@ -12,7 +8,6 @@ from sch00 import SCH_ValidateFilename
 from sch00 import set_session_cookie
 
 from sch00 import SCH_getUniqueFN
-# import xmltodict
 import json
 import xml.etree.ElementTree as E
 
@@ -103,6 +98,11 @@ def get_template(html_name):
     # print(json_data)
     # print(fname)
 
+def redirect(url):
+    print("Status: 302 Found")
+    print(f"Location: {url}")
+    print()
+
 if __name__ == "__main__":
     request_uri, request_body, result = get_form_data()
     
@@ -112,6 +112,17 @@ if __name__ == "__main__":
 
     if (sessionID):
         set_session_cookie(sessionID)
+        # Remove sessionID from URL for redirect
+        original_url = request_uri.split("?")[0]
+        query_params = result.get("url_params", {})
+        query_params.pop("sessionID", None)  # Remove sessionID from query params
+
+        # Rebuild the query string without sessionID
+        query_string = "&".join([f"{k}={v[0]}" for k, v in query_params.items()])
+
+        # Redirect to the original URL without sessionID
+        redirect(f"{original_url}?{query_string}")
+        exit()
 
     print("Content-type: text/html\n") 
 
