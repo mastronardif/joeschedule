@@ -62,8 +62,8 @@ def get_template(html_name):
     # names = data["form_data"]["R55"][0] #query.getlist('R55')
     names = postData["form_data"].get("R55", [])
 
-    print(f"<br/>name len= {(len(names))}<br/>")
-    print(f"pics len= {(len(pics))}<br/>")
+    # print(f"<br/>name len= {(len(names))}<br/>")
+    # print(f"pics len= {(len(pics))}<br/>")
 
     data = {
         "data": {

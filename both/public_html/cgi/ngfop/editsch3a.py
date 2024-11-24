@@ -65,8 +65,8 @@ def saveList(postData, query, root, fn, type):
     # names = data["form_data"]["R55"][0] #query.getlist('R55')
     names = postData["form_data"].get("R55", [])
 
-    print(f"<br/>name len= {(len(names))}<br/>")
-    print(f"pics len= {(len(pics))}<br/>")
+    # print(f"<br/>name len= {(len(names))}<br/>")
+    # print(f"pics len= {(len(pics))}<br/>")
 
     data = {
         "data": {
