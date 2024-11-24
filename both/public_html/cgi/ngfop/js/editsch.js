@@ -1,3 +1,4 @@
+// alert("editsch.js: help");
 function help() {
   alert("___.js: help");
 }
@@ -5,52 +6,6 @@ function test(ddddd) {
   alert(ddddd);
 }
 
-function OnInit()
-{
-  // alert('.js OnInit')
-  // debugger
-   var xmlfile = document.myform.name.value;
-   if (xmlfile.toLowerCase() == "Students.xml".toLowerCase())
-   {
-      //alert("editsch.htm::OnInit() xmlfile = " + xmlfile);
-      top.frames[0].location.reload()
-   }
-
-   var SWMs  = document.myform.SWMs.value;
-   //alert(":OnInit() SWMs["+SWMs+"]");
-
-   var szPic = SWMs.match(/(\((.+?)\))/);
-   
-   // Working On
-   var szMatches = SWMs.match(/w\((.+?)\)/);
-   //alert("szMatches["+szMatches+"]");
-   
-   if (szMatches && szMatches[0] && szMatches[1])
-   {
-      //alert("szMatches[1]["+szMatches[1]+"]");
-      atemp  = szMatches[1].split(/\s*,\s*/);
-      var obj = document.myform.CW1;
-      for (var iii = 0; iii < atemp.length; iii++)
-      {
-         obj[(atemp[iii])].checked = 1;
-      }   
-   }
-   
-   // Mastered
-   szMatches = SWMs.match(/m\((.+?)\)/);
-   //alert("szMatches["+szMatches+"]");
-    
-   if (szMatches && szMatches[0] && szMatches[1])
-   {
-      //alert("szMatches[1]["+szMatches[1]+"]");
-      atemp  = szMatches[1].split(/\s*,\s*/);
-      var obj = document.myform.CM2;
-      for (var iii = 0; iii < atemp.length; iii++)
-      {
-         obj[(atemp[iii])].checked = 1;
-      }   
-   }
-}
 
 function getList(obj)
 {
@@ -96,7 +51,7 @@ function getList(obj)
 
 function save2(name, desc, student)
 {
-  debugger
+//   debugger
    if (student)
    {
       var xmlfile = document.myform.name.value;
@@ -105,10 +60,7 @@ function save2(name, desc, student)
       var szList = getList(obj);
       
       var szData = student + " " + xmlfile;
-      document.myform.student.value = szData;
-      // Fm 6/8/9 var answer = confirm (":save2 "+ desc);
-      //desc
-      //if (!answer) return;
+      document.myform.student.value = szData;;
    }
    
 	var w_space = String.fromCharCode(32);
@@ -176,7 +128,7 @@ function cutRow()
 	{
 		if (myform.elements.R1[iii].checked)	
 		{
-			gT1   =document.myform.T1  [iii].value;
+			//gT1   =document.myform.T1  [iii].value;
 			gHR55 =document.myform.HR55[iii].value;
 			gI55src =document.myform.I55 [iii].src;
 			gI55w   =document.myform.I55 [iii].width;
@@ -185,9 +137,10 @@ function cutRow()
 
 			//
 			// clear row
-			document.myform.T1  [iii].value ="";
+			//document.myform.T1  [iii].value ="";
 			document.myform.HR55[iii].value ="";
 			document.myform.I55 [iii].src   ="";
+
 			document.myform.I55 [iii].width ="";
 			document.myform.I55 [iii].height="";
 			document.myform.R55 [iii].value ="";
@@ -200,28 +153,28 @@ function cutRow()
 	}
 }
 
+
 function pasteRow()
 {
 	for (var iii = 0; iii < myform.elements.R1.length; iii++)
-	{
-		if (myform.elements.R1[iii].checked)	
 		{
-			document.myform.T1  [iii].value = gT1;
-			document.myform.HR55[iii].value = gHR55;
-			document.myform.I55 [iii].src   = gI55src;
-			document.myform.I55 [iii].width = gI55w;
-			document.myform.I55 [iii].height= gI55h;
-			document.myform.R55 [iii].value = gR55;
-
-			break;
+			if (myform.elements.R1[iii].checked)	
+			{
+				document.myform.HR55[iii].value = gHR55;
+				document.myform.I55 [iii].src   = gI55src;
+				document.myform.I55 [iii].width = gI55w;
+				document.myform.I55 [iii].height= gI55h;
+				document.myform.R55 [iii].value = gR55;
+	
+				break;
+			}
 		}
-	}
 }
 
 function insertRow()
 {
 	var iRow = 0;
-	mylistT1   = new Array();
+	// mylistT1   = new Array();
 	mylistR1   = new Array();
 	mylistHR55 = new Array();
 	mylistI55  = new Array();
@@ -229,7 +182,6 @@ function insertRow()
 
    for (var iii = 0; iii < myform.elements.R1.length; iii++)
    {
-	   mylistT1.  push(document.myform.T1  [iii].value);
 	   mylistR1.  push(document.myform.R1  [iii].value);
 	   mylistHR55.push(document.myform.HR55[iii].value);
 	   mylistI55. push(document.myform.I55 [iii].src);
@@ -243,8 +195,6 @@ function insertRow()
 
 	if ((iRow +1)< myform.elements.R1.length)
 	{
-		// move radio check
-		document.myform.T1  [iRow].value = "";
 		document.myform.R1  [iRow].value = "";
 		document.myform.HR55[iRow].value = "";
 		document.myform.I55 [iRow].src   = "";
@@ -258,7 +208,6 @@ function insertRow()
 			// pop
 			if ((iii +1)< myform.elements.R1.length)
 			{
-				document.myform.T1  [(iii+1)].value = mylistT1  [iii%myform.elements.R1.length];
 				document.myform.R1  [(iii+1)].value = mylistR1  [iii%myform.elements.R1.length];
 				document.myform.HR55[(iii+1)].value = mylistHR55[iii%myform.elements.R1.length];
 				document.myform.I55 [(iii+1)].src   = mylistI55 [iii%myform.elements.R1.length];
@@ -267,7 +216,6 @@ function insertRow()
 		}
 	}
 
-	// debugger
 	initializeRows();
 }
 
@@ -333,7 +281,6 @@ function initializeRows()
    
    var iLen =document.getElementsByName("R1").length;
       
-	//for (var iii = 0; iii < myform.elements.R1.length; iii++)
    for (var iii = 0; iii < iLen; iii++)
 	{
 		szhRow = document.myform.HR55[iii].value;
@@ -349,13 +296,3 @@ function initializeRows()
 		}
 	}
 }
-
-// initializeRows();
-// if (parent.SetHeadValue)
-// {
-//     <description>
-// 		var desc = "<DESCRIPTION>";
-//     </description>
-// 	parent.SetHeadValue("d0", desc);
-// }
-

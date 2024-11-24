@@ -5,7 +5,7 @@
 <title>Edit Schedule</title>
 <link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.css"/>
 </head>
-<!-- <script language="javascript" src="/cgi/ngfop/js/editsch.js"></script> -->
+<script language="javascript" src="/cgi/ngfop/js/editsch.js"></script>
 <script type="text/javascript">
 var colorbgnd   = 'black';
 var colorforgnd = '#F5F3E4'; //'#00FFFF';
@@ -13,53 +13,11 @@ var colorforgnd = '#F5F3E4'; //'#00FFFF';
 function OnInit()
 {
 	// alert('OnInit');
-	//debugger
-
+	// debugger
    var xmlfile = document.myform.name.value;
-   return;
-// //    if (xmlfile.toLowerCase() == "Students.xml".toLowerCase())
-// //    {
-// //       //alert("editsch.htm::OnInit() xmlfile = " + xmlfile);
-// //       top.frames[0].location.reload()
-// //    }
-
-//    var SWMs  = document.myform.SWMs.value;
-//    //alert(":OnInit() SWMs["+SWMs+"]");
-
-//    var szPic = SWMs.match(/(\((.+?)\))/);
-   
-//    // Working On
-//    var szMatches = SWMs.match(/w\((.+?)\)/);
-//    //alert("szMatches["+szMatches+"]");
-   
-//    if (szMatches && szMatches[0] && szMatches[1])
-//    {
-//       //alert("szMatches[1]["+szMatches[1]+"]");
-//       atemp  = szMatches[1].split(/\s*,\s*/);
-//       var obj = document.myform.CW1;
-//       for (var iii = 0; iii < atemp.length; iii++)
-//       {
-//          obj[(atemp[iii])].checked = 1;
-//       }   
-//    }
-   
-//    // Mastered
-//    szMatches = SWMs.match(/m\((.+?)\)/);
-//    //alert("szMatches["+szMatches+"]");
-    
-//    if (szMatches && szMatches[0] && szMatches[1])
-//    {
-//       //alert("szMatches[1]["+szMatches[1]+"]");
-//       atemp  = szMatches[1].split(/\s*,\s*/);
-//       var obj = document.myform.CM2;
-//       for (var iii = 0; iii < atemp.length; iii++)
-//       {
-//          obj[(atemp[iii])].checked = 1;
-//       }   
-//    }
 }
 
-function getList(obj)
+function RemoveMe__getList(obj)
 {
    var str = "";
       
@@ -101,23 +59,8 @@ function getList(obj)
    return str2;
 }
 
-function save2(name, desc, student)
-{
-//   debugger
-//    if (student)
-//    {
-//       var xmlfile = document.myform.name.value;
-      
-//       var obj = document.myform.elements.CW1;
-//       var szList = getList(obj);
-      
-//       var szData = student + " " + xmlfile;
-//       document.myform.student.value = szData;
-//       // Fm 6/8/9 var answer = confirm (":save2 "+ desc);
-//       //desc
-//       //if (!answer) return;
-//    }
-   
+function Removeme__save2(name, desc, student)
+{   
 	var w_space = String.fromCharCode(32);
 	var bValidName=0;
 
@@ -150,144 +93,15 @@ function save2(name, desc, student)
 	document.myform.submit();
 }
 
-
-// function decorateRow(str)
-// {
-// 	for (var iii = 0; iii < myform.elements.R1.length; iii++)
-// 	{
-// 		if (myform.elements.R1[iii].checked)	
-// 		{
-// 			// toggle
-// 			strTime = myform.elements.T1[iii].value;
-// 			if (/Reward/i.test(strTime))
-// 				myform.elements.T1[iii].value = "";
-// 			else
-// 				myform.elements.T1[iii].value = "Reward";
-
-// 			break;
-// 		}
-// 	}
-// }
-
-
-// the cut vars
-//var	gT1   = "";
 var	gHR55 = "";
 var	gI55src  = "";
 var	gI55w = "";
 var	gI55h = "";
 var	gR55  = "";
-
-function cutRow()
-{
-	for (var iii = 0; iii < myform.elements.R1.length; iii++)
-	{
-		if (myform.elements.R1[iii].checked)	
-		{
-			//gT1   =document.myform.T1  [iii].value;
-			gHR55 =document.myform.HR55[iii].value;
-			gI55src =document.myform.I55 [iii].src;
-			gI55w   =document.myform.I55 [iii].width;
-			gI55h   =document.myform.I55 [iii].height;
-			gR55  =document.myform.R55 [iii].value;
-
-			//
-			// clear row
-			//document.myform.T1  [iii].value ="";
-			document.myform.HR55[iii].value ="";
-			document.myform.I55 [iii].src   ="";
-
-			document.myform.I55 [iii].width ="";
-			document.myform.I55 [iii].height="";
-			document.myform.R55 [iii].value ="";
-
-			//pasteRow();
-			//
-
-			break;
-		}
-	}
-}
-
-function pasteRow()
-{
-	for (var iii = 0; iii < myform.elements.R1.length; iii++)
-	{
-		if (myform.elements.R1[iii].checked)	
-		{
-			// document.myform.T1  [iii].value = gT1;
-			document.myform.HR55[iii].value = gHR55;
-			document.myform.I55 [iii].src   = gI55src;
-			document.myform.I55 [iii].width = gI55w;
-			document.myform.I55 [iii].height= gI55h;
-			document.myform.R55 [iii].value = gR55;
-
-			break;
-		}
-	}
-}
-
-function insertRow()
-{
-	// alert('editsch.htm scrip, insertRow() line 227')
-	var iRow = 0;
-	// mylistT1   = new Array();
-	mylistR1   = new Array();
-	mylistHR55 = new Array();
-	mylistI55  = new Array();
-	mylistR55  = new Array();
-
-   for (var iii = 0; iii < myform.elements.R1.length; iii++)
-   {
-	//    mylistT1.  push(document.myform.T1  [iii].value);
-	   mylistR1.  push(document.myform.R1  [iii].value);
-	   mylistHR55.push(document.myform.HR55[iii].value);
-	   mylistI55. push(document.myform.I55 [iii].src);
-	   mylistR55. push(document.myform.R55 [iii].value);
-
-	   if (myform.elements.R1[iii].checked)	
-	   {
-		   iRow  = iii;
-   	}
-   }
-
-	if ((iRow +1)< myform.elements.R1.length)
-	{
-		// move radio check
-		// document.myform.T1  [iRow].value = "";
-		document.myform.R1  [iRow].value = "";
-		document.myform.HR55[iRow].value = "";
-		document.myform.I55 [iRow].src   = "";
-		document.myform.I55 [iRow].width  = 0;
-		document.myform.I55 [iRow].height  = 0;
-		document.myform.R55 [iRow].value = "";
-
-		// shift rows down
-		for (var iii = iRow; iii < myform.elements.R1.length; iii++)
-		{
-			// pop
-			if ((iii +1)< myform.elements.R1.length)
-			{
-				// document.myform.T1  [(iii+1)].value = mylistT1  [iii%myform.elements.R1.length];
-				document.myform.R1  [(iii+1)].value = mylistR1  [iii%myform.elements.R1.length];
-				document.myform.HR55[(iii+1)].value = mylistHR55[iii%myform.elements.R1.length];
-				document.myform.I55 [(iii+1)].src   = mylistI55 [iii%myform.elements.R1.length];
-				document.myform.R55 [(iii+1)].value = mylistR55 [iii%myform.elements.R1.length];
-			}
-		}
-	}
-
-	//debugger
-	initializeRows();
-}
 </script>
 
-<!--<body Bgcolor="#99CCFF">
-<body topmargin="0" bgcolor='rgb(249, 201, 92)';>
--->
 
-<body onLoad="OnInit();" topmargin="0">
-<!--<form name="myform" method="post" action="/cgi-bin/cgi/ngfop/editsch3a.py?action=save"> -->
+<body onLoad="OnInit();" topmargin="0" leftmargin="0">
 <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/editsch3a.py?action=save&htmlname=editsch3a.htm">
 
 	<!-- hidden shits -->
@@ -296,10 +110,7 @@ function insertRow()
 <!-- </filename> -->
   <input type="hidden" name=type size = "10" value="">
   <input type="hidden" name=d0 size = "30" value="ZZZZZZZZZZZZZZZ">
-  <input type="hidden" name=student size = "30" value="">   
-<!-- <swms>
-  <input type="hidden" name="SWMs" value="<SWMS>"/>
-</swms>      -->
+  <input type="hidden" name=student size = "30" value="">  
 
 <!-- zzzzzzzzzzzzzzzzzz
 {{FILENAME|escape}} -->
@@ -316,9 +127,7 @@ function insertRow()
             </td>
 
             <td width="64%">
-				<!-- <input type="hidden" NAME="HR55" value=""> -->
 			<input type="hidden" NAME="HR55" value="{{item.picture}}">
-			<!-- <img NAME="I55" border="0" src="" width="12px" height="40px">   -->
 			<img NAME="I55" border="0" src="{{item.picture}}" width="12px" height="40px">         
 			<input type="text" name="R55" size = "24" value = "{{ item.name }}">
 			</td>
@@ -336,9 +145,7 @@ function insertRow()
 	   </td>
 
 	   <td width="64%">
-		   <!-- <input type="hidden" NAME="HR55" value=""> -->
 	   <input type="hidden" NAME="HR55" value="">
-	   <!-- <img NAME="I55" border="0" src="" width="12px" height="40px">   -->
 	   <img NAME="I55" border="0" src="" width="12px" height="40px">         
 	   <input type="text" name="R55" size = "24" value = "">
 	   </td>
@@ -396,33 +203,6 @@ function test(src)
 }	// end
 
 
-
-function initializeRows()
-{
-	//alert('line 448. initializeRows()')
-	gIwidth  = 40;//document.myform.I55[0].width;
-	gIheight = 40;//document.myform.I55[0].height;
-
-	var szhRow;
-   
-   var iLen =document.getElementsByName("R1").length;
-    // debugger  
-	//for (var iii = 0; iii < myform.elements.R1.length; iii++)
-   for (var iii = 0; iii < iLen; iii++)
-	{
-		szhRow = document.myform.HR55[iii].value;
-		if (szhRow == "")
-		{
-			document.myform.I55[iii].width  = 0;
-			document.myform.I55[iii].height = 0;
-		}
-		else
-		{
-			document.myform.I55[iii].width  = gIwidth;
-			document.myform.I55[iii].height = gIheight;
-		}
-	}
-}
 
 initializeRows();
 if (parent.SetHeadValue)

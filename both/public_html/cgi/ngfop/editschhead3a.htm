@@ -2,11 +2,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta http-equiv="Content-Language" content="en-us">
+</style>
       <style>
          html, body {margin: 0px;}
-      </style>
+		</style>  
 <title>editschhead</title>
+<script language="javascript" src="/cgi/ngfop/js/editsch.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 </head>
+
 <script>
 function nothing()
 {
@@ -46,10 +51,6 @@ function decorateRow(strdec)
 	parent.frames[1].decorateRow(strdec);
 }
 
-// function test(strdec)
-// {
-// 	alert('zzzzzzzzzzzzzzzzzz test')
-// }
 
 </script>
 <body topmargin="0" leftmargin="0" bgcolor=#3DB3DD>
@@ -59,43 +60,44 @@ function decorateRow(strdec)
     <table height="100%" width="100%" border="1">
 <form name="myform" method="post" action="javascript:nothing('');">
 	<tr>
-	<!--
-		<a class="menuitem" onclick = "save2('cb');"title="Save as a Choice board" href="#dummy">Sc</a>
-        <a class="menuitem" onclick = "cutRow();" title="Cut a row"   href="#dummy">C</a>
-		<a class="menuitem" onclick = "pasteRow();"title="Paste a row" href="#dummy">P</a>
-		<a class="menuitem" onclick = "save2('sch');"title="Save as a Schedule board" href="#dummy">Ss</a>
-	-->
 	<td align="center">
-		<a class="menuitem" title="Save As Choice Board" href="javascript:save2('cb');"><IMG SRC="/cgi/ngfop/tick6.gif" alt="Save as Choice Board" width="23" height="20" border="0"	style="vertical-align: middle"></a>
+		<a class="menuitem" title="Save As Choice Board" href="javascript:save2('cb');">
+			<i class="fas fa-save"></i>
+			<!-- <IMG SRC="/cgi/ngfop/tick6.gif" alt="Save" width="23" height="20" border="0"	style="vertical-align: middle"> -->
+			</a>
+	</td>
+
+	<td align="center">		
+		<a class="menuitem" title="Cut row" href="javascript:cutRow();">
+			<i class="fa-solid fa-scissors" aria-hidden="true"></i>
+			<!-- <IMG SRC="/cgi/ngfop/cut.gif" alt="Cut row" width="23" height="20" border="0"	style="vertical-align: middle"> -->
+			</a>
 	</td>
 
 	<td align="center">
-		<a class="menuitem" title="Cut row" href="javascript:cutRow();"><IMG SRC="/cgi/ngfop/cut.gif" alt="Cut row" width="23" height="20" border="0"	style="vertical-align: middle"></a>
+		<a class="menuitem" title="insert row" href="javascript:insertRow();">
+			<i class="fa-solid fa-plus"></i>
+			<!-- <IMG SRC="/cgi/ngfop/darrow1.gif" alt="Insert row" width="23" height="20" border="0"	style="vertical-align: middle"> -->
+			</a>
 	</td>
 
 	<td align="center">
-		<a class="menuitem" title="insert row" href="javascript:insertRow();"><IMG SRC="/cgi/ngfop/darrow1.gif" alt="Insert row" width="23" height="20" border="0"	style="vertical-align: middle"></a>
+		<a class="menuitem" title="Paste row" href="javascript:pasteRow();">
+			<i class="fa-solid fa-paste" aria-hidden="true"></i>
+			<!-- <IMG SRC="/cgi/ngfop/paste.gif" alt="Paste row" width="23" height="20" border="0"	style="vertical-align: middle"> -->
+			</a>
 	</td>
 
-<!--
-	<td align="center">
-		<a class="menuitem" title="Reward" href="javascript:decorateRow('reward');"><IMG SRC="/cgi/ngfop/pin8.gif" alt="Reward" width="23" height="20" border="0"	style="vertical-align: middle"></a>
-	</td align="center">
--->
-	<td align="center">
-		<a class="menuitem" title="Paste row" href="javascript:pasteRow();"><IMG SRC="/cgi/ngfop/paste.gif" alt="Paste row" width="23" height="20" border="0"	style="vertical-align: middle"></a>
-	</td>
-
-	<td align="center">
+	<!-- <td align="center">
 		<a class="menuitem"  title="Save As Schedule" href="javascript:save2('sch');"><IMG SRC="/cgi/ngfop/tick12.gif" alt="Save as Schedule" width="23" height="20" border="0"	style="vertical-align: middle"></a>
-	</td>
+	</td> -->
 
 	</tr>
 	<tr>
-  <td align="center">
+  <!-- <td align="center">
      w:m rrr
-  </td>
-	<td colspan="5" align="center">
+  </td> -->
+	<td colspan="4" align="center">
 	name:
     <description>
 		<input type text name=d0 size = 20 value="{{item_list.description}}">
