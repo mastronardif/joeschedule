@@ -1,116 +1,156 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-    <meta http-equiv="Content-Language" content="en-us" />
-    <title>Schedules</title>
-    <!-- <link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.cssX" /> -->
-  
-    <script type="text/javascript">
-      function goXYZ(fn) {
-        //alert(fn); return;
-        var str = "/cgi-bin/cgi/ngfop/lwpyahoo.py?jsquery=" + fn;
-        // FM 6/18/8 parent.middle.location=str;
-        top.frames[2].location = str;
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+  <meta http-equiv="Content-Language" content="en-us" />
+  <title>Schedules</title>
+  <!-- <link rel="stylesheet" type="text/css" href="/cgi/ngfop/sch01.cssX" /> -->
+
+  <script type="text/javascript">
+    function toggleVisibility(elementId) {
+      const folderContent = document.getElementById(elementId);
+      const toggleButton = document.getElementById(`${elementId}-toggle`);
+
+      if (folderContent.classList.contains("hidden")) {
+        folderContent.classList.remove("hidden");
+        folderContent.classList.add("visible");
+        toggleButton.textContent = "-";
+      } else {
+        folderContent.classList.remove("visible");
+        folderContent.classList.add("hidden");
+        toggleButton.textContent = "+";
+      }
+    }
+
+    function goXYZ(fn) {
+      //alert(fn); return;
+      var str = "/cgi-bin/cgi/ngfop/lwpyahoo.py?jsquery=" + fn;
+      // FM 6/18/8 parent.middle.location=str;
+      top.frames[2].location = str;
+    }
+
+    function notifytop(fn, desc) {
+      // Cheesy solution for the frames for iframe 
+      // FM 6/18/8 if (top.frames.length < 4)
+      if (top.frames.length < 3) {
+        top.setLeftValue("", fn, desc);
+      }
+      else {
+        top.frames[0].setLeftValue("", fn, desc);
       }
 
-        function notifytop(fn, desc) {
-          // Cheesy solution for the frames for iframe 
-          // FM 6/18/8 if (top.frames.length < 4)
-          if (top.frames.length < 3) {
-            top.setLeftValue("", fn, desc);
-          }
-          else {
-            top.frames[0].setLeftValue("", fn, desc);
-          }
+      // works in joebinder top.setLeftValue("", fn);
+    }
+  </script>
 
-          // works in joebinder top.setLeftValue("", fn);
-        }
-    </script>
+  <style>
+    /* Tighter vertical spacing and alignment */
+    ul {
+      padding-left: 30px;
+      /* Adjusts the indent for list items */
+      list-style-type: disc;
+    }
 
-    <style>
-      /* Tighter vertical spacing and alignment */
-      ul {
-        padding-left: 30px; /* Adjusts the indent for list items */
-        list-style-type: disc;
-      }
+    li {
+      line-height: 1.2;
+      /* Reduce vertical space between list items */
+      margin-bottom: 5px;
+      /* Reduce the space between items */
+    }
 
-      li {
-        line-height: 1.2; /* Reduce vertical space between list items */
-        margin-bottom: 5px; /* Reduce the space between items */
-      }
+    fieldset {
+      border: 1px solid #ccc;
+      padding: 5px;
+      /* Reduced padding */
+      margin-left: 10x;
+      /* Align with list bullets */
+      width: auto;
+      /* Adjust width to fit content */
+      line-height: 1.2;
+      /* Same line height as list items */
+    }
 
-      fieldset {
-        border: 1px solid #ccc;
-        padding: 5px; /* Reduced padding */
-        margin-left: 30px; /* Align with list bullets */
-        width: auto; /* Adjust width to fit content */
-        line-height: 1.2; /* Same line height as list items */
-      }
+    legend {
+      font-weight: bold;
+      padding-left: 10px;
+    }
 
-      legend {
-        font-weight: bold;
-        padding-left: 10px;
-      }
+    input[type="text"] {
+      margin-bottom: 5px;
+      /* Less space below the input field */
+    }
 
-      input[type="text"] {
-        margin-bottom: 5px; /* Less space below the input field */
-      }
+    .fieldset-content {
+      padding: 5px;
+      /* Reduced padding inside the fieldset */
+      margin-bottom: 5px;
+      /* Tighter margin below the content */
+    }
 
-      .fieldset-content {
-        padding: 5px; /* Reduced padding inside the fieldset */
-        margin-bottom: 5px; /* Tighter margin below the content */
-      }
+    .fieldset-content input[type="button"] {
+      margin-top: 5px;
+      /* Tighter space above the button */
+    }
 
-      .fieldset-content input[type="button"] {
-        margin-top: 5px; /* Tighter space above the button */
-      }
+    .fieldset-content i {
+      font-size: 0.8em;
+    }
+  </style>
+  <style>
+    .folder {
+      cursor: pointer;
+      font-weight: bold;
+      margin: 5px 0;
+      font-size: 24px; /* Make the "+" sign bigger */
+      display: inline-block;
+      width: 24px; /* Ensure proper alignment */
+      text-align: center;
+    }
 
-      .fieldset-content i {
-        font-size: 0.8em;
-      }
-    </style>
-  </head>
+    .hidden {
+      display: none;
+    }
 
-  <body class="toolbar" topmargin="0" leftmargin="0">
-    <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
-      <i>Welcome {{ID}}</i><br />
-      <font size="4" color="#FF0000"
-        ><b><i>Programs</i></b></font
-      >
-      <br />
-      <ul>
+    .visible {
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body class="toolbar" topmargin="0" leftmargin="0">
+  <form name="myform" method="post" action="/cgi-bin/cgi/ngfop/each.cgi">
+    <i>Welcome {{ID}}</i><br />
+
+    <fieldset>
+      <legend>Search Options</legend>
+      <div class="fieldset-content">
+        Search For:<br />
+        <input name="id" type="text" size="25" />
+        <br />
+        <input type="button" value="Web! Search" onclick="goXYZ(document.myform.id.value);" />
+        <br /><br />
+        <i>Web images may be subject to copyright.</i>
+      </div>
+    </fieldset>
+
+    <div>
+      <span id="folder1-toggle" class="folder" onclick="toggleVisibility('folder1')">-</span>
+      <b><i>Programs</i></b>
+      <ul id="folder1" class="visible">
         {%- for item in item_list %}
         <li>
-          <input
-            type="radio"
-            name="C1"
-            onclick="notifytop('{{item.fn}}', 'the description');"
-          />
-          <a
-            href="/cgi-bin/cgi/ngfop/sch3b.py?htmlname=cb3a.jinja.htm&name={{item.fn}}"
-            target="middle"
-            >{{item.name}}</a
-          >
+          <input type="radio" name="C1" onclick="notifytop('{{item.fn}}', 'the description');" />
+          <a href="/cgi-bin/cgi/ngfop/sch3b.py?htmlname=cb3a.jinja.htm&name={{item.fn}}"
+            target="middle">{{item.name}}</a>
         </li>
         {%- endfor %}
       </ul>
+    </div>
 
-      <fieldset>
-        <legend>Search Options</legend>
-        <div class="fieldset-content">
-          Search For:<br />
-          <input name="id" type="text" size="25" />
-          <br />
-          <input
-            type="button"
-            value="Web! Search"
-            onclick="goXYZ(document.myform.id.value);"
-          />
-          <br /><br />
-          <i>Web images may be subject to copyright.</i>
-        </div>
-      </fieldset>
-    </form>
-  </body>
+  </form>
+</body>
+
 </html>

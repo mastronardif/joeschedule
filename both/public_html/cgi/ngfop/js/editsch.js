@@ -52,16 +52,16 @@ function getList(obj)
 function save2(name, desc, student)
 {
 //   debugger
-   if (student)
-   {
-      var xmlfile = document.myform.name.value;
+//    if (student)
+//    {
+//       var xmlfile = document.myform.name.value;
       
-      var obj = document.myform.elements.CW1;
-      var szList = getList(obj);
+//       var obj = document.myform.elements.CW1;
+//       var szList = getList(obj);
       
-      var szData = student + " " + xmlfile;
-      document.myform.student.value = szData;;
-   }
+//       var szData = student + " " + xmlfile;
+//       document.myform.student.value = szData;;
+//    }
    
 	var w_space = String.fromCharCode(32);
 	var bValidName=0;
