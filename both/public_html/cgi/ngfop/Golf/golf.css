@@ -1,0 +1,211 @@
+
+/* General reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* Full-page background image */
+body {
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_O9U__iTyjYEUwNreEp2PyFXi6ef-6OpFSC9OWlbGp5J_MOdR4970lsq-YKRlVNpecsU&usqp=CAU') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Main content */
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Buttons styling */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  background-color: rgba(0, 128, 0, 0.8);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+button:hover {
+  background-color: rgba(0, 150, 0, 0.9);
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  text-align: center;padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 0.8rem;
+}
+
+.signup {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+  }
+  
+  .signup h2 {
+    margin-bottom: 1.5rem;
+    color: rgba(0, 150, 0, 0.9); /* Accent color */
+  }
+  
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .form-group label {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  .signup-btn {
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: rgba(0, 150, 0, 0.9);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .signup-btn:hover {
+    background-color: rgba(0, 150, 0, 0.9);
+  }
+  
+  .login-prompt {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .login-prompt a {
+    color: #2f80ed;
+    text-decoration: none;
+  }
+
+  /* Profile Section */
+.profile {
+    background-color: rgba(0, 0, 0, 0.8); /* Transparent black background */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: white;
+  }
+  
+  .profile h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group label {
+    text-align: left;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 20px); /* Account for padding (left + right) */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+  
+  .profile-btn {
+    background-color: rgba(0, 128, 0, 0.8);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+  }
+  
+  .profile-btn:hover {
+    background-color: rgba(0, 150, 0, 0.9);
+    transform: scale(1.1);
+  }
+  
+  .profile-btn:active {
+    transform: scale(1.05);
+  }
+  
+  
+  .match-card {
+    background: rgb(3, 36, 15);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+  }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Hoe</title>
+  <link rel="stylesheet" href=".\golf.css">
+</head>
+<script language="javascript" src="./golf.js"></script>
+
+<body>
+
+  <header id="golfheader">
+  Golf Hoe
+</header>
+
+<main>
+
+  <section class="signup">
+    <h2>Create Your Account</h2>
+    <form action="./indexgv22.html" method="POST" class="signup-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone vtext</label>
+        <input type="phone" id="phone" name="phone" placeholder="i.e. 9085551212@vtext.com" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter a password" required />
+      </div>
+      <div class="form-group">
+        <label for="play-frequency">Play Frequency</label>
+        <select id="play-frequency" name="play_frequency" required>
+          <option value="">-- Select --</option>
+          <option value="weekly">Weekly</option>
+          <option value="biweekly">Bi-weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="rarely">Rarely</option>
+        </select>
+      </div>
+      <button type="submit" class="signup-btn">Sign Up</button>
+    </form>
+    <p class="login-prompt">
+      Already a member? <a href="./indexgv22.html">Log In</a>
+    </p>
+  </section>
+  
+</main>
+
+<footer>
+  &copy; Golfy Jones Inc. 2025
+</footer>
+
+</body>
+</html>

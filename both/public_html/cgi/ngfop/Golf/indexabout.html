@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Hoe</title>
+  <style>
+    /* General reset */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    /* Full-page background image */
+    body {
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_O9U__iTyjYEUwNreEp2PyFXi6ef-6OpFSC9OWlbGp5J_MOdR4970lsq-YKRlVNpecsU&usqp=CAU') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: white;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    /* Main content */
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Buttons styling */
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    button {
+      background-color: rgba(0, 128, 0, 0.8);
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: rgba(0, 150, 0, 0.9);
+      transform: scale(1.1);
+    }
+
+    button:active {
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<script language="javascript" src="./golf.js"></script>
+
+<body>
+
+  <header header id="golfheader">
+    Golf Hoe
+  </header>
+
+  <main>
+    <section id="about"
+      style="text-align: center; padding: 20px; line-height: 1.6; background-color: rgba(255, 255, 255, 0.8); margin: 10px; border-radius: 8px;">
+      <h2 style="color: #006400; font-family: 'Arial', sans-serif;">About Golf Hoe</h2>
+      <p style="color: #333333; font-size: 18px; font-family: 'Georgia', serif; margin: 15px 10px;">
+        At <strong>Golf Hoe</strong>, we're passionate about bringing the joy and precision of golf to enthusiasts
+        everywhere.
+        Whether you're a seasoned pro or just teeing off for the first time, we’re here to enhance your experience on
+        and off the green.
+      </p>
+      <p style="color: #333333; font-size: 18px; font-family: 'Georgia', serif; margin: 15px 10px;">
+        Our mission is to provide high-quality matches, tips, and tools to help you excel in your game and celebrate
+        your love for golf.
+        From the swing to the last putt, Golf Hoe is your trusted companion on the course.
+      </p>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJEp2aycuC-G7hJnU8hiE7ODrL4TSBPvjcNw&s"
+        alt="Beautiful Golf Course"
+        style="max-width: 80%; max-height: 60px; height: auto; border-radius: 8px; margin-top: 20px;" loading="lazy">
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; Golfy Jones Inc. 2025
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Match</title>
+
+  <link rel="stylesheet" href=".\golf.css">
+</head>
+<script language="javascript" src="./golf.js"></script>
+<body>
+    <header id="golfheader">
+        Golf Hoe
+      </header>
+      <main>
+        <section >
+  <div class="match-card" id="match-card">
+    <h2>Golf Match</h2>
+    <div class="match-info">
+      <p><strong>Nickname:</strong> AceHunter</p>
+      <p><strong>Handicap:</strong> 12</p>
+      <p><strong>Home Course:</strong> Sunny Pines Golf Resort</p>
+      <p><strong>Favorite Club:</strong> 9 Iron</p>
+      <p><strong>Play Frequency:</strong> Weekly</p>
+      <p><strong>Skill Level:</strong> Intermediate</p>
+    </div>
+    <div class="action-buttons">
+      <button class="swipe-left" onclick="swipeLeft()">Swipe Left (No)</button>
+      <button class="swipe-right" onclick="swipeRight()">Swipe Right (Accept)</button>
+    </div>
+  </div>
+</section>
+  
+</main>
+  <footer>
+    &copy; Golfy Jones Inc. 2025
+  </footer>
+
+  <script>
+    const matches = [
+      {
+        nickname: "AceHunter",
+        handicap: 12,
+        homeCourse: "Sunny Pines Golf Resort",
+        favoriteClub: "9 Iron",
+        playFrequency: "Weekly",
+        skillLevel: "Intermediate"
+      },
+      {
+        nickname: "EagleMaster",
+        handicap: 18,
+        homeCourse: "Green Valley Golf Club",
+        favoriteClub: "Driver",
+        playFrequency: "Bi-weekly",
+        skillLevel: "Beginner"
+      },
+    ];
+
+    let currentMatchIndex = 0;
+
+    function updateCard() {
+      const card = document.getElementById('match-card');
+      const match = matches[currentMatchIndex];
+      card.innerHTML = `
+        <h2>Golf Match</h2>
+        <div class="match-info">
+          <p><strong>Nickname:</strong> ${match.nickname}</p>
+          <p><strong>Handicap:</strong> ${match.handicap}</p>
+          <p><strong>Home Course:</strong> ${match.homeCourse}</p>
+          <p><strong>Favorite Club:</strong> ${match.favoriteClub}</p>
+          <p><strong>Play Frequency:</strong> ${match.playFrequency}</p>
+          <p><strong>Skill Level:</strong> ${match.skillLevel}</p>
+        </div>
+        <div class="action-buttons">
+          <button class="swipe-left" onclick="swipeLeft()">Swipe Left (No)</button>
+          <button class="swipe-right" onclick="swipeRight()">Swipe Right (Accept)</button>
+        </div>
+      `;
+    }
+
+    function swipeLeft() {
+      if (currentMatchIndex < matches.length - 1) {
+        currentMatchIndex++;
+        updateCard();
+      } else {
+        alert("No more matches!");
+      }
+    }
+
+    function swipeRight() {
+      //alert(`You accepted ${matches[currentMatchIndex].nickname}!`);
+      if (currentMatchIndex < matches.length - 1) {
+        currentMatchIndex++;
+        updateCard();
+      } else {
+        alert("No more matches!");
+      }
+    }
+  </script>
+</body>
+</html>

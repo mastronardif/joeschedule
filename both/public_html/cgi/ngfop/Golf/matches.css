@@ -1,0 +1,42 @@
+/* Styles for form inputs and selects */
+.form-group input,
+.form-group select {
+    padding: 10px; /* Uniform padding on all sides */
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 22px); /* Adjust for padding + border */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+/* Profile Section Button Styling */
+.profile-btn {
+    background-color: rgba(0, 128, 0, 0.8);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.profile-btn:hover {
+    background-color: rgba(0, 150, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.profile-btn:active {
+    transform: scale(1.05);
+}
+
+.match-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
