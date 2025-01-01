@@ -27,6 +27,15 @@ header {
   font-weight: bold;
 }
 
+.header-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
 /* Main content */
 main {
   flex-grow: 1;
@@ -70,6 +79,9 @@ footer {
   text-align: center;padding: 10px;
   background-color: rgba(0, 0, 0, 0.6);
   font-size: 0.8rem;
+}
+.footer-text {
+  margin: 0;
 }
 
 .signup {

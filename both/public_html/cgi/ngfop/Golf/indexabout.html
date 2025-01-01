@@ -5,90 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Golf Hoe</title>
-  <style>
-    /* General reset */
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      box-sizing: border-box;
-      height: 100%;
-    }
-
-    /* Full-page background image */
-    body {
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_O9U__iTyjYEUwNreEp2PyFXi6ef-6OpFSC9OWlbGp5J_MOdR4970lsq-YKRlVNpecsU&usqp=CAU') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: white;
-    }
-
-    /* Header */
-    header {
-      text-align: center;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.6);
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    /* Main content */
-    main {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-    }
-
-    /* Buttons styling */
-    .button-row {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    button {
-      background-color: rgba(0, 128, 0, 0.8);
-      color: white;
-      border: none;
-      padding: 15px 20px;
-      font-size: 1rem;
-      border-radius: 5px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: rgba(0, 150, 0, 0.9);
-      transform: scale(1.1);
-    }
-
-    button:active {
-      transform: scale(1.05);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: rgba(0, 0, 0, 0.6);
-      font-size: 0.8rem;
-    }
-  </style>
+  <script language="javascript" src="./golf.js"></script>
+  <link rel="stylesheet" href=".\golf.css">
 </head>
-<script language="javascript" src="./golf.js"></script>
-
 <body>
 
-  <header header id="golfheader">
-    Golf Hoe
-  </header>
+  <header header id="golfheader"> </header>
 
   <main>
     <section id="about"
@@ -112,9 +34,7 @@
 
   </main>
 
-  <footer>
-    &copy; Golfy Jones Inc. 2025
-  </footer>
+  <footer id="golffooter"></footer>
 
 </body>
 
